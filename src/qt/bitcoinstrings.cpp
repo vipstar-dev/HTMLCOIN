@@ -9,7 +9,7 @@
 #define UNUSED
 #endif
 static const char UNUSED *bitcoin_strings[] = {
-QT_TRANSLATE_NOOP("bitcoin-core", "HTMLCOIN Core"),
+QT_TRANSLATE_NOOP("bitcoin-core", "VIPSTARCOIN Core"),
 QT_TRANSLATE_NOOP("bitcoin-core", "The %s developers"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "(1 = keep tx meta data e.g. account owner and payment request information, 2 "
@@ -54,7 +54,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Discover own IP addresses (default: 1 when listening and no -externalip or -"
 "proxy)"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
-"Distributed under the MIT software license, see the accompanying file %s or "
+"Distributed under the GPLv3 license, see the accompanying file %s or "
 "%s"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Do not keep transactions in the mempool longer than <n> hours (default: %u)"),

@@ -202,7 +202,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. nblocks      (numeric, required) How many blocks are generated immediately.\n"
-            "2. address      (string, required) The address to send the newly generated htmlcoin to.\n"
+            "2. address      (string, required) The address to send the newly generated vipstarcoin to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult:\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -234,10 +234,17 @@ UniValue getsubsidy(const JSONRPCRequest& request)
             "getsubsidy [nTarget]\n"
             "Returns subsidy value for the specified value of target.");
     int nTarget = request.params.size() == 1 ? request.params[0].get_int() : chainActive.Height();
-    if (nTarget < 0)
+    LOCK(cs_main);
+    if (nTarget < 0 || nTarget > chainActive.Height())
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Block height out of range");
     const Consensus::Params& consensusParams = Params().GetConsensus();
-    return (uint64_t)GetBlockSubsidy(nTarget, consensusParams);
+
+    CBlockIndex* pblockindex = chainActive[nTarget];
+    
+    if(pblockindex->IsProofOfStake())
+        return (uint64_t)GetProofOfStakeReward(nTarget, consensusParams);
+    else
+        return (uint64_t)GetBlockSubsidy(nTarget, consensusParams);
 }
 
 UniValue getmininginfo(const JSONRPCRequest& request)
@@ -434,10 +441,10 @@ UniValue getwork(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "HTMLCOIN is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "VIPSTARCOIN is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "HTMLCOIN is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "VIPSTARCOIN is downloading blocks...");
 
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
 
@@ -721,10 +728,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "HTMLCOIN is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "VIPSTARCOIN is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "HTMLCOIN is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "VIPSTARCOIN is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -1108,7 +1115,7 @@ UniValue estimatesmartfee(const JSONRPCRequest& request)
             "       \"CONSERVATIVE\"\n"
             "\nResult:\n"
             "{\n"
-            "  \"feerate\" : x.x,     (numeric, optional) estimate fee-per-kilobyte (in HTML)\n"
+            "  \"feerate\" : x.x,     (numeric, optional) estimate fee-per-kilobyte (in VIPS)\n"
             "  \"errors\": [ str... ] (json array of strings, optional) Errors encountered during processing\n"
             "  \"blocks\" : n         (numeric) block number where estimate was found\n"
             "}\n"

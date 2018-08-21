@@ -3539,12 +3539,12 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
     const Consensus::Params& consensusParams = Params().GetConsensus();
     // Calculate reward
     {
-        int64_t nReward = nTotalFees + GetBlockSubsidy(pindexPrev->nHeight + 1, consensusParams);
+        int64_t nReward = nTotalFees + GetProofOfStakeReward(pindexPrev->nHeight, consensusParams);
         if (nReward < 0)
             return false;
 
         nCredit += nReward;
-   }
+    }
 
     if (nCredit >= GetStakeSplitThreshold())
     {

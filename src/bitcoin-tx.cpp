@@ -54,10 +54,10 @@ static int AppInitRawTx(int argc, char* argv[])
     if (argc<2 || gArgs.IsArgSet("-?") || gArgs.IsArgSet("-h") || gArgs.IsArgSet("-help"))
     {
         // First part of help message is specific to this utility
-        std::string strUsage = strprintf(_("%s htmlcoin-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = strprintf(_("%s vipstarcoin-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
             _("Usage:") + "\n" +
-              "  htmlcoin-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded htmlcoin transaction") + "\n" +
-              "  htmlcoin-tx [options] -create [commands]   " + _("Create hex-encoded htmlcoin transaction") + "\n" +
+              "  vipstarcoin-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded vipstarcoin transaction") + "\n" +
+              "  vipstarcoin-tx [options] -create [commands]   " + _("Create hex-encoded vipstarcoin transaction") + "\n" +
               "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());

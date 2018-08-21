@@ -73,10 +73,6 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, const Cons
     int nActualTimespanLong = 0;
     int nPowTargetTimespan = params.nPowTargetTimespan;
 
-    // Set testnet time to be the same as mainnet
-    if (Params().NetworkIDString() == CBaseChainParams::TESTNET && nHeight >= params.nFixUTXOCacheHFHeight)
-        nPowTargetTimespan = 60;
-
     // Make sure there's enough PoW or PoS blocks for eHRC long sample
     const CBlockIndex* pindexCheck = pindexLast;
     for (int i = 0; i <= longSample + 1;) {

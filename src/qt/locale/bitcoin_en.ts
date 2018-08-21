@@ -80,12 +80,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your HTMLCOIN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your VIPSTARCOIN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>These are your HTMLCOIN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your VIPSTARCOIN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -211,7 +211,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR HTMLCOIN&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR VIPSTARCOIN&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <location line="-56"/>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your HTMLCOIN from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VIPSTARCOIN from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -297,9 +297,9 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
-        <location filename="../qtumgui.cpp" line="+357"/>
+        <location filename="../bitcoingui.cpp" line="+357"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
@@ -310,8 +310,8 @@
     </message>
     <message>
         <location line="-507"/>
-        <source>&amp;Overview</source>
-        <translation>&amp;Overview</translation>
+        <source>My &amp;wallet</source>
+        <translation>My &amp;wallet</translation>
     </message>
     <message>
         <location line="-143"/>
@@ -327,6 +327,61 @@
         <location line="+28"/>
         <source>&amp;Transactions</source>
         <translation>&amp;Transactions</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&amp;Transactions</source>
+        <translation>&amp;Transactions</translation>
+    </message>
+    <message>
+        <location line="+369"/>
+        <source>Smart &amp;Contracts</source>
+        <translation>Smart &amp;Contracts</translation>
+    </message>
+    <message>
+        <location line="+370"/>
+        <source>Smart contracts</source>
+        <translation>Smart contracts</translation>
+    </message>
+    <message>
+        <location line="+376"/>
+        <source>Create</source>
+        <translation>Create</translation>
+    </message>
+    <message>
+        <location line="+377"/>
+        <source>Send To</source>
+        <translation>Send To</translation>
+    </message>
+    <message>
+        <location line="+378"/>
+        <source>Call</source>
+        <translation>Call</translation>
+    </message>
+    <message>
+        <location line="+387"/>
+        <source>&amp;VRC Tokens</source>
+        <translation>&amp;VRC Tokens</translation>
+    </message>
+    <message>
+        <location line="+387"/>
+        <source>VRC Tokens (send, receive or add Tokens in list)</source>
+        <translation>VRC Tokens (send, receive or add Tokens in list)</translation>
+    </message>
+    <message>
+        <location line="+394"/>
+        <source>Send</source>
+        <translation>Send</translation>
+    </message>
+    <message>
+        <location line="+395"/>
+        <source>Receive</source>
+        <translation>Receive</translation>
+    </message>
+    <message>
+        <location line="+396"/>
+        <source>Add Token</source>
+        <translation>Add Token</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -385,6 +440,11 @@
     </message>
     <message>
         <location line="+2"/>
+        <source>&amp;Restore Wallet...</source>
+        <translation>&amp;Restore Wallet...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>&amp;Change Passphrase...</source>
         <translation>&amp;Change Passphrase...</translation>
     </message>
@@ -430,8 +490,8 @@
     </message>
     <message>
         <location line="-510"/>
-        <source>Send coins to a HTMLCOIN address</source>
-        <translation>Send coins to a HTMLCOIN address</translation>
+        <source>Send coins to a VIPSTARCOIN address</source>
+        <translation>Send coins to a VIPSTARCOIN address</translation>
     </message>
     <message>
         <location line="+67"/>
@@ -460,8 +520,8 @@
     </message>
     <message>
         <location line="+516"/>
-        <source>HTMLCOIN</source>
-        <translation>HTMLCOIN</translation>
+        <source>VIPSTARCOIN</source>
+        <translation>VIPSTARCOIN</translation>
     </message>
     <message>
         <location line="-741"/>
@@ -495,13 +555,13 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign messages with your HTMLCOIN addresses to prove you own them</source>
-        <translation>Sign messages with your HTMLCOIN addresses to prove you own them</translation>
+        <source>Sign messages with your VIPSTARCOIN addresses to prove you own them</source>
+        <translation>Sign messages with your VIPSTARCOIN addresses to prove you own them</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified HTMLCOIN addresses</source>
-        <translation>Verify messages to ensure they were signed with specified HTMLCOIN addresses</translation>
+        <source>Verify messages to ensure they were signed with specified VIPSTARCOIN addresses</source>
+        <translation>Verify messages to ensure they were signed with specified VIPSTARCOIN addresses</translation>
     </message>
     <message>
         <location line="+58"/>
@@ -525,7 +585,7 @@
     </message>
     <message>
         <location line="-158"/>
-        <source>Request payments (generates QR codes and htmlcoin: URIs)</source>
+        <source>Request payments (generates QR codes and vipstarcoin: URIs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -540,7 +600,7 @@
     </message>
     <message>
         <location line="+3"/>
-        <source>Open a htmlcoin: URI or payment request</source>
+        <source>Open a vipstarcoin: URI or payment request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -550,10 +610,10 @@
     </message>
     <message numerus="yes">
         <location line="+356"/>
-        <source>%n active connection(s) to HTMLCOIN network</source>
+        <source>%n active connection(s) to VIPSTARCOIN network</source>
         <translation>
-            <numerusform>%n active connection to HTMLCOIN network</numerusform>
-            <numerusform>%n active connections to HTMLCOIN network</numerusform>
+            <numerusform>%n active connection to VIPSTARCOIN network</numerusform>
+            <numerusform>%n active connections to VIPSTARCOIN network</numerusform>
         </translation>
     </message>
     <message>
@@ -611,7 +671,7 @@
     </message>
     <message>
         <location line="-440"/>
-        <source>Show the %1 help message to get a list with possible HTMLCOIN command-line options</source>
+        <source>Show the %1 help message to get a list with possible VIPSTARCOIN command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -690,8 +750,8 @@
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../qtum.cpp" line="+534"/>
-        <source>A fatal error occurred. HTMLCOIN can no longer continue safely and will quit.</source>
+        <location filename="../bitcoin.cpp" line="+534"/>
+        <source>A fatal error occurred. VIPSTARCOIN can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -934,7 +994,7 @@
     </message>
     <message>
         <location line="+71"/>
-        <source>The entered address &quot;%1&quot; is not a valid HTMLCOIN address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid VIPSTARCOIN address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1094,8 +1154,8 @@
     </message>
     <message>
         <location filename="../intro.cpp" line="+20"/>
-        <source>HTMLCOIN</source>
-        <translation type="unfinished">HTMLCOIN</translation>
+        <source>VIPSTARCOIN</source>
+        <translation type="unfinished">VIPSTARCOIN</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1109,7 +1169,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>%1 will download and store a copy of the HTMLCOIN block chain.</source>
+        <source>%1 will download and store a copy of the VIPSTARCOIN block chain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1153,12 +1213,12 @@
     </message>
     <message>
         <location line="+119"/>
-        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HTMLCOIN network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the VIPSTARCOIN network, as detailed below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>Attempting to spend HTMLCOIN that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend VIPSTARCOIN that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1376,8 +1436,8 @@
     </message>
     <message>
         <location line="+30"/>
-        <source>Automatically open the HTMLCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the HTMLCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the VIPSTARCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the VIPSTARCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1386,7 +1446,7 @@
     </message>
     <message>
         <location line="+17"/>
-        <source>Connect to the HTMLCOIN network through a SOCKS5 proxy.</source>
+        <source>Connect to the VIPSTARCOIN network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1434,7 +1494,7 @@
     </message>
     <message>
         <location line="+25"/>
-        <source>Connect to the HTMLCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the VIPSTARCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1568,6 +1628,11 @@
         <source>The supplied proxy address is invalid.</source>
         <translation>The supplied proxy address is invalid.</translation>
     </message>
+    <message>
+        <location line="+168"/>
+        <source>Reserve</source>
+        <translation>Reserve</translation>
+    </message>
 </context>
 <context>
     <name>OverviewPage</name>
@@ -1579,8 +1644,8 @@
     <message>
         <location line="+62"/>
         <location line="+386"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the VIPSTARCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the VIPSTARCOIN network after a connection is established, but this process has not completed yet.</translation>
     </message>
     <message>
         <location line="-139"/>
@@ -1662,6 +1727,41 @@
         <source>Current total balance in watch-only addresses</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location line="+49"/>
+        <source>Other Tokens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+560"/>
+        <source>RecentTransactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+448"/>
+        <source>Total:        </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+631"/>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+654"/>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+661"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+668"/>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PaymentServer</name>
@@ -1677,7 +1777,7 @@
     </message>
     <message>
         <location line="-402"/>
-        <source>Cannot start htmlcoin: click-to-pay handler</source>
+        <source>Cannot start vipstarcoin: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1699,7 +1799,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>URI cannot be parsed! This can be caused by an invalid HTMLCOIN address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid VIPSTARCOIN address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1815,13 +1915,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../qtumunits.cpp" line="+176"/>
+        <location filename="../bitcoinunits.cpp" line="+176"/>
         <source>Amount</source>
         <translation type="unfinished">Amount</translation>
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+130"/>
-        <source>Enter a HTMLCOIN address (e.g. %1)</source>
+        <source>Enter a VIPSTARCOIN address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1915,7 +2015,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../qtum.cpp" line="+178"/>
+        <location filename="../bitcoin.cpp" line="+178"/>
         <source>%1 didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2295,18 +2395,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</translation>
-    </message>
-    <message>
         <location line="-1"/>
-        <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
-        <translation type="unfinished"></translation>
+        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
+        <translation>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
+        <source>WARNING: Do not use this console without fully understanding the ramification of a command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2407,7 +2502,7 @@
     <message>
         <location line="+14"/>
         <location line="+23"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the HTMLCOIN network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the VIPSTARCOIN network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2705,7 +2800,7 @@
     <message>
         <location line="+84"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for HTMLCOIN transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for VIPSTARCOIN transactions than the network can process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2714,13 +2809,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+29"/>
-        <source>Recommended:</source>
+        <location line="+794"/>
+        <source>Recommended</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+30"/>
-        <source>Custom:</source>
+        <location line="+807"/>
+        <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2921,7 +3016,7 @@
     </message>
     <message>
         <location line="+101"/>
-        <source>Warning: Invalid HTMLCOIN address</source>
+        <source>Warning: Invalid VIPSTARCOIN address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2942,6 +3037,11 @@
     <message>
         <location line="+21"/>
         <source>(no label)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+577"/>
+        <source>Recipients</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2976,7 +3076,7 @@
     </message>
     <message>
         <location line="+39"/>
-        <source>The HTMLCOIN address to send the payment to</source>
+        <source>The VIPSTARCOIN address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3003,7 +3103,7 @@
     </message>
     <message>
         <location line="-1021"/>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less HTMLCOIN than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less VIPSTARCOIN than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3033,7 +3133,7 @@
     </message>
     <message>
         <location line="+47"/>
-        <source>A message that was attached to the htmlcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HTMLCOIN network.</source>
+        <source>A message that was attached to the vipstarcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the VIPSTARCOIN network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3057,7 +3157,7 @@
 <context>
     <name>SendConfirmationDialog</name>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="+83"/>
+        <location filename="../sendcoinsdialog.cpp" line="+95"/>
         <location line="+5"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
@@ -3090,12 +3190,12 @@
     </message>
     <message>
         <location line="+6"/>
-        <source>You can sign messages/agreements with your addresses to prove you can receive HTMLCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive vipstarcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The HTMLCOIN address to sign the message with</source>
+        <source>The VIPSTARCOIN address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3137,8 +3237,8 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this HTMLCOIN address</source>
-        <translation>Sign the message to prove you own this HTMLCOIN address</translation>
+        <source>Sign the message to prove you own this VIPSTARCOIN address</source>
+        <translation>Sign the message to prove you own this VIPSTARCOIN address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3168,13 +3268,13 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>The HTMLCOIN address the message was signed with</source>
+        <source>The VIPSTARCOIN address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+37"/>
-        <source>Verify the message to ensure it was signed with the specified HTMLCOIN address</source>
-        <translation>Verify the message to ensure it was signed with the specified HTMLCOIN address</translation>
+        <source>Verify the message to ensure it was signed with the specified VIPSTARCOIN address</source>
+        <translation>Verify the message to ensure it was signed with the specified VIPSTARCOIN address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3629,7 +3729,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+28"/>
+        <location line="+2"/>
+        <source>Contract receive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Contract send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
         <source>watch-only</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3725,6 +3835,16 @@
     <message>
         <location line="+2"/>
         <source>To yourself</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Contract Receive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Contract Send</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3876,7 +3996,7 @@
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
-        <location filename="../qtumgui.cpp" line="+129"/>
+        <location filename="../bitcoingui.cpp" line="+129"/>
         <source>Unit to show amounts in. Click to select another unit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3988,9 +4108,9 @@
     </message>
 </context>
 <context>
-    <name>qtum-core</name>
+    <name>bitcoin-core</name>
     <message>
-        <location filename="../qtumstrings.cpp" line="+341"/>
+        <location filename="../bitcoinstrings.cpp" line="+341"/>
         <source>Options:</source>
         <translation>Options:</translation>
     </message>
@@ -4016,7 +4136,7 @@
     </message>
     <message>
         <location line="-205"/>
-        <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
+        <source>Distributed under the GPLv3 license, see the accompanying file %s or %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4066,8 +4186,8 @@
     </message>
     <message>
         <location line="-384"/>
-        <source>HTMLCOIN Core</source>
-        <translation type="unfinished">HTMLCOIN Core</translation>
+        <source>VIPSTARCOIN Core</source>
+        <translation type="unfinished">VIPSTARCOIN Core</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5218,6 +5338,804 @@
         <location line="+19"/>
         <source>Error</source>
         <translation>Error</translation>
+    </message>
+</context>
+<context>
+    <name>RestoreDialog</name>
+    <message>
+        <location filename="../forms/restoredialog.ui" line="+14"/>
+        <source>Restore Wallet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+65"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>Select wallet file to restore from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+81"/>
+        <source>Choose wallet restore option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+87"/>
+        <source>Reindex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+97"/>
+        <source>Salvage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+136"/>
+        <source>The wallet.dat will be restored from the selected location and the Qt Wallet will be restarted with the -reindex or -salvagewallet option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+163"/>
+        <source>&amp;Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CreateContract</name>
+    <message>
+        <location filename="../forms/createcontract.ui" line="+14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+95"/>
+        <source>Bytecode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+143"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+171"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+231"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+250"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+272"/>
+        <source>Sender Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+362"/>
+        <source>Solidity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+369"/>
+        <source>Token</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+433"/>
+        <source>Create Contract</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+462"/>
+        <source>Clear All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SendToContract</name>
+    <message>
+        <location filename="../forms/sendtocontract.ui" line="+14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <source>Send to Smart Contract</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+79"/>
+        <source>Contract Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+105"/>
+        <source>Interface (ABI)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+117"/>
+        <source>Choose from contract book page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+133"/>
+        <source>Paste contract address from clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <source>Save contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+169"/>
+        <source>Function</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+247"/>
+        <source>Sender Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+266"/>
+        <source>Gas Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+301"/>
+        <source>Gas Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+323"/>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+386"/>
+        <source>Send To Contract</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+415"/>
+        <source>Clear All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CallContract</name>
+    <message>
+        <location filename="../forms/callcontract.ui" line="+14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <source>Call Smart Contract</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+79"/>
+        <source>Contract Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+105"/>
+        <source>Interface (ABI)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+117"/>
+        <source>Choose from contract book page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+133"/>
+        <source>Paste contract address from clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <source>Save contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+169"/>
+        <source>Function</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+244"/>
+        <source>Sender Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+307"/>
+        <source>Call Contract</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+336"/>
+        <source>Clear All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SendTokenPage</name>
+    <message>
+        <location filename="../forms/sendtokenpage.ui" line="+17"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+53"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+66"/>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+79"/>
+        <source>GasLimit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+92"/>
+        <source>GasPrice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+105"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+179"/>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+208"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ReceiveTokenPage</name>
+    <message>
+        <location filename="../forms/receivetokenpage.ui" line="+17"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+95"/>
+        <source>Copy Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddTokenPage</name>
+    <message>
+        <location filename="../forms/addtokenpage.ui" line="+14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>Token Symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+73"/>
+        <source>Decimals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>Contract Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+119"/>
+        <source>Token Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+161"/>
+        <source>Token Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+225"/>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+254"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContractResult</name>
+    <message>
+        <location filename="../forms/contractresult.ui" line="+14"/>
+        <source>StackedWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+70"/>
+        <location line="+229"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+89"/>
+        <source>Hash160</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+124"/>
+        <location line="+345"/>
+        <source>SenderAddress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+172"/>
+        <source>Transaction ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+294"/>
+        <source>Function</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+355"/>
+        <source>Result</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionView</name>
+    <message>
+        <location filename="../tokentransactionview.cpp" line="+48"/>
+        <location line="+12"/>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-11"/>
+        <source>Today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Last month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Range...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Received with</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Sent to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>To yourself</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Enter address to search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Min amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Copy address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy transaction ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy full transaction details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show transaction details</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionTableModel</name>
+    <message>
+        <location filename="../tokentransactiontablemodel.cpp" line="+277"/>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Unconfirmed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Confirming (%1 of %2 recommended confirmations)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Confirmed (%1 confirmations)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+43"/>
+        <source>Received with</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Received from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Sent to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Payment to yourself</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+222"/>
+        <source>(no label)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContractBookPage</name>
+    <message>
+        <location filename="../contractbookpage.cpp" line="+42"/>
+        <source>Choose the contract for send/call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>These are your saved contracts. Always check the contract address and the ABI before sending/calling.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Copy &amp;Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy &amp;Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy &amp;Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+123"/>
+        <source>Are you sure you want to delete the address \"%1\" from your contract address list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Delete contact address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+56"/>
+        <source>Export Contract List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>ABI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Exporting Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>There was an error trying to save the address list to %1. Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../contractbookpage.ui" line="+14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+87"/>
+        <source>Create a new contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Copy the currently selected contract address to the system clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Delete the currently selected contract info from the list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Export the data to a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Choose</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditContractInfoDialog</name>
+    <message>
+        <location filename="../editcontractinfodialog.cpp" line="+31"/>
+        <source>New contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Edit contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../editcontractinfodialog.ui" line="+14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Contract Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Interface (ABI)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionDesc</name>
+    <message>
+        <location filename="../tokentransactiondesc.cpp" line="+27"/>
+        <source>conflicted with a transaction with %1 confirmations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1/offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>0/unconfirmed, in memory pool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>0/unconfirmed, not in memory pool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1/unconfirmed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 confirmations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transaction ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Token Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>From</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>To</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Credit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Debit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Net Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContractTableModel</name>
+    <message>
+        <location filename="../contracttablemodel.cpp" line="+137"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Contract Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Interface (ABI)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>(no label)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

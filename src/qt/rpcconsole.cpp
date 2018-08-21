@@ -766,10 +766,10 @@ void RPCConsole::clear(bool clearHistory)
 #endif
 	 
     message(CMD_REPLY, (tr("Welcome to the %1 RPC console.").arg(tr(PACKAGE_NAME)) + "<br>" +
-                        tr("Use up and down arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
-                        tr("Type <b>help</b> for an overview of available commands.")) +
+                        tr("Use up and down arrows to navigate history, and <b>Ctrl-L</b> to clear screen.") + "<br>" +
+                        tr("")) +
                         "<br><span class=\"secwarning\">" +
-                        tr("WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.") +
+                        tr("WARNING: Do not use this console without fully understanding the ramification of a command.") +
                         "</span>",
                         true);
 }

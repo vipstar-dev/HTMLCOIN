@@ -155,15 +155,15 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
         move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
     }
 
-    QString windowTitle = tr(PACKAGE_NAME) + " ";
+    QString windowTitle = tr(PACKAGE_NAME) + " - ";
 #ifdef ENABLE_WALLET
     enableWallet = WalletModel::isWalletEnabled();
 #endif // ENABLE_WALLET
     if(enableWallet)
     {
-        windowTitle += tr("WALLET");
+        windowTitle += tr("Wallet");
     } else {
-        windowTitle += tr("NODE");
+        windowTitle += tr("Node");
     }
     windowTitle += " " + networkStyle->getTitleAddText();
 #ifndef Q_OS_MAC
@@ -300,7 +300,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
     if(fCheckForUpdates && qtumVersionChecker->newVersionAvailable())
     {
         QString link = QString("<a href=%1>%2</a>").arg(QTUM_RELEASES, QTUM_RELEASES);
-        QString message(tr("New version of HTMLCOIN wallet is available on the HTMLCOIN source code repository: <br /> %1. <br />It is recommended to download it and update this application").arg(link));
+        QString message(tr("New version of VIPSTARCOIN wallet is available on the VIPSTARCOIN source code repository: <br /> %1. <br />It is recommended to download it and update this application").arg(link));
         QMessageBox::information(this, tr("Check for updates"), message);
     }
 
@@ -345,7 +345,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(platformStyle->MultiStatesIcon(":/icons/send_to"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a HTMLCOIN address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a VIPSTARCOIN address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -356,7 +356,7 @@ void BitcoinGUI::createActions()
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
     receiveCoinsAction = new QAction(platformStyle->MultiStatesIcon(":/icons/receive_from"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and htmlcoin: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and vipstarcoin: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
@@ -384,8 +384,8 @@ void BitcoinGUI::createActions()
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     tabGroup->addAction(historyAction);
 
-    QRCTokenAction = new QAction(platformStyle->MultiStatesIcon(":/icons/qrctoken"), tr("&HRC Tokens"), this);
-    QRCTokenAction->setStatusTip(tr("HRC Tokens (send, receive or add Tokens in list)"));
+    QRCTokenAction = new QAction(platformStyle->MultiStatesIcon(":/icons/qrctoken"), tr("&VRC Tokens"), this);
+    QRCTokenAction->setStatusTip(tr("VRC Tokens (send, receive or add Tokens in list)"));
     QRCTokenAction->setToolTip(QRCTokenAction->statusTip());
     QRCTokenAction->setCheckable(true);
     QRCTokenAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
@@ -457,9 +457,9 @@ void BitcoinGUI::createActions()
     lockWalletAction = new QAction(platformStyle->MenuColorIcon(":/icons/lock_closed"), tr("&Lock Wallet"), this);
     lockWalletAction->setToolTip(tr("Lock wallet"));
     signMessageAction = new QAction(platformStyle->MenuColorIcon(":/icons/edit"), tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your HTMLCOIN addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your VIPSTARCOIN addresses to prove you own them"));
     verifyMessageAction = new QAction(platformStyle->MenuColorIcon(":/icons/verify"), tr("&Verify message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified HTMLCOIN addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified VIPSTARCOIN addresses"));
 
     openRPCConsoleAction = new QAction(platformStyle->MenuColorIcon(":/icons/debugwindow"), tr("&Debug window"), this);
     openRPCConsoleAction->setStatusTip(tr("Open debugging and diagnostic console"));
@@ -472,11 +472,11 @@ void BitcoinGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(platformStyle->MenuColorIcon(":/icons/open"), tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a htmlcoin: URI or payment request"));
+    openAction->setStatusTip(tr("Open a vipstarcoin: URI or payment request"));
 
     showHelpMessageAction = new QAction(platformStyle->MenuColorIcon(":/icons/info"), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible HTMLCOIN command-line options").arg(tr(PACKAGE_NAME)));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible VIPSTARCOIN command-line options").arg(tr(PACKAGE_NAME)));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -904,7 +904,7 @@ void BitcoinGUI::updateNetworkState()
     QString tooltip;
 
     if (clientModel->getNetworkActive()) {
-        tooltip = tr("%n active connection(s) to HTMLCOIN network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
+        tooltip = tr("%n active connection(s) to VIPSTARCOIN network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
     } else {
         tooltip = tr("Network activity disabled.") + QString("<br>") + tr("Click to enable network activity again.");
         icon = ":/icons/network_disabled";
@@ -1055,7 +1055,7 @@ void BitcoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVer
 
 void BitcoinGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
 {
-    QString strTitle = tr("HTMLCOIN"); // default title
+    QString strTitle = tr("VIPSTARCOIN"); // default title
     // Default to information icon
     int nMBoxIcon = QMessageBox::Information;
     int nNotifyIcon = Notificator::Information;

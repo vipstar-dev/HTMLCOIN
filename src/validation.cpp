@@ -58,7 +58,7 @@
 #include <boost/foreach.hpp>
 
 #if defined(NDEBUG)
-# error "HTMLCOIN cannot be compiled without assertions."
+# error "VIPSTARCOIN cannot be compiled without assertions."
 #endif
 
 /**
@@ -118,7 +118,7 @@ static bool UpdateHashProof(const CBlock& block, CValidationState& state, const 
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "HTMLCOIN Signed Message:\n";
+const std::string strMessageMagic = "VIPSTARCOIN Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -487,7 +487,7 @@ static bool CheckInputsFromMempoolAndCache(const CTransaction& tx, CValidationSt
 
 static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool& pool, CValidationState& state, const CTransactionRef& ptx, bool fLimitFree,
                               bool* pfMissingInputs, int64_t nAcceptTime, std::list<CTransactionRef>* plTxnReplaced,
-                              bool fOverrideMempoolLimit, const CAmount& nAbsurdFee, std::vector<COutPoint>& coins_to_uncache, bool rawTx)
+                              bool fOverrideMempoolLimit, const CAmount& nAbsurdFee, std::vector<COutPoint>& coins_to_uncache)
 {
     const CTransaction& tx = *ptx;
     const uint256 hash = tx.GetHash();
@@ -723,11 +723,6 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
 
             if(count > qtumTransactions.size())
                 return state.DoS(100, false, REJECT_INVALID, "bad-txns-incorrect-format");
-
-            if (rawTx && nAbsurdFee && dev::u256(nFees) > dev::u256(nAbsurdFee) + sumGas)
-                return state.Invalid(false,
-                    REJECT_HIGHFEE, "absurdly-high-fee",
-                    strprintf("%d > %d", nFees, nAbsurdFee));
         }
         ////////////////////////////////////////////////////////////
 
@@ -987,7 +982,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         // Remove conflicting transactions from the mempool
         for (const CTxMemPool::txiter it : allConflicting)
         {
-            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s HTML additional fees, %d delta bytes\n",
+            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s VIPS additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -1022,10 +1017,10 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
 /** (try to) add transaction to memory pool with a specified acceptance time **/
 static bool AcceptToMemoryPoolWithTime(const CChainParams& chainparams, CTxMemPool& pool, CValidationState &state, const CTransactionRef &tx, bool fLimitFree,
                         bool* pfMissingInputs, int64_t nAcceptTime, std::list<CTransactionRef>* plTxnReplaced,
-                        bool fOverrideMempoolLimit, const CAmount nAbsurdFee, bool rawTx = false)
+                        bool fOverrideMempoolLimit, const CAmount nAbsurdFee)
 {
     std::vector<COutPoint> coins_to_uncache;
-    bool res = AcceptToMemoryPoolWorker(chainparams, pool, state, tx, fLimitFree, pfMissingInputs, nAcceptTime, plTxnReplaced, fOverrideMempoolLimit, nAbsurdFee, coins_to_uncache, rawTx);
+    bool res = AcceptToMemoryPoolWorker(chainparams, pool, state, tx, fLimitFree, pfMissingInputs, nAcceptTime, plTxnReplaced, fOverrideMempoolLimit, nAbsurdFee, coins_to_uncache);
     if (!res) {
         for (const COutPoint& hashTx : coins_to_uncache)
             pcoinsTip->Uncache(hashTx);
@@ -1052,10 +1047,10 @@ bool IsConfirmedInNPrevBlocks(const CDiskTxPos& txindex, const CBlockIndex* pind
 
 bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransactionRef &tx, bool fLimitFree,
                         bool* pfMissingInputs, std::list<CTransactionRef>* plTxnReplaced,
-                        bool fOverrideMempoolLimit, const CAmount nAbsurdFee, bool rawTx)
+                        bool fOverrideMempoolLimit, const CAmount nAbsurdFee)
 {
     const CChainParams& chainparams = Params();
-    return AcceptToMemoryPoolWithTime(chainparams, pool, state, tx, fLimitFree, pfMissingInputs, GetTime(), plTxnReplaced, fOverrideMempoolLimit, nAbsurdFee, rawTx);
+    return AcceptToMemoryPoolWithTime(chainparams, pool, state, tx, fLimitFree, pfMissingInputs, GetTime(), plTxnReplaced, fOverrideMempoolLimit, nAbsurdFee);
 }
 
 /** Return transaction in txOut, and if it was found inside a block, its hash is placed in hashBlock */
@@ -1261,26 +1256,31 @@ bool ReadFromDisk(CMutableTransaction& tx, CDiskTxPos& txindex, CBlockTreeDB& tx
     return true;
 }
 
-CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
+CAmount GetProofOfStakeReward(int nHeight, const Consensus::Params& consensusParams)
 {
-    // 70.8 billion coins to cover existing coins, developer fund and exchange reimbursement
-    if (nHeight <= 798)
-        return 100000000 * COIN;
-
+    CAmount nSubsidy = 9500 * COIN;
+    if (nHeight <= 2000)
+        return 1 * COIN;
+    if (nHeight <= 28000)
+        return 3000 * COIN;
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
     // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64)
+    if (halvings >= 128)
         return 0;
-
-    CAmount nSubsidy = 1250 * COIN;
-    // Subsidy is cut in half every 14.6 years.
     nSubsidy >>= halvings;
+    if (nSubsidy < 100 * COIN)
+        return 100 * COIN;
     return nSubsidy;
 }
 
-CAmount GetSubsidy(int nHeight) {
-    if (nHeight == Params().GetConsensus().nDiffDamping) return 13967176504 * COIN;
-    return 0;
+CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
+{
+    CAmount nSubsidy = 100 * COIN;
+    if (nHeight == 1 || nHeight == 100 || nHeight == 200 || nHeight == 300 || nHeight == 400 || nHeight == 500)
+        return 10000000000 * COIN;
+    if (nHeight <= 2000)
+        return 1 * COIN;
+    return nSubsidy;
 }
 
 bool IsInitialBlockDownload()
@@ -1456,29 +1456,6 @@ void InitScriptExecutionCache() {
             (nElems*sizeof(uint256)) >>20, (nMaxCacheSize*2)>>20, nElems);
 }
 
-bool CheckHash(const CTransaction &tx, const CCoinsViewCache &inputs) {
-    const uint256 hash0 = uint256S("0x2b93e34c3207cbda6b8be0be6e4fe110d8c902e30c4f8011bdd9aedadf69efec");
-    const uint256 hash1 = uint256S("0x7ff178e324e0e42486d6d985b576a7fe494069622831828d70151b15b2199b43");
-    const uint256 hash2 = uint256S("0xc03dab08bf00ae87581fd87358422097b5f7b44e1a9439ac2e68d5a069013bb1");
-    const uint256 hash3 = uint256S("0xd28ff9e2c0189221e4337793444db44a91339fadd4a2ceafe52dded37f88d2f3");
-    const uint256 hash4 = uint256S("0xa06d89c24faa49998281627b783d8ca3638a7be421f76b03fca6bcd413af3b94");
-    const uint256 hash5 = uint256S("0x0d009c1fe5910a8fa5488784fc0c1edf5cf75fa09e0ee4486ae19c8c37ef7467");
-
-    unsigned int i;
-    CBlockIndex *pindexBlock = mapBlockIndex.find(inputs.GetBestBlock())->second;
-    for(i = 0; i < tx.vin.size(); i++) {
-        const COutPoint &prevout = tx.vin[i].prevout;
-        if((pindexBlock->nHeight > 106000) &&
-          ((prevout.hash == hash0) || (prevout.hash == hash1) || (prevout.hash == hash2) ||
-           (prevout.hash == hash3) || (prevout.hash == hash4) || (prevout.hash == hash5))) {
-            strprintf("%s hash failed", tx.GetHash().ToString().substr(0,10).c_str());
-            return(false);
-        }
-    }
-
-    return(true);
-}
-
 /**
  * Check whether all inputs of this transaction are valid (no double spends, scripts & sigs, amounts)
  * This does not modify the UTXO set.
@@ -1499,9 +1476,6 @@ bool CheckInputs(const CTransaction& tx, CValidationState &state, const CCoinsVi
     {
         if (!Consensus::CheckTxInputs(tx, state, inputs, GetSpendHeight(inputs)))
             return false;
-
-        if(!CheckHash(tx, inputs))
-            return(state.DoS(100, false, REJECT_INVALID, "bad-hash"));
 
         if (pvChecks)
             pvChecks->reserve(tx.vin.size());
@@ -1959,8 +1933,6 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
     {
         // Check proof-of-work reward
         CAmount blockReward = nFees + GetBlockSubsidy(nHeight, consensusParams);
-        if (Params().NetworkIDString() == CBaseChainParams::MAIN && nHeight == consensusParams.nDiffDamping)
-            blockReward = nFees + GetBlockSubsidy(nHeight, consensusParams) + GetSubsidy(nHeight);
         if (block.vtx[offset]->GetValueOut() > blockReward)
             return state.DoS(100,
                              error("CheckReward(): coinbase pays too much (actual=%d vs limit=%d)",
@@ -1970,7 +1942,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
     else
     {
         // Check full reward
-        CAmount blockReward = nFees + GetBlockSubsidy(nHeight, consensusParams);
+        CAmount blockReward = nFees + GetProofOfStakeReward(nHeight, consensusParams);
         if (nActualStakeReward > blockReward)
             return state.DoS(100,
                              error("CheckReward(): coinstake pays too much (actual=%d vs limit=%d)",
@@ -2663,7 +2635,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
 
             countCumulativeGasUsed += bcer.usedGas;
             std::vector<TransactionReceiptInfo> tri;
-            if (fLogEvents && !fJustCheck)
+            if (fLogEvents)
             {
                 for(size_t k = 0; k < resultConvertQtumTX.first.size(); k ++){
                     dev::Address key = resultExec[k].execRes.newAddress;
@@ -3217,7 +3189,6 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
 
             globalState->setRoot(oldHashStateRoot); // qtum
             globalState->setRootUTXO(oldHashUTXORoot); // qtum
-            pstorageresult->clearCacheResult();
             return error("ConnectTip(): ConnectBlock %s failed", pindexNew->GetBlockHash().ToString());
         }
         nTime3 = GetTimeMicros(); nTimeConnectTotal += nTime3 - nTime2;
@@ -3939,9 +3910,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     if (block.fChecked)
         return true;
 
-    if (block.IsProofOfStake() && Params().NetworkIDString() == CBaseChainParams::MAIN && chainActive.Tip()->nHeight + 1 == consensusParams.nDiffDamping)
-        return error("%s: No PoS block on fork height", __func__);
-
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
     if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW))
@@ -4226,23 +4194,6 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
                 return state.DoS(100, false, REJECT_INVALID, "unexpected-witness", true, strprintf("%s : unexpected witness data found", __func__));
             }
         }
-    }
-
-    // Coinbase transaction must include CG fund
-    if (Params().NetworkIDString() == CBaseChainParams::MAIN && nHeight == consensusParams.nDiffDamping) {
-        bool found = false;
-
-        BOOST_FOREACH(const CTxOut& output, block.vtx[0]->vout) {
-            if (output.scriptPubKey == Params().GetRewardScriptAtHeight(nHeight)) {
-                if (output.nValue == GetSubsidy(nHeight)) {
-                    found = true;
-                    break;
-                }
-            }
-        }
-
-        if (!found)
-            return state.DoS(100, error("%s: founders reward missing", __func__), REJECT_INVALID, "cb-no-founders-reward");
     }
 
     return true;
@@ -4566,7 +4517,6 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
         
         globalState->setRoot(oldHashStateRoot); // qtum
         globalState->setRootUTXO(oldHashUTXORoot); // qtum
-        pstorageresult->clearCacheResult();
         return false;
     }
     assert(state.IsValid());
@@ -5047,7 +4997,6 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
 
                 globalState->setRoot(oldHashStateRoot); // qtum
                 globalState->setRootUTXO(oldHashUTXORoot); // qtum
-                pstorageresult->clearCacheResult();
                 return error("VerifyDB(): *** found unconnectable block at %d, hash=%s", pindex->nHeight, pindex->GetBlockHash().ToString());
             }
         }

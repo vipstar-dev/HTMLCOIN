@@ -325,6 +325,7 @@ bool GetTransaction(const uint256 &hash, CTransactionRef &tx, const Consensus::P
 /** Find the best known block, and make it the tip of the block chain */
 bool ActivateBestChain(CValidationState& state, const CChainParams& chainparams, std::shared_ptr<const CBlock> pblock = std::shared_ptr<const CBlock>());
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams);
+CAmount GetProofOfStakeReward(int nHeight, const Consensus::Params& consensusParams);
 
 /** Guess verification progress (as a fraction between 0.0=genesis and 1.0=current tip). */
 double GuessVerificationProgress(const ChainTxData& data, CBlockIndex* pindex);
@@ -355,7 +356,7 @@ bool IsConfirmedInNPrevBlocks(const CDiskTxPos& txindex, const CBlockIndex* pind
  * plTxnReplaced will be appended to with all transactions replaced from mempool **/
 bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState &state, const CTransactionRef &tx, bool fLimitFree,
                         bool* pfMissingInputs, std::list<CTransactionRef>* plTxnReplaced = nullptr,
-                        bool fOverrideMempoolLimit=false, const CAmount nAbsurdFee=0, bool rawTx = false);
+                        bool fOverrideMempoolLimit=false, const CAmount nAbsurdFee=0);
 
 /** Convert CValidationState to a human-readable message for logging */
 std::string FormatStateMessage(const CValidationState &state);

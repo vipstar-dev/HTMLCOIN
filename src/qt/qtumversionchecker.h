@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#define QTUM_RELEASES "https://github.com/HTMLCOIN/HTMLCOIN/releases"
+#define QTUM_RELEASES "https://github.com/vipstar-dev/VIPSTARCOIN/releases"
 
 class Version {
 

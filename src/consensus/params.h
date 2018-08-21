@@ -72,7 +72,6 @@ struct Params {
     uint256 defaultAssumeValid;
     int nFirstMPoSBlock;
     int nMPoSRewardRecipients;
-    int nFixUTXOCacheHFHeight;
 };
 } // namespace Consensus
 

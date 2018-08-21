@@ -84,7 +84,7 @@ Then build using:
     make HOST=x86_64-w64-mingw32
     cd ..
     ./autogen.sh # not required when building from tarball
-    CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+    CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-bench --disable-tests --disable-shared --enable-static
     make
 
 ## Building for 32-bit Windows

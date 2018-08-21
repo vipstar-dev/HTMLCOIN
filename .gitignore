@@ -1,10 +1,10 @@
 *.tar.gz
 
 *.exe
-src/htmlcoin
-src/htmlcoind
-src/htmlcoin-cli
-src/htmlcoin-tx
+src/vipstarcoin
+src/vipstarcoind
+src/vipstarcoin-cli
+src/vipstarcoin-tx
 src/test/test_bitcoin
 src/test/test_bitcoin_fuzzy
 src/qt/test/test_bitcoin-qt
@@ -74,8 +74,8 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-htmlcoin-qt
-HTMLCOIN-Qt.app
+vipstarcoin-qt
+VIPSTARCOIN-Qt.app
 
 # Unit-tests
 Makefile.test
@@ -112,12 +112,12 @@ contrib/devtools/split-debug.sh
 .cproject
 .project
 .settings/language.settings.xml
-src/qtum-cli
-src/qtum-tx
-src/qtumd
-src/bench/bench_qtum
-src/qt/qtum-qt
-src/qt/test/test_qtum-qt
+src/vipstarcoin-cli
+src/vipstarcoin-tx
+src/vipstarcoind
+src/bench/bench_vipstarcoin
+src/qt/vipstarcoin-qt
+src/qt/test/test_vipstarcoin-qt
 src/test/buildenv.py
-src/test/test_qtum
-src/test/test_qtum_fuzzy
+src/test/test_vipstarcoin
+src/test/test_vipstarcoin_fuzzy

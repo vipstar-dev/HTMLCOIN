@@ -216,11 +216,13 @@ void BlockAssembler::resetBlock()
 
 void BlockAssembler::RebuildRefundTransaction(){
     int refundtx=0; //0 for coinbase in PoW
-    if(pblock->IsProofOfStake()){
+    if(pblock->IsProofOfStake())
         refundtx=1; //1 for coinstake in PoS
-    }
     CMutableTransaction contrTx(originalRewardTx);
-    contrTx.vout[refundtx].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    if(pblock->IsProofOfStake())
+        contrTx.vout[refundtx].nValue = nFees + GetProofOfStakeReward(nHeight, chainparams.GetConsensus());
+    else
+        contrTx.vout[refundtx].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     contrTx.vout[refundtx].nValue -= bceResult.refundSender;
     //note, this will need changed for MPoS
     int i=contrTx.vout.size();
@@ -318,6 +320,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         coinstakeTx.vout.resize(2);
         coinstakeTx.vout[0].SetEmpty();
         coinstakeTx.vout[1].scriptPubKey = scriptPubKeyIn;
+        coinstakeTx.vout[1].nValue = nFees + GetProofOfStakeReward(nHeight, chainparams.GetConsensus());
         originalRewardTx = coinstakeTx;
         pblock->vtx[1] = MakeTransactionRef(std::move(coinstakeTx));
 

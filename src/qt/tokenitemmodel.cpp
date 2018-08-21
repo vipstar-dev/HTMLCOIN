@@ -1,4 +1,4 @@
-﻿#include "tokenitemmodel.h"
+#include "tokenitemmodel.h"
 #include "token.h"
 #include "walletmodel.h"
 #include "wallet/wallet.h"

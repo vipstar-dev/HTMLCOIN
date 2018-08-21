@@ -545,8 +545,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/HTMLCOIN/HTMLCOIN>";
-    const std::string URL_WEBSITE = "<https://htmlcoin.com>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/vipstar-dev/VIPSTARCOIN>";
+    const std::string URL_WEBSITE = "<https://www.vipstarcoin.jp/>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2014, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -559,7 +559,7 @@ std::string LicenseInfo()
            "\n" +
            "\n" +
            _("This is experimental software.") + "\n" +
-           strprintf(_("Distributed under the MIT software license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/MIT>") + "\n" +
+           strprintf(_("Distributed under the GPLv3 license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/GPL-3.0>") + "\n" +
            "\n" +
            strprintf(_("This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard."), "<https://www.openssl.org>") +
            "\n";
@@ -844,7 +844,7 @@ void InitLogging()
     fLogIPs = gArgs.GetBoolArg("-logips", DEFAULT_LOGIPS);
 
     LogPrintf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    LogPrintf("HTMLCOIN version %s\n", FormatFullVersion());
+    LogPrintf("VIPSTARCOIN version %s\n", FormatFullVersion());
 }
 
 namespace { // Variables internal to initialization process only
@@ -1562,7 +1562,7 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
                 }
 
                 dev::eth::Ethash::init();
-                fs::path qtumStateDir = GetDataDir() / "stateHTMLCOIN";
+                fs::path qtumStateDir = GetDataDir() / "stateVIPSTARCOIN";
                 bool fStatus = fs::exists(qtumStateDir);
                 const std::string dirQtum(qtumStateDir.string());
                 const dev::h256 hashDB(dev::sha3(dev::rlp("")));

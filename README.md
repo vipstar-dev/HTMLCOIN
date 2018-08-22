@@ -1,4 +1,4 @@
-VIPSTARCOIN Core Ver 1.1.0
+VIPSTARCOIN Core Ver 1.1.0 (Unofficial)
 =========
 
 (Japanese HP)https://www.vipstarcoin.jp/
@@ -115,32 +115,32 @@ The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Japanese
 
-VIPSTARCOIN 1.1.0�Ƃ�?
+VIPSTARCOIN 1.1.0とは?
 -------------
 
-VIPSTARCOIN��Bitcoin Core��Ethereum���x�[�X�̃X�}�[�g�R���g���N�g�𓝍�����HTMLCOIN���x�[�X�Ƃ����V�����u���b�N�`�F�[���ł��B����͎�ɃA�J�E���g�������C���[����ėL���ɂȂ��Ă���A��葽����VM��ǉ��ł���g���\�Ȑ݌v�������A�A�J�E���g�x�[�X�̉��z�}�V����UTXO�x�[�X�̃u���b�N�`�F�[����ŋ@�\�����邱�Ƃ��ł��܂��B
+VIPSTARCOINはBitcoin CoreとEthereumがベースのスマートコントラクトを統合したHTMLCOINをベースとした新しいブロックチェーンです。これは主にアカウント匿名レイヤーを介して有効になっており、より多くのVMを追加できる拡張可能な設計を実装、アカウントベースの仮想マシンをUTXOベースのブロックチェーン上で機能させることができます。
 
-VIPSTARCOIN Core�Ƃ�?
+VIPSTARCOIN Coreとは?
 ------------------
 
-VIPSTARCOIN Core�͎���������Ɏg�����C���l�b�g�E�H���b�g�ł��B�t���m�[�h���������AVIPSTARCOIN�l�b�g���[�N�̂��ׂĂ̎�������Ȃǂ�ۑ��A���؁A�z�z���邱�Ƃ��\�ł��BVIPSTARCOIN Core��VIPSTARCOIN�l�b�g���[�N�̃��t�@�����X�����Ƃ݂Ȃ���܂��B
+VIPSTARCOIN Coreは私たちが主に使うメインネットウォレットです。フルノードを実装し、VIPSTARCOINネットワークのすべての取引履歴などを保存、検証、配布することが可能です。VIPSTARCOIN CoreはVIPSTARCOINネットワークのリファレンス実装とみなされます。
 
-VIPSTARCOIN Core�͈ȉ����������Ă��܂��B
+VIPSTARCOIN Coreは以下を実装しています。
 
-* VIPSTARCOIN�̑���M
-* VIPSTARCOIN�l�b�g���[�N�p��VRC20�g�[�N���̑���M
-* VIPSTARCOIN�l�b�g���[�N�ł̃R�C���̃X�e�[�N�ƃu���b�N�̍쐬
-* �X�}�[�g�R���g���N�g�̍쐬�Ɨ��p
-* �u���b�N�`�F�[���𑼂̃��[�U�[�ɔz�z���邽�߂̃t���m�[�h�̎��s
-* �f�B�X�N�̎g�p�ʂ��ŏ����ɗ}����v���[�����[�h
-* Regtest�l�b�g���[�N�A�J���҂�Dapp�e�X�g�p�ɓƎ��̐�pVIPSTARCOIN�l�b�g���[�N����ɐv���ɍ\�z�ł��܂��B
-* RPC�R�}���h��API��Bitcoin Core�Z�b�g�Ƃ̌݊���
+* VIPSTARCOINの送受信
+* VIPSTARCOINネットワーク用のVRC20トークンの送受信
+* VIPSTARCOINネットワークでのコインのステークとブロックの作成
+* スマートコントラクトの作成と利用
+* ブロックチェーンを他のユーザーに配布するためのフルノードの実行
+* ディスクの使用量を最小限に抑えるプルーンモード
+* Regtestネットワーク、開発者はDappテスト用に独自の専用VIPSTARCOINネットワークを非常に迅速に構築できます。
+* RPCコマンドとAPIのBitcoin Coreセットとの互換性
 
-�N�C�b�N�X�^�[�g
+クイックスタート
 ----------
-### Ubuntu�Ńr���h����
+### Ubuntuでビルドする
 
-    VIPSTARCOIN��Ubuntu�ŃR���p�C�����邽�߂̃N�C�b�N�X�^�[�g�X�N���v�g�ł��B
+    VIPSTARCOINをUbuntuでコンパイルするためのクイックスタートスクリプトです。
 
     sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev -y
     sudo apt-get install software-properties-common
@@ -148,73 +148,73 @@ VIPSTARCOIN Core�͈ȉ����������Ă��܂��B
     sudo apt-get update
     sudo apt-get install libdb4.8-dev libdb4.8++-dev -y
 
-    #Qt GUI�E�H���b�g���r���h����ꍇ:
+    #Qt GUIウォレットをビルドする場合:
     sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y
 
     git clone https://github.com/vipstar-dev/VIPSTARCOIN --recursive
     cd VIPSTARCOIN
 
-    #autogen�͕K�v�ɉ����Ă������̈ˑ��֌W���C���X�g�[������悤�ɑ����܂�
+    #autogenは必要に応じていくつかの依存関係をインストールするように促します
     ./autogen.sh
     ./configure 
     make -j2
 
-### OS X�Ńr���h����
+### OS Xでビルドする
 
-���̃K�C�h�̃R�}���h�́A�^�[�~�i���A�v���P�[�V�����Ŏ��s����K�v������܂��B
-�ȉ��̏ꏊ�ɂ���܂��B`/Applications/Utilities/Terminal.app`.
+このガイドのコマンドは、ターミナルアプリケーションで実行する必要があります。
+以下の場所にあります。`/Applications/Utilities/Terminal.app`.
 
-#### ����
+#### 準備
 
-OS X�R�}���h���C���c�[�����C���X�g�[�����܂��B:
+OS Xコマンドラインツールをインストールします。:
 
 `xcode-select --install`
 
-�|�b�v�A�b�v���\�����ꂽ��A`Install`���N���b�N���܂��B
+ポップアップが表示されたら、`Install`をクリックします。
 
-���ɁA[Homebrew](https://brew.sh)���C���X�g�[�����܂��B
+次に、[Homebrew](https://brew.sh)をインストールします。
 
-#### �ˑ��֌W
+#### 依存関係
 
     brew install cmake automake berkeley-db4 libtool boost --c++11 --without-single --without-static miniupnpc openssl pkg-config protobuf qt5 libevent imagemagick --with-librsvg
 
-���ӁFQt4�ł̃r���h�͂܂��T�|�[�g����Ă��܂����AUI������\��������܂��BQt5�Ńr���h���邱�Ƃ������߂��܂��B
+注意：Qt4でのビルドはまだサポートされていますが、UIが壊れる可能性があります。Qt5でビルドすることをお勧めします。
 
-#### VIPSTARCOIN Core���r���h����
+#### VIPSTARCOIN Coreをビルドする
 
-1. VIPSTARCOIN�̃\�[�X�R�[�h���N���[�����A`VIPSTARCOIN`��`cd`����
+1. VIPSTARCOINのソースコードをクローンし、`VIPSTARCOIN`を`cd`する
 
         git clone --recursive https://github.com/vipstar-dev/VIPSTARCOIN
         cd VIPSTARCOIN
 
-2. VIPSTARCOIN Core���r���h����:
+2. VIPSTARCOIN Coreをビルドする:
 
-        VIPSTARCOIN Core��GUI(Qt�����������ꍇ)���r���h���܂��B
+        VIPSTARCOIN CoreとGUI(Qtが見つかった場合)をビルドします。
 
-        configure��`--without-gui`�I�v�V������t���������ƂŁAGUI�r���h�𖳌��ɂ��邱�Ƃ��ł��܂��B
+        configureで`--without-gui`オプションを付け足すことで、GUIビルドを無効にすることができます。
 
         ./autogen.sh
         ./configure
         make
 
-3. ���j�b�g�e�X�g���r���h���Ď��s���邱�Ƃ������߂��܂��B:
+3. ユニットテストをビルドして実行することをお勧めします。:
 
         make check
 
-### ���s
+### 実行
 
-`src/vipstarcoind`�����s���A`src/vipstarcoin-cli`���g�p���邱�Ƃ�coind���R���g���[���ł��܂��B�܂��AQt GUI�E�H���b�g���g���ꍇ��`src/qt/vipstarcoin-qt`�����s���Ă��������B
+`src/vipstarcoind`を実行し、`src/vipstarcoin-cli`を使用することでcoindをコントロールできます。また、Qt GUIウォレットを使う場合は`src/qt/vipstarcoin-qt`を実行してください。
 
-Sparknet�̏ڍׂȐ�����VIPSTARCOIN���g���ăX�}�[�g�R���g���N�g���g�p������@�ɂ��ẮA[sparknet-guide](doc/sparknet-guide.md)�����Ă��������B
+Sparknetの詳細な説明とVIPSTARCOINを使ってスマートコントラクトを使用する方法については、[sparknet-guide](doc/sparknet-guide.md)を見てください。
 
-���C�Z���X
+ライセンス
 -------
 
-VIPSTARCOIN��GPLv3���C�Z���X�ł��B
+VIPSTARCOINはGPLv3ライセンスです。
 
-�J���v���Z�X
+開発プロセス
 -------------------
 
-`master`�u�����`�͒���I�ɍ\�z����A�e�X�g����Ă��܂����A���S�Ɉ��S�ł��邱�Ƃ͕ۏ؂���Ă��܂���B [�^�O](https://github.com/vipstar-dev/VIPSTARCOIN/tags)��VIPSTARCOIN�̐����ŁA���S�ł��������߂ɒ���I�ɍ쐬����܂��B.
+`master`ブランチは定期的に構築され、テストされていますが、完全に安全であることは保証されていません。 [タグ](https://github.com/vipstar-dev/VIPSTARCOIN/tags)はVIPSTARCOINの正式版、安全版を示すために定期的に作成されます。.
 
-�v�����[�N�t���[��[CONTRIBUTING.md](CONTRIBUTING.md)�Ő������Ă��܂��B
+貢献ワークフローは[CONTRIBUTING.md](CONTRIBUTING.md)で説明しています。

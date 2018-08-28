@@ -20,6 +20,7 @@ VIPSTARCOIN Core currently implements the following:
 
 * Sending/Receiving VIPSTARCOIN
 * Sending/Receiving VRC20 tokens on the VIPSTARCOIN network
+* The implementation "Native SegWit" on the VIPSTARCOIN network 
 * Staking and creating blocks for the VIPSTARCOIN network
 * Creating and interacting with smart contracts
 * Running a full node for distributing the blockchain to other users
@@ -129,6 +130,7 @@ VIPSTARCOIN Coreは以下を実装しています。
 
 * VIPSTARCOINの送受信
 * VIPSTARCOINネットワーク用のVRC20トークンの送受信
+* VIPSTARCOINネットワーク用にネイティブSegWitを実装
 * VIPSTARCOINネットワークでのコインのステークとブロックの作成
 * スマートコントラクトの作成と利用
 * ブロックチェーンを他のユーザーに配布するためのフルノードの実行

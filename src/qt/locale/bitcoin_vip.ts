@@ -3276,7 +3276,7 @@
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>これはリリース前のテストビルド(α版)だお - 各自の責任で利用してね - 採掘や商取引に使用しないでね</translation>
+        <translation>これはリリース前のテストビルド(β版)だお - 各自の責任で利用してね - 採掘や商取引に使用しないでね</translation>
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>

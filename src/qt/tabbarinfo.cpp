@@ -1,4 +1,4 @@
-#include "tabbarinfo.h"
+﻿#include <qt/tabbarinfo.h>
 #include <QToolButton>
 #include <QSize>
 

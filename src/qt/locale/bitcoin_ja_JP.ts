@@ -132,6 +132,10 @@
         <translation>新しいパスフレーズをもう一度入力</translation>
     </message>
     <message>
+        <source>Show password</source>
+        <translation>パスワードを表示</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>ウォレットの新しいパスフレーズを入力してください。&lt;br/&gt;&lt;b&gt;10文字以上のランダムな文字&lt;/b&gt;で構成されたものか、&lt;b&gt;8単語以上の単語&lt;/b&gt;で構成されたパスフレーズを使用してください。</translation>
     </message>
@@ -584,12 +588,40 @@
         <translation>HD鍵生成は&lt;b&gt;無効化&lt;/b&gt;されています</translation>
     </message>
     <message>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked for staking only&lt;/b&gt;</source>
+        <translation>ウォレットは &lt;b&gt;暗号化されて、現在ステークのみアンロックされています&lt;/b&gt;</translation>
+    </message>
+    <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>ウォレットは&lt;b&gt;暗号化されて、アンロックされています&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>ウォレットは&lt;b&gt;暗号化されて、ロックされています&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation>ステーク中です。&lt;br&gt;あなたのウェイトは %1 です&lt;br&gt;ネットワークウェイトは %2 です&lt;br&gt;報酬を得るための予想期間は %3 です</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is offline</source>
+        <translation>ウォレットがオフラインのため、ステークしていません</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is syncing</source>
+        <translation>ウォレットが同期中のため、ステークしていません</translation>
+    </message>
+    <message>
+        <source>Not staking because you don't have mature coins</source>
+        <translation>成熟したコインを持っていないか、数量が足りないため、ステークしていません</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is locked</source>
+        <translation>ウォレットがロックされているため、ステークしていません</translation>
+    </message>
+    <message>
+        <source>Not staking</source>
+        <translation>ステークしていません</translation>
     </message>
     <message>
         <source>A fatal error occurred. VIPSTARCOIN can no longer continue safely and will quit.</source>
@@ -1029,11 +1061,11 @@
     </message>
     <message>
         <source>Accept connections from outside</source>
-        <translation>外部からの接続を許可する</translation>
+        <translation type="unfinished">外部からの接続を許可する</translation>
     </message>
     <message>
-        <source>Allow incoming connections</source>
-        <translation>外部からの接続を許可する</translation>
+        <source>Allow incomin&amp;g connections</source>
+        <translation type="unfinished">外部からの接続を許可する</translation>
     </message>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
@@ -1046,10 +1078,6 @@
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
         <translation>トランザクションタブのコンテキストメニュー項目に表示する、サードパーティURL (ブロックエクスプローラなど)。URL中の%sはトランザクションのハッシュ値に置き換えられます。垂直バー | で区切ることで、複数のURLを指定出来ます。</translation>
-    </message>
-    <message>
-        <source>Third party transaction URLs</source>
-        <translation>サードパーティのトランザクションURL</translation>
     </message>
     <message>
         <source>Active command-line options that override above options:</source>
@@ -1132,8 +1160,20 @@
         <translation>ピアへ到達するために使われた方法:</translation>
     </message>
     <message>
-        <source>Shows, if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
+        <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
         <translation>このネットワークタイプ経由で、与えられたデフォルトのSOCKS5プロキシを使用してピアに到達した場合に表示します。</translation>
+    </message>
+    <message>
+        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
+        <translation>Tor秘匿サービス経由でピアに到達するため、独立なSOCKS5プロキシを利用する (&amp;5):</translation>
+    </message>
+    <message>
+        <source>Hide the icon from the system tray.</source>
+        <translation>システムトレイのアイコンを隠す</translation>
+    </message>
+    <message>
+        <source>&amp;Hide tray icon</source>
+        <translation>トレイアイコンを隠す (&amp;H)</translation>
     </message>
     <message>
         <source>IPv4</source>
@@ -1152,20 +1192,8 @@
         <translation>Tor秘匿サービスを利用するため、独立なSOCKS5プロキシ経由でビップスターコインネットワークに接続する</translation>
     </message>
     <message>
-        <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
-        <translation>Tor秘匿サービス経由でピアに到達するため、独立なSOCKS5プロキシを利用する:</translation>
-    </message>
-    <message>
         <source>&amp;Window</source>
         <translation>ウインドウ (&amp;W)</translation>
-    </message>
-    <message>
-        <source>&amp;Hide the icon from the system tray.</source>
-        <translation>システムトレイのアイコンを隠す (&amp;H)</translation>
-    </message>
-    <message>
-        <source>Hide tray icon</source>
-        <translation>トレイアイコンを隠す</translation>
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
@@ -1204,6 +1232,10 @@
         <translation>コインコントロール機能を表示するかどうか。</translation>
     </message>
     <message>
+        <source>&amp;Third party transaction URLs</source>
+        <translation>サードパーティのトランザクションURL (&amp;T)</translation>
+    </message>
+    <message>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1229,7 +1261,7 @@
     </message>
     <message>
         <source>Client will be shut down. Do you want to proceed?</source>
-        <translation>クライアントを終了します。続行してもおｋ？</translation>
+        <translation>クライアントを終了します。続行してもよろしいですか？</translation>
     </message>
     <message>
         <source>Configuration options</source>
@@ -1253,7 +1285,7 @@
     </message>
     <message>
         <source>The supplied proxy address is invalid.</source>
-        <translation>プロキシアドレスが無効だお。</translation>
+        <translation>プロキシアドレスが無効です。</translation>
     </message>
     <message>
         <source>Enable &amp;zero balance for receiver token address</source>
@@ -1399,7 +1431,7 @@
     </message>
     <message>
         <source>Invalid payment address %1</source>
-        <translation>支払いのアドレス「%1」は無効だお</translation>
+        <translation>支払いのアドレス「%1」は無効です</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid VIPSTARCOIN address or malformed URI parameters.</source>
@@ -1455,7 +1487,7 @@
     </message>
     <message>
         <source>Payment request cannot be parsed!</source>
-        <translation>支払リクエストを読み込めなませんでした！</translation>
+        <translation>支払リクエストを読み込めませんでした！</translation>
     </message>
     <message>
         <source>Bad response from server %1</source>
@@ -1487,6 +1519,14 @@
     <message>
         <source>Ping</source>
         <translation>Ping</translation>
+    </message>
+    <message>
+        <source>Sent</source>
+        <translation>送信</translation>
+    </message>
+    <message>
+        <source>Received</source>
+        <translation>受信</translation>
     </message>
 </context>
 <context>
@@ -1556,8 +1596,28 @@
         <translation><numerusform>%n 年</numerusform></translation>
     </message>
     <message>
+        <source>%1 B</source>
+        <translation>%1 バイト</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 キロバイト</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 メガバイト</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 ギガバイト</translation>
+    </message>
+    <message>
         <source>%1 didn't yet exit safely...</source>
         <translation>%1 はまだ安全に終了していません...</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>不明</translation>
     </message>
 </context>
 <context>
@@ -1833,8 +1893,12 @@
         <translation>%1 RPCコンソールへようこそ。</translation>
     </message>
     <message>
-        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>上下の矢印で履歴をたどれます。 &lt;b&gt;Ctrl-L&lt;/b&gt; でスクリーンを消去できます。</translation>
+        <source>Type %1 for an overview of available commands.</source>
+        <translation>%1 と入力することで、コマンド一覧が見れます。</translation>
+    </message>
+    <message>
+        <source>For more information on using this console type %1.</source>
+        <translation>もっと詳しい情報が見たい場合、%1 と入力してください。</translation>
     </message>
     <message>
         <source>WARNING: Do not use this console without fully understanding the ramification of a command.</source>
@@ -1843,22 +1907,6 @@
     <message>
         <source>Network activity disabled</source>
         <translation>ネットワーク活動は無効化されました</translation>
-    </message>
-    <message>
-        <source>%1 B</source>
-        <translation>%1 B</translation>
-    </message>
-    <message>
-        <source>%1 KB</source>
-        <translation>%1 KB</translation>
-    </message>
-    <message>
-        <source>%1 MB</source>
-        <translation>%1 MB</translation>
-    </message>
-    <message>
-        <source>%1 GB</source>
-        <translation>%1 GB</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1908,14 +1956,6 @@
         <translation>メッセージ (&amp;M):</translation>
     </message>
     <message>
-        <source>Reuse one of the previously used receiving addresses. Reusing addresses has security and privacy issues. Do not use this unless re-generating a payment request made before.</source>
-        <translation>以前利用した受取用アドレスのいずれかを再利用します。アドレスの再利用はセキュリティおよびプライバシーにおいて問題があります。以前作成した支払リクエストを再生成するとき以外は利用しないでください。</translation>
-    </message>
-    <message>
-        <source>R&amp;euse an existing receiving address (not recommended)</source>
-        <translation>既存の受取用アドレスを再利用する (非推奨) (&amp;E)</translation>
-    </message>
-    <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the VIPSTARCOIN network.</source>
         <translation>支払リクエストが開始された時に表示される、支払リクエストに添える任意のメッセージです。注意：メッセージはビップスターコインネットワークを通じて、支払と共に送られるわけではありません。</translation>
     </message>
@@ -1946,6 +1986,14 @@
     <message>
         <source>&amp;Request payment</source>
         <translation>支払をリクエストする (&amp;R)</translation>
+    </message>
+    <message>
+        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <translation>ネイティブSegWitアドレス(別名Bech32またはBIP-173)は、後に取引手数料を削減し、タイプミス等に対してより良い保護がなされますが、古い財布はそれらをサポートしていません。チェックを外すと、古いウォレットと互換性のあるアドレスが代わりに作成されます。</translation>
+    </message>
+    <message>
+        <source>Generate native segwit (Bech32) address</source>
+        <translation>ネイティブSegWit(Bech32)アドレスを生成</translation>
     </message>
     <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
@@ -2206,6 +2254,14 @@
         <translation>すべてクリア (&amp;A)</translation>
     </message>
     <message>
+        <source>Enable Replace-By-Fee</source>
+        <translation>手数料の交換(追加)を有効化</translation>
+    </message>
+    <message>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <translation>手数料の交換(BIP-125)を使用すると、送金後に取引手数料を引き上げることができます。これを有効化しない場合、取引遅延リスクの増加を補うために高い手数料を設定することがお勧めされます。</translation>
+    </message>
+    <message>
         <source>Balance:</source>
         <translation>残高:</translation>
     </message>
@@ -2243,7 +2299,7 @@
     </message>
     <message>
         <source>Copy change</source>
-        <translation>釣り銭をコピー</translation>
+        <translation>おつりをコピー</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -2264,6 +2320,14 @@
     <message>
         <source>or</source>
         <translation>または</translation>
+    </message>
+    <message>
+        <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
+        <translation>後で料金を引き上げることができます(手数料交換、BIP-125)</translation>
+    </message>
+    <message>
+        <source>Not signalling Replace-By-Fee, BIP-125.</source>
+        <translation>手数料交換(BIP-125)が無効</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -2391,6 +2455,10 @@
     <message>
         <source>S&amp;ubtract fee from amount</source>
         <translation>送金額から手数料を差し引く (&amp;U)</translation>
+    </message>
+    <message>
+        <source>Use available balance</source>
+        <translation>全ての残高を使用</translation>
     </message>
     <message>
         <source>Message:</source>
@@ -2964,8 +3032,8 @@
         <translation>その他</translation>
     </message>
     <message>
-        <source>Enter address or label to search</source>
-        <translation>検索するアドレスまたはラベルを入力</translation>
+        <source>Enter address, transaction id, or label to search</source>
+        <translation>検索するアドレスやトランザクションID、またはラベルを入力</translation>
     </message>
     <message>
         <source>Min amount</source>
@@ -3211,12 +3279,24 @@
         <translation>トランザクションの中継を行っていない場合でも、ホワイトリストのピアから受け取った中継トランザクションは受け取るようにする (デフォルト: %d)</translation>
     </message>
     <message>
+        <source>Add a node to connect to and attempt to keep the connection open (see the `addnode` RPC command help for more info)</source>
+        <translation>接続するノードを追加し接続を保持します(詳細はRPCコマンド `addnode` のヘルプを参照してください)</translation>
+    </message>
+    <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
         <translation>指定のアドレスへバインドし、その上で常にリッスンします。IPv6 は [ホスト名]:ポート番号 と表記します</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
         <translation>データ ディレクトリ %s のロックを取得することができません。おそらく %s は実行中です。</translation>
+    </message>
+    <message>
+        <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
+        <translation>特定の接続を提供することはできませんし、addrmanも同じように発信接続を見つけることができません。</translation>
+    </message>
+    <message>
+        <source>Connect only to the specified node(s); -connect=0 disables automatic connections (the rules for this peer are the same as for -addnode)</source>
+        <translation>指定したノードにのみ接続します。-connect=0 は自動接続を無効にします(このピアのルールは-addnodeのルールと同じです)</translation>
     </message>
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
@@ -3276,7 +3356,7 @@
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>これはリリース前のテストビルド(α版)です - 各自の責任で利用すること - 採掘や商取引に使用しないでください</translation>
+        <translation>これはリリース前のテストビルド(β版)です - 各自の責任で利用すること - 採掘や商取引に使用しないでください</translation>
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
@@ -3387,6 +3467,10 @@
         <translation>メモリプール内のトランザクションの置換を有効化する (デフォルト: %u)</translation>
     </message>
     <message>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
+        <translation>%s の作成エラー: このバージョンでは、HD無効ウォレットは作成できません。</translation>
+    </message>
+    <message>
         <source>Error initializing block database</source>
         <translation>ブロック データベースの初期化中にエラー</translation>
     </message>
@@ -3425,6 +3509,10 @@
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>ポートのリッスンに失敗しました。必要であれば -listen=0 を使用してください。</translation>
+    </message>
+    <message>
+        <source>Failed to rescan the wallet during initialization</source>
+        <translation>ウォレットの初期化中に再スキャンできませんでした</translation>
     </message>
     <message>
         <source>Importing...</source>
@@ -3499,12 +3587,12 @@
         <translation>ブロックを巻き戻しています...</translation>
     </message>
     <message>
-        <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
-        <translation>データベースのキャッシュサイズをメガバイトで設定 (%dから%d。初期値: %d)</translation>
+        <source>Send transactions with full-RBF opt-in enabled (RPC only, default: %u)</source>
+        <translation>フルRBFオプトインを有効にしたトランザクションを送信する (RPCのみ、初期値: %u)</translation>
     </message>
     <message>
-        <source>Set maximum block size in bytes (default: %d)</source>
-        <translation>最大ブロックサイズをバイトで設定 (初期値: %d)</translation>
+        <source>Set database cache size in megabytes (%d to %d, default: %d)</source>
+        <translation>データベースのキャッシュサイズをメガバイトで設定 (%dから%d。初期値: %d)</translation>
     </message>
     <message>
         <source>Specify wallet file (within data directory)</source>
@@ -3623,10 +3711,6 @@
         <translation>手数料差引後のトランザクションの金額が小さすぎるため、送金できません。</translation>
     </message>
     <message>
-        <source>Use hierarchical deterministic key generation (HD) after BIP32. Only has effect during wallet creation/first start</source>
-        <translation>BIP32 に従った階層的決定性鍵生成方式 (HD) を利用します。ウォレットの生成時ないし最初に起動した時にのみ有効です。</translation>
-    </message>
-    <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
         <translation>ホワイトリストのピアはDoSによるアクセス禁止処理が無効化され、トランザクションは例えmempool内に既に存在していたとしても常にリレーされます。これは例えばゲートウェイに対して有用です</translation>
     </message>
@@ -3715,6 +3799,21 @@
         <translation>取引の署名に失敗しました</translation>
     </message>
     <message>
+        <location line="+1"/>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>指定された-walletdir &quot;%s&quot; は存在しません</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>指定された-walletdir &quot;%s&quot; は相対パスです</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>指定された-walletdir &quot;%s&quot; はディレクトリではありません</translation>
+    </message>
+    <message>
         <source>The transaction amount is too small to pay the fee</source>
         <translation>トランザクションの金額が小さすぎて手数料を支払えません</translation>
     </message>
@@ -3745,6 +3844,18 @@
     <message>
         <source>Unable to bind to %s on this computer (bind returned error %s)</source>
         <translation>このコンピュータの %s にバインドすることができません (バインドが返したエラーは %s)</translation>
+    </message>
+    <message>
+        <source>Unable to generate initial keys</source>
+        <translation>初期キーを生成できません</translation>
+    </message>
+    <message>
+        <source>Verifying wallet(s)...</source>
+        <translation>ウォレットを確認しています...</translation>
+    </message>
+    <message>
+        <source>Wallet %s resides outside wallet directory %s</source>
+        <translation>ウォレット %s はウォレットディレクトリ %s の外にあります</translation>
     </message>
     <message>
         <source>Upgrade wallet to latest format on startup</source>
@@ -3835,8 +3946,20 @@
         <translation>保有するピアアドレスが少ない場合、DNS ルックアップによりピアアドレスを問い合わせる (-connect/-noconnect を使っていない場合の初期値: 1)</translation>
     </message>
     <message>
+        <source>Set maximum BIP141 block weight to this * 4. Deprecated, use blockmaxweight</source>
+        <translation>BIP141ブロックの最大の重さをこの値×4に設定します。blockmaxweight推奨されません</translation>
+    </message>
+    <message>
         <source>Sets the serialization of raw transaction or block hex returned in non-verbose mode, non-segwit(0) or segwit(1) (default: %d)</source>
         <translation>非冗長モードで返却する生トランザクションやブロックの16進数表現のシリアライゼーションフォーマットを非 segwit (0) または segwit (1) のものに設定する (デフォルト: %d)</translation>
+    </message>
+    <message>
+        <source>Specify directory to hold wallets (default: &lt;datadir&gt;/wallets if it exists, otherwise &lt;datadir&gt;)</source>
+        <translation type="unfinished">ウォレットを保持するディレクトリを指定します（初期値:ディレクトリが存在する場合は &lt;datadir%gt;/wallets、それ以外の場合は &lt;datadir&gt;）。</translation>
+    </message>
+    <message>
+        <source>Specify location of debug log file: this can be an absolute path or a path relative to the data directory (default: %s)</source>
+        <translation>デバッグログファイルの場所を指定します。これは、絶対パスまたはデータディレクトリからの相対パスです(初期値: %s)</translation>
     </message>
     <message>
         <source>Support filtering of blocks and transaction with bloom filters (default: %u)</source>
@@ -3947,10 +4070,6 @@
         <translation>P2SHでないマルチシグトランザクションをリレーする (初期値: %u)</translation>
     </message>
     <message>
-        <source>Send transactions with full-RBF opt-in enabled (default: %u)</source>
-        <translation>full-RBF opt-in を利用してトランザクションを送信する (初期値: %u)</translation>
-    </message>
-    <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>
         <translation>key pool のサイズを &lt;n&gt; (初期値: %u) にセット</translation>
     </message>
@@ -4021,10 +4140,6 @@
     <message>
         <source>Loading block index...</source>
         <translation>ブロック インデックスを読み込んでいます...</translation>
-    </message>
-    <message>
-        <source>Add a node to connect to and attempt to keep the connection open</source>
-        <translation>接続するノードを追加し接続を保持します</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
@@ -4136,6 +4251,50 @@
         <source>Clear All</source>
         <translation type="unfinished">クリア</translation>
     </message>
+    <message>
+        <source>The bytecode of the contract</source>
+        <translation>コントラクトのバイトコード</translation>
+    </message>
+    <message>
+        <source>The vipstarcoin address that will be used to create the contract.</source>
+        <translation>コントラクトを作成するために使用されるビップスターコインアドレス。</translation>
+    </message>
+    <message>
+        <source>Create Contract</source>
+        <translation>コントラクト作成</translation>
+    </message>
+    <message>
+        <source>The Gas Price is too high, are you sure you want to possibly spend a max of %1 for this transaction?</source>
+        <translation>ガスの料金が高すぎます。この取引で最大 %1 を使いたいと思っていますか？</translation>
+    </message>
+    <message>
+        <source>High Gas price</source>
+        <translation>高いガスの料金</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to create contract? &lt;br /&gt;</source>
+        <translation>コントラクトを作成したいですか? &lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>Confirm contract creation.</source>
+        <translation>作成したコントラクトを確認します。</translation>
+    </message>
+    <message>
+        <source>Result %1</source>
+        <translation>リザルト %1</translation>
+    </message>
+    <message>
+        <source>Create contract</source>
+        <translation>コントラクト作成</translation>
+    </message>
+    <message>
+        <source>Gas limit. Default = %1, Max = %2</source>
+        <translation>ガスリミット。初期値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2</source>
+        <translation>ガス価格: ガス単位当たりのVIPSの価格。初期値 = %1、最大値 = %2</translation>
+    </message>
 </context>
 <context>
     <name>SendToContract</name>
@@ -4195,6 +4354,58 @@
         <source>Clear All</source>
         <translation type="unfinished">全てクリア</translation>
     </message>
+    <message>
+        <source>The contract address that will receive the funds and data.</source>
+        <translation>資金とデータを受け取るコントラクトアドレス。</translation>
+    </message>
+    <message>
+        <source>The amount in VIPS to send. Default = 0.</source>
+        <translation>送信するVIPSの量。初期値= 0</translation>
+    </message>
+    <message>
+        <source>The vipstarcoin address that will be used as sender.</source>
+        <translation>コントラクトを送信するために使用されるビップスターコインアドレス。</translation>
+    </message>
+    <message>
+        <source>Send To Contract</source>
+        <translation>コントラクト送信</translation>
+    </message>
+    <message>
+        <source>The Gas Price is too high, are you sure you want to possibly spend a max of %1 for this transaction?</source>
+        <translation>ガスの料金が高すぎます。この取引で最大 %1 を使いたいと思っていますか？</translation>
+    </message>
+    <message>
+        <source>High Gas price</source>
+        <translation>高いガスの料金</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to send to the contract: &lt;br /&gt;&lt;br /&gt;</source>
+        <translation>コントラクトを送信してもよろしいですか?: &lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+        <source>Confirm sending to contract.</source>
+        <translation>送信したコントラクトを確認します。</translation>
+    </message>
+    <message>
+        <source>Result %1</source>
+        <translation>リザルト %1</translation>
+    </message>
+    <message>
+        <source>Send to ontract</source>
+        <translation>コントラクト送信</translation>
+    </message>
+    <message>
+        <source>Gas limit: Default = %1, Max = %2.</source>
+        <translation>ガスリミット。初期値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2.</source>
+        <translation>ガス価格: ガス単位当たりのVIPSの価格。初期値 = %1、最大値 = %2</translation>
+    </message>
 </context>
 <context>
     <name>CallContract</name>
@@ -4242,6 +4453,30 @@
         <source>Clear All</source>
         <translation type="unfinished">全てクリア</translation>
     </message>
+    <message>
+        <source>The account address.</source>
+        <translation>アカウントアドレス</translation>
+    </message>
+    <message>
+        <source>The sender address hex string.</source>
+        <translation>送信者アドレスの16進数文字列。</translation>
+    </message>
+    <message>
+        <source>The vipstarcoin address that will be used as sender.</source>
+        <translation>送信者として使用されるビップスターコインアドレス。</translation>
+    </message>
+    <message>
+        <source>Call Contract</source>
+        <translation>コントラクト呼出</translation>
+    </message>
+    <message>
+        <source>Result %1</source>
+        <translation>リザルト %1</translation>
+    </message>
+    <message>
+        <source>Call contract</source>
+        <translation>コントラクト呼出</translation>
+    </message>
 </context>
 <context>
     <name>SendTokenPage</name>
@@ -4276,6 +4511,50 @@
     <message>
         <source>Clear</source>
         <translation type="unfinished">クリア</translation>
+    </message>
+    <message>
+        <source>The address that will receive the tokens.</source>
+        <translation>トークンを受け取るアドレス</translation>
+    </message>
+    <message>
+        <source>The amount in Token to send.</source>
+        <translation>送金するトークンの数量</translation>
+    </message>
+    <message>
+        <source>Optional description for transaction.</source>
+        <translation>トランザクションの説明(オプション)</translation>
+    </message>
+    <message>
+        <source>Gas limit: Default = %1, Max = %2.</source>
+        <translation>ガスリミット。初期値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2.</source>
+        <translation>ガス価格: ガス単位当たりのVIPSの価格。初期値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to send? &lt;br /&gt;&lt;br /&gt;</source>
+        <translation>送信してもよろしいですか? &lt;br /&gt;&lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1 %2 &lt;/b&gt; to </source>
+        <translation>&lt;b&gt;%1 %2 &lt;/b&gt; から </translation>
+    </message>
+    <message>
+        <source>&lt;br /&gt;%3 &lt;br /&gt;</source>
+        <translation>&lt;br /&gt;%3 &lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>Confirm send token.</source>
+        <translation>送信したトークンを確認します。</translation>
+    </message>
+    <message>
+        <source>To send %1 you need VIPS on address &lt;br /&gt; %2.</source>
+        <translation>%1 を送信するには、アドレス %2 に&lt;br /&gt;VIPSが必要です。</translation>
+    </message>
+    <message>
+        <source>Send token</source>
+        <translation>トークンを送金</translation>
     </message>
 </context>
 <context>
@@ -4322,6 +4601,34 @@
     <message>
         <source>Clear</source>
         <translation type="unfinished">クリア</translation>
+    </message>
+    <message>
+        <source>(This is your wallet address which will be tied to the token for send/receive operations)</source>
+        <translation>(これは、トークンの送受信操作に結びつくウォレットアドレスです)</translation>
+    </message>
+    <message>
+        <source>The %1 address \"%2\" is not yours, please change it to new one.\n</source>
+        <translation>%1 アドレス \"%2\" はあなたのものではありません。新しいものに変更してください。\n</translation>
+    </message>
+    <message>
+        <source>Invalid token address</source>
+        <translation>無効なトークンアドレス</translation>
+    </message>
+    <message>
+        <source>Token exist</source>
+        <translation>トークンが既に存在します</translation>
+    </message>
+    <message>
+        <source>The token already exist with the specified contract and sender addresses.</source>
+        <translation>このトークンは指定されたコントラクトアドレスと送信者アドレスで既に存在します。</translation>
+    </message>
+    <message>
+        <source>Log events</source>
+        <translation>ログイベント</translation>
+    </message>
+    <message>
+        <source>Enable log events from the option menu in order to receive token transactions.</source>
+        <translation>トークントランザクションを受け取るために、オプションメニューからログイベントを有効化します。</translation>
     </message>
 </context>
 <context>
@@ -4483,6 +4790,30 @@
     <message>
         <source>(no label)</source>
         <translation>(ラベル無し)</translation>
+    </message>
+    <message>
+        <source>Transaction status. Hover over this field to show number of confirmations.</source>
+        <translation>トランザクションステータス。確認数を表示するには、このフィールドにカーソルを合わせます。</translation>
+    </message>
+    <message>
+        <source>Date and time that the transaction was received.</source>
+        <translation>トランザクションが受信された日時。</translation>
+    </message>
+    <message>
+        <source>Type of transaction.</source>
+        <translation>トランザクションタイプ</translation>
+    </message>
+    <message>
+        <source>User-defined intent/purpose of the transaction.</source>
+        <translation>トランザクションのユーザー定義のインテント/目的。</translation>
+    </message>
+    <message>
+        <source>Token name.</source>
+        <translation>トークン名</translation>
+    </message>
+    <message>
+        <source>Amount removed from or added to balance.</source>
+        <translation>残高から除外または追加された金額。</translation>
     </message>
 </context>
 <context>

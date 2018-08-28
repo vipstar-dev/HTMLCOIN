@@ -1,23 +1,23 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2011-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "overviewpage.h"
-#include "ui_overviewpage.h"
+#include <qt/overviewpage.h>
+#include <qt/forms/ui_overviewpage.h>
 
-#include "bitcoinunits.h"
-#include "clientmodel.h"
-#include "guiconstants.h"
-#include "guiutil.h"
-#include "optionsmodel.h"
-#include "platformstyle.h"
-#include "transactionfilterproxy.h"
-#include "transactiontablemodel.h"
-#include "walletmodel.h"
-#include "tokenitemmodel.h"
-#include "wallet/wallet.h"
-#include "transactiondescdialog.h"
-#include "styleSheet.h"
+#include <qt/bitcoinunits.h>
+#include <qt/clientmodel.h>
+#include <qt/guiconstants.h>
+#include <qt/guiutil.h>
+#include <qt/optionsmodel.h>
+#include <qt/platformstyle.h>
+#include <qt/transactionfilterproxy.h>
+#include <qt/transactiontablemodel.h>
+#include <qt/walletmodel.h>
+#include <qt/tokenitemmodel.h>
+#include <wallet/wallet.h>
+#include <qt/transactiondescdialog.h>
+#include <qt/styleSheet.h>
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
@@ -43,7 +43,7 @@ class TxViewDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
 public:
-    TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
+    explicit TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
         QAbstractItemDelegate(parent), unit(BitcoinUnits::BTC),
         platformStyle(_platformStyle)
     {
@@ -151,7 +151,6 @@ public:
 
     int unit;
     const PlatformStyle *platformStyle;
-
 };
 
 class TknViewDelegate : public QAbstractItemDelegate
@@ -211,7 +210,7 @@ public:
     const PlatformStyle *platformStyle;
 };
 
-#include "overviewpage.moc"
+#include <qt/overviewpage.moc>
 
 OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) :
     QWidget(parent),

@@ -1,34 +1,33 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "miner.h"
+#include <miner.h>
 
-#include "amount.h"
-#include "chain.h"
-#include "chainparams.h"
-#include "coins.h"
-#include "consensus/consensus.h"
-#include "consensus/tx_verify.h"
-#include "consensus/merkle.h"
-#include "consensus/validation.h"
-#include "hash.h"
-#include "validation.h"
-#include "net.h"
-#include "policy/feerate.h"
-#include "policy/policy.h"
-#include "pow.h"
-#include "pos.h"
-#include "primitives/transaction.h"
-#include "script/standard.h"
-#include "timedata.h"
-#include "txmempool.h"
-#include "util.h"
-#include "utilmoneystr.h"
-#include "validationinterface.h"
-#include "wallet/wallet.h"
-#include "base58.h"
+#include <amount.h>
+#include <chain.h>
+#include <chainparams.h>
+#include <coins.h>
+#include <consensus/consensus.h>
+#include <consensus/tx_verify.h>
+#include <consensus/merkle.h>
+#include <consensus/validation.h>
+#include <hash.h>
+#include <validation.h>
+#include <net.h>
+#include <policy/feerate.h>
+#include <policy/policy.h>
+#include <pow.h>
+#include <pos.h>
+#include <primitives/transaction.h>
+#include <script/standard.h>
+#include <timedata.h>
+#include <util.h>
+#include <utilmoneystr.h>
+#include <validationinterface.h>
+#include <wallet/wallet.h>
+#include <base58.h>
 
 #include <openssl/sha.h>
 #include <algorithm>
@@ -216,13 +215,11 @@ void BlockAssembler::resetBlock()
 
 void BlockAssembler::RebuildRefundTransaction(){
     int refundtx=0; //0 for coinbase in PoW
-    if(pblock->IsProofOfStake())
+    if(pblock->IsProofOfStake()){
         refundtx=1; //1 for coinstake in PoS
+    }
     CMutableTransaction contrTx(originalRewardTx);
-    if(pblock->IsProofOfStake())
-        contrTx.vout[refundtx].nValue = nFees + GetProofOfStakeReward(nHeight, chainparams.GetConsensus());
-    else
-        contrTx.vout[refundtx].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    contrTx.vout[refundtx].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     contrTx.vout[refundtx].nValue -= bceResult.refundSender;
     //note, this will need changed for MPoS
     int i=contrTx.vout.size();
@@ -258,6 +255,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     LOCK2(cs_main, mempool.cs);
     CBlockIndex* pindexPrev = chainActive.Tip();
+    assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
 
     pblock->nVersion = ComputeBlockVersion(pindexPrev, chainparams.GetConsensus());
@@ -320,7 +318,6 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         coinstakeTx.vout.resize(2);
         coinstakeTx.vout[0].SetEmpty();
         coinstakeTx.vout[1].scriptPubKey = scriptPubKeyIn;
-        coinstakeTx.vout[1].nValue = nFees + GetProofOfStakeReward(nHeight, chainparams.GetConsensus());
         originalRewardTx = coinstakeTx;
         pblock->vtx[1] = MakeTransactionRef(std::move(coinstakeTx));
 
@@ -408,6 +405,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateEmptyBlock(const CScript& 
 
     LOCK2(cs_main, mempool.cs);
     CBlockIndex* pindexPrev = chainActive.Tip();
+    assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
 
     pblock->nVersion = ComputeBlockVersion(pindexPrev, chainparams.GetConsensus());
@@ -515,7 +513,7 @@ void BlockAssembler::onlyUnconfirmed(CTxMemPool::setEntries& testSet)
     }
 }
 
-bool BlockAssembler::TestPackage(uint64_t packageSize, int64_t packageSigOpsCost)
+bool BlockAssembler::TestPackage(uint64_t packageSize, int64_t packageSigOpsCost) const
 {
     // TODO: switch to weight-based accounting for packages instead of vsize-based accounting.
     if (nBlockWeight + WITNESS_SCALE_FACTOR * packageSize >= nBlockMaxWeight)
@@ -878,7 +876,7 @@ void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpda
         std::vector<CTxMemPool::txiter> sortedEntries;
         SortForBlock(ancestors, iter, sortedEntries);
 
-        bool wasAdded=true; // QTUM_INSERT_LINE
+        bool wasAdded=true;
         for (size_t i=0; i<sortedEntries.size(); ++i) {
             if(!wasAdded || (nTimeLimit != 0 && GetAdjustedTime() >= nTimeLimit))
             {
@@ -975,12 +973,12 @@ bool CheckStake(const std::shared_ptr<const CBlock> pblock, CWallet& wallet)
                 return error("CheckStake() : generated block became invalid due to stake UTXO being spent");
             }
         }
-
-        // Process this block the same as if we had received it from another node
-        bool fNewBlock = false;
-        if (!ProcessNewBlock(Params(), pblock, true, &fNewBlock))
-            return error("CheckStake() : ProcessBlock, block not accepted");
     }
+
+    // Process this block the same as if we had received it from another node
+    bool fNewBlock = false;
+    if (!ProcessNewBlock(Params(), pblock, true, &fNewBlock))
+        return error("CheckStake() : ProcessBlock, block not accepted");
 
     return true;
 }
@@ -1053,7 +1051,7 @@ void ThreadStakeMiner(CWallet *pwallet)
 
                     if (chainActive.Tip()->GetBlockHash() != pblock->hashPrevBlock) {
                         //another block was received while building ours, scrap progress
-                        LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid\n");
+                        LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid");
                         break;
                     }
                     // Create a block that's properly populated with transactions
@@ -1064,7 +1062,7 @@ void ThreadStakeMiner(CWallet *pwallet)
                         return;
                     if (chainActive.Tip()->GetBlockHash() != pblock->hashPrevBlock) {
                         //another block was received while building ours, scrap progress
-                        LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid\n");
+                        LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid");
                         break;
                     }
                     // Sign the full block and use the timestamp from earlier for a valid stake
@@ -1076,13 +1074,13 @@ void ThreadStakeMiner(CWallet *pwallet)
                         while(!validBlock) {
                             if (chainActive.Tip()->GetBlockHash() != pblockfilled->hashPrevBlock) {
                                 //another block was received while building ours, scrap progress
-                                LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid\n");
+                                LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid");
                                 break;
                             }
                             //check timestamps
                             if (pblockfilled->GetBlockTime() <= pindexPrev->GetBlockTime() ||
                                 FutureDrift(pblockfilled->GetBlockTime()) < pindexPrev->GetBlockTime()) {
-                                LogPrintf("ThreadStakeMiner(): Valid PoS block took too long to create and has expired\n");
+                                LogPrintf("ThreadStakeMiner(): Valid PoS block took too long to create and has expired");
                                 break; //timestamp too late, so ignore
                             }
                             if (pblockfilled->GetBlockTime() > FutureDrift(GetAdjustedTime())) {

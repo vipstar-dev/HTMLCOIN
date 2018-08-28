@@ -1,16 +1,16 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "alert.h"
-#include "arith_uint256.h"
-#include "sync.h"
-#include "clientversion.h"
-#include "checkpointsync.h"
-#include "util.h"
-#include "warnings.h"
-#include "utilstrencodings.h"
+#include <alert.h>
+#include <arith_uint256.h>
+#include <sync.h>
+#include <clientversion.h>
+#include <checkpointsync.h>
+#include <util.h>
+#include <warnings.h>
+#include <utilstrencodings.h>
 
 CCriticalSection cs_warnings;
 std::string strMiscWarning;

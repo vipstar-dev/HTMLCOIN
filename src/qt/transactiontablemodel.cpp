@@ -404,9 +404,9 @@ QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord *wtx
     case TransactionRecord::SendToOther:
         return QIcon(":/icons/tx_output");
     case TransactionRecord::ContractSend:
-        return QIcon(":/icons/tx_output");
+        return QIcon(":/icons/contract_output");
     case TransactionRecord::ContractRecv:
-        return QIcon(":/icons/tx_input");
+        return QIcon(":/icons/contract_input");
     default:
         return QIcon(":/icons/tx_inout");
     }

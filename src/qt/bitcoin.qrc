@@ -4,7 +4,6 @@
         <file alias="address-book">res/icons/address-book.png</file>
         <file alias="quit">res/icons/quit.png</file>
         <file alias="send">res/icons/send.png</file>
-        <file alias="send_to">res/icons/send_to.png</file>
         <file alias="connect_0">res/icons/connect0.png</file>
         <file alias="connect_1">res/icons/connect1.png</file>
         <file alias="connect_2">res/icons/connect2.png</file>
@@ -24,7 +23,6 @@
         <file alias="encrypt">res/icons/encrypt.png</file>
         <file alias="options">res/icons/configure.png</file>
         <file alias="receiving_addresses">res/icons/receive.png</file>
-        <file alias="receive_from">res/icons/receive_from.png</file>
         <file alias="request_payment">res/icons/request_payment.png</file>
         <file alias="editpaste">res/icons/editpaste.png</file>
         <file alias="editcopy">res/icons/editcopy.png</file>
@@ -36,7 +34,6 @@
         <file alias="export">res/icons/export.png</file>
         <file alias="synced">res/icons/synced.png</file>
         <file alias="remove">res/icons/remove.png</file>
-        <file alias="remove_entry">res/icons/remove_entry.png</file>
         <file alias="restore">res/icons/restore.png</file>
         <file alias="tx_mined">res/icons/tx_mined.png</file>
         <file alias="tx_input">res/icons/tx_input.png</file>
@@ -64,6 +61,8 @@
         <file alias="network_disabled">res/icons/network_disabled.png</file>
         <file alias="staking_on">res/icons/staking_on.png</file>
         <file alias="staking_off">res/icons/staking_off.png</file>
+        <file alias="contract_input">res/icons/contract_input.png</file>
+        <file alias="contract_output">res/icons/contract_output.png</file>
         <file alias="smart_contract">res/icons/smart_contract.png</file>
         <file alias="qrctoken">res/icons/qrctoken.png</file>
         <file alias="token">res/icons/token.png</file>

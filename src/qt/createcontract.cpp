@@ -16,7 +16,6 @@
 #include <qt/tabbarinfo.h>
 #include <qt/contractresult.h>
 #include <qt/sendcoinsdialog.h>
-#include <qt/styleSheet.h>
 
 #include <QRegularExpressionValidator>
 
@@ -48,9 +47,9 @@ CreateContract::CreateContract(const PlatformStyle *platformStyle, QWidget *pare
     // Setup ui components
     Q_UNUSED(platformStyle);
     ui->setupUi(this);
-
-    // Set stylesheet
-    SetObjectStyleSheet(ui->pushButtonClearAll, StyleSheetNames::ButtonBlack);
+    ui->groupBoxOptional->setStyleSheet(STYLE_GROUPBOX);
+    ui->groupBoxConstructor->setStyleSheet(STYLE_GROUPBOX);
+    ui->scrollAreaConstructor->setStyleSheet(".QScrollArea {border: none;}");
 
     setLinkLabels();
     m_ABIFunctionField = new ABIFunctionField(platformStyle, ABIFunctionField::Create, ui->scrollAreaConstructor);

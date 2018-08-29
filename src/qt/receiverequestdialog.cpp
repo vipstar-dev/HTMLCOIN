@@ -9,7 +9,6 @@
 #include <qt/guiconstants.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
-#include <qt/styleSheet.h>
 
 #include <QClipboard>
 #include <QDrag>
@@ -95,10 +94,6 @@ ReceiveRequestDialog::ReceiveRequestDialog(QWidget *parent) :
     model(0)
 {
     ui->setupUi(this);
-
-    SetObjectStyleSheet(ui->btnCopyURI, StyleSheetNames::ButtonWhite);
-    SetObjectStyleSheet(ui->btnSaveAs, StyleSheetNames::ButtonWhite);
-    SetObjectStyleSheet(ui->btnCopyAddress, StyleSheetNames::ButtonWhite);
 
 #ifndef USE_QRCODE
     ui->btnSaveAs->setVisible(false);
@@ -201,16 +196,16 @@ void ReceiveRequestDialog::update()
     ui->btnSaveAs->setEnabled(false);
     QString html;
     html += "<html><font face='verdana, arial, helvetica, sans-serif'>";
-    html += "<font color='#ffffff'>" + tr("PAYMENT INFORMATION")+"</font><br><br>";
-    html += tr("URI")+": ";
+    html += "<b>"+tr("Payment information")+"</b><br>";
+    html += "<b>"+tr("URI")+"</b>: ";
     html += "<a href=\""+uri+"\">" + GUIUtil::HtmlEscape(uri) + "</a><br>";
-    html += tr("Address")+": <font color='#ffffff'>" + GUIUtil::HtmlEscape(info.address) + "</font><br>";
+    html += "<b>"+tr("Address")+"</b>: " + GUIUtil::HtmlEscape(info.address) + "<br>";
     if(info.amount)
-        html += tr("Amount")+": <font color='#ffffff'>" + BitcoinUnits::formatHtmlWithUnit(model->getDisplayUnit(), info.amount) + "</font><br>";
+        html += "<b>"+tr("Amount")+"</b>: " + BitcoinUnits::formatHtmlWithUnit(model->getDisplayUnit(), info.amount) + "<br>";
     if(!info.label.isEmpty())
-        html += tr("Label")+": <font color='#ffffff'>" + GUIUtil::HtmlEscape(info.label) + "</font><br>";
+        html += "<b>"+tr("Label")+"</b>: " + GUIUtil::HtmlEscape(info.label) + "<br>";
     if(!info.message.isEmpty())
-        html += tr("Message")+": <font color='#ffffff'>" + GUIUtil::HtmlEscape(info.message) + "</font><br>";
+        html += "<b>"+tr("Message")+"</b>: " + GUIUtil::HtmlEscape(info.message) + "<br>";
     ui->outUri->setText(html);
 
 #ifdef USE_QRCODE

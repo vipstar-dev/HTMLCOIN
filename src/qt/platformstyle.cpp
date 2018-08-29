@@ -93,7 +93,7 @@ PlatformStyle::PlatformStyle(const QString &_name, bool _imagesOnButtons, bool _
         singleColor = 0x008ac8;
     }
     // Determine text color
-    textColor = 0xe6f0f0;
+    textColor = 0x000001;
     menuColor = QColor(QApplication::palette().color(QPalette::WindowText));
 }
 
@@ -229,7 +229,7 @@ void PlatformStyle::TableColor(PlatformStyle::TableColorType type, int &color, d
         break;
     case Input:
         opacity = 0.8;
-        color = 0x2fa5df;
+        color = 0x000000;
         break;
     case Inout:
         opacity = 0.8;

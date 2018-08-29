@@ -14,7 +14,6 @@
 #include <qt/platformstyle.h>
 #include <qt/sendcoinsentry.h>
 #include <qt/guiconstants.h>
-#include <qt/styleSheet.h>
 
 #include <base58.h>
 #include <chainparams.h>
@@ -61,16 +60,14 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *p
 {
     ui->setupUi(this);
 
-    // Set stylesheet
-    SetObjectStyleSheet(ui->clearButton, StyleSheetNames::ButtonBlack);
-    SetObjectStyleSheet(ui->addButton, StyleSheetNames::ButtonBlue);
-    SetObjectStyleSheet(ui->sendButton, StyleSheetNames::ButtonBlue);
-    SetObjectStyleSheet(ui->pushButtonCoinControl, StyleSheetNames::ButtonBlack);
-
     if (!_platformStyle->getImagesOnButtons()) {
         ui->addButton->setIcon(QIcon());
+        ui->clearButton->setIcon(QIcon());
+        ui->sendButton->setIcon(QIcon());
     } else {
-        ui->addButton->setIcon(_platformStyle->MultiStatesIcon(":/icons/add_recipient", PlatformStyle::PushButton));
+        ui->addButton->setIcon(_platformStyle->SingleColorIcon(":/icons/add"));
+        ui->clearButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
+        ui->sendButton->setIcon(_platformStyle->SingleColorIcon(":/icons/send"));
     }
 
     GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);

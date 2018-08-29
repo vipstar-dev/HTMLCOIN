@@ -5,7 +5,7 @@
 #include <qt/bitcoinamountfield.h>
 
 #include <qt/bitcoinunits.h>
-#include <qt/styleSheet.h>
+#include <qt/guiconstants.h>
 #include <qt/qvaluecombobox.h>
 
 #include <QApplication>
@@ -262,7 +262,7 @@ void BitcoinAmountField::setValid(bool valid)
     if (valid)
         amount->setStyleSheet("");
     else
-        SetObjectStyleSheet(amount, StyleSheetNames::Invalid);
+        amount->setStyleSheet(STYLE_INVALID);
 }
 
 bool BitcoinAmountField::eventFilter(QObject *object, QEvent *event)

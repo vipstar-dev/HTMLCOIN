@@ -11,7 +11,6 @@
 
 #include <qt/guiconstants.h>
 #include <qt/walletmodel.h>
-#include <qt/styleSheet.h>
 #include <wallet/wallet.h>
 
 #include <support/allocators/secure.h>
@@ -28,9 +27,6 @@ AskPassphraseDialog::AskPassphraseDialog(Mode _mode, QWidget *parent) :
     fCapsLock(false)
 {
     ui->setupUi(this);
-
-    SetObjectStyleSheet(ui->buttonBox->button(QDialogButtonBox::Cancel), StyleSheetNames::ButtonWhite);
-    SetObjectStyleSheet(ui->buttonBox->button(QDialogButtonBox::Ok), StyleSheetNames::ButtonBlue);
 
     ui->passEdit1->setMinimumSize(ui->passEdit1->sizeHint());
     ui->passEdit2->setMinimumSize(ui->passEdit2->sizeHint());

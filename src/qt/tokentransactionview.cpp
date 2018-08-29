@@ -9,7 +9,6 @@
 #include <qt/optionsmodel.h>
 #include <qt/tokenitemmodel.h>
 #include <qt/tokendescdialog.h>
-#include <qt/styleSheet.h>
 
 #include <QComboBox>
 #include <QDateTimeEdit>
@@ -38,13 +37,22 @@ TokenTransactionView::TokenTransactionView(const PlatformStyle *platformStyle, Q
     setContentsMargins(0,0,0,0);
 
     QHBoxLayout *hlayout = new QHBoxLayout();
-    hlayout->setContentsMargins(6,6,6,6);
-    hlayout->setSpacing(10);
-    hlayout->addSpacing(STATUS_COLUMN_WIDTH);
+    hlayout->setContentsMargins(0,0,0,0);
+
+    if (platformStyle->getUseExtraSpacing()) {
+        hlayout->setSpacing(5);
+        hlayout->addSpacing(STATUS_COLUMN_WIDTH + 3);
+    } else {
+        hlayout->setSpacing(0);
+        hlayout->addSpacing(STATUS_COLUMN_WIDTH);
+    }
 
     dateWidget = new QComboBox(this);
-    dateWidget->setFixedWidth(DATE_COLUMN_WIDTH -10);
-
+    if (platformStyle->getUseExtraSpacing()) {
+        dateWidget->setFixedWidth(DATE_COLUMN_WIDTH + 1);
+    } else {
+        dateWidget->setFixedWidth(DATE_COLUMN_WIDTH);
+    }
     dateWidget->addItem(tr("All"), All);
     dateWidget->addItem(tr("Today"), Today);
     dateWidget->addItem(tr("This week"), ThisWeek);
@@ -55,7 +63,11 @@ TokenTransactionView::TokenTransactionView(const PlatformStyle *platformStyle, Q
     hlayout->addWidget(dateWidget);
 
     typeWidget = new QComboBox(this);
-    typeWidget->setFixedWidth(TYPE_COLUMN_WIDTH -10);
+    if (platformStyle->getUseExtraSpacing()) {
+        typeWidget->setFixedWidth(TYPE_COLUMN_WIDTH + 1);
+    } else {
+        typeWidget->setFixedWidth(TYPE_COLUMN_WIDTH);
+    }
 
     typeWidget->addItem(tr("All"), TokenFilterProxy::ALL_TYPES);
     typeWidget->addItem(tr("Received with"), TokenFilterProxy::TYPE(TokenTransactionRecord::RecvWithAddress));
@@ -70,7 +82,11 @@ TokenTransactionView::TokenTransactionView(const PlatformStyle *platformStyle, Q
     hlayout->addWidget(addressWidget);
 
     nameWidget = new QComboBox(this);
-    nameWidget->setFixedWidth(NAME_COLUMN_WIDTH -10);
+    if (platformStyle->getUseExtraSpacing()) {
+        nameWidget->setFixedWidth(NAME_COLUMN_WIDTH + 1);
+    } else {
+        nameWidget->setFixedWidth(NAME_COLUMN_WIDTH);
+    }
     nameWidget->addItem(tr("All"), "");
 
     hlayout->addWidget(nameWidget);
@@ -79,8 +95,11 @@ TokenTransactionView::TokenTransactionView(const PlatformStyle *platformStyle, Q
 #if QT_VERSION >= 0x040700
     amountWidget->setPlaceholderText(tr("Min amount"));
 #endif
-    amountWidget->setFixedWidth(AMOUNT_COLUMN_WIDTH - 10);
-
+    if (platformStyle->getUseExtraSpacing()) {
+        amountWidget->setFixedWidth(AMOUNT_MINIMUM_COLUMN_WIDTH - 3);
+    } else {
+        amountWidget->setFixedWidth(AMOUNT_MINIMUM_COLUMN_WIDTH);
+    }
     QRegularExpression regEx;
     regEx.setPattern(paternTokenAmount);
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(amountWidget);
@@ -182,7 +201,7 @@ QWidget *TokenTransactionView::createDateRangeWidget()
 {
     dateRangeWidget = new QFrame();
     dateRangeWidget->setFrameStyle(QFrame::Panel | QFrame::Raised);
-    dateRangeWidget->setContentsMargins(1,1,1,8);
+    dateRangeWidget->setContentsMargins(1,1,1,1);
     QHBoxLayout *layout = new QHBoxLayout(dateRangeWidget);
     layout->setContentsMargins(0,0,0,0);
     layout->addSpacing(23);

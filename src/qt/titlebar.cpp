@@ -8,7 +8,7 @@
 #include <qt/platformstyle.h>
 
 namespace TitleBar_NS {
-const int titleHeight = 35;
+const int logoWidth = 135;
 }
 using namespace TitleBar_NS;
 
@@ -18,11 +18,17 @@ TitleBar::TitleBar(const PlatformStyle *platformStyle, QWidget *parent) :
     m_tab(0)
 {
     ui->setupUi(this);
+    // Set the logo
+    QPixmap logo = QPixmap(":/icons/logo").scaledToWidth(logoWidth, Qt::SmoothTransformation);
+    ui->lblLogo->setPixmap(logo);
+    ui->lblLogo->setFixedSize(logo.size());
+    // Hide the fiat balance label
+    ui->lblFiatBalance->hide();
     // Set size policy
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     ui->tabWidget->setDrawBase(false);
+    setAttribute(Qt::WA_TranslucentBackground, true);
     ui->tabWidget->setTabsClosable(true);
-    setFixedHeight(titleHeight);
     m_iconCloseTab = platformStyle->TextColorIcon(":/icons/quit");
 }
 

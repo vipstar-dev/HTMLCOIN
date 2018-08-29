@@ -17,7 +17,6 @@
 #include <qt/tokenitemmodel.h>
 #include <wallet/wallet.h>
 #include <qt/transactiondescdialog.h>
-#include <qt/styleSheet.h>
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
@@ -65,12 +64,12 @@ public:
         QString typeString = ind.data(Qt::DisplayRole).toString();
 
         QRect mainRect = option.rect;
-        QColor txColor = index.row() % 2 ? QColor("#393939") : QColor("#2e2e2e");
+        QColor txColor = index.row() % 2 ? QColor("#ededed") : QColor("#e3e3e3");
         painter->fillRect(mainRect, txColor);
 
         QPen pen;
         pen.setWidth(2);
-        pen.setColor(QColor("#009ee5"));
+        pen.setColor(QColor("#c4c1bd"));
         painter->setPen(pen);
         bool selected = option.state & QStyle::State_Selected;
         if(selected)
@@ -78,7 +77,7 @@ public:
             painter->drawRect(mainRect.x()+1, mainRect.y()+1, mainRect.width()-2, mainRect.height()-2);
         }
 
-        QColor foreground("#dedede");
+        QColor foreground("#000000");
         painter->setPen(foreground);
 
         QRect dateRect(mainRect.left() + MARGIN, mainRect.top(), DATE_WIDTH, TX_SIZE);
@@ -128,7 +127,7 @@ public:
         }
         else
         {
-            foreground = QColor("#ffffff");
+            foreground = option.palette.color(QPalette::Text);
         }
         painter->setPen(foreground);
 
@@ -172,12 +171,12 @@ public:
         QRect mainRect = option.rect;
         mainRect.setWidth(option.rect.width());
 
-        painter->fillRect(mainRect, QColor("#383938"));
+        painter->fillRect(mainRect, QColor("#ededed"));
 
         QRect hLineRect(mainRect.left(), mainRect.bottom(), mainRect.width(), 1);
-        painter->fillRect(hLineRect, QColor("#2e2e2e"));
+        painter->fillRect(hLineRect, QColor("#e3e3e3"));
 
-        QColor foreground("#dedede");
+        QColor foreground("#000000");
         painter->setPen(foreground);
         
         QFont font = option.font;
@@ -230,19 +229,15 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 {
     ui->setupUi(this);
 
-    // Set stylesheet
-    SetObjectStyleSheet(ui->labelWalletStatus, StyleSheetNames::ButtonTransparent);
-    SetObjectStyleSheet(ui->labelTokenStatus, StyleSheetNames::ButtonTransparent);
-    SetObjectStyleSheet(ui->labelTransactionsStatus, StyleSheetNames::ButtonTransparent);
-
     if (!platformStyle->getImagesOnButtons()) {
         ui->buttonAddToken->setIcon(QIcon());
     } else {
-        ui->buttonAddToken->setIcon(platformStyle->MultiStatesIcon(":/icons/add", PlatformStyle::PushButton));
+        ui->buttonAddToken->setIcon(platformStyle->SingleColorIcon(":/icons/add"));
     }
+    // use a SingleColorIcon for the "out of sync warning" icon
+    QIcon icon = platformStyle->SingleColorIcon(":/icons/warning");
+    icon.addPixmap(icon.pixmap(QSize(64,64), QIcon::Normal), QIcon::Disabled); // also set the disabled icon because we are using a disabled QPushButton to work around missing HiDPI support of QLabel (https://bugreports.qt.io/browse/QTBUG-42503)
 
-    // use a MultiStatesIcon for the "out of sync warning" icon
-    QIcon icon = platformStyle->MultiStatesIcon(":/icons/warning", PlatformStyle::PushButton);
     ui->labelTransactionsStatus->setIcon(icon);
     ui->labelWalletStatus->setIcon(icon);
     ui->labelTokenStatus->setIcon(icon);

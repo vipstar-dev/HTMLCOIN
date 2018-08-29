@@ -6,7 +6,6 @@
 #include <qt/forms/ui_modaloverlay.h>
 
 #include <qt/guiutil.h>
-#include <qt/styleSheet.h>
 
 #include <chainparams.h>
 
@@ -23,10 +22,6 @@ userClosed(false),
 type(_type)
 {
     ui->setupUi(this);
-
-    // Set stylesheet
-    SetObjectStyleSheet(ui->warningIcon, StyleSheetNames::ButtonTransparent);
-    SetObjectStyleSheet(ui->warningIconBackup, StyleSheetNames::ButtonTransparent);
 
     connect(ui->closeButton, SIGNAL(clicked()), this, SLOT(closeClicked()));
     connect(ui->walletBackupButton, SIGNAL(clicked()), this, SLOT(backupWalletClicked()));

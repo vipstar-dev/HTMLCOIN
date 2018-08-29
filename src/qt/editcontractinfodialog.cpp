@@ -3,7 +3,6 @@
 
 #include <qt/contracttablemodel.h>
 #include <qt/contractabi.h>
-#include <qt/styleSheet.h>
 
 #include <QDataWidgetMapper>
 #include <QMessageBox>
@@ -21,9 +20,6 @@ EditContractInfoDialog::EditContractInfoDialog(Mode _mode, QWidget *parent) :
     m_contractABI = new ContractABI();
 
     ui->setupUi(this);
-
-    SetObjectStyleSheet(ui->buttonBox->button(QDialogButtonBox::Cancel), StyleSheetNames::ButtonWhite);
-    SetObjectStyleSheet(ui->buttonBox->button(QDialogButtonBox::Ok), StyleSheetNames::ButtonBlue);
 
     switch(mode)
     {

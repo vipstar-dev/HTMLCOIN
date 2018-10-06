@@ -222,10 +222,18 @@ bool OpenDebugLog()
     fs::path pathDebugVM = GetDebugVMLogPath(); // qtum
     fileout = fsbridge::fopen(pathDebug, "a");
     fileoutVM = fsbridge::fopen(pathDebugVM, "a"); // qtum
-    if (!fileout) {
+    if (!fileout || !fileoutVM) {
         return false;
     }
 
+    if (fileout) {
+        setbuf(fileout, nullptr); // unbuffered
+        // dump buffered messages from before we opened the log
+        while (!vMsgsBeforeOpenLog->empty()) {
+            FileWriteStr(vMsgsBeforeOpenLog->front(), fileout);
+            vMsgsBeforeOpenLog->pop_front();
+        }
+    }
     ///////////////////////////////////////////// // qtum
     if (fileoutVM) {
         setbuf(fileoutVM, nullptr); // unbuffered
@@ -982,6 +990,14 @@ std::string CopyrightHolders(const std::string& strPrefix)
         std::string strYear = strPrefix;
         strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2009");
         strCopyrightHolders += "\n" + strYear + "The Bitcoin Core developers";
+
+        strYear = strPrefix;
+        strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2014");
+        strCopyrightHolders += "\n" + strYear + "The HTMLCOIN Core developers";
+
+        strYear = strPrefix;
+        strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2016");
+        strCopyrightHolders += "\n" + strYear + "The Qtum Core developers";
     }
     return strCopyrightHolders;
 }

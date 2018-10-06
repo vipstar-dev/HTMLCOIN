@@ -784,7 +784,7 @@ void RPCConsole::clear(bool clearHistory)
         );
 
 #ifdef Q_OS_MAC
-    QString clsKey = "(⌘)-L";
+    QString clsKey = "(?)-L";
 #else
     QString clsKey = "Ctrl-L";
 #endif
@@ -961,6 +961,11 @@ void RPCConsole::on_tabWidget_currentChanged(int index)
 void RPCConsole::on_openDebugLogfileButton_clicked()
 {
     GUIUtil::openDebugLogfile();
+}
+
+void RPCConsole::showBackups()
+{
+    GUIUtil::showBackups();
 }
 
 void RPCConsole::scrollToEnd()

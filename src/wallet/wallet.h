@@ -1236,6 +1236,8 @@ public:
      */
     CTxDestination AddAndGetDestinationForScript(const CScript& script, OutputType);
 
+    static std::string GetWalletFileName();
+
     /* Add token entry into the wallet */
     bool AddTokenEntry(const CTokenInfo& token, bool fFlushOnClose=true);
 

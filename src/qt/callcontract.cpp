@@ -13,6 +13,7 @@
 #include <qt/contractbookpage.h>
 #include <qt/editcontractinfodialog.h>
 #include <qt/contracttablemodel.h>
+#include <qt/styleSheet.h>
 #include <qt/guiutil.h>
 #include <QClipboard>
 
@@ -41,14 +42,15 @@ CallContract::CallContract(const PlatformStyle *platformStyle, QWidget *parent) 
     m_platformStyle = platformStyle;
     // Setup ui components
     ui->setupUi(this);
+    ui->saveInfoButton->setIcon(platformStyle->MultiStatesIcon(":/icons/filesave", PlatformStyle::PushButton));
+    ui->loadInfoButton->setIcon(platformStyle->MultiStatesIcon(":/icons/address-book", PlatformStyle::PushButton));
+    ui->pasteAddressButton->setIcon(platformStyle->MultiStatesIcon(":/icons/editpaste", PlatformStyle::PushButton));
+    // Format tool buttons
+    GUIUtil::formatToolButtons(ui->saveInfoButton, ui->loadInfoButton, ui->pasteAddressButton);
 
-    ui->saveInfoButton->setIcon(platformStyle->SingleColorIcon(":/icons/filesave"));
-    ui->loadInfoButton->setIcon(platformStyle->SingleColorIcon(":/icons/address-book"));
-    ui->pasteAddressButton->setIcon(platformStyle->SingleColorIcon(":/icons/editpaste"));
+    // Set stylesheet
+    SetObjectStyleSheet(ui->pushButtonClearAll, StyleSheetNames::ButtonBlack);
 
-    ui->groupBoxOptional->setStyleSheet(STYLE_GROUPBOX);
-    ui->groupBoxFunction->setStyleSheet(STYLE_GROUPBOX);
-    ui->scrollAreaFunction->setStyleSheet(".QScrollArea {border: none;}");
     m_ABIFunctionField = new ABIFunctionField(platformStyle, ABIFunctionField::Call, ui->scrollAreaFunction);
     ui->scrollAreaFunction->setWidget(m_ABIFunctionField);
 

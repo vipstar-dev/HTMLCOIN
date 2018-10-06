@@ -4,6 +4,7 @@
 #include <qt/walletmodel.h>
 #include <QMessageBox>
 #include <QFile>
+#include <qt/styleSheet.h>
 
 RestoreDialog::RestoreDialog(QWidget *parent) :
     QDialog(parent),
@@ -11,6 +12,7 @@ RestoreDialog::RestoreDialog(QWidget *parent) :
     model(0)
 {
     ui->setupUi(this);
+    SetObjectStyleSheet(ui->btnReset, StyleSheetNames::ButtonWhite);
 }
 
 RestoreDialog::~RestoreDialog()

@@ -7,6 +7,7 @@
 
 #include <qt/guiutil.h>
 #include <qt/walletmodel.h>
+#include <qt/styleSheet.h>
 
 #include <QUrl>
 
@@ -15,6 +16,9 @@ OpenURIDialog::OpenURIDialog(QWidget *parent) :
     ui(new Ui::OpenURIDialog)
 {
     ui->setupUi(this);
+
+    SetObjectStyleSheet(ui->buttonBox->button(QDialogButtonBox::Cancel), StyleSheetNames::ButtonWhite);
+    SetObjectStyleSheet(ui->buttonBox->button(QDialogButtonBox::Ok), StyleSheetNames::ButtonBlue);
 
 #if QT_VERSION >= 0x040700
     ui->uriEdit->setPlaceholderText("vipstarcoin:");

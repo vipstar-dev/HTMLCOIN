@@ -454,12 +454,7 @@
         <translation>&amp;Change Passphrase...</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>&amp;Unlock Wallet...</source>
-        <translation>&amp;Unlock Wallet...</translation>
-    </message>
-    <message>
-        <location line="+15"/>
+        <location line="+12"/>
         <source>&amp;Sending addresses...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1687,8 +1682,8 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location line="+40"/>
-        <location line="+326"/>
+        <location line="+62"/>
+        <location line="+386"/>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the VIPSTARCOIN network after a connection is established, but this process has not completed yet.</source>
         <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the VIPSTARCOIN network after a connection is established, but this process has not completed yet.</translation>
     </message>
@@ -1778,11 +1773,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+39"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+560"/>
         <source>RecentTransactions</source>
         <translation type="unfinished"></translation>
@@ -1810,11 +1800,6 @@
     <message>
         <location line="+668"/>
         <source>Amount</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+720"/>
-        <source>Show more...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6006,7 +5991,7 @@
     </message>
     <message>
         <location filename="../addtokenpage.cpp" line="+30"/>
-        <source>(This is your wallet address which will be tied to the token for send/receive oprations)</source>
+        <source>(This is your wallet address which will be tied to the token for send/receive operations)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6274,7 +6259,7 @@
 <context>
     <name>ContractBookPage</name>
     <message>
-        <location filename="../contractbookpage.cpp" line="+33"/>
+        <location filename="../contractbookpage.cpp" line="+42"/>
         <source>Choose the contract for send/call</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,7 +1,7 @@
 ﻿#include <qt/tokenamountfield.h>
 
 #include <qt/bitcoinunits.h>
-#include <qt/guiconstants.h>
+#include <qt/styleSheet.h>
 #include <qt/qvaluecombobox.h>
 
 #include <QApplication>
@@ -220,7 +220,7 @@ void TokenAmountField::setValid(bool valid)
     if (valid)
         amount->setStyleSheet("");
     else
-        amount->setStyleSheet(STYLE_INVALID);
+        SetObjectStyleSheet(amount, StyleSheetNames::Invalid);
 }
 
 bool TokenAmountField::eventFilter(QObject *object, QEvent *event)

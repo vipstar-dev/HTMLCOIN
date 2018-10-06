@@ -17,6 +17,7 @@
 #include <qt/contractbookpage.h>
 #include <qt/editcontractinfodialog.h>
 #include <qt/contracttablemodel.h>
+#include <qt/styleSheet.h>
 #include <qt/guiutil.h>
 #include <qt/sendcoinsdialog.h>
 #include <QClipboard>
@@ -54,15 +55,14 @@ SendToContract::SendToContract(const PlatformStyle *platformStyle, QWidget *pare
     // Setup ui components
     Q_UNUSED(platformStyle);
     ui->setupUi(this);
-    ui->saveInfoButton->setIcon(platformStyle->SingleColorIcon(":/icons/filesave"));
-    ui->loadInfoButton->setIcon(platformStyle->SingleColorIcon(":/icons/address-book"));
-    ui->pasteAddressButton->setIcon(platformStyle->SingleColorIcon(":/icons/editpaste"));
+    ui->saveInfoButton->setIcon(platformStyle->MultiStatesIcon(":/icons/filesave", PlatformStyle::PushButton));
+    ui->loadInfoButton->setIcon(platformStyle->MultiStatesIcon(":/icons/address-book", PlatformStyle::PushButton));
+    ui->pasteAddressButton->setIcon(platformStyle->MultiStatesIcon(":/icons/editpaste", PlatformStyle::PushButton));
     // Format tool buttons
     GUIUtil::formatToolButtons(ui->saveInfoButton, ui->loadInfoButton, ui->pasteAddressButton);
 
-    ui->groupBoxOptional->setStyleSheet(STYLE_GROUPBOX);
-    ui->groupBoxFunction->setStyleSheet(STYLE_GROUPBOX);
-    ui->scrollAreaFunction->setStyleSheet(".QScrollArea {border: none;}");
+    // Set stylesheet
+    SetObjectStyleSheet(ui->pushButtonClearAll, StyleSheetNames::ButtonBlack);
 
     m_ABIFunctionField = new ABIFunctionField(platformStyle, ABIFunctionField::SendTo, ui->scrollAreaFunction);
     ui->scrollAreaFunction->setWidget(m_ABIFunctionField);

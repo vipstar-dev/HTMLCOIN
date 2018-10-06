@@ -14,7 +14,6 @@
 
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QFileInfo>
 
 WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, BitcoinGUI *_gui) :
     QFrame(_gui),
@@ -25,14 +24,7 @@ WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, BitcoinGUI *_gui) 
     QHBoxLayout *walletFrameLayout = new QHBoxLayout(this);
     setContentsMargins(0,0,0,0);
     walletStack = new QStackedWidget(this);
-    walletStack->setObjectName("walletStack");
-    walletStack->setStyleSheet("#walletStack {border: 1px solid #c4c1bd;}");
     walletFrameLayout->setContentsMargins(0,0,0,0);
-    QFileInfo fileInfo("background_wallet.jpg");
-    if(fileInfo.exists())
-        setStyleSheet("WalletFrame {background-image: url(background_wallet.jpg);}");
-    else
-        setStyleSheet("WalletFrame { background-color:#EEEEEE;}");
     walletFrameLayout->addWidget(walletStack);
 
     QLabel *noWallet = new QLabel(tr("No wallet has been loaded."));

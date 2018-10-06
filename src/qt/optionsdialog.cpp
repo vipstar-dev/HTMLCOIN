@@ -16,6 +16,7 @@
 #include <validation.h> // for DEFAULT_SCRIPTCHECK_THREADS and MAX_SCRIPTCHECK_THREADS
 #include <netbase.h>
 #include <txdb.h> // for -dbcache defaults
+#include <qt/styleSheet.h>
 
 #include <QDataWidgetMapper>
 #include <QDir>
@@ -31,6 +32,11 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     mapper(0)
 {
     ui->setupUi(this);
+
+    SetObjectStyleSheet(ui->resetButton, StyleSheetNames::ButtonWhite);
+    SetObjectStyleSheet(ui->openBitcoinConfButton, StyleSheetNames::ButtonWhite);
+    SetObjectStyleSheet(ui->okButton, StyleSheetNames::ButtonBlue);
+    SetObjectStyleSheet(ui->cancelButton, StyleSheetNames::ButtonBlue);
 
     /* Main elements init */
     ui->databaseCache->setMinimum(nMinDbCache);

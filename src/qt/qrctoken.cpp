@@ -4,6 +4,7 @@
 #include <qt/walletmodel.h>
 #include <qt/tokentransactionview.h>
 #include <qt/platformstyle.h>
+#include <qt/styleSheet.h>
 
 #include <QPainter>
 #include <QAbstractItemDelegate>
@@ -40,24 +41,24 @@ public:
         bool selected = option.state & QStyle::State_Selected;
         if(selected)
         {
-            painter->fillRect(mainRect,QColor("#ededed"));
+            painter->fillRect(mainRect,QColor("#009ee5"));
         }
         else
         {
-            painter->fillRect(mainRect,QColor("#e3e3e3"));
+            painter->fillRect(mainRect,QColor("#383938"));
         }
 
         QRect hLineRect(mainRect.left(), mainRect.bottom(), mainRect.width(), 1);
-        painter->fillRect(hLineRect, QColor("#ffffff"));
+        painter->fillRect(hLineRect, QColor("#2e2e2e"));
 
-        QColor foreground("#696969");
+        QColor foreground("#dddddd");
         painter->setPen(foreground);
 
         QFont font = option.font;
         font.setPointSizeF(option.font.pointSizeF() * 1.1);
         font.setBold(true);
         painter->setFont(font);
-        QColor amountColor("#000000");
+        QColor amountColor("#ffffff");
         painter->setPen(amountColor);
 
         QFontMetrics fmName(option.font);

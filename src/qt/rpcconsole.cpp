@@ -17,6 +17,7 @@
 #include <rpc/server.h>
 #include <rpc/client.h>
 #include <util.h>
+#include <qt/styleSheet.h>
 
 #include <openssl/crypto.h>
 
@@ -55,12 +56,13 @@ const char fontSizeSettingsKey[] = "consoleFontSize";
 const struct {
     const char *url;
     const char *source;
+    PlatformStyle::TableColorType type;
 } ICON_MAPPING[] = {
-    {"cmd-request", ":/icons/tx_input"},
-    {"cmd-reply", ":/icons/tx_output"},
-    {"cmd-error", ":/icons/tx_output"},
-    {"misc", ":/icons/tx_inout"},
-    {nullptr, nullptr}
+    {"cmd-request", ":/icons/tx_input", PlatformStyle::Input},
+    {"cmd-reply", ":/icons/tx_output", PlatformStyle::Output},
+    {"cmd-error", ":/icons/tx_output", PlatformStyle::Error},
+    {"misc", ":/icons/tx_inout", PlatformStyle::Inout},
+    {nullptr, nullptr, PlatformStyle::Inout}
 };
 
 namespace {
@@ -459,15 +461,25 @@ RPCConsole::RPCConsole(const PlatformStyle *_platformStyle, QWidget *parent) :
         move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
     }
 
+    // Set stylesheet
+    SetObjectStyleSheet(ui->promptIcon, StyleSheetNames::ButtonTransparent);
+    SetObjectStyleSheet(ui->clearButton, StyleSheetNames::ButtonTransparent);
+    SetObjectStyleSheet(ui->fontBiggerButton, StyleSheetNames::ButtonTransparent);
+    SetObjectStyleSheet(ui->fontSmallerButton, StyleSheetNames::ButtonTransparent);
+    SetObjectStyleSheet(ui->openDebugLogfileButton, StyleSheetNames::ButtonBlue);
+    SetObjectStyleSheet(ui->btnClearTrafficGraph, StyleSheetNames::ButtonBlue);
+    SetObjectStyleSheet(ui->peerWidget, StyleSheetNames::TableViewLight);
+    SetObjectStyleSheet(ui->banlistWidget, StyleSheetNames::TableViewLight);
+
     ui->openDebugLogfileButton->setToolTip(ui->openDebugLogfileButton->toolTip().arg(tr(PACKAGE_NAME)));
 
     if (platformStyle->getImagesOnButtons()) {
-        ui->openDebugLogfileButton->setIcon(platformStyle->SingleColorIcon(":/icons/export"));
+        ui->openDebugLogfileButton->setIcon(platformStyle->MultiStatesIcon(":/icons/export", PlatformStyle::PushButton));
     }
-    ui->clearButton->setIcon(platformStyle->SingleColorIcon(":/icons/remove"));
-    ui->fontBiggerButton->setIcon(platformStyle->SingleColorIcon(":/icons/fontbigger"));
-    ui->fontSmallerButton->setIcon(platformStyle->SingleColorIcon(":/icons/fontsmaller"));
-    ui->promptIcon->setIcon(platformStyle->SingleColorIcon(":/icons/prompticon"));
+    ui->clearButton->setIcon(platformStyle->MultiStatesIcon(":/icons/remove", PlatformStyle::PushButton));
+    ui->fontBiggerButton->setIcon(platformStyle->MultiStatesIcon(":/icons/fontbigger", PlatformStyle::PushButton));
+    ui->fontSmallerButton->setIcon(platformStyle->MultiStatesIcon(":/icons/fontsmaller", PlatformStyle::PushButton));
+    ui->promptIcon->setIcon(platformStyle->MultiStatesIcon(":/icons/prompticon", PlatformStyle::PushButton));
 
     // Install event filter for up and down arrow
     ui->lineEdit->installEventFilter(this);
@@ -754,7 +766,7 @@ void RPCConsole::clear(bool clearHistory)
         ui->messagesWidget->document()->addResource(
                     QTextDocument::ImageResource,
                     QUrl(ICON_MAPPING[i].url),
-                    platformStyle->SingleColorImage(ICON_MAPPING[i].source).scaled(QSize(consoleFontSize*2, consoleFontSize*2), Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+                    platformStyle->TableColorImage(ICON_MAPPING[i].source, ICON_MAPPING[i].type).scaled(QSize(consoleFontSize*2, consoleFontSize*2), Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
     }
 
     // Set default style sheet
@@ -772,7 +784,7 @@ void RPCConsole::clear(bool clearHistory)
         );
 
 #ifdef Q_OS_MAC
-    QString clsKey = "(?)-L";
+    QString clsKey = "(⌘)-L";
 #else
     QString clsKey = "Ctrl-L";
 #endif

@@ -3,9 +3,9 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <qt/qvalidatedlineedit.h>
+#include <qt/guiconstants.h>
 
 #include <qt/bitcoinaddressvalidator.h>
-#include <qt/styleSheet.h>
 
 QValidatedLineEdit::QValidatedLineEdit(QWidget *parent) :
     QLineEdit(parent),
@@ -25,27 +25,11 @@ void QValidatedLineEdit::setValid(bool _valid)
 
     if(_valid)
     {
-        QWidget *widget = this->parentWidget();
-        if(widget && widget->inherits("QComboBox"))
-        {
-            widget->setStyleSheet("");
-        }
-        else
-        {
-            setStyleSheet("");
-        }
+        setStyleSheet("");
     }
     else
     {
-        QWidget *widget = this->parentWidget();
-        if(widget && widget->inherits("QComboBox"))
-        {
-            SetObjectStyleSheet(widget, StyleSheetNames::Invalid);
-        }
-        else
-        {
-            SetObjectStyleSheet(this, StyleSheetNames::Invalid);
-        }
+        setStyleSheet(STYLE_INVALID);
     }
     this->valid = _valid;
 }

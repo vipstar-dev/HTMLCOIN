@@ -5,7 +5,6 @@
 #include <QStylePainter>
 #include <QStyleOptionToolButton>
 #include <QStyle>
-#include <qt/styleSheet.h>
 
 namespace NavigationBar_NS
 {
@@ -69,7 +68,7 @@ protected:
             QColor color;
             if(!(toolbutton->state & QStyle::State_Enabled))
             {
-                color = 0x1a96ce;
+                color = 0x000001;
             }
             else if(toolbutton->state & (QStyle::State_Sunken | QStyle::State_On))
             {
@@ -192,14 +191,7 @@ void NavigationBar::buildUi()
             toolButton->setToolButtonStyle(m_toolStyle);
             toolButton->setDefaultAction(action);
             toolButton->setIconSize(QSize(ToolButtonIconSize, ToolButtonIconSize));
-            if(m_subBar)
-            {
-                SetObjectStyleSheet(toolButton, StyleSheetNames::ToolSubBlack);
-            }
-            else
-            {
-                SetObjectStyleSheet(toolButton, StyleSheetNames::ToolBlack);
-            }
+            vboxLayout->addWidget(toolButton);
 
             if(m_groups.contains(action))
             {
@@ -208,10 +200,6 @@ void NavigationBar::buildUi()
                 vboxLayout->addLayout(vboxLayout2);
                 vboxLayout2->addWidget(toolButton);
                 vboxLayout2->setSpacing(0);
-                if(!m_subBar)
-                {
-                    SetObjectStyleSheet(toolButton, StyleSheetNames::ToolGroupBlack);
-                }
 
                 // Add sub-navigation bar for the group of actions
                 QList<QAction*> group = m_groups[action];

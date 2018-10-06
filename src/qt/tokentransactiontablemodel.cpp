@@ -22,6 +22,7 @@
 #include <QIcon>
 #include <QList>
 
+
 // Amount column is right-aligned it contains numbers
 static int column_alignments[] = {
         Qt::AlignLeft|Qt::AlignVCenter, /* status */
@@ -394,12 +395,12 @@ QVariant TokenTransactionTableModel::txAddressDecoration(const TokenTransactionR
     {
     case TokenTransactionRecord::RecvWithAddress:
     case TokenTransactionRecord::RecvFromOther:
-        return platformStyle->TableColorIcon(":/icons/tx_input", PlatformStyle::Input);
+        return QIcon(":/icons/tx_input");
     case TokenTransactionRecord::SendToAddress:
     case TokenTransactionRecord::SendToOther:
-        return platformStyle->TableColorIcon(":/icons/tx_output", PlatformStyle::Output);
+        return QIcon(":/icons/tx_output");
     default:
-        return platformStyle->TableColorIcon(":/icons/tx_inout", PlatformStyle::Inout);
+        return QIcon(":/icons/tx_inout");
     }
 }
 
@@ -472,14 +473,14 @@ QVariant TokenTransactionTableModel::txStatusDecoration(const TokenTransactionRe
     case TokenTransactionStatus::Offline:
         return COLOR_TX_STATUS_OFFLINE;
     case TokenTransactionStatus::Unconfirmed:
-        return platformStyle->TableColorIcon(":/icons/transaction_0", PlatformStyle::Normal);
+        return QIcon(":/icons/transaction_0");
     case TokenTransactionStatus::Confirming: {
         int iconNum = ((wtx->status.depth - 1) * CONFIRM_ICONS) / TokenTransactionRecord::RecommendedNumConfirmations + 1;
         if(iconNum > CONFIRM_ICONS) iconNum = CONFIRM_ICONS;
-        return platformStyle->TableColorIcon(QString(":/icons/transaction_%1").arg(iconNum), PlatformStyle::Normal);
+        return QIcon(QString(":/icons/transaction_%1").arg(iconNum));
         };
     case TokenTransactionStatus::Confirmed:
-        return platformStyle->TableColorIcon(":/icons/transaction_confirmed", PlatformStyle::Normal);
+        return QIcon(":/icons/transaction_confirmed");
     default:
         return COLOR_BLACK;
     }
@@ -515,7 +516,8 @@ QVariant TokenTransactionTableModel::data(const QModelIndex &index, int role) co
         break;
     case Qt::DecorationRole:
     {
-        return qvariant_cast<QIcon>(index.data(RawDecorationRole));
+        QIcon icon = qvariant_cast<QIcon>(index.data(RawDecorationRole));
+        return platformStyle->TextColorIcon(icon);
     }
     case Qt::DisplayRole:
         switch(index.column())

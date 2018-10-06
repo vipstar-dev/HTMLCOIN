@@ -358,6 +358,10 @@
         <translation>ウォレットの復元... (&amp;R)</translation>
     </message>
     <message>
+        <source>&amp;Unlock Wallet...</source>
+        <translation>ウォレットのアンロック... (&amp;R)</translation>
+    </message>
+    <message>
         <source>&amp;Change Passphrase...</source>
         <translation>パスフレーズの変更... (&amp;C)</translation>
     </message>
@@ -1395,6 +1399,10 @@
         <translation>全てのトークン</translation>
     </message>
     <message>
+        <source>Add</source>
+        <translation>トークンの追加</translation>
+    </message>
+    <message>
         <source>RecentTransactions</source>
         <translation>最近のトランザクション</translation>
     </message>
@@ -1417,6 +1425,10 @@
     <message>
         <source>Amount</source>
         <translation>数量(VIPS)</translation>
+    </message>
+    <message>
+        <source>Show more...</source>
+        <translation>もっと見る...</translation>
     </message>
 </context>
 <context>
@@ -4611,7 +4623,7 @@
         <translation type="unfinished">クリア</translation>
     </message>
     <message>
-        <source>(This is your wallet address which will be tied to the token for send/receive operations)</source>
+        <source>(This is your wallet address which will be tied to the token for send/receive oprations)</source>
         <translation>(これは、トークンの送受信操作に結びつくウォレットアドレスです)</translation>
     </message>
     <message>

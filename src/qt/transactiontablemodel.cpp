@@ -396,19 +396,19 @@ QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord *wtx
     switch(wtx->type)
     {
     case TransactionRecord::Generated:
-        return platformStyle->TableColorIcon(":/icons/tx_mined", PlatformStyle::Input);
+        return QIcon(":/icons/tx_mined");
     case TransactionRecord::RecvWithAddress:
     case TransactionRecord::RecvFromOther:
-        return platformStyle->TableColorIcon(":/icons/tx_input", PlatformStyle::Input);
+        return QIcon(":/icons/tx_input");
     case TransactionRecord::SendToAddress:
     case TransactionRecord::SendToOther:
-        return platformStyle->TableColorIcon(":/icons/tx_output", PlatformStyle::Output);
+        return QIcon(":/icons/tx_output");
     case TransactionRecord::ContractSend:
-        return platformStyle->TableColorIcon(":/icons/contract_output", PlatformStyle::Output);
+        return QIcon(":/icons/contract_output");
     case TransactionRecord::ContractRecv:
-        return platformStyle->TableColorIcon(":/icons/contract_input", PlatformStyle::Input);
+        return QIcon(":/icons/contract_input");
     default:
-        return platformStyle->TableColorIcon(":/icons/tx_inout", PlatformStyle::Inout);
+        return QIcon(":/icons/tx_inout");
     }
 }
 
@@ -484,26 +484,26 @@ QVariant TransactionTableModel::txStatusDecoration(const TransactionRecord *wtx)
     case TransactionStatus::Offline:
         return COLOR_TX_STATUS_OFFLINE;
     case TransactionStatus::Unconfirmed:
-        return platformStyle->TableColorIcon(":/icons/transaction_0", PlatformStyle::Normal);
+        return QIcon(":/icons/transaction_0");
     case TransactionStatus::Abandoned:
-        return platformStyle->TableColorIcon(":/icons/transaction_abandoned", PlatformStyle::Error);
+        return QIcon(":/icons/transaction_abandoned");
     case TransactionStatus::Confirming: {
         int iconNum = ((wtx->status.depth - 1) * CONFIRM_ICONS) / TransactionRecord::RecommendedNumConfirmations + 1;
         if(iconNum > CONFIRM_ICONS) iconNum = CONFIRM_ICONS;
-        return platformStyle->TableColorIcon(QString(":/icons/transaction_%1").arg(iconNum), PlatformStyle::Normal);
+        return QIcon(QString(":/icons/transaction_%1").arg(iconNum));
         };
     case TransactionStatus::Confirmed:
-        return platformStyle->TableColorIcon(":/icons/transaction_confirmed", PlatformStyle::Normal);
+        return QIcon(":/icons/transaction_confirmed");
     case TransactionStatus::Conflicted:
-        return platformStyle->TableColorIcon(":/icons/transaction_conflicted", PlatformStyle::Error);
+        return QIcon(":/icons/transaction_conflicted");
     case TransactionStatus::Immature: {
         int total = wtx->status.depth + wtx->status.matures_in;
         int part = (wtx->status.depth * 4 / total) + 1;
-        return platformStyle->TableColorIcon(QString(":/icons/transaction_%1").arg(part), PlatformStyle::Normal);
+        return QIcon(QString(":/icons/transaction_%1").arg(part));
         }
     case TransactionStatus::MaturesWarning:
     case TransactionStatus::NotAccepted:
-        return platformStyle->TableColorIcon(":/icons/transaction_0", PlatformStyle::Error);
+        return QIcon(":/icons/transaction_0");
     default:
         return COLOR_BLACK;
     }
@@ -512,7 +512,7 @@ QVariant TransactionTableModel::txStatusDecoration(const TransactionRecord *wtx)
 QVariant TransactionTableModel::txWatchonlyDecoration(const TransactionRecord *wtx) const
 {
     if (wtx->involvesWatchAddress)
-        return platformStyle->TableColorIcon(":/icons/eye", PlatformStyle::Normal);
+        return QIcon(":/icons/eye");
     else
         return QVariant();
 }
@@ -549,7 +549,8 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         break;
     case Qt::DecorationRole:
     {
-        return qvariant_cast<QIcon>(index.data(RawDecorationRole));
+        QIcon icon = qvariant_cast<QIcon>(index.data(RawDecorationRole));
+        return platformStyle->TextColorIcon(icon);
     }
     case Qt::DisplayRole:
         switch(index.column())

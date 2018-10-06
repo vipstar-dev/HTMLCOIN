@@ -15,7 +15,6 @@
 #include <qt/receiverequestdialog.h>
 #include <qt/recentrequeststablemodel.h>
 #include <qt/walletmodel.h>
-#include <qt/styleSheet.h>
 
 #include <QAction>
 #include <QCursor>
@@ -32,26 +31,21 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
 {
     ui->setupUi(this);
 
-    // Set stylesheet
-    SetObjectStyleSheet(ui->clearButton, StyleSheetNames::ButtonBlack);
-    SetObjectStyleSheet(ui->showRequestButton, StyleSheetNames::ButtonTransparentBordered);
-    SetObjectStyleSheet(ui->removeRequestButton, StyleSheetNames::ButtonTransparentBordered);
-
     if (!_platformStyle->getImagesOnButtons()) {
         ui->clearButton->setIcon(QIcon());
         ui->receiveButton->setIcon(QIcon());
         ui->showRequestButton->setIcon(QIcon());
         ui->removeRequestButton->setIcon(QIcon());
     } else {
-        ui->clearButton->setIcon(_platformStyle->MultiStatesIcon(":/icons/remove", PlatformStyle::PushButton));
-        ui->receiveButton->setIcon(_platformStyle->MultiStatesIcon(":/icons/request_payment", PlatformStyle::PushButton));
-        ui->showRequestButton->setIcon(_platformStyle->MultiStatesIcon(":/icons/show", PlatformStyle::PushButton));
-        ui->removeRequestButton->setIcon(_platformStyle->MultiStatesIcon(":/icons/remove", PlatformStyle::PushButton));
+          ui->clearButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
+        ui->receiveButton->setIcon(_platformStyle->SingleColorIcon(":/icons/receiving_addresses"));
+        ui->showRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/edit"));
+        ui->removeRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
     }
 
-    ui->copyAddressButton->setIcon(platformStyle->MultiStatesIcon(":/icons/editcopy", PlatformStyle::PushButton));
+    ui->copyAddressButton->setIcon(platformStyle->SingleColorIcon(":/icons/editcopy"));
     ui->copyAddressButton->setEnabled(false);
-    ui->refreshButton->setIcon(platformStyle->MultiStatesIcon(":/movies/spinner-010", PlatformStyle::PushButton));
+    ui->refreshButton->setIcon(platformStyle->SingleColorIcon(":/movies/spinner-010"));
     ui->refreshButton->setVisible(false);
     ui->leAddress->setReadOnly(true);
 

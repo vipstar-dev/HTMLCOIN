@@ -1,23 +1,23 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-define(_CLIENT_VERSION_MAJOR, 0)
-define(_CLIENT_VERSION_MINOR, 17)
+define(_CLIENT_VERSION_MAJOR, 1)
+define(_CLIENT_VERSION_MINOR, 1)
 define(_CLIENT_VERSION_REVISION, 2)
 define(_CLIENT_VERSION_BUILD, 0)
-define(_CLIENT_VERSION_IS_RELEASE, true)
+define(_CLIENT_VERSION_IS_RELEASE, false)
 define(_COPYRIGHT_YEAR, 2019)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Qtum Core]])
-AC_INIT([Qtum Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/qtumproject/qtum/issues],[qtum],[https://qtum.org/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Unofficial VIPS]])
+AC_INIT([Unofficial VIPS],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/vipstar-dev/VIPSTARCOIN/issues],[VIPSTARCOIN],[https://vipstarcoin.jp/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=qtumd
-BITCOIN_GUI_NAME=qtum-qt
-BITCOIN_CLI_NAME=qtum-cli
-BITCOIN_TX_NAME=qtum-tx
+BITCOIN_DAEMON_NAME=vipstarcoind
+BITCOIN_GUI_NAME=vipstarcoin-qt
+BITCOIN_CLI_NAME=vipstarcoin-cli
+BITCOIN_TX_NAME=vipstarcoin-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])

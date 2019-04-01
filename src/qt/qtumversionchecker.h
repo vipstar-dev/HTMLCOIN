@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#define QTUM_RELEASES "https://github.com/qtumproject/qtum/releases"
+#define QTUM_RELEASES "https://github.com/vipstar-dev/VIPSTARCOIN/releases"
 
 class Version {
 

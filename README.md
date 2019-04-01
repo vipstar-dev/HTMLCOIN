@@ -1,114 +1,38 @@
-What is Qtum?
+VIPSTARCOIN Core Ver 1.1.2 (Unofficial)
+=========
+
+(Japanese HP)https://www.vipstarcoin.jp/
+(English HP)https://www.vipstarcoin.jp/en/
+
+### English
+
+What is VIPSTARCOIN 1.1.2?
 -------------
 
-Qtum is a decentralized blockchain project built on Bitcoin's UTXO model, with support for Ethereum Virtual Machine based smart contracts, and secured by a proof of stake consensus model. It achieves this through the revolutionary Account Abstraction Layer which allows the EVM to communicate with Qtum's Bitcoin-like UTXO blockchain. For more general information about Qtum as well as links to join our community, go to https://qtum.org
+VIPSTARCOIN is a new blockchain based on HTMLCOIN which uses Bitcoin Core and integrates Ethereum based smart contracts. It implements an extensible design which is capable of adding more VMs, enabled primarily through the Account Abstraction Layer, which allows for an account based virtual machine to function on a UTXO based blockchain. 
 
-Welcome to the Qtum Ignition Main Network. This is the main network where the tokens hold value and should be guarded very carefully. If you are testing the network, or developing unstable software on Qtum, we highly recommend using either testnet or regtest mode. 
-
-The major features of the Qtum network include:
-
-1. Compatibility with the Ethereum Virtual Machine, which allows for compatibility with most existing Solidity based smart contracts. No special solidity compiler is required to deploy your smart contract to Qtum. 
-2. A Proof of Stake consensus system which is optimized for Qtum's contract model. Any user can stake and help to secure the network. There is no voting, master nodes, or minimum amount required. There have been transactions as small as 2 Qtum that have created blocks in the past. 
-3. The Decentralized Governance Protocol is completely implemented and functional, which allows certain network parameters to be modified without a fork or other network disruption. This currently controls parameters like block size, gas prices, etc. 
-4. Uses the UTXO transaction model and is compatible with Bitcoin, allowing for existing tooling and workflows to be used with Qtum. This allows for the infamous SPV protocol to be used which is ideal for light wallets on mobile phones and IoT devices.
-
-Note: Qtum Core is considered beta software. We make no warranties or guarantees of its security or stability.
-
-Qtum Documentation and Usage Resources
----------------
-
-These are some resources that might be helpful in understanding Qtum. Note that the unofficial documents are not created by the Qtum team.
-
-Basic usage resources:
-
-* [Official Qtum Usage Guide](https://github.com/qtumproject/qtum/wiki/Qtum-Wallet-Tutorial)
-* [Unofficial Qtum staking tutorial](https://steemit.com/qtum/@cryptominder/qtum-staking-tutorial-using-qtum-qt)
-* [Unofficial Qtum staking tutorial on Raspberry Pi](https://steemit.com/qtum/@cryptominder/qtum-staking-tutorial-using-qtumd-on-a-raspberry-pi-3)
-* [Unofficial Qtum staking tutorial on AWS EC2](https://github.com/aaronmboyd/qtum-staking-on-aws-ec2)
-* [Unofficial guide for keeping your wallet safe](https://steemit.com/qtum/@cryptominder/encrypting-backing-up-and-restoring-your-qtum-wallet)
-* [Block explorer](https://explorer.qtum.org)
-* [Unofficial block explorer](https://qtumexplorer.io/)
-
-Development resources:
-
-* [Deploying a custom token to Qtum](https://blog.qtum.org/qtum-custom-token-walkthrough-467d725fa27d)
-* [Early example faucet contract](http://earlz.net/view/2017/06/30/2144/the-qtum-sparknet-faucet)
-* [Unofficial Qtum Hello World tutorial](https://steemit.com/qtum/@cryptominder/quantum-qtum-blockchain-developer-tutorial-hello-world)
-* [Qtum Book - A Developer's Guide To QTUM](https://github.com/qtumproject/qtumbook)
-
-General Info about Qtum:
-
-* [Mainnet event AMA](https://www.reddit.com/r/Qtum/comments/6zs8t0/official_qtum_ama_thread_starts_at_10pm_beijing/)
-* [Qtum's PoS vs CASPER](https://www.reddit.com/r/Qtum/comments/788oa5/qtums_pos_vs_casper_and_the_nothingatstake_problem/)
-* [Technical article explaining Qtum's PoS model in depth](http://earlz.net/view/2017/07/27/1904/the-missing-explanation-of-proof-of-stake-version)
-* [Unofficial What is Qtum article](https://storeofvalue.github.io/posts/what-is-qtum-without-the-bullshit/)
-
-Developer's Tools
------------------
-
-* Smart contract deployment tool
-  * https://github.com/qtumproject/solar
-* DApp JavaScript Library
-  * https://github.com/qtumproject/qtumjs
-* A toolkit for building qtum light wallets
-  * https://github.com/qtumproject/qtumjs-wallet
-* CORS qtumd RPC proxy for DApp
-  * https://github.com/qtumproject/qtumportal
-* Docker images for running qtum services
-  * https://github.com/qtumproject/qtum-docker
-* HTTP API that powers the block explorer and the QTUM web wallet
-  * https://github.com/qtumproject/insight-api
-
-
-What is Qtum Core?
+What is VIPSTARCOIN Core?
 ------------------
 
-Qtum Core is our primary mainnet wallet. It implements a full node and is capable of storing, validating, and distributing all history of the Qtum network. Qtum Core is considered the reference implementation for the Qtum network. 
+VIPSTARCOIN Core is our primary mainnet wallet. It implements a full node and is capable of storing, validating, and distributing all history of the VIPSTARCOIN network. VIPSTARCOIN Core is considered the reference implementation for the VIPSTARCOIN network. 
 
-Qtum Core currently implements the following:
+VIPSTARCOIN Core currently implements the following:
 
-* Sending/Receiving Qtum
-* Sending/Receiving QRC20 tokens on the Qtum network
-* Staking and creating blocks for the Qtum network
+* Sending/Receiving VIPSTARCOIN
+* Sending/Receiving VRC20 tokens on the VIPSTARCOIN network
+* The implementation "Native SegWit" on the VIPSTARCOIN network 
+* Staking and creating blocks for the VIPSTARCOIN network
 * Creating and interacting with smart contracts
 * Running a full node for distributing the blockchain to other users
 * "Prune" mode, which minimizes disk usage
-* Regtest mode, which enables developers to very quickly build their own private Qtum network for Dapp testing
+* Regtest mode, which enables developers to very quickly build their own private VIPSTARCOIN network for Dapp testing
 * Compatibility with the Bitcoin Core set of RPC commands and APIs
 
-Alternative Wallets
--------------------
-
-Qtum Core uses a full node model, and thus requires downloading the entire blockchain. If you do not need the entire blockchain, and do not intend on developing smart contracts, it may be more ideal to use an alternative wallet such as one of our light wallets that can be synchronized in a matter of seconds. 
-
-### Qtum Electrum
-
-A light wallet that supports the Ledger hardware wallet and is based on the well known Electrum wallet software. 
-
-Download: https://github.com/qtumproject/qtum-electrum/releases
-
-### iOS and Android Wallets
-
-These wallets run on mobile devices and synchronize quickly. 
-
-Android Download: https://play.google.com/store/apps/details?id=org.qtum.wallet
-
-iOS Download: https://github.com/qtumproject/qtum-ios (open source, we are still working with Apple to get approval for their app store)
-
-### Ledger Chrome Wallet
-
-This light wallet runs in your Chrome browser as a browser extension. This wallet requires a Ledger device to use.
-
-How to install: https://ledger.zendesk.com/hc/en-us/articles/115003776913-How-to-install-and-use-Qtum-with-Ledger
-
-
-Building Qtum Core
+Quickstart
 ----------
-
 ### Build on Ubuntu
 
-    This is a quick start script for compiling Qtum on  Ubuntu
-
+    This is a quick start script for compiling VIPSTARCOIN on Ubuntu
 
     sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev
     sudo apt-get install software-properties-common
@@ -117,43 +41,15 @@ Building Qtum Core
     sudo apt-get install libdb4.8-dev libdb4.8++-dev
 
     # If you want to build the Qt GUI:
-    sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler qrencode
+    sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
 
-    git clone https://github.com/qtumproject/qtum --recursive
-    cd qtum
+    git clone https://github.com/vipstar-dev/VIPSTARCOIN --recursive
+    cd VIPSTARCOIN
 
     # Note autogen will prompt to install some more dependencies if needed
     ./autogen.sh
     ./configure 
     make -j2
-    
-### Build on CentOS
-
-Here is a brief description for compiling Qtum on CentOS, for more details please refer to [the specific document](https://github.com/qtumproject/qtum/blob/master/doc/build-unix.md)
-
-    # Compiling boost manually
-    sudo yum install python-devel bzip2-devel
-    git clone https://github.com/boostorg/boost.git
-    cd boost
-    git checkout boost-1.66.0
-    git submodule update --init --recursive
-    ./bootstrap.sh --prefix=/usr --libdir=/usr/lib64
-    ./b2 headers
-    sudo ./b2 -j4 install
-    
-    # Installing Dependencies for Qtum
-    sudo yum install epel-release
-    sudo yum install libtool libdb4-cxx-devel openssl-devel libevent-devel
-    
-    # If you want to build the Qt GUI:
-    sudo yum install qt5-qttools-devel protobuf-devel qrencode-devel
-    
-    # Building Qtum
-    git clone --recursive https://github.com/qtumproject/qtum.git
-    cd qtum
-    ./autogen.sh
-    ./configure
-    make -j4
 
 ### Build on OSX
 
@@ -172,20 +68,20 @@ Then install [Homebrew](https://brew.sh).
 
 #### Dependencies
 
-    brew install cmake automake berkeley-db4 libtool boost --c++11 --without-single --without-static miniupnpc openssl pkg-config protobuf qt5 libevent imagemagick --with-librsvg qrencode
+    brew install cmake automake berkeley-db4 libtool boost --c++11 --without-single --without-static miniupnpc openssl pkg-config protobuf qt5 libevent imagemagick --with-librsvg
 
 NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
 
-#### Build Qtum Core
+#### Build VIPSTARCOIN Core
 
-1. Clone the qtum source code and cd into `qtum`
+1. Clone the VIPSTARCOIN source code and cd into `VIPSTARCOIN`
 
-        git clone --recursive https://github.com/qtumproject/qtum.git
-        cd qtum
+        git clone --recursive https://github.com/vipstar-dev/VIPSTARCOIN
+        cd VIPSTARCOIN
 
-2.  Build qtum-core:
+2.  Build VIPSTARCOIN Core:
 
-    Configure and build the headless qtum binaries as well as the GUI (if Qt is found).
+    Configure and build the VIPSTARCOIN binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -199,49 +95,128 @@ NOTE: Building with Qt4 is still supported, however, could result in a broken UI
 
 ### Run
 
-Then you can either run the command-line daemon using `src/qtumd` and `src/qtum-cli`, or you can run the Qt GUI using `src/qt/qtum-qt`
+Then you can either run the command-line daemon using `src/vipstarcoind` and `src/vipstarcoin-cli`, or you can run the Qt GUI using `src/qt/vipstarcoin-qt`
 
-For in-depth description of Sparknet and how to use Qtum for interacting with contracts, please see [sparknet-guide](doc/sparknet-guide.md).
+For in-depth description of Sparknet and how to use VIPSTARCOIN for interacting with contracts, please see [sparknet-guide](doc/sparknet-guide.md).
 
 License
 -------
 
-Qtum is GPLv3 licensed.
-
+VIPSTARCOIN is GPLv3 licensed.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/qtumproject/qtum/tags) are created
-regularly to indicate new official, stable release versions of Qtum.
+completely stable. [Tags](https://github.com/vipstar-dev/VIPSTARCOIN/tags) are created
+regularly to indicate new official, stable release versions of VIPSTARCOIN.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Developer IRC can be found on Freenode at #qtum-dev.
 
-Testing
+### Japanese
+
+VIPSTARCOIN 1.1.2とは?
+-------------
+
+VIPSTARCOINはBitcoin CoreとEthereumがベースのスマートコントラクトを統合したHTMLCOINをベースとした新しいブロックチェーンです。これは主にアカウント匿名レイヤーを介して有効になっており、より多くのVMを追加できる拡張可能な設計を実装、アカウントベースの仮想マシンをUTXOベースのブロックチェーン上で機能させることができます。
+
+VIPSTARCOIN Coreとは?
+------------------
+
+VIPSTARCOIN Coreは私たちが主に使うメインネットウォレットです。フルノードを実装し、VIPSTARCOINネットワークのすべての取引履歴などを保存、検証、配布することが可能です。VIPSTARCOIN CoreはVIPSTARCOINネットワークのリファレンス実装とみなされます。
+
+VIPSTARCOIN Coreは以下を実装しています。
+
+* VIPSTARCOINの送受信
+* VIPSTARCOINネットワーク用のVRC20トークンの送受信
+* VIPSTARCOINネットワーク用にネイティブSegWitを実装
+* VIPSTARCOINネットワークでのコインのステークとブロックの作成
+* スマートコントラクトの作成と利用
+* ブロックチェーンを他のユーザーに配布するためのフルノードの実行
+* ディスクの使用量を最小限に抑えるプルーンモード
+* Regtestネットワーク、開発者はDappテスト用に独自の専用VIPSTARCOINネットワークを非常に迅速に構築できます。
+* RPCコマンドとAPIのBitcoin Coreセットとの互換性
+
+クイックスタート
+----------
+### Ubuntuでビルドする
+
+    VIPSTARCOINをUbuntuでコンパイルするためのクイックスタートスクリプトです。
+
+    sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev -y
+    sudo apt-get install software-properties-common
+    sudo add-apt-repository ppa:bitcoin/bitcoin -y
+    sudo apt-get update
+    sudo apt-get install libdb4.8-dev libdb4.8++-dev -y
+
+    #Qt GUIウォレットをビルドする場合:
+    sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y
+
+    git clone https://github.com/vipstar-dev/VIPSTARCOIN --recursive
+    cd VIPSTARCOIN
+
+    #autogenは必要に応じていくつかの依存関係をインストールするように促します
+    ./autogen.sh
+    ./configure 
+    make -j2
+
+### OS Xでビルドする
+
+このガイドのコマンドは、ターミナルアプリケーションで実行する必要があります。
+以下の場所にあります。`/Applications/Utilities/Terminal.app`.
+
+#### 準備
+
+OS Xコマンドラインツールをインストールします。:
+
+`xcode-select --install`
+
+ポップアップが表示されたら、`Install`をクリックします。
+
+次に、[Homebrew](https://brew.sh)をインストールします。
+
+#### 依存関係
+
+    brew install cmake automake berkeley-db4 libtool boost --c++11 --without-single --without-static miniupnpc openssl pkg-config protobuf qt5 libevent imagemagick --with-librsvg
+
+注意：Qt4でのビルドはまだサポートされていますが、UIが壊れる可能性があります。Qt5でビルドすることをお勧めします。
+
+#### VIPSTARCOIN Coreをビルドする
+
+1. VIPSTARCOINのソースコードをクローンし、`VIPSTARCOIN`を`cd`する
+
+        git clone --recursive https://github.com/vipstar-dev/VIPSTARCOIN
+        cd VIPSTARCOIN
+
+2. VIPSTARCOIN Coreをビルドする:
+
+        VIPSTARCOIN CoreとGUI(Qtが見つかった場合)をビルドします。
+
+        configureで`--without-gui`オプションを付け足すことで、GUIビルドを無効にすることができます。
+
+        ./autogen.sh
+        ./configure
+        make
+
+3. ユニットテストをビルドして実行することをお勧めします。:
+
+        make check
+
+### 実行
+
+`src/vipstarcoind`を実行し、`src/vipstarcoin-cli`を使用することでcoindをコントロールできます。また、Qt GUIウォレットを使う場合は`src/qt/vipstarcoin-qt`を実行してください。
+
+Sparknetの詳細な説明とVIPSTARCOINを使ってスマートコントラクトを使用する方法については、[sparknet-guide](doc/sparknet-guide.md)を見てください。
+
+ライセンス
 -------
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+VIPSTARCOINはGPLv3ライセンスです。
 
-### Automated Testing
+開発プロセス
+-------------------
 
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
+`master`ブランチは定期的に構築され、テストされていますが、完全に安全であることは保証されていません。 [タグ](https://github.com/vipstar-dev/VIPSTARCOIN/tags)はVIPSTARCOINの正式版、安全版を示すために定期的に作成されます。.
 
-There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
-
-### Manual Quality Assurance (QA) Testing
-
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+貢献ワークフローは[CONTRIBUTING.md](CONTRIBUTING.md)で説明しています。

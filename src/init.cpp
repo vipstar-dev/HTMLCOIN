@@ -547,8 +547,8 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/qtumproject/qtum>";
-    const std::string URL_WEBSITE = "<https://qtum.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/vipstar-dev/VIPS>";
+    const std::string URL_WEBSITE = "<https://vipstarcoin.jp>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i"), COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

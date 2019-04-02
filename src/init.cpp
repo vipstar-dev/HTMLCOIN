@@ -14,6 +14,7 @@
 #include <chain.h>
 #include <chainparams.h>
 #include <checkpoints.h>
+#include <checkpointsync.h>
 #include <compat/sanity.h>
 #include <consensus/validation.h>
 #include <fs.h>
@@ -205,6 +206,7 @@ void Shutdown()
     StopHTTPRPC();
     StopREST();
     StopRPC();
+    ShutdownRPCMining();
     StopHTTPServer();
     g_wallet_init_interface.Flush();
     StopMapPort();
@@ -363,6 +365,7 @@ void SetupServerArgs()
     // When adding new options to the categories, please keep and ensure alphabetical ordering.
     gArgs.AddArg("-?", "Print this help message and exit", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-version", "Print version and exit", false, OptionsCategory::OPTIONS);
+    gArgs.AddArg("-alerts", "Receive and display P2P network alerts (default: %u)", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-alertnotify=<cmd>", "Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-assumevalid=<hex>", strprintf("If this block is in the chain assume that it and its ancestors are valid and potentially skip their script verification (0 to verify all, default: %s, testnet: %s)", defaultChainParams->GetConsensus().defaultAssumeValid.GetHex(), testnetChainParams->GetConsensus().defaultAssumeValid.GetHex()), false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-blocksdir=<dir>", "Specify blocks directory (default: <datadir>/blocks)", false, OptionsCategory::OPTIONS);
@@ -547,10 +550,10 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/vipstar-dev/VIPS>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/vipstar-dev/VIPSTARCOIN>";
     const std::string URL_WEBSITE = "<https://vipstarcoin.jp>";
 
-    return CopyrightHolders(strprintf(_("Copyright (C) %i"), COPYRIGHT_YEAR) + " ") + "\n" +
+    return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2018, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
            strprintf(_("Please contribute if you find %s useful. "
                        "Visit %s for further information about the software."),
@@ -561,7 +564,7 @@ std::string LicenseInfo()
            "\n" +
            "\n" +
            _("This is experimental software.") + "\n" +
-           strprintf(_("Distributed under the MIT software license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/MIT>") + "\n" +
+           strprintf(_("Distributed under the GPLv3 software license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/GPL-3.0>") + "\n" +
            "\n" +
            strprintf(_("This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard."), "<https://www.openssl.org>") +
            "\n";
@@ -1137,6 +1140,8 @@ bool AppInitParameterInteraction()
     fAcceptDatacarrier = gArgs.GetBoolArg("-datacarrier", DEFAULT_ACCEPT_DATACARRIER);
     nMaxDatacarrierBytes = gArgs.GetArg("-datacarriersize", nMaxDatacarrierBytes);
 
+    fAlerts = gArgs.GetBoolArg("-alerts", DEFAULT_ALERTS);
+
     // Option to startup with mocktime set (used for regression testing):
     SetMockTime(gArgs.GetArg("-mocktime", 0)); // SetMockTime(0) is a no-op
 
@@ -1192,6 +1197,12 @@ bool AppInitParameterInteraction()
                 return InitError(strprintf("Invalid deployment (%s)", vDeploymentParams[0]));
             }
         }
+    }
+
+    if (gArgs.IsArgSet("-checkpointkey")) // Checkpoint master priv key
+    {
+        if (!SetCheckpointPrivKey(gArgs.GetArg("-checkpointkey", "")))
+            return InitError(_("Unable to sign checkpoint, wrong checkpointkey?"));
     }
     return true;
 }
@@ -1566,7 +1577,7 @@ bool AppInitMain()
                 }
 
                 dev::eth::Ethash::init();
-                fs::path qtumStateDir = GetDataDir() / "stateQtum";
+                fs::path qtumStateDir = GetDataDir() / "stateVIPSTARCOIN";
                 bool fStatus = fs::exists(qtumStateDir);
                 const std::string dirQtum(qtumStateDir.string());
                 const dev::h256 hashDB(dev::sha3(dev::rlp("")));
@@ -1618,6 +1629,12 @@ bool AppInitMain()
                         strLoadError = _("Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain");
                         break;
                     }
+                }
+
+                uiInterface.InitMessage(_("Checking ACP ..."));
+                if (!CheckCheckpointPubKey()) {
+                    strLoadError = _("Checking ACP pubkey failed");
+                    break;
                 }
 
                 if (!is_coinsview_empty) {
@@ -1834,6 +1851,9 @@ bool AppInitMain()
     if (!connman.Start(scheduler, connOptions)) {
         return false;
     }
+
+    // InitRPCMining is needed here so getwork in the GUI debug console works properly.
+    InitRPCMining();
 
     // ********************************************************* Step 13: finished
 

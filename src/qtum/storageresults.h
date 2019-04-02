@@ -49,8 +49,6 @@ public:
 
 	void commitResults();
 
-    void clearCacheResult();
-
     void wipeResults();
 
 private:

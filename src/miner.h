@@ -19,6 +19,7 @@
 
 class CBlockIndex;
 class CChainParams;
+class CReserveKey;
 class CScript;
 
 namespace Consensus { struct Params; };
@@ -56,6 +57,13 @@ struct CBlockTemplate
     std::vector<int64_t> vTxSigOpsCost;
     std::vector<unsigned char> vchCoinbaseCommitment;
 };
+
+/** ByteReverse Function used by GetWork */
+uint32_t ByteReverse(uint32_t value);
+/** Do mining precalculation */
+void FormatHashBuffers(CBlock* pblock, char* pdata);
+/** Check mined block */
+bool CheckWork(const CChainParams& chainparams, CBlock* pblock, CWallet& wallet, CReserveKey& reservekey);
 
 // Container for tracking updates to ancestor feerate as we include (parent)
 // transactions in a block

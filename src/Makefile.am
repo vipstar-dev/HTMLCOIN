@@ -97,6 +97,7 @@ endif
 BITCOIN_CORE_H = \
   addrdb.h \
   addrman.h \
+  alert.h \
   base58.h \
   bech32.h \
   bloom.h \
@@ -106,6 +107,7 @@ BITCOIN_CORE_H = \
   chainparamsbase.h \
   chainparamsseeds.h \
   checkpoints.h \
+  checkpointsync.h \
   checkqueue.h \
   clientversion.h \
   coins.h \
@@ -227,10 +229,12 @@ libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
+  alert.cpp \
   bloom.cpp \
   blockencodings.cpp \
   chain.cpp \
   checkpoints.cpp \
+  checkpointsync.cpp \
   consensus/tx_verify.cpp \
   httprpc.cpp \
   httpserver.cpp \

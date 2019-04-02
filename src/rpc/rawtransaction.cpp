@@ -1284,7 +1284,7 @@ static UniValue sendrawtransaction(const JSONRPCRequest& request)
         CValidationState state;
         bool fMissingInputs;
         if (!AcceptToMemoryPool(mempool, state, std::move(tx), &fMissingInputs,
-                                nullptr /* plTxnReplaced */, false /* bypass_limits */, nMaxRawTxFee, false, true)) {
+                                nullptr /* plTxnReplaced */, false /* bypass_limits */, nMaxRawTxFee, false)) {
             if (state.IsInvalid()) {
                 throw JSONRPCError(RPC_TRANSACTION_REJECTED, FormatStateMessage(state));
             } else {

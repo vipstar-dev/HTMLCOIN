@@ -213,7 +213,6 @@ void Shutdown()
     StopHTTPRPC();
     StopREST();
     StopRPC();
-    ShutdownRPCMining();
     StopHTTPServer();
     g_wallet_init_interface.Flush();
     StopMapPort();
@@ -1932,9 +1931,6 @@ bool AppInitMain()
     if (!connman.Start(scheduler, connOptions)) {
         return false;
     }
-
-    // InitRPCMining is needed here so getwork in the GUI debug console works properly.
-    InitRPCMining();
 
     // ********************************************************* Step 13: finished
 

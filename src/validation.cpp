@@ -821,7 +821,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
             if(count > qtumTransactions.size())
                 return state.DoS(100, false, REJECT_INVALID, "bad-txns-incorrect-format");
 
-            if (rawTx && nAbsurdFee && dev::u256(nFees) > dev::u256(nAbsurdFee) + sumGas)
+            if (nAbsurdFee && dev::u256(nFees) > dev::u256(nAbsurdFee) + sumGas)
                 return state.Invalid(false,
                     REJECT_HIGHFEE, "absurdly-high-fee",
                     strprintf("%d > %d", nFees, nAbsurdFee));
@@ -4158,9 +4158,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     if (block.fChecked)
         return true;
 
-    if (block.IsProofOfStake() && Params().NetworkIDString() == CBaseChainParams::MAIN && chainActive.Tip()->nHeight + 1 == consensusParams.nDiffDamping)
-        return error("%s: No PoS block on fork height", __func__);
-
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
     if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW, false))
@@ -4456,23 +4453,6 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
         }
     }
 
-    // Coinbase transaction must include CG fund
-    if (Params().NetworkIDString() == CBaseChainParams::MAIN && nHeight == consensusParams.nDiffDamping) {
-        bool found = false;
-
-        BOOST_FOREACH(const CTxOut& output, block.vtx[0]->vout) {
-            if (output.scriptPubKey == Params().GetRewardScriptAtHeight(nHeight)) {
-                if (output.nValue == GetSubsidy(nHeight)) {
-                    found = true;
-                    break;
-                }
-            }
-        }
-
-        if (!found)
-            return state.DoS(100, error("%s: founders reward missing", __func__), REJECT_INVALID, "cb-no-founders-reward");
-    }
-
     return true;
 }
 
@@ -4603,6 +4583,7 @@ bool CChainState::AcceptBlockHeader(const CBlockHeader& block, CValidationState&
             }
         }
 
+        int nHeight = pindexPrev->nHeight + 1;
         if(block.IsProofOfStake())
         {
             // Reject proof of stake before height COINBASE_MATURITY

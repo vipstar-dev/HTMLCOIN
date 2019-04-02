@@ -1357,7 +1357,7 @@ bool AppInitMain()
             if (boost::filesystem::exists(backupDir))
             {
                 // Create backup of the wallet
-                std::string dateTimeStr = DateTimeStrFormat(".%Y-%m-%d-%H.%M", GetTime());
+                std::string dateTimeStr = FormatISO8601DateTime(GetTime());
                 std::string backupPathStr = backupDir.string();
                 backupPathStr += "/" + strWalletFile;
                 std::string sourcePathStr = GetDataDir().string();

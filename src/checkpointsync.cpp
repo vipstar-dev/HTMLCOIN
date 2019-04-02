@@ -51,6 +51,7 @@
 #include <checkpointsync.h>
 
 #include <base58.h>
+#include <key_io.h>
 #include <txdb.h>
 #include <uint256.h>
 #include <txmempool.h>
@@ -242,11 +243,8 @@ bool CheckCheckpointPubKey()
 
 bool SetCheckpointPrivKey(string strPrivKey)
 {
-    CBitcoinSecret vchSecret;
-    if (!vchSecret.SetString(strPrivKey))
-        return error("%s: Checkpoint master key invalid", __func__);
-
-    CKey key = vchSecret.GetKey();
+    std::string strPrivKey;
+    CKey key = DecodeSecret(strPrivkey);
     if (!key.IsValid())
         return error("%s: Checkpoint master key invalid", __func__);
 
@@ -277,13 +275,9 @@ bool SendSyncCheckpoint(uint256 hashCheckpoint)
     if (CSyncCheckpoint::strMasterPrivKey.empty())
         return error("%s: Checkpoint master key unavailable.", __func__);
 
-    CBitcoinSecret vchSecret;
-    if (!vchSecret.SetString(CSyncCheckpoint::strMasterPrivKey))
+    CKey key = DecodeSecret(CSyncCheckpoint::strMasterPrivKey);
+    if (!key.Isvalid())
         return error("SendSyncCheckpoint: Checkpoint master key invalid");
-
-    CKey key = vchSecret.GetKey();
-    if (!key.Sign(Hash(checkpoint.vchMsg.begin(), checkpoint.vchMsg.end()), checkpoint.vchSig))
-        return error("%s: Unable to sign checkpoint, check private key?", __func__);
 
     if(!checkpoint.ProcessSyncCheckpoint())
         return error("%s: Failed to process checkpoint.", __func__);

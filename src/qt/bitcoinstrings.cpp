@@ -27,7 +27,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "keypool. Please use -upgradewallet=169900 or -upgradewallet with no version "
 "specified."),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
-"Distributed under the MIT software license, see the accompanying file %s or "
+"Distributed under the GPLv3 license, see the accompanying file %s or "
 "%s"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Error loading %s: You can't enable HD on an already existing non-HD wallet"),

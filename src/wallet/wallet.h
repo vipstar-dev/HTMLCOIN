@@ -1316,6 +1316,8 @@ public:
 
     /* Clean token transaction entries in the wallet */
     bool CleanTokenTxEntries(bool fFlushOnClose=true);
+
+    static std::string GetWalletFileName();
 };
 
 /** A key allocated from the key pool. */

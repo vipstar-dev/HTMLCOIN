@@ -665,7 +665,7 @@ static UniValue createcontract(const JSONRPCRequest& request){
     }
 
     LOCK2(cs_main, pwallet->cs_wallet);
-    VIPSTARCOINDGP qtumDGP(globalState.get(), fGettingValuesDGP);
+    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(chainActive.Height());
     uint64_t minGasPrice = CAmount(qtumDGP.getMinGasPrice(chainActive.Height()));
     CAmount nGasPrice = (minGasPrice>DEFAULT_GAS_PRICE)?minGasPrice:DEFAULT_GAS_PRICE;

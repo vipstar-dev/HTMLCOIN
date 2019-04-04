@@ -9,6 +9,7 @@
 #include <chainparams.h>
 #include <clientversion.h>
 #include <core_io.h>
+#include <key_io.h>
 #include <validation.h>
 #include <net.h>
 #include <net_processing.h>
@@ -658,14 +659,11 @@ UniValue sendalert(const JSONRPCRequest& request)
     alert.vchMsg = std::vector<unsigned char>(sMsg.begin(), sMsg.end());
 
     // Prepare master key and sign alert message
-    CBitcoinSecret vchSecret;
-    if (!vchSecret.SetString(request.params[1].get_str()))
-        throw std::runtime_error("Invalid alert master key");
+    std::string strAlertkey = request.params[1].get_str();
 
-    CKey key = vchSecret.GetKey();
-    if (!key.Sign(Hash(alert.vchMsg.begin(), alert.vchMsg.end()), alert.vchSig))
-        throw std::runtime_error(
-            "Unable to sign alert, check alert master key?\n");
+    CKey key = DecodeSecret(strAlertkey);
+    if (!key.IsValid())
+        throw std::runtime_error("Invalid alert master key");
 
     // Process alert
     if(!alert.ProcessAlert(Params().GetConsensus().vAlertPubKey))

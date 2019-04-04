@@ -139,7 +139,7 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x0000d068e1d30f79fb64446137106be9c6ee69a6a722295c131506b1ee09b77c"));
         assert(genesis.hashMerkleRoot == uint256S("0x3821b1e4634626248389576cae0c9310c365a46ace444a6e0bfb9e1f421bb625"));
 
-        vSeeds.push_back(CDNSSeedData("dnsseed.vipstarcoin.jp", "dnsseed.vipstarcoin.jp"));
+        vSeeds.emplace_back("dnsseed.vipstarcoin.jp");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
@@ -347,7 +347,6 @@ public:
             0,
             0
         };
-        consensus.nLastPOWBlock = 0x7fffffff;
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = 5000;
 

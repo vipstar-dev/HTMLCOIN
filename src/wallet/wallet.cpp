@@ -39,6 +39,8 @@
 
 static const size_t OUTPUT_GROUP_MAX_ENTRIES = 10;
 
+const char * DEFAULT_WALLET_DAT = "wallet.dat";
+
 static CCriticalSection cs_wallets;
 static std::vector<std::shared_ptr<CWallet>> vpwallets GUARDED_BY(cs_wallets);
 
@@ -3608,7 +3610,6 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
     }
 
     const Consensus::Params& consensusParams = Params().GetConsensus();
-    int64_t nRewardPiece = 0;
     // Calculate reward
     {
         int64_t nReward = nTotalFees + GetProofOfStakeReward(pindexPrev->nHeight, consensusParams);

@@ -243,8 +243,8 @@ bool CheckCheckpointPubKey()
 
 bool SetCheckpointPrivKey(string strPrivKey)
 {
-    std::string strPrivKey;
-    CKey key = DecodeSecret(strPrivkey);
+
+    CKey key = DecodeSecret(strPrivKey);
     if (!key.IsValid())
         return error("%s: Checkpoint master key invalid", __func__);
 
@@ -276,7 +276,7 @@ bool SendSyncCheckpoint(uint256 hashCheckpoint)
         return error("%s: Checkpoint master key unavailable.", __func__);
 
     CKey key = DecodeSecret(CSyncCheckpoint::strMasterPrivKey);
-    if (!key.Isvalid())
+    if (!key.IsValid())
         return error("SendSyncCheckpoint: Checkpoint master key invalid");
 
     if(!checkpoint.ProcessSyncCheckpoint())

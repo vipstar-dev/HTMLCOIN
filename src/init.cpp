@@ -30,7 +30,6 @@
 #include <policy/feerate.h>
 #include <policy/fees.h>
 #include <policy/policy.h>
-#include <reverse_iterator.h>
 #include <rpc/server.h>
 #include <rpc/register.h>
 #include <rpc/blockchain.h>
@@ -71,12 +70,6 @@
 #include <zmq/zmqnotificationinterface.h>
 #include <zmq/zmqrpc.h>
 #endif
-
-#ifdef ENABLE_WALLET
-static int nWalletBackups = 10;
-#endif
-
-using namespace std;
 
 bool fFeeEstimatesInitialized = false;
 static const bool DEFAULT_PROXYRANDOMIZE = true;
@@ -1336,9 +1329,10 @@ bool AppInitMain()
             return InitError(_("Unable to start HTTP server. See debug log for details."));
     }
 
-    // ********************************************************* Step 5: Backup wallet and verify wallet database integrity
+    // ********************************************************* Step 5: verify wallet database integrity
     if (!g_wallet_init_interface.Verify()) return false;
 
+<<<<<<< HEAD
 #ifdef ENABLE_WALLET
     bool fDisableWallet = gArgs.GetBoolArg("-disablewallet", false);
     if (!fDisableWallet) {
@@ -1413,6 +1407,8 @@ bool AppInitMain()
     } // (!fDisableWallet)
 #endif // ENABLE_WALLET
 
+=======
+>>>>>>> parent of 0e3ba1e... Automatic Wallet Backup
     // ********************************************************* Step 6: network initialization
     // Note that we absolutely cannot open any actual connections
     // until the very end ("start node") as the UTXO/block state

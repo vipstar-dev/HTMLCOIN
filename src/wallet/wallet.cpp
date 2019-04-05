@@ -5086,11 +5086,6 @@ bool CWallet::AddTokenTxEntry(const CTokenTx &tokenTx, bool fFlushOnClose)
     return true;
 }
 
-std::string CWallet::GetWalletFileName()
-{
-    return gArgs.GetArg("-wallet", DEFAULT_WALLET_DAT);
-}
-
 CKeyPool::CKeyPool()
 {
     nTime = GetTime();

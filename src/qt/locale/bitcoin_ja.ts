@@ -3341,6 +3341,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>GPLv3ライセンスのもとで配布されています。%s または %s を参照してください</translation>
     </message>
     <message>
+        <source>This version is based on Qtum 0.17.2.</source>
+        <translation>このバージョンはQtum 0.17.2をベースにして作成しています。</translation>
+    </message>
+    <message>
         <source>Prune configured below the minimum of %d MiB.  Please use a higher number.</source>
         <translation>剪定が最小値の %d MiB以下に設定されています。もっと大きな値を使用してください。</translation>
     </message>
@@ -3725,10 +3729,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>ウォレットからすべてのトランザクションを消去しています...</translation>
     </message>
     <message>
-    <message>
         <source>Loading addresses...</source>
         <translation>アドレスを読み込んでいます...</translation>
     </message>
+    <message>
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
         <translation>-maxtxfee が非常に高く設定されています！ひとつのトランザクションでこの量の手数料が支払われてしまうことがあります。</translation>
     </message>

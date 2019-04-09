@@ -563,6 +563,8 @@ std::string LicenseInfo()
            "\n" +
            "\n" +
            _("This is experimental software.") + "\n" +
+           _("This version is based on Qtum 0.17.2.") + "\n" +
+           "\n" +
            strprintf(_("Distributed under the GPLv3 license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/GPL-3.0>") + "\n" +
            "\n" +
            strprintf(_("This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard."), "<https://www.openssl.org>") +

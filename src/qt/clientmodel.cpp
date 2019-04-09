@@ -119,7 +119,7 @@ void ClientModel::updateNetworkActive(bool networkActive)
     Q_EMIT networkActiveChanged(networkActive);
 }
 
-void ClientModel::updateAlert()
+void ClientModel::updateAlert(const QString &hash, int status)
 {
     // Show error message notification for new alert
     if(status == CT_NEW)

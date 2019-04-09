@@ -107,6 +107,8 @@ public Q_SLOTS:
     void setMempoolSize(long numberOfTxs, size_t dynUsage);
     /** Go forward or back in history */
     void browseHistory(int offset);
+    /** Show folder with wallet backups in default browser */
+    void showBackups();
     /** Scroll console view to end */
     void scrollToEnd();
     /** Handle selection of peer in peers list */

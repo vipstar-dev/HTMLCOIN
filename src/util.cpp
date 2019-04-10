@@ -1228,6 +1228,14 @@ std::string CopyrightHolders(const std::string& strPrefix)
         strCopyrightHolders += "\n" + strYear + "The Bitcoin Core developers";
 
         strYear = strPrefix;
+        strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2013");
+        strCopyrightHolders += "\n" + strYear + "The Monacoin Core developers";
+
+        strYear = strPrefix;
+        strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2014");
+        strCopyrightHolders += "\n" + strYear + "The BitZeny Core developers";
+
+        strYear = strPrefix;
         strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2014");
         strCopyrightHolders += "\n" + strYear + "The HTMLCOIN Core developers";
 

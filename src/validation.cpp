@@ -2080,6 +2080,9 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
                                    nActualStakeReward, blockReward),
                              REJECT_INVALID, "bad-cs-amount");
 
+        // MPoS not enabled so the rest can be skipped
+        return true;
+
         // The first proof-of-stake blocks get full reward, the rest of them are split between recipients
         int rewardRecipients = 1;
         int nPrevHeight = nHeight -1;
@@ -3380,7 +3383,7 @@ bool CChainState::ConnectTip(CValidationState& state, const CChainParams& chainp
 
             globalState->setRoot(oldHashStateRoot); // qtum
             globalState->setRootUTXO(oldHashUTXORoot); // qtum
-            return error("ConnectTip(): ConnectBlock %s failed", pindexNew->GetBlockHash().ToString());
+            return error("ConnectTip(): %s block %s failed", blockConnecting.IsProofOfStake() ? "PoS" : "PoW", pindexNew->GetBlockHash().ToString());
         }
         nTime3 = GetTimeMicros(); nTimeConnectTotal += nTime3 - nTime2;
         LogPrint(BCLog::BENCH, "  - Connect total: %.2fms [%.2fs (%.2fms/blk)]\n", (nTime3 - nTime2) * MILLI, nTimeConnectTotal * MICRO, nTimeConnectTotal * MILLI / nBlocksTotal);

@@ -7,6 +7,7 @@
 #define BITCOIN_CHAIN_H
 
 #include <arith_uint256.h>
+#include <hashdb.h>
 #include <consensus/params.h>
 #include <primitives/block.h>
 #include <tinyformat.h>
@@ -325,6 +326,11 @@ public:
         return *phashBlock;
     }
 
+    uint256 GetBlockHashDB() const
+    {
+        return *phashBlock;
+    }
+
     int64_t GetBlockTime() const
     {
         return (int64_t)nTime;
@@ -471,6 +477,19 @@ public:
         return block.GetHash();
     }
 
+    uint256 GetBlockHashDB() const
+    {
+        CBlockHeader block;
+        block.nVersion        = nVersion;
+        block.hashPrevBlock   = hashPrev;
+        block.hashMerkleRoot  = hashMerkleRoot;
+        block.nTime           = nTime;
+        block.nBits           = nBits;
+        block.nNonce          = nNonce;
+
+        assert(phashdb != nullptr); 
+        return phashdb->GetHashDB(block);
+    }
 
     std::string ToString() const
     {

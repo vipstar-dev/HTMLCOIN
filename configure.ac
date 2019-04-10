@@ -126,7 +126,7 @@ AC_ARG_ENABLE([upnp-default],
 AC_ARG_ENABLE(tests,
     AS_HELP_STRING([--enable-tests],[do compile tests (default is not to compile)]),
     [use_tests=$enableval],
-    [use_tests=yes])
+    [use_tests=no])
 
 AC_ARG_ENABLE(gui-tests,
     AS_HELP_STRING([--enable-gui-tests],[do compile GUI tests (default is not to compile if GUI and tests disabled)]),

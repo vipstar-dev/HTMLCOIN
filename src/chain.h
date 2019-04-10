@@ -486,6 +486,10 @@ public:
         block.nTime           = nTime;
         block.nBits           = nBits;
         block.nNonce          = nNonce;
+        block.hashStateRoot   = hashStateRoot; // qtum
+        block.hashUTXORoot    = hashUTXORoot; // qtum
+        block.vchBlockSig     = vchBlockSig;
+        block.prevoutStake    = prevoutStake;
 
         assert(phashdb != nullptr); 
         return phashdb->GetHashDB(block);

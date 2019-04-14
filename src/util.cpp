@@ -81,8 +81,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "vipstarcoin.conf";
-const char * const BITCOIN_PID_FILENAME = "vipstarcoind.pid";
+const char * const BITCOIN_CONF_FILENAME = "VIPSTARCOIN.conf";
+const char * const BITCOIN_PID_FILENAME = "VIPSTARCOINd.pid";
 
 ArgsManager gArgs;
 

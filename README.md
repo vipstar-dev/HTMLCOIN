@@ -1,4 +1,4 @@
-VIPSTARCOIN Core Ver 1.1.2 (Unofficial)
+VIPSTARCOIN Core Ver 1.1.3 (Unofficial)
 =========
 
 (Japanese HP)https://www.vipstarcoin.jp/
@@ -6,10 +6,10 @@ VIPSTARCOIN Core Ver 1.1.2 (Unofficial)
 
 ### English
 
-What is VIPSTARCOIN 1.1.2?
+What is VIPSTARCOIN 1.1.3?
 -------------
 
-VIPSTARCOIN is a new blockchain based on HTMLCOIN which uses Bitcoin Core and integrates Ethereum based smart contracts. It implements an extensible design which is capable of adding more VMs, enabled primarily through the Account Abstraction Layer, which allows for an account based virtual machine to function on a UTXO based blockchain. 
+VIPSTARCOIN is a new blockchain based on Qtum which uses Bitcoin Core and integrates Ethereum based smart contracts. It implements an extensible design which is capable of adding more VMs, enabled primarily through the Account Abstraction Layer, which allows for an account based virtual machine to function on a UTXO based blockchain. 
 
 What is VIPSTARCOIN Core?
 ------------------
@@ -116,10 +116,10 @@ The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Japanese
 
-VIPSTARCOIN 1.1.2とは?
+VIPSTARCOIN 1.1.3とは?
 -------------
 
-VIPSTARCOINはBitcoin CoreとEthereumがベースのスマートコントラクトを統合したHTMLCOINをベースとした新しいブロックチェーンです。これは主にアカウント匿名レイヤーを介して有効になっており、より多くのVMを追加できる拡張可能な設計を実装、アカウントベースの仮想マシンをUTXOベースのブロックチェーン上で機能させることができます。
+VIPSTARCOINはBitcoin CoreとEthereumがベースのスマートコントラクトを統合したQtumをベースとした新しいブロックチェーンです。これは主にアカウント匿名レイヤーを介して有効になっており、より多くのVMを追加できる拡張可能な設計を実装、アカウントベースの仮想マシンをUTXOベースのブロックチェーン上で機能させることができます。
 
 VIPSTARCOIN Coreとは?
 ------------------

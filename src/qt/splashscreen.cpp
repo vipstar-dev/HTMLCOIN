@@ -27,10 +27,10 @@
 SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const NetworkStyle *networkStyle) :
     QWidget(0, f), curAlignment(0), m_node(node)
 {
-    // set sizes
-    int versionTextHeight       = 30;
-    int statusHeight            = 30;
-    int titleAddTextHeight      = 20;
+    // set reference point, paddings
+    int paddingRight            = 50;
+    int paddingTop              = 50;
+    int titleVersionVSpace      = 17;
     int titleCopyrightVSpace    = 40;
 
     float fontFactor            = 1.0;
@@ -59,32 +59,41 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
     QPainter pixPaint(&pixmap);
     pixPaint.setPen(QColor("#ffffff"));
 
-    QRect mainRect(QPoint(0,0), splashSize);
-    pixPaint.fillRect(mainRect, QColor("#030509"));
+    // draw a slightly radial gradient
+    QRadialGradient gradient(QPoint(0,0), splashSize.width()/devicePixelRatio);
+    gradient.setColorAt(0, Qt::white);
+    gradient.setColorAt(1, QColor("#ffffff"));
+    QRect rGradient(QPoint(0,0), splashSize);
+    pixPaint.fillRect(rGradient, gradient);
 
     // draw background
     QRect rectBg(QPoint(-50, -50), QSize(splashSize.width() + 50, splashSize.height() + 50));
     QPixmap bg(":/styles/app-icons/splash_bg");
     pixPaint.drawPixmap(rectBg, bg);
 
-    pixPaint.setFont(QFont(font, 24*fontFactor, QFont::Bold));
-    QRect rectTitle(QPoint(0,0), QSize(splashSize.width(), (splashSize.height() / 2)));
-    pixPaint.drawText(rectTitle, Qt::AlignHCenter | Qt::AlignBottom, titleText);
-
-    QPoint versionPoint(rectTitle.bottomLeft());
-
-    // draw additional text if special network
-    if(!titleAddText.isEmpty())
-    {
-        QRect titleAddRect(rectTitle.bottomLeft(), QSize(rectTitle.width(), titleAddTextHeight));
-        versionPoint = titleAddRect.bottomLeft();
-        pixPaint.setFont(QFont(font, 8*fontFactor, QFont::Bold));
-        pixPaint.drawText(titleAddRect, Qt::AlignHCenter | Qt::AlignVCenter, titleAddText);
+    // check font size and drawing with
+    pixPaint.setFont(QFont(font, 33*fontFactor));
+    QFontMetrics fm = pixPaint.fontMetrics();
+    int titleTextWidth = fm.width(titleText);
+    if (titleTextWidth > 176) {
+        fontFactor = fontFactor * 176 / titleTextWidth;
     }
 
-    pixPaint.setFont(QFont(font, 11*fontFactor));
-    QRect versionRect(versionPoint, QSize(rectTitle.width(), versionTextHeight));
-    pixPaint.drawText(versionRect, Qt::AlignHCenter | Qt::AlignTop, versionText);
+    pixPaint.setFont(QFont(font, 33*fontFactor));
+    fm = pixPaint.fontMetrics();
+    titleTextWidth  = fm.width(titleText);
+    pixPaint.drawText(pixmap.width()/devicePixelRatio-titleTextWidth-paddingRight,paddingTop,titleText);
+
+    pixPaint.setFont(QFont(font, 15*fontFactor));
+
+    // if the version string is too long, reduce size
+    fm = pixPaint.fontMetrics();
+    int versionTextWidth  = fm.width(versionText);
+    if(versionTextWidth > titleTextWidth+paddingRight-10) {
+        pixPaint.setFont(QFont(font, 10*fontFactor));
+        titleVersionVSpace -= 5;
+    }
+    pixPaint.drawText(pixmap.width()/devicePixelRatio-titleTextWidth-paddingRight+2,paddingTop+titleVersionVSpace,versionText);
 
     // draw copyright stuff
     {
@@ -93,6 +102,16 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
         const int y = paddingTop+titleCopyrightVSpace;
         QRect copyrightRect(x, y, pixmap.width() - x - paddingRight, pixmap.height() - y);
         pixPaint.drawText(copyrightRect, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap, copyrightText);
+    }
+
+    // draw additional text if special network
+    if(!titleAddText.isEmpty()) {
+        QFont boldFont = QFont(font, 10*fontFactor);
+        boldFont.setWeight(QFont::Bold);
+        pixPaint.setFont(boldFont);
+        fm = pixPaint.fontMetrics();
+        int titleAddTextWidth  = fm.width(titleAddText);
+        pixPaint.drawText(pixmap.width()/devicePixelRatio-titleAddTextWidth-10,15,titleAddText);
     }
 
     pixPaint.end();

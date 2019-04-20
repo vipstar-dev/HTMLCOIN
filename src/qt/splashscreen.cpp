@@ -31,6 +31,7 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
     int versionTextHeight       = 30;
     int statusHeight            = 30;
     int titleAddTextHeight      = 20;
+    int titleCopyrightVSpace    = 40;
 
     float fontFactor            = 1.0;
     float devicePixelRatio      = 1.0;
@@ -86,14 +87,13 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
     pixPaint.drawText(versionRect, Qt::AlignHCenter | Qt::AlignTop, versionText);
 
     // draw copyright stuff
-    QFont statusFont = QApplication::font();
-    statusFont.setPointSizeF(statusFont.pointSizeF() * 0.9);
-    pixPaint.setFont(statusFont);
-    QRect statusRect(mainRect.left(), mainRect.height() - statusHeight, mainRect.width(), statusHeight);
-    QColor statusColor(255, 255, 255);
-    statusColor.setAlphaF(0.1);
-    pixPaint.fillRect(statusRect, statusColor);
-    pixPaint.drawText(statusRect.adjusted(10, 0, -10, 0), Qt::AlignLeft | Qt::AlignVCenter, copyrightText);
+    {
+        pixPaint.setFont(QFont(font, 10*fontFactor));
+        const int x = pixmap.width()/devicePixelRatio-titleTextWidth-paddingRight;
+        const int y = paddingTop+titleCopyrightVSpace;
+        QRect copyrightRect(x, y, pixmap.width() - x - paddingRight, pixmap.height() - y);
+        pixPaint.drawText(copyrightRect, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap, copyrightText);
+    }
 
     pixPaint.end();
 

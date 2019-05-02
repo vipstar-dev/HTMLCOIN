@@ -18,7 +18,7 @@
 ///////////////////////////////////////////// // qtum
 #include <libdevcore/SHA3.h>
 #include <libdevcore/RLP.h>
-#include "arith_uint256.h"
+#include <arith_uint256.h>
 /////////////////////////////////////////////
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
@@ -117,10 +117,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000003f3a1e45d1da0b713be57"); // qtum
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000004f4354942d3bc5aa96126"); // 552273
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000000a318bfa940ffb8a4597b3fb44734065110cc0de1ee84b8265bb72"); //253809
+        consensus.defaultAssumeValid = uint256S("0xe036b27654ed7fad52b4f211f74d5cb925b6605fcdb31c313e1c2a4590b44447"); // 552273
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -162,14 +162,16 @@ public:
                 { 1000, uint256S("0000966ea0fed775d527fb31902270f01cafdfe53403be884080e2203bd43c74")},
                 { 244000, uint256S("0000000000261d023630c17c99b686bc251eca6e044c75191d83d7f35cff530d")},
                 { 400000, uint256S("00000000005845c3019379551f73d16a71ebbf4307cae40b16caa3d36440462f")},
+                { 500000, uint256S("d82e075ff3d1649fa56eec48a42e31deb8e54b6a407f1c23716e8868fdaeca00")},
+                { 550000, uint256S("e4004917148b8b5d4ede63b8662f1f703a6b30f167a2662640d0320f5661d8af")},
             }
         };
 
         chainTxData = ChainTxData{
-            // Data from rpc: getchaintxstats (03df34411f2a5e4c057b1afea599a26370556c21328d3435505a2ba98b7163d4, height 413038).
-            /* nTime    */ 1548243888,
-            /* nTxCount */ 769819,
-            /* dTxRate  */ 0.03008501992807923
+            // Data from rpc: getchaintxstats (e036b27654ed7fad52b4f211f74d5cb925b6605fcdb31c313e1c2a4590b44447, height 552273).
+            /* nTime    */ 1556777312,
+            /* nTxCount */ 994753,
+            /* dTxRate  */ 0.02571131644086692
         };
 
         /* disable fallback fee on mainnet */

@@ -209,7 +209,7 @@ static UniValue addnode(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
-            "\nExamples:\n"
+            "\nExamples - Mainnet port 31915, Testnet port 32915, Regtest port 33915:\n"
             + HelpExampleCli("addnode", "\"192.168.0.6:31915\" \"onetry\"")
             + HelpExampleRpc("addnode", "\"192.168.0.6:31915\", \"onetry\"")
         );
@@ -251,7 +251,7 @@ static UniValue disconnectnode(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"address\"     (string, optional) The IP address/port of the node\n"
             "2. \"nodeid\"      (number, optional) The node ID (see getpeerinfo for node IDs)\n"
-            "\nExamples:\n"
+            "\nExamples - Mainnet port 31915, Testnet port 32915, Regtest port 33915:\n"
             + HelpExampleCli("disconnectnode", "\"192.168.0.6:31915\"")
             + HelpExampleCli("disconnectnode", "\"\" 1")
             + HelpExampleRpc("disconnectnode", "\"192.168.0.6:31915\"")

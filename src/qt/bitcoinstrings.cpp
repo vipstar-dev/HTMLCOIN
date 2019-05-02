@@ -27,7 +27,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "keypool. Please use -upgradewallet=169900 or -upgradewallet with no version "
 "specified."),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
-"This version is based on Qtum 0.17.3."),
+"This version is based on Qtum 0.17.4."),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Distributed under the GPLv3 license, see the accompanying file %s or "
 "%s"),

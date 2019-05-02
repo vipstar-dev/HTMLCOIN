@@ -47,6 +47,7 @@ Var StartMenuGroup
 
 # Installer languages
 !insertmacro MUI_LANGUAGE English
+!insertmacro MUI_LANGUAGE Japanese
 
 # Installer attributes
 OutFile @abs_top_srcdir@/@PACKAGE_TARNAME@-${VERSION}-win@WINDOWS_BITS@-setup.exe

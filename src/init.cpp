@@ -565,7 +565,7 @@ std::string LicenseInfo()
            "\n" +
            "\n" +
            _("This is experimental software.") + "\n" +
-           _("This version is based on Qtum 0.17.4.") + "\n" +
+           _("This version is based on Qtum 0.17.5.") + "\n" +
            "\n" +
            strprintf(_("Distributed under the GPLv3 license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/GPL-3.0>") + "\n" +
            "\n" +

@@ -3341,8 +3341,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>GPLv3ライセンスのもとで配布されています。%s または %s を参照してください</translation>
     </message>
     <message>
-        <source>This version is based on Qtum 0.17.4.</source>
-        <translation>このバージョンはQtum 0.17.4をベースにして作成しています。</translation>
+        <source>This version is based on Qtum 0.17.5.</source>
+        <translation>このバージョンはQtum 0.17.5をベースにして作成しています。</translation>
     </message>
     <message>
         <source>Prune configured below the minimum of %d MiB.  Please use a higher number.</source>

@@ -180,6 +180,8 @@ public:
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = 1000 + consensus.nMPoSRewardRecipients + 
                                     COINBASE_MATURITY;
+
+        consensus.nEnableHeaderSignatureHeight = 0x7fffffff;
     }
 };
 
@@ -278,6 +280,8 @@ public:
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = 450 + consensus.nMPoSRewardRecipients + 
                                     COINBASE_MATURITY;
+
+        consensus.nEnableHeaderSignatureHeight = 0x7fffffff;
     }
 };
 
@@ -352,7 +356,7 @@ public:
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = 5000;
 
-        consensus.nFixUTXOCacheHFHeight=0;
+        consensus.nEnableHeaderSignatureHeight = 0;
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,120);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);

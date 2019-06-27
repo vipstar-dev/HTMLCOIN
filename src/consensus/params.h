@@ -85,6 +85,7 @@ struct Params {
     int nFirstMPoSBlock;
     int nMPoSRewardRecipients;
     int nFixUTXOCacheHFHeight;
+    int nEnableHeaderSignatureHeight;
 };
 } // namespace Consensus
 

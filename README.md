@@ -6,7 +6,7 @@ VIPSTARCOIN Core Ver 1.1.6 (Unofficial)
 
 ### English
 
-What is VIPSTARCOIN 1.1.3?
+What is VIPSTARCOIN 1.1.6?
 -------------
 
 VIPSTARCOIN is a new blockchain based on Qtum which uses Bitcoin Core and integrates Ethereum based smart contracts. It implements an extensible design which is capable of adding more VMs, enabled primarily through the Account Abstraction Layer, which allows for an account based virtual machine to function on a UTXO based blockchain. 

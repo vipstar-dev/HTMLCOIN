@@ -118,6 +118,7 @@ libbitcoinconsensus.pc
 contrib/devtools/split-debug.sh
 .cproject
 .project
+.idea
 .settings/language.settings.xml
 src/vipstarcoin-cli
 src/vipstarcoin-tx

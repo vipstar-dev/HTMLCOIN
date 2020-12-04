@@ -1,4 +1,4 @@
-VIPSTARCOIN Core Ver 1.1.3 (Unofficial)
+VIPSTARCOIN Core Ver 1.1.6 (Unofficial)
 =========
 
 (Japanese HP)https://www.vipstarcoin.jp/
@@ -116,7 +116,7 @@ The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Japanese
 
-VIPSTARCOIN 1.1.3とは?
+VIPSTARCOIN 1.1.6とは?
 -------------
 
 VIPSTARCOINはBitcoin CoreとEthereumがベースのスマートコントラクトを統合したQtumをベースとした新しいブロックチェーンです。これは主にアカウント匿名レイヤーを介して有効になっており、より多くのVMを追加できる拡張可能な設計を実装、アカウントベースの仮想マシンをUTXOベースのブロックチェーン上で機能させることができます。

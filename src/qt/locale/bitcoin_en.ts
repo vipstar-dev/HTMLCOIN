@@ -323,7 +323,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <location filename="../HTMLCOINgui.cpp" line="+316"/>
         <source>Sign &amp;message...</source>

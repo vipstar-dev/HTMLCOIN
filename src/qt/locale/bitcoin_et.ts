@@ -212,7 +212,7 @@
     </message>
     </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Signeeri &amp;sõnum</translation>

@@ -64,7 +64,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>E&amp;xit</source>
         <translation>Buda</translation>

@@ -16,7 +16,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Open Wallet</source>
         <translation>sii apamowo</translation>

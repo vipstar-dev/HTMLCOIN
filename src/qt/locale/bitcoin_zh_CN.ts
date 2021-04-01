@@ -341,7 +341,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>A fatal error occurred. HTMLCOIN can no longer continue safely and will quit.</source>
         <translation type="unfinished">发生严重错误。客户端无法安全地继续运行，即将退出。</translation>
@@ -2408,7 +2408,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation type="vanished">消息签名(&amp;M)...</translation>

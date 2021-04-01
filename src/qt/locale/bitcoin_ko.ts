@@ -329,7 +329,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>A fatal error occurred. HTMLCOIN can no longer continue safely and will quit.</source>
         <translation type="unfinished">심각한 에러가 발생하여 클라이언트가 안전하게 실행될 수 없어 종료될 예정입니다. </translation>
@@ -2392,7 +2392,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation type="vanished">메시지 서명</translation>

@@ -225,7 +225,7 @@ Exportar los datos en la pestaña actual a un archivo</translation>
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Firma y mensaje ...</translation>

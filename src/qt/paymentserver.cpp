@@ -48,7 +48,7 @@
 #include <QUrlQuery>
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString BITCOIN_IPC_PREFIX("htmlcoin:");
+const QString BITCOIN_IPC_PREFIX("vipstarcoin:");
 #ifdef ENABLE_BIP70
 // BIP70 payment protocol messages
 const char* BIP70_MESSAGE_PAYMENTACK = "PaymentACK";
@@ -66,7 +66,7 @@ const char* BIP71_MIMETYPE_PAYMENTREQUEST = "application/bitcoin-paymentrequest"
 //
 static QString ipcServerName()
 {
-    QString name("HTMLCOINQt");
+    QString name("VIPSTARCOINQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -226,7 +226,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "Q_EMIT message()" here
             QMessageBox::critical(nullptr, tr("Payment request error"),
-                tr("Cannot start htmlcoin: click-to-pay handler"));
+                tr("Cannot start vipstarcoin: click-to-pay handler"));
         }
         else {
             connect(uriServer, &QLocalServer::newConnection, this, &PaymentServer::handleURIConnection);
@@ -286,9 +286,9 @@ void PaymentServer::handleURIOrFile(const QString& s)
         return;
     }
 
-    if (s.startsWith("bitcoin://", Qt::CaseInsensitive))
+    if (s.startsWith("vipstarcoin://", Qt::CaseInsensitive))
     {
-        Q_EMIT message(tr("URI handling"), tr("'bitcoin://' is not a valid URI. Use 'bitcoin:' instead."),
+        Q_EMIT message(tr("URI handling"), tr("'vipstarcoin://' is not a valid URI. Use 'vipstarcoin:' instead."),
             CClientUIInterface::MSG_ERROR);
     }
     else if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // bitcoin: URI

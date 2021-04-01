@@ -75,7 +75,7 @@
              <item>
               <widget class="QValidatedLineEdit" name="addressIn_SM">
                <property name="toolTip">
-                <string>The HTML address to sign the message with</string>
+                <string>The VIPSTARCOIN address to sign the message with</string>
                </property>
               </widget>
              </item>
@@ -278,7 +278,7 @@
           <item>
            <widget class="QtumPushButton" name="signMessageButton_SM">
             <property name="toolTip">
-             <string>Sign the message to prove you own this HTML address</string>
+             <string>Sign the message to prove you own this VIPSTARCOIN address</string>
             </property>
             <property name="text">
              <string>Sign &amp;Message</string>
@@ -352,7 +352,7 @@
            <item>
             <widget class="QValidatedLineEdit" name="addressIn_VM">
              <property name="toolTip">
-              <string>The HTML address the message was signed with</string>
+              <string>The VIPSTARCOIN address the message was signed with</string>
              </property>
             </widget>
            </item>
@@ -460,7 +460,7 @@
           <item>
            <widget class="QtumPushButton" name="verifyMessageButton_VM">
             <property name="toolTip">
-             <string>Verify the message to ensure it was signed with the specified HTML address</string>
+             <string>Verify the message to ensure it was signed with the specified VIPSTARCOIN address</string>
             </property>
             <property name="text">
              <string>Verify &amp;Message</string>

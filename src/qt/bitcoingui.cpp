@@ -333,8 +333,8 @@ void BitcoinGUI::createActions()
     stakeAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
     tabGroup->addAction(stakeAction);
 
-    QRCTokenAction = new QAction(platformStyle->MultiStatesIcon(":/icons/qrctoken"), tr("&HRC Tokens"), this);
-    QRCTokenAction->setStatusTip(tr("HRC Tokens (send, receive or add Tokens in list)"));
+    QRCTokenAction = new QAction(platformStyle->MultiStatesIcon(":/icons/qrctoken"), tr("&VRC Tokens"), this);
+    QRCTokenAction->setStatusTip(tr("VRC Tokens (send, receive or add Tokens in list)"));
     QRCTokenAction->setToolTip(QRCTokenAction->statusTip());
     QRCTokenAction->setCheckable(true);
     QRCTokenAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
@@ -416,7 +416,7 @@ void BitcoinGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a htmlcoin: URI or payment request"));
+    openAction->setStatusTip(tr("Open a vipstarcoin: URI or payment request"));
 
     m_open_wallet_action = new QAction(tr("Open Wallet"), this);
     m_open_wallet_action->setEnabled(false);
@@ -432,7 +432,7 @@ void BitcoinGUI::createActions()
 
     showHelpMessageAction = new QAction(tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible HTML command-line options").arg(PACKAGE_NAME));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible VIPSTARCOIN command-line options").arg(PACKAGE_NAME));
 
     connect(quitAction, &QAction::triggered, qApp, QApplication::quit);
     connect(aboutAction, &QAction::triggered, this, &BitcoinGUI::aboutClicked);
@@ -654,7 +654,7 @@ void BitcoinGUI::setClientModel(ClientModel *_clientModel)
         if(_clientModel->getOptionsModel()->getCheckForUpdates() && qtumVersionChecker->newVersionAvailable())
         {
             QString link = QString("<a href=%1>%2</a>").arg(QTUM_RELEASES, QTUM_RELEASES);
-            QString message(tr("New version of HTMLCOIN wallet is available on the HTMLCOIN source code repository: <br /> %1 <br />It is recommended to download it and update this application").arg(link));
+            QString message(tr("New version of VIPSTARCOIN wallet is available on the VIPSTARCOIN source code repository: <br /> %1 <br />It is recommended to download it and update this application").arg(link));
             QMessageBox::information(this, tr("Check for updates"), message);
         }
 
@@ -1021,7 +1021,7 @@ void BitcoinGUI::updateNetworkState()
     QString tooltip;
 
     if (m_node.getNetworkActive()) {
-        tooltip = tr("%n active connection(s) to HTMLCOIN network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
+        tooltip = tr("%n active connection(s) to VIPSTARCOIN network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
     } else {
         tooltip = tr("Network activity disabled.") + QString("<br>") + tr("Click to enable network activity again.");
         icon = ":/icons/network_disabled";

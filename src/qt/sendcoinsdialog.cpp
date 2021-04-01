@@ -786,7 +786,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid HTML address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid VIPSTARCOIN address"));
         }
         else // Valid address
         {

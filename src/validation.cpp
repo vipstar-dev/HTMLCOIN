@@ -66,7 +66,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "HTMLCOIN cannot be compiled without assertions."
+# error "VIPSTARCOIN cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -1450,26 +1450,31 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
     return ReadRawBlockFromDisk(block, block_pos, message_start);
 }
 
-CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
+CAmount GetProofOfStakeReward(int nHeight, const Consensus::Params& consensusParams)
 {
-    // 70.8 billion coins to cover existing coins, developer fund and exchange reimbursement
-    if (nHeight <= 798)
-        return 100000000 * COIN;
-
+    CAmount nSubsidy = 9500 * COIN;
+    if (nHeight <= 2000)
+        return 1 * COIN;
+    if (nHeight <= 28000)
+        return 3000 * COIN;
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
     // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64)
+    if (halvings >= 128)
         return 0;
-
-    CAmount nSubsidy = 1250 * COIN;
-    // Subsidy is cut in half every 14.6 years.
     nSubsidy >>= halvings;
+    if (nSubsidy < 100 * COIN)
+        return 100 * COIN;
     return nSubsidy;
 }
 
-CAmount GetSubsidy(int nHeight) {
-    if (nHeight == Params().GetConsensus().nDiffDamping) return 13967176504 * COIN;
-    return 0;
+CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
+{
+    CAmount nSubsidy = 100 * COIN;
+    if (nHeight == 1 || nHeight == 100 || nHeight == 200 || nHeight == 300 || nHeight == 400 || nHeight == 500)
+        return 10000000000 * COIN;
+    if (nHeight <= 2000)
+        return 1 * COIN;
+    return nSubsidy;
 }
 
 CoinsViews::CoinsViews(
@@ -2479,8 +2484,6 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
     {
         // Check proof-of-work reward
         CAmount blockReward = nFees + GetBlockSubsidy(nHeight, consensusParams);
-        if (Params().NetworkIDString() == CBaseChainParams::MAIN && nHeight == consensusParams.nDiffDamping)
-            blockReward = nFees + GetBlockSubsidy(nHeight, consensusParams) + GetSubsidy(nHeight);
         if (block.vtx[offset]->GetValueOut() > blockReward)
             return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): coinbase pays too much (actual=%d vs limit=%d)",
                                    block.vtx[offset]->GetValueOut(), blockReward), REJECT_INVALID, "bad-cb-amount");
@@ -2488,7 +2491,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
     else
     {
         // Check full reward
-        CAmount blockReward = nFees + GetBlockSubsidy(nHeight, consensusParams);
+        CAmount blockReward = nFees + GetProofOfStakeReward(nHeight, consensusParams);
         if (nActualStakeReward > blockReward)
             return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): coinstake pays too much (actual=%d vs limit=%d)",
                                    nActualStakeReward, blockReward), REJECT_INVALID, "bad-cs-amount");
@@ -5082,23 +5085,6 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
                 return state.Invalid(ValidationInvalidReason::BLOCK_MUTATED, false, REJECT_INVALID, "unexpected-witness", strprintf("%s : unexpected witness data found", __func__));
             }
         }
-    }
-
-    // Coinbase transaction must include CG fund
-    if (Params().NetworkIDString() == CBaseChainParams::MAIN && nHeight == consensusParams.nDiffDamping) {
-        bool found = false;
-
-        for (const auto& output : block.vtx[0]->vout) {
-            if (output.scriptPubKey == Params().GetRewardScript()) {
-                if (output.nValue == GetSubsidy(nHeight)) {
-                    found = true;
-                    break;
-                }
-            }
-        }
-
-        if (!found)
-            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("%s: founders reward missing", __func__), REJECT_INVALID, "cb-no-founders-reward");
     }
 
     return true;

@@ -2,11 +2,11 @@
 
 *.exe
 *.pdb
-src/htmlcoin
-src/htmlcoind
-src/htmlcoin-cli
-src/htmlcoin-tx
-src/htmlcoin-wallet
+srcvipstarcoin/
+src/vipstarcoind
+src/vipstarcoin-cli
+src/vipstarcoin-tx
+src/vipstarcoin-wallet
 src/test/test_bitcoin
 src/test/test_bitcoin_fuzzy
 src/qt/test/test_bitcoin-qt
@@ -88,7 +88,7 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-htmlcoin-qt
+vipstarcoin-qt
 HTMLCOIN-Qt.app
 background.tiff*
 
@@ -97,7 +97,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-htmlcoin-qt_test
+vipstarcoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -151,3 +151,6 @@ src/qt/test/test_qtum-qt
 src/test/buildenv.py
 src/test/test_qtum
 src/test/test_qtum_fuzzy
+
+# IDE / Editer workspace
+.idea

@@ -1,25 +1,25 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-define(_CLIENT_VERSION_MAJOR, 2)
-define(_CLIENT_VERSION_MINOR, 5)
-define(_CLIENT_VERSION_REVISION, 1)
+define(_CLIENT_VERSION_MAJOR, 1)
+define(_CLIENT_VERSION_MINOR, 2)
+define(_CLIENT_VERSION_REVISION, 0)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_RC, 0)
-define(_CLIENT_VERSION_IS_RELEASE, true)
+define(_CLIENT_VERSION_IS_RELEASE, false)
 define(_COPYRIGHT_YEAR, 2020)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[HTMLCOIN CORE]])
-AC_INIT([HTMLCOIN CORE],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/HTMLCOIN/HTMLCOIN/issues],[HTMLCOIN],[https://htmlcoin.com/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Unofficial VIPS]])
+AC_INIT([Unofficial VIPS],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/vipstar-dev/VIPSTARCOIN/issues],[VIPSTARCOIN],[https://vipstarcoin.jp/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=htmlcoind
-BITCOIN_GUI_NAME=htmlcoin-qt
-BITCOIN_CLI_NAME=htmlcoin-cli
-BITCOIN_TX_NAME=htmlcoin-tx
-BITCOIN_WALLET_TOOL_NAME=htmlcoin-wallet
+BITCOIN_DAEMON_NAME=vipstarcoind
+BITCOIN_GUI_NAME=vipstarcoin-qt
+BITCOIN_CLI_NAME=vipstarcoin-cli
+BITCOIN_TX_NAME=vipstarcoin-tx
+BITCOIN_WALLET_TOOL_NAME=vipstarcoin-wallet
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -447,7 +447,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build htmlcoin-cli htmlcoin-tx htmlcoin-wallet (default=yes)])],
+  [build vipstarcoin-cli vipstarcoin-tx vipstarcoin-wallet (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -477,7 +477,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build htmlcoind daemon (default=yes)])],
+  [build vipstarcoind daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -1415,19 +1415,19 @@ if test x$have_protobuf != xno &&
   BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 fi
 
-AC_MSG_CHECKING([whether to build htmlcoind])
+AC_MSG_CHECKING([whether to build vipstarcoind])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build htmlcoin-cli])
+AC_MSG_CHECKING([whether to build vipstarcoin-cli])
 AM_CONDITIONAL([BUILD_BITCOIN_CLI], [test x$build_bitcoin_cli = xyes])
 AC_MSG_RESULT($build_bitcoin_cli)
 
-AC_MSG_CHECKING([whether to build htmlcoin-tx])
+AC_MSG_CHECKING([whether to build vipstarcoin-tx])
 AM_CONDITIONAL([BUILD_BITCOIN_TX], [test x$build_bitcoin_tx = xyes])
 AC_MSG_RESULT($build_bitcoin_tx)
 
-AC_MSG_CHECKING([whether to build htmlcoin-wallet])
+AC_MSG_CHECKING([whether to build vipstarcoin-wallet])
 AM_CONDITIONAL([BUILD_BITCOIN_WALLET], [test x$build_bitcoin_wallet = xyes])
 AC_MSG_RESULT($build_bitcoin_wallet)
 
@@ -1539,7 +1539,7 @@ if test x$bitcoin_enable_qt != xno; then
     AC_MSG_WARN("xgettext is required to update qt translations")
   fi
 
-  AC_MSG_CHECKING([whether to build test_htmlcoin-qt])
+  AC_MSG_CHECKING([whether to build test_vipstarcoin-qt])
   if test x$use_gui_tests$bitcoin_enable_qt_test = xyesyes; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"
@@ -1567,7 +1567,7 @@ fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "x$use_zmq" = "xyes"])
 
-AC_MSG_CHECKING([whether to build test_htmlcoin])
+AC_MSG_CHECKING([whether to build test_vipstarcoin])
 if test x$use_tests = xyes; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="yes"

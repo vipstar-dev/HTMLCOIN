@@ -92,18 +92,18 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += htmlcoind
+  bin_PROGRAMS += vipstarcoind
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += htmlcoin-cli
+  bin_PROGRAMS += vipstarcoin-cli
 endif
 if BUILD_BITCOIN_TX
-  bin_PROGRAMS += htmlcoin-tx
+  bin_PROGRAMS += vipstarcoin-tx
 endif
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += htmlcoin-wallet
+  bin_PROGRAMS += vipstarcoin-wallet
 endif
 endif
 
@@ -820,18 +820,18 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-htmlcoind_SOURCES = bitcoind.cpp
-htmlcoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-htmlcoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-htmlcoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+vipstarcoind_SOURCES = bitcoind.cpp
+vipstarcoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+vipstarcoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+vipstarcoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-htmlcoind_SOURCES += bitcoind-res.rc
+vipstarcoind_SOURCES += bitcoind-res.rc
 endif
 
 # Libraries below may be listed more than once to resolve circular dependencies (see
 # https://eli.thegreenplace.net/2013/07/09/library-order-in-static-linking#circular-dependency)
-htmlcoind_LDADD = \
+vipstarcoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_SERVER) \
@@ -848,19 +848,19 @@ htmlcoind_LDADD = \
   $(LIBFF) \
   $(LIBSECP256K1)
 
-htmlcoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(GMP_LIBS) $(GMPXX_LIBS)
+vipstarcoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(GMP_LIBS) $(GMPXX_LIBS)
 
 # bitcoin-cli binary #
-htmlcoin_cli_SOURCES = bitcoin-cli.cpp
-htmlcoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-htmlcoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-htmlcoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+vipstarcoin_cli_SOURCES = bitcoin-cli.cpp
+vipstarcoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+vipstarcoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+vipstarcoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-htmlcoin_cli_SOURCES += bitcoin-cli-res.rc
+vipstarcoin_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-htmlcoin_cli_LDADD = \
+vipstarcoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
@@ -871,20 +871,20 @@ htmlcoin_cli_LDADD = \
   $(LIBCRYPTOPP) \
   $(LIBSECP256K1)
 
-htmlcoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+vipstarcoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # bitcoin-tx binary #
-htmlcoin_tx_SOURCES = bitcoin-tx.cpp consensus/consensus.cpp
-htmlcoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-htmlcoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-htmlcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+vipstarcoin_tx_SOURCES = bitcoin-tx.cpp consensus/consensus.cpp
+vipstarcoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+vipstarcoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+vipstarcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-htmlcoin_tx_SOURCES += bitcoin-tx-res.rc
+vipstarcoin_tx_SOURCES += bitcoin-tx-res.rc
 endif
 
-htmlcoin_tx_LDADD = \
+vipstarcoin_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -896,20 +896,20 @@ htmlcoin_tx_LDADD = \
   $(LIBCRYPTOPP) \
   $(LIBSECP256K1)
 
-htmlcoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+vipstarcoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoin-wallet binary #
-htmlcoin_wallet_SOURCES = bitcoin-wallet.cpp
-htmlcoin_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-htmlcoin_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-htmlcoin_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+vipstarcoin_wallet_SOURCES = bitcoin-wallet.cpp
+vipstarcoin_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+vipstarcoin_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+vipstarcoin_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-htmlcoin_wallet_SOURCES += bitcoin-wallet-res.rc
+vipstarcoin_wallet_SOURCES += bitcoin-wallet-res.rc
 endif
 
-htmlcoin_wallet_LDADD = \
+vipstarcoin_wallet_LDADD = \
   $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
@@ -927,7 +927,7 @@ htmlcoin_wallet_LDADD = \
   $(LIBFF) \
   $(LIBUNIVALUE)
 
-htmlcoin_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(ZMQ_LIBS) $(GMP_LIBS) $(GMPXX_LIBS)
+vipstarcoin_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(ZMQ_LIBS) $(GMP_LIBS) $(GMPXX_LIBS)
 #
 
 # bitcoinconsensus library #

@@ -104,7 +104,7 @@ struct Params {
     }
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
-    int nFixUTXOCacheHFHeight;
+    // int nFixUTXOCacheHFHeight;
     int nEnableHeaderSignatureHeight;
     /** Block sync-checkpoint span*/
     int nCheckpointSpan;

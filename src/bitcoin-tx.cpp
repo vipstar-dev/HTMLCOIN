@@ -100,9 +100,9 @@ static int AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || HelpRequested(gArgs)) {
         // First part of help message is specific to this utility
-        std::string strUsage = PACKAGE_NAME " htmlcoin-tx utility version " + FormatFullVersion() + "\n\n" +
-            "Usage:  htmlcoin-tx [options] <hex-tx> [commands]  Update hex-encoded htmlcoin transaction\n" +
-            "or:     htmlcoin-tx [options] -create [commands]   Create hex-encoded htmlcoin transaction\n" +
+        std::string strUsage = PACKAGE_NAME " vipstarcoin-tx utility version " + FormatFullVersion() + "\n\n" +
+            "Usage:  vipstarcoin-tx [options] <hex-tx> [commands]  Update hex-encoded vipstarcoin transaction\n" +
+            "or:     vipstarcoin-tx [options] -create [commands]   Create hex-encoded vipstarcoin transaction\n" +
             "\n";
         strUsage += gArgs.GetHelpMessage();
 

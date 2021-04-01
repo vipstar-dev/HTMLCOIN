@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "HTMLCOIN"
-            VALUE "FileDescription",    "htmlcoin-wallet (CLI tool for " PACKAGE_NAME " wallets)"
+            VALUE "CompanyName",        "VIPSTARCOIN"
+            VALUE "FileDescription",    "vipstarcoin-wallet (CLI tool for " PACKAGE_NAME " wallets)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "htmlcoin-wallet"
+            VALUE "InternalName",       "vipstarcoin-wallet"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "htmlcoin-wallet.exe"
-            VALUE "ProductName",        "htmlcoin-wallet"
+            VALUE "OriginalFilename",   "vipstarcoin-wallet.exe"
+            VALUE "ProductName",        "vipstarcoin-wallet"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

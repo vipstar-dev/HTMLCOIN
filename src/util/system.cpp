@@ -71,7 +71,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "htmlcoin.conf";
+const char * const BITCOIN_CONF_FILENAME = "VIPSTARCOIN.conf";
 
 ArgsManager gArgs;
 
@@ -703,7 +703,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.qtum
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "HTMLCOIN";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "VIPSTARCOIN";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -713,10 +713,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/HTMLCOIN";
+    return pathRet / "Library/Application Support/VIPSTARCOIN";
 #else
     // Unix
-    return pathRet / ".htmlcoin";
+    return pathRet / ".vipstarcoin";
 #endif
 #endif
 }
@@ -1214,8 +1214,16 @@ std::string CopyrightHolders(const std::string& strPrefix)
     // Check for untranslated substitution to make sure Bitcoin Core copyright is not removed by accident
     if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Bitcoin Core") == std::string::npos) {
         std::string strYear = strPrefix;
-        strYear.replace(strYear.find("2014"), sizeof("2014")-1, "2009");
+        strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2009");
         strCopyrightHolders += "\n" + strYear + "The Bitcoin Core developers";
+
+        strYear = strPrefix;
+        strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2014");
+        strCopyrightHolders += "\n" + strYear + "The HTMLCOIN Core developers";
+
+        strYear = strPrefix;
+        strYear.replace(strYear.find("2018"), sizeof("2018")-1, "2016");
+        strCopyrightHolders += "\n" + strYear + "The Qtum Core developers";
     }
     return strCopyrightHolders;
 }

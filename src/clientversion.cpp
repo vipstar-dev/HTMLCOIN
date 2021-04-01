@@ -12,7 +12,7 @@
  * for both bitcoind and bitcoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("HTMLCOIN");
+const std::string CLIENT_NAME("VIPSTARCOIN");
 
 /**
  * Client version number

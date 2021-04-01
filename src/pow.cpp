@@ -116,10 +116,6 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, const Cons
     int shortSample = 15, mediumSample = 200, longSample = 1000;
     int nActualTimespan = 0, nActualTimespanShort = 0, nActualTimespanMedium = 0, nActualTimespanLong = 0;
 
-    // Set testnet time to be the same as mainnet
-    if (Params().NetworkIDString() == CBaseChainParams::TESTNET && nHeight >= params.nFixUTXOCacheHFHeight)
-        nPowTargetTimespan = 60;
-
     const CBlockIndex* pindexFirstLong = pindexLast;
 
     // i tracks sample height, j counts number of blocks of required type

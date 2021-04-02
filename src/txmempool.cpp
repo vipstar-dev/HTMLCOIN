@@ -619,10 +619,6 @@ static void CheckInputsAndUpdateCoins(const CTransaction& tx, CCoinsViewCache& m
         nHeight = ::ChainActive().Tip()->nHeight;
     }
 
-    if (nHeight < Params().GetConsensus().QIP5Height) {
-        fCheckResult = fCheckResult && CheckHash(tx, mempoolDuplicate);
-    }
-
     assert(fCheckResult);
     UpdateCoins(tx, mempoolDuplicate, std::numeric_limits<int>::max());
 }

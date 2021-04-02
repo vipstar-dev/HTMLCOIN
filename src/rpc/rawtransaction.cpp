@@ -296,7 +296,6 @@ static UniValue getrawtransaction(const JSONRPCRequest& request)
                              {RPCResult::Type::NUM_TIME, "blocktime", "The block time expressed in " + UNIX_EPOCH_TIME},
                              {RPCResult::Type::NUM, "time", "Same as \"blocktime\""},
                         }
->>>>>>> upstream/master
                     },
                 },
                 RPCExamples{

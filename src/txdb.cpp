@@ -868,3 +868,4 @@ bool CBlockTreeDB::ReadCheckpointPubKey(std::string& strPubKey)
 bool CBlockTreeDB::WriteCheckpointPubKey(const std::string& strPubKey)
 {
     return Write(std::string("strCheckpointPubKey"), strPubKey);
+}

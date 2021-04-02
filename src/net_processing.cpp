@@ -3366,7 +3366,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         {
             // Relay checkpoint
             pfrom->hashCheckpointKnown = checkpoint.hashCheckpoint;
-            g_connman->ForEachNode([checkpoint](CNode* pnode) {
+            connman->ForEachNode([checkpoint](CNode* pnode) {
                 checkpoint.RelayTo(pnode);
             });
         }

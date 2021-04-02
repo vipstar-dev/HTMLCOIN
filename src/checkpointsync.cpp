@@ -447,7 +447,7 @@ bool CSyncCheckpoint::ProcessSyncCheckpoint()
     }
 
     if (bad_fork && index && index->GetAncestor(bad_fork->nHeight) != bad_fork) {
-        CValidationState state;
+        BlockValidationState state;
         InvalidateBlock(state, Params(), bad_fork);
 
         if (state.IsValid()) {

@@ -1767,7 +1767,7 @@ bool CheckInputScripts(const CTransaction& tx, TxValidationState &state, const C
     if (tx.IsCoinBase()) return true;
 
     if (::ChainActive().Tip()->nHeight < Params().GetConsensus().QIP5Height && !CheckHash(tx, inputs)) {
-        return(state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, error("CheckHash: Trying to spend locked outputs"), "bad-hash"));
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-hash", "CheckHash: Trying to spend locked outputs");
     }
 
     if (pvChecks) {
@@ -2923,7 +2923,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
 
     // Check that the block satisfies synchronized checkpoint
     if (!IsInitialBlockDownload() && !CheckSyncCheckpoint(block.GetHash(), pindex->nHeight))
-        return state.Invalid(BlockValidationResult::BLOCK_CHECKPOINT, error("%s: Block rejected by synchronized checkpoint", __func__), "bad-block-checkpoint-sync");
+        return state.Invalid(BlockValidationResult::BLOCK_CHECKPOINT, "bad-block-checkpoint-sync", strprintf("%s: Block rejected by synchronized checkpoint", __func__));
 
     // Move this check from CheckBlock to ConnectBlock as it depends on DGP values
     if (block.vtx.empty() || block.vtx.size() > dgpMaxBlockSize || ::GetSerializeSize(block, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) > dgpMaxBlockSize) // qtum
@@ -5164,7 +5164,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Check that the block satisfies checkpoint sync
     if (!::ChainstateActive().IsInitialBlockDownload() && !CheckSyncCheckpoint(block.GetHash(), nHeight, pindexPrev)) {
-        return state.Invalid(BlockValidationResult::BLOCK_CHECKPOINT, error("%s: rejected by checkpoint sync %s", __func__, block.GetHash().ToString()), "bad-block-checkpoint-sync");
+        return state.Invalid(BlockValidationResult::BLOCK_CHECKPOINT, "bad-block-checkpoint-sync", strprintf("%s: rejected by checkpoint sync %s", __func__, block.GetHash().ToString()));
     }
 
     // Check that the block satisfies synchronized checkpoint

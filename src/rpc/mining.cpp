@@ -569,7 +569,7 @@ UniValue getwork(const JSONRPCRequest& request)
             }
 
             // Create new block
-            pblocktemplate = BlockAssembler(Params()).CreateNewBlock(getwork_coinbase_script, false);
+            pblocktemplate = BlockAssembler(mempool, Params()).CreateNewBlock(getwork_coinbase_script, false);
             if (!pblocktemplate)
                 throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
 

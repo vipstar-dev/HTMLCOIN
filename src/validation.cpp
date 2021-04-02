@@ -5278,6 +5278,7 @@ static bool ContextualCheckBlock(const CBlock& block, BlockValidationState& stat
 
 bool CChainState::UpdateHashProof(const CBlock& block, BlockValidationState& state, const Consensus::Params& consensusParams, CBlockIndex* pindex, CCoinsViewCache& view)
 {
+    int nHeight = pindex->nHeight;
     uint256 hash = block.GetHash();
 
     // Check coinstake timestamp

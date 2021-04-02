@@ -163,13 +163,14 @@ bool AcceptPendingSyncCheckpoint(CConnman* connman)
         hashPendingCheckpoint = uint256();
         checkpointMessage = checkpointMessagePending;
         checkpointMessagePending.SetNull();
+        checkpointMessage.connman = connman;
 
         // Relay the checkpoint
         if (connman && !checkpointMessage.IsNull())
         {
             connman->ForEachNode([](CNode* pnode) {
                 if (pnode->supportACPMessages)
-                    checkpointMessage.RelayTo(pnode, &connman);
+                    checkpointMessage.RelayTo(pnode);
             });
         }
     }
@@ -320,6 +321,7 @@ bool SendSyncCheckpoint(uint256 hashCheckpoint, CConnman* connman)
 
     CSyncCheckpoint checkpoint;
     checkpoint.hashCheckpoint = hashCheckpoint;
+    checkpoint.connman = connman;
     CDataStream sMsg(SER_NETWORK, PROTOCOL_VERSION);
     sMsg << static_cast<CUnsignedSyncCheckpoint>(checkpoint);
     checkpoint.vchMsg = std::vector<unsigned char>(sMsg.begin(), sMsg.end());
@@ -339,7 +341,7 @@ bool SendSyncCheckpoint(uint256 hashCheckpoint, CConnman* connman)
 
     // Relay checkpoint
     connman->ForEachNode([checkpoint](CNode* pnode) {
-        checkpoint.RelayTo(pnode, connman);
+        checkpoint.RelayTo(pnode);
     });
 
     return true;
@@ -385,7 +387,7 @@ uint256 CSyncCheckpoint::GetHash() const
     return Hash(this->vchMsg.begin(), this->vchMsg.end());
 }
 
-void CSyncCheckpoint::RelayTo(CNode* pfrom, CConnman* connman) const
+void CSyncCheckpoint::RelayTo(CNode* pfrom) const
 {
     if (connman && pfrom->hashCheckpointKnown != hashCheckpoint && pfrom->supportACPMessages)
     {

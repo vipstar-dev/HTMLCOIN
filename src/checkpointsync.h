@@ -55,6 +55,7 @@ public:
     static std::string strMasterPrivKey;
     std::vector<unsigned char> vchMsg;
     std::vector<unsigned char> vchSig;
+    CConnman* connman;
 
     CSyncCheckpoint();
 
@@ -69,7 +70,7 @@ public:
     void SetNull();
     bool IsNull() const;
     uint256 GetHash() const;
-    void RelayTo(CNode* pfrom, CConnman* connman) const;
+    void RelayTo(CNode* pfrom) const;
     bool CheckSignature();
     bool ProcessSyncCheckpoint();
 };

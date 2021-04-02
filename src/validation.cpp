@@ -5664,7 +5664,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
     CheckBlockIndex(chainparams.GetConsensus());
 
     if (!IsInitialBlockDownload())
-        AcceptPendingSyncCheckpoint(&connman);
+        AcceptPendingSyncCheckpoint(connman);
 
     return true;
 }
@@ -5711,7 +5711,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         bool ret = CheckBlock(*pblock, state, chainparams.GetConsensus());
         if (ret) {
             // Store to disk
-            ret = ::ChainstateActive().AcceptBlock(pblock, state, chainparams, &pindex, fForceProcessing, nullptr, fNewBlock, &connman);
+            ret = ::ChainstateActive().AcceptBlock(pblock, state, chainparams, &pindex, fForceProcessing, nullptr, fNewBlock, connman);
         }
         if (!ret) {
             GetMainSignals().BlockChecked(*pblock, state);
@@ -5727,7 +5727,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
 
     // If responsible for sync-checkpoint send it
     if (!CSyncCheckpoint::strMasterPrivKey.empty())
-        SendSyncCheckpoint(AutoSelectSyncCheckpoint(), &connman);
+        SendSyncCheckpoint(AutoSelectSyncCheckpoint(), connman);
 
     return true;
 }

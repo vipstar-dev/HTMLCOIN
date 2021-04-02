@@ -106,12 +106,6 @@ struct Params {
     int64_t nPosTargetTimespan;
     int64_t nPosTargetTimespanV2;
 
-    int64_t DifficultyAdjustmentInterval(int height) const
-    {
-        int64_t targetSpacing = height < QIP9Height ? nPosTargetTimespan : nPosTargetTimespanV2;
-        return targetSpacing / nPowTargetSpacing;
-    }
-
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
     // int nFixUTXOCacheHFHeight;

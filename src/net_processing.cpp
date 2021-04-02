@@ -4487,7 +4487,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         }
     }
 
-    if(!ProcessNewBlock(chainparams, pblock, fForceProcessing, fNewBlock))
+    if(!ProcessNewBlock(chainparams, pblock, fForceProcessing, fNewBlock, &connman))
         return error("%s: ProcessNewBlock FAILED", __func__);
 
     std::vector<uint256> vWorkQueue;
@@ -4508,7 +4508,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
 
             bool fNewBlockOrphan = false;
             std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(block);
-            if (ProcessNewBlock(chainparams, shared_pblock, fForceProcessing, &fNewBlockOrphan))
+            if (ProcessNewBlock(chainparams, shared_pblock, fForceProcessing, &fNewBlockOrphan, &connman))
                 vWorkQueue.push_back(mi->second->hashBlock);
 
             LOCK(cs_main);

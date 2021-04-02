@@ -60,7 +60,7 @@ uint256 hashSyncCheckpoint;
 static uint256 hashPendingCheckpoint;
 CSyncCheckpoint checkpointMessage;
 static CSyncCheckpoint checkpointMessagePending;
-CCriticalSection cs_hashSyncCheckpoint;
+RecursiveMutex cs_hashSyncCheckpoint;
 
 
 // Only descendant of current sync-checkpoint is allowed
@@ -125,7 +125,7 @@ bool WriteSyncCheckpoint(const uint256& hashCheckpoint)
     return true;
 }
 
-bool AcceptPendingSyncCheckpoint()
+bool AcceptPendingSyncCheckpoint(CConnman* connman)
 {
     {
         LOCK2(cs_main, cs_hashSyncCheckpoint);
@@ -165,11 +165,11 @@ bool AcceptPendingSyncCheckpoint()
         checkpointMessagePending.SetNull();
 
         // Relay the checkpoint
-        if (g_connman && !checkpointMessage.IsNull())
+        if (connman && !checkpointMessage.IsNull())
         {
-            g_connman->ForEachNode([](CNode* pnode) {
+            connman->ForEachNode([](CNode* pnode) {
                 if (pnode->supportACPMessages)
-                    checkpointMessage.RelayTo(pnode);
+                    checkpointMessage.RelayTo(pnode, &connman);
             });
         }
     }
@@ -304,14 +304,14 @@ bool SetCheckpointPrivKey(std::string strPrivKey)
     return true;
 }
 
-bool SendSyncCheckpoint(uint256 hashCheckpoint)
+bool SendSyncCheckpoint(uint256 hashCheckpoint, CConnman* connman)
 {
     // P2P disabled
-    if (!g_connman)
+    if (!connman)
         return true;
 
     // No connections
-    if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
+    if (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
         return true;
 
     // Do not send dummy checkpoint
@@ -338,8 +338,8 @@ bool SendSyncCheckpoint(uint256 hashCheckpoint)
         return error("%s: Failed to process checkpoint.", __func__);
 
     // Relay checkpoint
-    g_connman->ForEachNode([checkpoint](CNode* pnode) {
-        checkpoint.RelayTo(pnode);
+    connman->ForEachNode([checkpoint](CNode* pnode) {
+        checkpoint.RelayTo(pnode, connman);
     });
 
     return true;
@@ -385,12 +385,12 @@ uint256 CSyncCheckpoint::GetHash() const
     return Hash(this->vchMsg.begin(), this->vchMsg.end());
 }
 
-void CSyncCheckpoint::RelayTo(CNode* pfrom) const
+void CSyncCheckpoint::RelayTo(CNode* pfrom, CConnman* connman) const
 {
-    if (g_connman && pfrom->hashCheckpointKnown != hashCheckpoint && pfrom->supportACPMessages)
+    if (connman && pfrom->hashCheckpointKnown != hashCheckpoint && pfrom->supportACPMessages)
     {
         pfrom->hashCheckpointKnown = hashCheckpoint;
-        g_connman->PushMessage(pfrom, CNetMsgMaker(pfrom->GetSendVersion()).Make(NetMsgType::CHECKPOINT, *this));
+        connman->PushMessage(pfrom, CNetMsgMaker(pfrom->GetSendVersion()).Make(NetMsgType::CHECKPOINT, *this));
     }
 }
 

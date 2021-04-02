@@ -266,7 +266,7 @@ int64_t FutureDrift(uint32_t nTime, int nHeight, const Consensus::Params& consen
  * @param[out]  fNewBlock A boolean which is set to indicate if the block was first received via this call
  * @returns     If the block was processed, independently of block validity
  */
-bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock) LOCKS_EXCLUDED(cs_main);
+bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock, CConnman* connman = nullptr) LOCKS_EXCLUDED(cs_main);
 
 /**
  * Process incoming block headers.
@@ -910,7 +910,7 @@ public:
         const CChainParams& chainparams,
         std::shared_ptr<const CBlock> pblock) LOCKS_EXCLUDED(cs_main);
 
-    bool AcceptBlock(const std::shared_ptr<const CBlock>& pblock, BlockValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex, bool fRequested, const FlatFilePos* dbp, bool* fNewBlock) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
+    bool AcceptBlock(const std::shared_ptr<const CBlock>& pblock, BlockValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex, bool fRequested, const FlatFilePos* dbp, bool* fNewBlock, CConnman* connman = nullptr) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 
     // Block (dis)connection on a given view:
     DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* pindex, CCoinsViewCache& view, bool* pfClean);

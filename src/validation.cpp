@@ -5544,7 +5544,7 @@ static FlatFilePos SaveBlockToDisk(const CBlock& block, int nHeight, const CChai
 }
 
 /** Store block on disk. If dbp is non-nullptr, the file is known to already reside on disk */
-bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, BlockValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex, bool fRequested, const FlatFilePos* dbp, bool* fNewBlock)
+bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, BlockValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex, bool fRequested, const FlatFilePos* dbp, bool* fNewBlock, CConnman* connman)
 {
     const CBlock& block = *pblock;
 
@@ -5663,7 +5663,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
     CheckBlockIndex(chainparams.GetConsensus());
 
     if (!IsInitialBlockDownload())
-        AcceptPendingSyncCheckpoint();
+        AcceptPendingSyncCheckpoint(&connman);
 
     return true;
 }
@@ -5692,7 +5692,7 @@ bool CheckCanonicalBlockSignature(const CBlockHeader* pblock)
     return ret;
 }
 
-bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock)
+bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock, CConnman* connman)
 {
     AssertLockNotHeld(cs_main);
 
@@ -5710,7 +5710,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         bool ret = CheckBlock(*pblock, state, chainparams.GetConsensus());
         if (ret) {
             // Store to disk
-            ret = ::ChainstateActive().AcceptBlock(pblock, state, chainparams, &pindex, fForceProcessing, nullptr, fNewBlock);
+            ret = ::ChainstateActive().AcceptBlock(pblock, state, chainparams, &pindex, fForceProcessing, nullptr, fNewBlock, &connman);
         }
         if (!ret) {
             GetMainSignals().BlockChecked(*pblock, state);
@@ -5726,7 +5726,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
 
     // If responsible for sync-checkpoint send it
     if (!CSyncCheckpoint::strMasterPrivKey.empty())
-        SendSyncCheckpoint(AutoSelectSyncCheckpoint());
+        SendSyncCheckpoint(AutoSelectSyncCheckpoint(), &connman);
 
     return true;
 }

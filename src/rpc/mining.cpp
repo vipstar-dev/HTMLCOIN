@@ -115,8 +115,12 @@ static UniValue getnetworkhashps(const JSONRPCRequest& request)
 
 static UniValue generateBlocks(const CTxMemPool& mempool, const CScript& coinbase_script, int nGenerate, uint64_t nMaxTries)
 {
-    if (Params().MiningRequiresPeers() && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Client not connected");
+    if(!g_rpc_node->connman)
+        throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
+
+
+    if (Params().MiningRequiresPeers() && g_rpc_node->connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, PACKAGE_NAME " is not connected!");
 
     int nHeightEnd = 0;
     int nHeight = 0;

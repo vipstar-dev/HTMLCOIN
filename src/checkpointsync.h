@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 
+class CConnman;
 class CNode;
 class CBlockIndex;
 class CSyncCheckpoint;
@@ -20,15 +21,15 @@ class uint256;
 
 extern uint256 hashSyncCheckpoint;
 extern CSyncCheckpoint checkpointMessage;
-extern CCriticalSection cs_hashSyncCheckpoint;
+extern RecursiveMutex cs_hashSyncCheckpoint;
 
 bool WriteSyncCheckpoint(const uint256& hashCheckpoint);
-bool AcceptPendingSyncCheckpoint();
+bool AcceptPendingSyncCheckpoint(CConnman* connman);
 uint256 AutoSelectSyncCheckpoint();
 bool CheckSyncCheckpoint(const uint256 hashBlock, const int nHeight, const CBlockIndex* pindexPrev = nullptr);
 bool CheckCheckpointPubKey();
 bool SetCheckpointPrivKey(std::string strPrivKey);
-bool SendSyncCheckpoint(uint256 hashCheckpoint);
+bool SendSyncCheckpoint(uint256 hashCheckpoint, CConnman* connman = nullptr);
 
 // Synchronized checkpoint (introduced first in ppcoin)
 class CUnsignedSyncCheckpoint
@@ -68,7 +69,7 @@ public:
     void SetNull();
     bool IsNull() const;
     uint256 GetHash() const;
-    void RelayTo(CNode* pfrom) const;
+    void RelayTo(CNode* pfrom, CConnman* connman) const;
     bool CheckSignature();
     bool ProcessSyncCheckpoint();
 };

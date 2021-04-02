@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +13,6 @@
 #include <libdevcore/Common.h>
 #include <libdevcore/FixedHash.h>
 
-#include <map>
 #include <memory>
 #include <string>
 #include <utility>
@@ -24,7 +23,6 @@ class CCoinsViewDBCursor;
 class uint256;
 struct CHeightTxIndexKey;
 struct CHeightTxIndexIteratorKey;
-#ifdef ENABLE_BITCORE_RPC
 //////////////////////////////////// //qtum
 struct CAddressIndexKey;
 struct CAddressUnspentKey;
@@ -34,7 +32,6 @@ struct CTimestampIndexKey;
 struct CTimestampBlockIndexKey;
 struct CTimestampBlockIndexValue;
 ////////////////////////////////////
-#endif
 
 using valtype = std::vector<unsigned char>;
 
@@ -172,7 +169,12 @@ public:
     bool ReadStakeIndex(unsigned int high, unsigned int low, std::vector<uint160> addresses);
     bool EraseStakeIndex(unsigned int height);
 
-#ifdef ENABLE_BITCORE_RPC
+    bool WriteDelegateIndex(unsigned int height, uint160 address, uint8_t fee);
+    bool ReadDelegateIndex(unsigned int height, uint160& address, uint8_t& fee);
+    bool EraseDelegateIndex(unsigned int height);
+
+    bool EraseBlockIndex(const std::vector<uint256>&vect);
+
     // Block explorer database functions
     bool WriteAddressIndex(const std::vector<std::pair<CAddressIndexKey, CAmount> > &vect);
     bool EraseAddressIndex(const std::vector<std::pair<CAddressIndexKey, CAmount> > &vect);
@@ -189,7 +191,6 @@ public:
     bool ReadSpentIndex(CSpentIndexKey &key, CSpentIndexValue &value);
     bool UpdateSpentIndex(const std::vector<std::pair<CSpentIndexKey, CSpentIndexValue> >&vect);
     bool blockOnchainActive(const uint256 &hash);
-#endif
 
     bool ReadSyncCheckpoint(uint256& hashCheckpoint);
     bool WriteSyncCheckpoint(uint256 hashCheckpoint);
@@ -262,7 +263,6 @@ struct CHeightTxIndexKey {
     }
 };
 
-#ifdef ENABLE_BITCORE_RPC
 struct CTimestampIndexIteratorKey {
     unsigned int timestamp;
 
@@ -598,7 +598,6 @@ struct CAddressIndexIteratorKey {
         hashBytes.SetNull();
     }
 };
-#endif
 ////////////////////////////////////////////////////////////
 
 #endif // BITCOIN_TXDB_H

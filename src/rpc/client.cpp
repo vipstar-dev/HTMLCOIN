@@ -1,10 +1,9 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <rpc/client.h>
-#include <rpc/protocol.h>
 #include <util/system.h>
 
 #include <set>
@@ -28,9 +27,12 @@ public:
 static const CRPCConvertParam vRPCConvertParams[] =
 {
     { "setmocktime", 0, "timestamp" },
+    { "mockscheduler", 0, "delta_time" },
     { "utxoupdatepsbt", 1, "descriptors" },
     { "generatetoaddress", 0, "nblocks" },
     { "generatetoaddress", 2, "maxtries" },
+    { "generatetodescriptor", 0, "num_blocks" },
+    { "generatetodescriptor", 2, "maxtries" },
     { "getnetworkhashps", 0, "nblocks" },
     { "getnetworkhashps", 1, "height" },
     { "sendtoaddress", 1, "amount" },
@@ -39,6 +41,9 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "sendtoaddress", 6 , "conf_target" },
     { "sendtoaddress", 8, "avoid_reuse" },
     { "sendtoaddress", 10, "changeToSender" },
+    { "splitutxosforaddress", 1, "minValue" },
+    { "splitutxosforaddress", 2, "maxValue" },
+    { "splitutxosforaddress", 3, "maxOutputs" },
     { "settxfee", 0, "amount" },
     { "sethdseed", 0, "newkeypool" },
     { "getsubsidy", 0, "height" },
@@ -190,7 +195,14 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "sendtocontract", 4, "gasPrice" },
     { "sendtocontract", 6, "broadcast" },
     { "sendtocontract", 7, "changeToSender" },
+    { "removedelegationforaddress", 1, "gasLimit" },
+    { "removedelegationforaddress", 2, "gasPrice" },
+    { "setdelegateforaddress", 1, "fee" },
+    { "setdelegateforaddress", 3, "gasLimit" },
+    { "setdelegateforaddress", 4, "gasPrice" },
+    { "setsuperstakervaluesforaddress", 0, "params" },
     { "callcontract", 3, "gasLimit" },
+    { "callcontract", 4, "amount" },
     { "reservebalance", 0, "reserve"},
     { "reservebalance", 1, "amount"},
     { "listcontracts", 0, "start" },

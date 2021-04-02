@@ -2,13 +2,14 @@
 
 *.exe
 *.pdb
-srcvipstarcoin/
+src/vipstarcoin
 src/vipstarcoind
 src/vipstarcoin-cli
 src/vipstarcoin-tx
 src/vipstarcoin-wallet
+src/test/fuzz
+!src/test/fuzz/*.*
 src/test/test_bitcoin
-src/test/test_bitcoin_fuzzy
 src/qt/test/test_bitcoin-qt
 
 # autoreconf
@@ -28,6 +29,7 @@ build-aux/m4/ltversion.m4
 build-aux/missing
 build-aux/compile
 build-aux/test-driver
+config.cache
 config.log
 config.status
 configure
@@ -88,8 +90,8 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-vipstarcoin-qt
-HTMLCOIN-Qt.app
+src/qt/vipstarcoin-qt
+VIPSTARCOIN-Qt.app
 background.tiff*
 
 # Qt Creator
@@ -105,6 +107,9 @@ qrc_*.cpp
 # Mac specific
 .DS_Store
 build
+
+# Previous releases
+releases
 
 #lcov
 *.gcno
@@ -151,6 +156,7 @@ src/qt/test/test_qtum-qt
 src/test/buildenv.py
 src/test/test_qtum
 src/test/test_qtum_fuzzy
+Debug
 
 # IDE / Editer workspace
 .idea

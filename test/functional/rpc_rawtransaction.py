@@ -24,7 +24,7 @@ from test_framework.util import (
     hex_str_to_bytes,
 )
 from test_framework.qtumconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
-
+from test_framework.qtum import generatesynchronized
 
 class multidict(dict):
     """Dictionary that allows duplicate keys.
@@ -54,6 +54,7 @@ class RawTransactionsTest(BitcoinTestFramework):
             ["-txindex", "-addresstype=legacy", "-minrelaytxfee=0.00000010"],
             ["-txindex", "-addresstype=legacy", "-minrelaytxfee=0.00000010"],
         ]
+        self.supports_cli = False
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -66,7 +67,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         self.log.info('prepare some coins for multiple *rawtransaction commands')
         self.nodes[2].generate(1)
         self.sync_all()
-        self.nodes[0].generate(COINBASE_MATURITY+1)
+        generatesynchronized(self.nodes[0], COINBASE_MATURITY+1, None, self.nodes)
         self.sync_all()
         self.nodes[0].sendtoaddress(self.nodes[2].getnewaddress(),1.5)
         self.nodes[0].sendtoaddress(self.nodes[2].getnewaddress(),1.0)
@@ -210,7 +211,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         rawtx   = self.nodes[2].signrawtransactionwithwallet(rawtx)
 
         # This will raise an exception since there are missing inputs
-        assert_raises_rpc_error(-25, "Missing inputs", self.nodes[2].sendrawtransaction, rawtx['hex'])
+        assert_raises_rpc_error(-25, "bad-txns-inputs-missingorspent", self.nodes[2].sendrawtransaction, rawtx['hex'])
 
         #####################################
         # getrawtransaction with block hash #
@@ -456,7 +457,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         # Thus, testmempoolaccept should reject
         testres = self.nodes[2].testmempoolaccept([rawTxSigned['hex']], 0.00001000)[0]
         assert_equal(testres['allowed'], False)
-        assert_equal(testres['reject-reason'], '256: absurdly-high-fee')
+        assert_equal(testres['reject-reason'], 'absurdly-high-fee')
         # and sendrawtransaction should throw
         assert_raises_rpc_error(-26, "absurdly-high-fee", self.nodes[2].sendrawtransaction, rawTxSigned['hex'], 0.00001000)
         # and the following calls should both succeed
@@ -480,7 +481,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         # Thus, testmempoolaccept should reject
         testres = self.nodes[2].testmempoolaccept([rawTxSigned['hex']])[0]
         assert_equal(testres['allowed'], False)
-        assert_equal(testres['reject-reason'], '256: absurdly-high-fee')
+        assert_equal(testres['reject-reason'], 'absurdly-high-fee')
         # and sendrawtransaction should throw
         assert_raises_rpc_error(-26, "absurdly-high-fee", self.nodes[2].sendrawtransaction, rawTxSigned['hex'])
         # and the following calls should both succeed

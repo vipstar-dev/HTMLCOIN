@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,6 +16,7 @@
 
 #include <core_io.h>
 #include <interfaces/handler.h>
+#include <interfaces/node.h>
 #include <uint256.h>
 
 #include <algorithm>
@@ -25,6 +26,8 @@
 #include <QDebug>
 #include <QIcon>
 #include <QList>
+#include <QApplication>
+#include <QPointer>
 
 
 // Amount column is right-aligned it contains numbers
@@ -36,6 +39,7 @@ static int column_alignments[] = {
         Qt::AlignLeft|Qt::AlignVCenter, /* address */
         Qt::AlignRight|Qt::AlignVCenter /* amount */
     };
+static int dataChangedChunk = 500;
 
 // Comparison operator for sort/binary search of model tx list
 struct TxLessThan
@@ -70,6 +74,7 @@ public:
      * this is sorted by sha256.
      */
     QList<TransactionRecord> cachedWallet;
+    bool isDataLoading = true;
 
     /* Query entire wallet anew from core.
      */
@@ -185,18 +190,21 @@ public:
         {
             TransactionRecord *rec = &cachedWallet[idx];
 
-            // Get required locks upfront. This avoids the GUI from getting
-            // stuck if the core is holding the locks for a longer time - for
-            // example, during a wallet rescan.
-            //
-            // If a status update is needed (blocks came in since last check),
-            //  update the status of this transaction from the wallet. Otherwise,
-            // simply re-use the cached status.
-            interfaces::WalletTxStatus wtx;
-            int numBlocks;
-            int64_t block_time;
-            if (wallet.tryGetTxStatus(rec->hash, wtx, numBlocks, block_time) && rec->statusUpdateNeeded(numBlocks)) {
-                rec->updateStatus(wtx, numBlocks, block_time);
+            if(!isDataLoading)
+            {
+                // Get required locks upfront. This avoids the GUI from getting
+                // stuck if the core is holding the locks for a longer time - for
+                // example, during a wallet rescan.
+                //
+                // If a status update is needed (blocks came in since last check),
+                //  update the status of this transaction from the wallet. Otherwise,
+                // simply re-use the cached status.
+                interfaces::WalletTxStatus wtx;
+                int numBlocks;
+                int64_t block_time;
+                if (wallet.tryGetTxStatus(rec->hash, wtx, numBlocks, block_time) && rec->statusUpdateNeeded(numBlocks)) {
+                    rec->updateStatus(wtx, numBlocks, block_time);
+                }
             }
             return rec;
         }
@@ -268,8 +276,11 @@ void TransactionTableModel::updateConfirmations()
     // Invalidate status (number of confirmations) and (possibly) description
     //  for all rows. Qt is smart enough to only actually request the data for the
     //  visible rows.
-    Q_EMIT dataChanged(index(0, Status), index(priv->size()-1, Status));
-    Q_EMIT dataChanged(index(0, ToAddress), index(priv->size()-1, ToAddress));
+    if(priv->isDataLoading)
+        priv->isDataLoading = false;
+
+    modelDataChanged(Status);
+    modelDataChanged(ToAddress);
 }
 
 int TransactionTableModel::rowCount(const QModelIndex &parent) const
@@ -415,6 +426,7 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, b
     case TransactionRecord::SendToOther:
         return QString::fromStdString(wtx->address) + watchAddress;
     case TransactionRecord::SendToSelf:
+        return lookupAddress(wtx->address, tooltip) + watchAddress;
     default:
         return tr("(n/a)") + watchAddress;
     }
@@ -692,7 +704,7 @@ void TransactionTableModel::updateDisplayUnit()
 {
     // emit dataChanged to update Amount column with the current unit
     updateAmountColumnTitle();
-    Q_EMIT dataChanged(index(0, Amount), index(priv->size()-1, Amount));
+    modelDataChanged(Amount);
 }
 
 // queue notifications to show a non freezing progress dialog e.g. for rescan
@@ -771,4 +783,19 @@ void TransactionTableModel::unsubscribeFromCoreSignals()
     // Disconnect signals from wallet
     m_handler_transaction_changed->disconnect();
     m_handler_show_progress->disconnect();
+}
+
+void TransactionTableModel::modelDataChanged(const TransactionTableModel::ColumnIndex &column)
+{
+    QPointer<TransactionTableModel> model = this;
+    int from = 0;
+    int to = 0;
+    while(model && to != priv->size() && !(walletModel->node().shutdownRequested()))
+    {
+        to += dataChangedChunk;
+        if(to > priv->size()) to = priv->size();
+        Q_EMIT dataChanged(index(from, column), index(to-1, column));
+        from = to;
+        if(qApp) qApp->processEvents();
+    }
 }

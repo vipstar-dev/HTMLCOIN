@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,8 +8,6 @@
 
 #include <uint256.h>
 #include <limits>
-#include <map>
-#include <string>
 
 namespace Consensus {
 
@@ -47,6 +45,7 @@ struct BIP9Deployment {
 struct Params {
     uint256 hashGenesisBlock;
     int nSubsidyHalvingInterval;
+    int nSubsidyHalvingIntervalV2;
     /* Block hash that is excepted from BIP16 enforcement */
     uint256 BIP16Exception;
     /** Block height and hash at which BIP34 becomes active */
@@ -73,6 +72,12 @@ struct Params {
     int QIP7Height;
     /** Block height at which QIP9 becomes active */
     int QIP9Height;
+    /** Block height at which Offline Staking becomes active */
+    int nOfflineStakeHeight;
+    /** Block height at which Reduce Block Time becomes active */
+    int nReduceBlocktimeHeight;
+    /** Block height at which EVM Muir Glacier fork becomes active */
+    int nMuirGlacierHeight;
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
      * (nPowTargetTimespan / nPowTargetSpacing) which is also used for BIP9 deployments.
@@ -85,6 +90,7 @@ struct Params {
     uint256 powLimit;
     uint256 posLimit;
     uint256 QIP9PosLimit;
+    uint256 RBTPosLimit;
     int nDiffAdjustChange;
     int nDiffDamping;
     unsigned int nDiffChange;
@@ -93,7 +99,10 @@ struct Params {
     bool fPowNoRetargeting;
     bool fPoSNoRetargeting;
     int64_t nPowTargetSpacing;
+    int64_t nRBTPowTargetSpacing;
     int64_t nPowTargetTimespan;
+    int64_t nPowTargetTimespanV2;
+    int64_t nRBTPowTargetTimespan;
     int64_t nPosTargetTimespan;
     int64_t nPosTargetTimespanV2;
 
@@ -102,12 +111,77 @@ struct Params {
         int64_t targetSpacing = height < QIP9Height ? nPosTargetTimespan : nPosTargetTimespanV2;
         return targetSpacing / nPowTargetSpacing;
     }
+
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
     // int nFixUTXOCacheHFHeight;
     int nEnableHeaderSignatureHeight;
     /** Block sync-checkpoint span*/
     int nCheckpointSpan;
+    int nRBTCheckpointSpan;
+    uint160 delegationsAddress;
+    int nLastMPoSBlock;
+    int nLastBigReward;
+    uint32_t nStakeTimestampMask;
+    uint32_t nRBTStakeTimestampMask;
+    int64_t nBlocktimeDownscaleFactor;
+    /** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
+    int nCoinbaseMaturity;
+    int nRBTCoinbaseMaturity;
+    int64_t DifficultyAdjustmentInterval(int height) const
+    {
+        int64_t targetTimespan = TargetTimespan(height);
+        int64_t targetSpacing = TargetSpacing(height);
+        return targetTimespan / targetSpacing;
+    }
+    int64_t StakeTimestampMask(int height) const
+    {
+        return height < nReduceBlocktimeHeight ? nStakeTimestampMask : nRBTStakeTimestampMask;
+    }
+    int SubsidyHalvingInterval(int height) const
+    {
+        return height < nReduceBlocktimeHeight ? nSubsidyHalvingInterval : nSubsidyHalvingIntervalV2;
+    }
+    int64_t BlocktimeDownscaleFactor(int height) const
+    {
+        return height < nReduceBlocktimeHeight ? 1 : nBlocktimeDownscaleFactor;
+    }
+    int64_t TargetSpacing(int height) const
+    {
+        return height < nReduceBlocktimeHeight ? nPowTargetSpacing : nRBTPowTargetSpacing;
+    }
+    int SubsidyHalvingWeight(int height) const
+    {
+        if(height <= nLastBigReward)
+            return 0;
+
+        int blocktimeDownscaleFactor = BlocktimeDownscaleFactor(height);
+        int blockCount = height - nLastBigReward;
+        int beforeDownscale = blocktimeDownscaleFactor == 1 ? 0 : nReduceBlocktimeHeight - nLastBigReward - 1;
+        int subsidyHalvingWeight = blockCount - beforeDownscale + beforeDownscale * blocktimeDownscaleFactor;
+        return subsidyHalvingWeight;
+    }
+    int64_t TimestampDownscaleFactor(int height) const
+    {
+        return height < nReduceBlocktimeHeight ? 1 : (nStakeTimestampMask + 1) / (nRBTStakeTimestampMask + 1);
+    }
+    int64_t TargetTimespan(int height) const
+    {
+        return height < QIP9Height ? nPowTargetTimespan : 
+            (height < nReduceBlocktimeHeight ? nPowTargetTimespanV2 : nRBTPowTargetTimespan);
+    }
+    int CheckpointSpan(int height) const
+    {
+        return height < nReduceBlocktimeHeight ? nCheckpointSpan : nRBTCheckpointSpan;
+    }
+    int CoinbaseMaturity(int height) const
+    {
+        return height < nReduceBlocktimeHeight ? nCoinbaseMaturity : nRBTCoinbaseMaturity;
+    }
+    int MaxCheckpointSpan() const
+    {
+        return nCheckpointSpan <= nRBTCheckpointSpan ? nRBTCheckpointSpan : nCheckpointSpan;
+    }
 };
 } // namespace Consensus
 

@@ -13,8 +13,6 @@ from struct import pack, unpack
 
 import http.client
 import urllib.parse
-from test_framework.qtumconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
-from test_framework.qtum import convert_btc_address_to_qtum
 
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
@@ -23,8 +21,10 @@ from test_framework.util import (
     assert_greater_than_or_equal,
     hex_str_to_bytes,
 )
-
 from test_framework.messages import CBlockHeader
+
+from test_framework.qtumconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
+from test_framework.qtum import convert_btc_address_to_qtum, generatesynchronized
 
 BLOCK_HEADER_SIZE = len(CBlockHeader().serialize())
 
@@ -48,6 +48,7 @@ class RESTTest (BitcoinTestFramework):
         self.setup_clean_chain = True
         self.num_nodes = 2
         self.extra_args = [["-rest"], []]
+        self.supports_cli = False
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -88,7 +89,7 @@ class RESTTest (BitcoinTestFramework):
         self.nodes[0].generate(1)
         self.sync_all()
         for i in range(0, COINBASE_MATURITY, 100):
-            self.nodes[1].generatetoaddress(100, not_related_address)
+            generatesynchronized(self.nodes[1], 100, not_related_address, self.nodes)
         self.sync_all()
 
         assert_equal(self.nodes[0].getbalance(), INITIAL_BLOCK_REWARD)
@@ -156,7 +157,7 @@ class RESTTest (BitcoinTestFramework):
 
         bin_response = self.test_rest_request("/getutxos", http_method='POST', req_type=ReqType.BIN, body=bin_request, ret_type=RetType.BYTES)
         output = BytesIO(bin_response)
-        chain_height, = unpack("i", output.read(4))
+        chain_height, = unpack("<i", output.read(4))
         response_hash = output.read(32)[::-1].hex()
 
         assert_equal(bb_hash, response_hash)  # check if getutxo's chaintip during calculation was fine

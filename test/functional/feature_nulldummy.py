@@ -19,10 +19,10 @@ from test_framework.messages import CTransaction
 from test_framework.script import CScript
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error, bytes_to_hex_str
-from test_framework.qtumconfig import COINBASE_MATURITY
+from test_framework.qtumconfig import COINBASE_MATURITY, ENABLE_REDUCED_BLOCK_TIME
+from test_framework.qtum import generatesynchronized
 
-
-NULLDUMMY_ERROR = "non-mandatory-script-verify-flag (Dummy CHECKMULTISIG argument must be zero) (code 64)"
+NULLDUMMY_ERROR = "non-mandatory-script-verify-flag (Dummy CHECKMULTISIG argument must be zero)"
 
 def trueDummy(tx):
     scriptSig = CScript(tx.vin[0].scriptSig)
@@ -36,6 +36,8 @@ def trueDummy(tx):
     tx.vin[0].scriptSig = CScript(newscript)
     tx.rehash()
 
+
+segwitheight = 2364 if ENABLE_REDUCED_BLOCK_TIME else 864
 class NULLDUMMYTest(BitcoinTestFramework):
 
     def set_test_params(self):
@@ -43,7 +45,10 @@ class NULLDUMMYTest(BitcoinTestFramework):
         self.setup_clean_chain = True
         # This script tests NULLDUMMY activation, which is part of the 'segwit' deployment, so we go through
         # normal segwit activation here (and don't use the default always-on behaviour).
-        self.extra_args = [['-whitelist=127.0.0.1', '-segwitheight=864', '-addresstype=legacy']]
+        self.extra_args = [[
+            '-segwitheight='+str(segwitheight),
+            '-addresstype=legacy',
+        ]]
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -68,7 +73,7 @@ class NULLDUMMYTest(BitcoinTestFramework):
             self.nodes[0].submitblock(bytes_to_hex_str(block.serialize()))
 
         # Generate the number blocks signalling  that the continuation of the test case expects
-        self.nodes[0].generate(863-COINBASE_MATURITY-2-2)
+        generatesynchronized(self.nodes[0], segwitheight-1-COINBASE_MATURITY-2-2, None, self.nodes)
         self.lastblockhash = self.nodes[0].getbestblockhash()
         self.tip = int("0x" + self.lastblockhash, 0)
         self.lastblockheight = self.nodes[0].getblockcount()
@@ -90,6 +95,7 @@ class NULLDUMMYTest(BitcoinTestFramework):
 
         self.log.info("Test 3: Non-NULLDUMMY base transactions should be accepted in a block before activation [431]")
         self.block_submit(self.nodes[0], [test2tx], False, True)
+
         self.log.info("Test 4: Non-NULLDUMMY base multisig transaction is invalid after activation")
         test4tx = create_transaction(self.nodes[0], test2tx.hash, self.address, amount=46)
         test6txs = [CTransaction(test4tx)]

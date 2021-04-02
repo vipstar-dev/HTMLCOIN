@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,6 +12,7 @@
 #include <uint256.h>
 #include <util/system.h>
 #include <util/translation.h>
+#include <util/vector.h>
 #include <validation.h>
 #include <chainparams.h>
 
@@ -27,6 +28,7 @@ static const char DB_BLOCK_INDEX = 'b';
 ////////////////////////////////////////// // qtum
 static const char DB_HEIGHTINDEX = 'h';
 static const char DB_STAKEINDEX = 's';
+static const char DB_DELEGATEINDEX = 'd';
 //////////////////////////////////////////
 
 static const char DB_BEST_BLOCK = 'B';
@@ -35,7 +37,6 @@ static const char DB_FLAG = 'F';
 static const char DB_REINDEX_FLAG = 'R';
 static const char DB_LAST_BLOCK = 'l';
 
-#ifdef ENABLE_BITCORE_RPC
 ////////////////////////////////////////// // qtum
 static const char DB_ADDRESSINDEX = 'a';
 static const char DB_ADDRESSUNSPENTINDEX = 'u';
@@ -43,7 +44,6 @@ static const char DB_TIMESTAMPINDEX = 'S';
 static const char DB_BLOCKHASHINDEX = 'z';
 static const char DB_SPENTINDEX = 'p';
 //////////////////////////////////////////
-#endif
 
 namespace {
 
@@ -64,6 +64,26 @@ struct CoinEntry {
         s >> key;
         s >> outpoint->hash;
         s >> VARINT(outpoint->n);
+    }
+};
+
+struct DelegateEntry {
+    uint160 address;
+    uint8_t fee;
+    DelegateEntry(uint160 _address = uint160(), uint8_t _fee = 0) :
+        address(_address), fee(_fee)
+    {}
+
+    template<typename Stream>
+    void Serialize(Stream &s) const {
+        s << address;
+        s << fee;
+    }
+
+    template<typename Stream>
+    void Unserialize(Stream& s) {
+        s >> address;
+        s >> fee;
     }
 };
 
@@ -119,7 +139,7 @@ bool CCoinsViewDB::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) {
     // A vector is used for future extensibility, as we may want to support
     // interrupting after partial writes from multiple independent reorgs.
     batch.Erase(DB_BEST_BLOCK);
-    batch.Write(DB_HEAD_BLOCKS, std::vector<uint256>{hashBlock, old_tip});
+    batch.Write(DB_HEAD_BLOCKS, Vector(hashBlock, old_tip));
 
     for (CCoinsMap::iterator it = mapCoins.begin(); it != mapCoins.end();) {
         if (it->second.flags & CCoinsCacheEntry::DIRTY) {
@@ -162,7 +182,7 @@ size_t CCoinsViewDB::EstimateSize() const
     return db.EstimateSize(DB_COIN, (char)(DB_COIN+1));
 }
 
-CBlockTreeDB::CBlockTreeDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(gArgs.IsArgSet("-blocksdir") ? GetDataDir() / "blocks" / "index" : GetBlocksDir() / "index", nCacheSize, fMemory, fWipe) {
+CBlockTreeDB::CBlockTreeDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(GetDataDir() / "blocks" / "index", nCacheSize, fMemory, fWipe) {
 }
 
 bool CBlockTreeDB::ReadBlockFileInfo(int nFile, CBlockFileInfo &info) {
@@ -434,7 +454,55 @@ bool CBlockTreeDB::EraseStakeIndex(unsigned int height) {
     return WriteBatch(batch);
 }
 
-#ifdef ENABLE_BITCORE_RPC
+bool CBlockTreeDB::WriteDelegateIndex(unsigned int height, uint160 address, uint8_t fee) {
+    CDBBatch batch(*this);
+    batch.Write(std::make_pair(DB_DELEGATEINDEX, height), DelegateEntry(address, fee));
+    return WriteBatch(batch);
+}
+
+bool CBlockTreeDB::ReadDelegateIndex(unsigned int height, uint160& address, uint8_t& fee){
+    std::unique_ptr<CDBIterator> pcursor(NewIterator());
+
+    pcursor->Seek(std::make_pair(DB_DELEGATEINDEX, height));
+
+    DelegateEntry info;
+    while (pcursor->Valid()) {
+        boost::this_thread::interruption_point();
+        std::pair<char, CHeightTxIndexKey> key;
+        pcursor->GetKey(key);
+        if (key.first == DB_DELEGATEINDEX) {
+            pcursor->GetValue(info);
+            address = info.address;
+            fee = info.fee;
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
+}
+
+bool CBlockTreeDB::EraseDelegateIndex(unsigned int height) {
+
+    std::unique_ptr<CDBIterator> pcursor(NewIterator());
+    CDBBatch batch(*this);
+
+    pcursor->Seek(std::make_pair(DB_DELEGATEINDEX, height));
+
+    while (pcursor->Valid()) {
+        boost::this_thread::interruption_point();
+        std::pair<char, CHeightTxIndexKey> key;
+        if (pcursor->GetKey(key) && key.first == DB_HEIGHTINDEX && key.second.height == height) {
+            batch.Erase(key);
+            pcursor->Next();
+        } else {
+            break;
+        }
+    }
+
+    return WriteBatch(batch);
+}
+
 bool CBlockTreeDB::WriteAddressIndex(const std::vector<std::pair<CAddressIndexKey, CAmount > >&vect) {
     CDBBatch batch(*this);
     for (std::vector<std::pair<CAddressIndexKey, CAmount> >::const_iterator it=vect.begin(); it!=vect.end(); it++)
@@ -586,15 +654,14 @@ bool CBlockTreeDB::UpdateSpentIndex(const std::vector<std::pair<CSpentIndexKey, 
 }
 
 bool CBlockTreeDB::blockOnchainActive(const uint256 &hash) {
-    CBlockIndex* pblockindex = ::BlockIndex()[hash];
+    LOCK(cs_main);
+    BlockMap::iterator mi = ::BlockIndex().find(hash);
+    if (mi == ::BlockIndex().end())
+        return false;
 
-    if (!::ChainActive().Contains(pblockindex)) {
-       return false;
-    }
-
-    return true;
+    CBlockIndex* pblockindex = (*mi).second;
+    return pblockindex && ::ChainActive().Contains(pblockindex);
 }
-#endif
 ///////////////////////////////////////////////////////
 
 bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, std::function<CBlockIndex*(const uint256&)> insertBlockIndex)
@@ -630,7 +697,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, 
                 pindexNew->hashUTXORoot   = diskindex.hashUTXORoot; // qtum
                 pindexNew->nStakeModifier = diskindex.nStakeModifier;
                 pindexNew->prevoutStake   = diskindex.prevoutStake;
-                pindexNew->vchBlockSig    = diskindex.vchBlockSig; // qtum
+                pindexNew->vchBlockSigDlgt    = diskindex.vchBlockSigDlgt; // qtum
 
                 if (!CheckIndexProof(*pindexNew, Params().GetConsensus()))
                     return error("%s: CheckIndexProof failed: %s", __func__, pindexNew->ToString());
@@ -698,10 +765,10 @@ public:
         vout.assign(vAvail.size(), CTxOut());
         for (unsigned int i = 0; i < vAvail.size(); i++) {
             if (vAvail[i])
-                ::Unserialize(s, CTxOutCompressor(vout[i]));
+                ::Unserialize(s, Using<TxOutCompression>(vout[i]));
         }
         // coinbase height
-        ::Unserialize(s, VARINT(nHeight, VarIntMode::NONNEGATIVE_SIGNED));
+        ::Unserialize(s, VARINT_MODE(nHeight, VarIntMode::NONNEGATIVE_SIGNED));
     }
 };
 
@@ -775,6 +842,14 @@ bool CCoinsViewDB::Upgrade() {
     return !ShutdownRequested();
 }
 
+bool CBlockTreeDB::EraseBlockIndex(const std::vector<uint256> &vect)
+{
+    CDBBatch batch(*this);
+    for (std::vector<uint256>::const_iterator it=vect.begin(); it!=vect.end(); it++)
+        batch.Erase(std::make_pair(DB_BLOCK_INDEX, *it));
+    return WriteBatch(batch);
+}
+
 bool CBlockTreeDB::ReadSyncCheckpoint(uint256& hashCheckpoint)
 {
     return Read(std::string("hashSyncCheckpoint"), hashCheckpoint);
@@ -793,4 +868,3 @@ bool CBlockTreeDB::ReadCheckpointPubKey(std::string& strPubKey)
 bool CBlockTreeDB::WriteCheckpointPubKey(const std::string& strPubKey)
 {
     return Write(std::string("strCheckpointPubKey"), strPubKey);
-}

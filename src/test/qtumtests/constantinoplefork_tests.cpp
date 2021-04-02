@@ -103,7 +103,8 @@ const std::vector<valtype> CODE = {
 
 void genesisLoading(){
     const CChainParams& chainparams = Params();
-    dev::eth::ChainParams cp((chainparams.EVMGenesisInfo(dev::eth::Network::qtumMainNetwork, 999)));
+    int forkHeight = Params().GetConsensus().CoinbaseMaturity(0) + 499;
+    dev::eth::ChainParams cp(chainparams.EVMGenesisInfo(forkHeight));
     globalState->populateFrom(cp.genesisState);
     globalSealEngine = std::unique_ptr<dev::eth::SealEngineFace>(cp.createSealEngine());
     globalState->db().commit();
@@ -126,9 +127,9 @@ BOOST_FIXTURE_TEST_SUITE(constantinoplefork_tests, TestChain100Setup)
 
 BOOST_AUTO_TEST_CASE(checking_returndata_opcode_after_fork){
     // Initialize
-    initState();
+//    initState();
     genesisLoading();
-    createNewBlocks(this,999 - COINBASE_MATURITY);
+    createNewBlocks(this, 499);
     dev::h256 hashTx(HASHTX);
 
     // Create contracts
@@ -158,9 +159,9 @@ BOOST_AUTO_TEST_CASE(checking_returndata_opcode_after_fork){
 
 BOOST_AUTO_TEST_CASE(checking_returndata_opcode_before_fork){
     // Initialize
-    initState();
+//    initState();
     genesisLoading();
-    createNewBlocks(this,998 - COINBASE_MATURITY);
+    createNewBlocks(this, 498);
     dev::h256 hashTx(HASHTX);
 
     // Create contracts
@@ -184,9 +185,9 @@ BOOST_AUTO_TEST_CASE(checking_returndata_opcode_before_fork){
 
 BOOST_AUTO_TEST_CASE(checking_constantinople_after_fork){
     // Initialize
-    initState();
+//    initState();
     genesisLoading();
-    createNewBlocks(this,999 - COINBASE_MATURITY);
+    createNewBlocks(this, 499);
     dev::h256 hashTx(HASHTX);
 
     // Create contract
@@ -204,9 +205,9 @@ BOOST_AUTO_TEST_CASE(checking_constantinople_after_fork){
 
 BOOST_AUTO_TEST_CASE(checking_constantinople_before_fork){
     // Initialize
-    initState();
+//    initState();
     genesisLoading();
-    createNewBlocks(this,998 - COINBASE_MATURITY);
+    createNewBlocks(this, 498);
     dev::h256 hashTx(HASHTX);
 
     // Create contract

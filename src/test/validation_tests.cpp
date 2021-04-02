@@ -6,7 +6,7 @@
 #include <net.h>
 #include <validation.h>
 
-#include <test/setup_common.h>
+#include <test/util/setup_common.h>
 
 #include <boost/signals2/signal.hpp>
 #include <boost/test/unit_test.hpp>
@@ -24,13 +24,16 @@ static void TestBlockSubsidyHalvings(int nSubsidyHalvingInterval)
 {
     Consensus::Params consensusParams;
     consensusParams.nSubsidyHalvingInterval = nSubsidyHalvingInterval;
+    consensusParams.nReduceBlocktimeHeight = 0x7fffffff;
     TestBlockSubsidyHalvings(consensusParams);
 }
 
 BOOST_AUTO_TEST_CASE(block_subsidy_test)
 {
     const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    TestBlockSubsidyHalvings(chainParams->GetConsensus()); // As in main
+    Consensus::Params consensusParams = chainParams->GetConsensus();
+    consensusParams.nReduceBlocktimeHeight = 0x7fffffff; // Check for the halving before fork for target spacing
+    TestBlockSubsidyHalvings(consensusParams); // As in main
     TestBlockSubsidyHalvings(150); // As in regtest
     TestBlockSubsidyHalvings(1000); // Just another interval
 }
@@ -38,7 +41,9 @@ BOOST_AUTO_TEST_CASE(block_subsidy_test)
 BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    const Consensus::Params& consensusParams = chainParams->GetConsensus();
+    Consensus::Params consensusParams = chainParams->GetConsensus();
+    consensusParams.nReduceBlocktimeHeight = 800000; // Check for the halving after fork for target spacing
+    int nMaxHeight = 14000000 * consensusParams.nBlocktimeDownscaleFactor;
     CAmount nSum = 0;
     for (int nHeight = 0; nHeight < 14000000; nHeight += 1000) {
         BOOST_CHECK(nSubsidy <= 1250 * COIN);

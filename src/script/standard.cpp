@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -375,11 +375,11 @@ bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet,
     return false;
 }
 
-bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<CTxDestination>& addressRet, int& nRequiredRet)
+bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<CTxDestination>& addressRet, int& nRequiredRet, bool contractConsensus)
 {
     addressRet.clear();
     std::vector<valtype> vSolutions;
-    typeRet = Solver(scriptPubKey, vSolutions);
+    typeRet = Solver(scriptPubKey, vSolutions, contractConsensus);
     if (typeRet == TX_NONSTANDARD) {
         return false;
     } else if (typeRet == TX_NULL_DATA) {
@@ -580,7 +580,21 @@ bool GetSenderPubKey(const CScript &outputPubKey, CScript &senderPubKey)
     return false;
 }
 
-#ifdef ENABLE_BITCORE_RPC
+PKHash ExtractPublicKeyHash(const CScript& scriptPubKey, bool* OK)
+{
+    if(OK) *OK = false;
+    CTxDestination address;
+    txnouttype txType=TX_NONSTANDARD;
+    if(ExtractDestination(scriptPubKey, address, &txType)){
+        if ((txType == TX_PUBKEY || txType == TX_PUBKEYHASH) && address.type() == typeid(PKHash)) {
+            if(OK) *OK = true;
+            return boost::get<PKHash>(address);
+        }
+    }
+
+    return PKHash();
+}
+
 valtype DataVisitor::operator()(const CNoDestination& noDest) const { return valtype(); }
 valtype DataVisitor::operator()(const PKHash& keyID) const { return valtype(keyID.begin(), keyID.end()); }
 valtype DataVisitor::operator()(const ScriptHash& scriptID) const { return valtype(scriptID.begin(), scriptID.end()); }
@@ -645,4 +659,3 @@ bool ExtractDestination(const COutPoint& prevout, const CScript& scriptPubKey, C
     }
     return false;
 }
-#endif

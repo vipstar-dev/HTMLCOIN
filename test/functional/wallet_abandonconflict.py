@@ -18,8 +18,10 @@ from test_framework.util import (
     assert_raises_rpc_error,
     connect_nodes,
     disconnect_nodes,
+    wait_until,
 )
 from test_framework.qtumconfig import *
+from test_framework.qtum import generatesynchronized
 
 class AbandonConflictTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -30,7 +32,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         self.skip_if_no_wallet()
 
     def run_test(self):
-        self.nodes[1].generate(COINBASE_MATURITY)
+        generatesynchronized(self.nodes[1], COINBASE_MATURITY, None, self.nodes)
         self.sync_blocks()
         balance = self.nodes[0].getbalance()
         txA = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), Decimal("10"))
@@ -97,6 +99,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         # TODO: redo with eviction
         self.stop_node(0)
         self.start_node(0, extra_args=["-minrelaytxfee=0.0001"])
+        wait_until(lambda: self.nodes[0].getmempoolinfo()['loaded'])
 
         # Verify txs no longer in either node's mempool
         assert_equal(len(self.nodes[0].getrawmempool()), 0)
@@ -124,6 +127,8 @@ class AbandonConflictTest(BitcoinTestFramework):
         # Verify that even with a low min relay fee, the tx is not reaccepted from wallet on startup once abandoned
         self.stop_node(0)
         self.start_node(0, extra_args=["-minrelaytxfee=0.00001"])
+        wait_until(lambda: self.nodes[0].getmempoolinfo()['loaded'])
+
         assert_equal(len(self.nodes[0].getrawmempool()), 0)
         assert_equal(self.nodes[0].getbalance(), balance)
 
@@ -144,6 +149,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         # Remove using high relay fee again
         self.stop_node(0)
         self.start_node(0, extra_args=["-minrelaytxfee=0.0001"])
+        wait_until(lambda: self.nodes[0].getmempoolinfo()['loaded'])
         assert_equal(len(self.nodes[0].getrawmempool()), 0)
         newbalance = self.nodes[0].getbalance()
         assert_equal(newbalance, balance - Decimal("24.9996"))

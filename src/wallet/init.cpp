@@ -6,13 +6,16 @@
 #include <init.h>
 #include <interfaces/chain.h>
 #include <net.h>
+#include <node/context.h>
 #include <outputtype.h>
+#include <ui_interface.h>
 #include <util/moneystr.h>
 #include <util/system.h>
 #include <util/translation.h>
+#include <wallet/coincontrol.h>
 #include <wallet/wallet.h>
-#include <wallet/walletutil.h>
 #include <walletinitinterface.h>
+#include <miner.h>
 
 class WalletInit : public WalletInitInterface {
 public:
@@ -26,8 +29,8 @@ public:
     //! Wallets parameter interaction
     bool ParameterInteraction() const override;
 
-    //! Add wallets that should be opened to list of init interfaces.
-    void Construct(InitInterfaces& interfaces) const override;
+    //! Add wallets that should be opened to list of chain clients.
+    void Construct(NodeContext& node) const override;
 };
 
 const WalletInitInterface& g_wallet_init_interface = WalletInit();
@@ -41,9 +44,10 @@ void WalletInit::AddWalletOptions() const
     gArgs.AddArg("-discardfee=<amt>", strprintf("The fee rate (in %s/kB) that indicates your tolerance for discarding change by adding it to the fee (default: %s). "
                                                                 "Note: An output is discarded if it is dust at this rate, but we will always discard up to the dust relay fee and a discard fee above that is limited by the fee estimate for the longest target",
                                                               CURRENCY_UNIT, FormatMoney(DEFAULT_DISCARD_FEE)), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
-    gArgs.AddArg("-fallbackfee=<amt>", strprintf("A fee rate (in %s/kB) that will be used when fee estimation has insufficient data (default: %s)",
+
+    gArgs.AddArg("-fallbackfee=<amt>", strprintf("A fee rate (in %s/kB) that will be used when fee estimation has insufficient data. 0 to entirely disable the fallbackfee feature. (default: %s)",
                                                                CURRENCY_UNIT, FormatMoney(DEFAULT_FALLBACK_FEE)), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
-    gArgs.AddArg("-keypool=<n>", strprintf("Set key pool size to <n> (default: %u)", DEFAULT_KEYPOOL_SIZE), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-keypool=<n>", strprintf("Set key pool size to <n> (default: %u). Warning: Smaller sizes may increase the risk of losing funds when restoring from an old backup, if none of the addresses in the original keypool have been used.", DEFAULT_KEYPOOL_SIZE), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
     gArgs.AddArg("-maxtxfee=<amt>", strprintf("Maximum total fees (in %s) to use in a single wallet transaction; setting this too low may abort large transactions (default: %s)",
         CURRENCY_UNIT, FormatMoney(DEFAULT_TRANSACTION_MAXFEE)), ArgsManager::ALLOW_ANY, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-mintxfee=<amt>", strprintf("Fees (in %s/kB) smaller than this are considered zero fee for transaction creation (default: %s)",
@@ -57,13 +61,14 @@ void WalletInit::AddWalletOptions() const
     gArgs.AddArg("-upgradewallet", "Upgrade wallet to latest format on startup", ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
     gArgs.AddArg("-wallet=<path>", "Specify wallet database path. Can be specified multiple times to load multiple wallets. Path is interpreted relative to <walletdir> if it is not absolute, and will be created if it does not exist (as a directory containing a wallet.dat file and log files). For backwards compatibility this will also accept names of existing data files in <walletdir>.)", ArgsManager::ALLOW_ANY | ArgsManager::NETWORK_ONLY, OptionsCategory::WALLET);
     gArgs.AddArg("-walletbroadcast",  strprintf("Make the wallet broadcast transactions (default: %u)", DEFAULT_WALLETBROADCAST), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
-    gArgs.AddArg("-walletdir=<dir>", "Specify directory to hold wallets (default: <datadir>/wallets if it exists, otherwise <datadir>)", ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-walletdir=<dir>", "Specify directory to hold wallets (default: <datadir>/wallets if it exists, otherwise <datadir>)", ArgsManager::ALLOW_ANY | ArgsManager::NETWORK_ONLY, OptionsCategory::WALLET);
 #if HAVE_SYSTEM
-    gArgs.AddArg("-walletnotify=<cmd>", "Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)", ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-walletnotify=<cmd>", "Execute command when a wallet transaction changes. %s in cmd is replaced by TxID and %w is replaced by wallet name. %w is not currently implemented on windows. On systems where %w is supported, it should NOT be quoted because this would break shell escaping used to invoke the command.", ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
 #endif
     gArgs.AddArg("-walletrbf", strprintf("Send transactions with full-RBF opt-in enabled (RPC only, default: %u)", DEFAULT_WALLET_RBF), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
     gArgs.AddArg("-zapwallettxes=<mode>", "Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup"
                                " (1 = keep tx meta data e.g. payment request information, 2 = drop tx meta data)", ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+
     gArgs.AddArg("-staking=<true/false>", "Enables or disables staking (enabled by default)", ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
     gArgs.AddArg("-stakecache=<true/false>", "Enables or disables the staking cache; significantly improves staking performance, but can use a lot of memory (enabled by default)", ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
     gArgs.AddArg("-rpcmaxgasprice", strprintf("The max value (in satoshis) for gas price allowed through RPC (default: %u)", MAX_RPC_GAS_PRICE), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
@@ -73,6 +78,13 @@ void WalletInit::AddWalletOptions() const
     gArgs.AddArg("-flushwallet", strprintf("Run a thread to flush wallet periodically (default: %u)", DEFAULT_FLUSHWALLET), ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::WALLET_DEBUG_TEST);
     gArgs.AddArg("-privdb", strprintf("Sets the DB_PRIVATE flag in the wallet db environment (default: %u)", DEFAULT_WALLET_PRIVDB), ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::WALLET_DEBUG_TEST);
     gArgs.AddArg("-walletrejectlongchains", strprintf("Wallet will not create transactions that violate mempool chain limits (default: %u)", DEFAULT_WALLET_REJECT_LONG_CHAINS), ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::WALLET_DEBUG_TEST);
+    gArgs.AddArg("-stakingminutxovalue=<amt>", strprintf("The min value of utxo (in %s) selected for super staking (default: %s)", CURRENCY_UNIT, FormatMoney(DEFAULT_STAKING_MIN_UTXO_VALUE)), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-stakingminfee=<n>", strprintf("The min fee (in percentage) to accept when super staking (default: %u)", DEFAULT_STAKING_MIN_FEE), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-superstaking=<true/false>", strprintf("Enables or disables super staking (default: %u)", DEFAULT_SUPER_STAKE), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-minstakerutxosize=<amt>", strprintf("The min value of utxo (in %s) selected for staking (default: %s)", CURRENCY_UNIT, FormatMoney(DEFAULT_STAKER_MIN_UTXO_SIZE)), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-maxstakerutxoscriptcache=<n>", strprintf("Set max staker utxo script cache for staking (default: %d)", DEFAULT_STAKER_MAX_UTXO_SCRIPT_CACHE), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-stakerthreads=<n>", strprintf("Set the number of threads the staker use for processing (default is the number of cores to your machine: %d)", GetNumCores()), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
+    gArgs.AddArg("-maxstakerwaitforbestheader=<n>", strprintf("Set max staker wait for best header in milliseconds (default: %d)", DEFAULT_MAX_STAKER_WAIT_FOR_BEST_BLOCK_HEADER), ArgsManager::ALLOW_ANY, OptionsCategory::WALLET);
 }
 
 bool WalletInit::ParameterInteraction() const
@@ -125,18 +137,16 @@ bool WalletInit::ParameterInteraction() const
 
     if (gArgs.GetBoolArg("-sysperms", false))
         return InitError("-sysperms is not allowed in combination with enabled wallet functionality");
-    if (gArgs.GetArg("-prune", 0) && gArgs.GetBoolArg("-rescan", false))
-        return InitError(_("Rescans are not possible in pruned mode. You will need to use -reindex which will download the whole blockchain again.").translated);
 
     return true;
 }
 
-void WalletInit::Construct(InitInterfaces& interfaces) const
+void WalletInit::Construct(NodeContext& node) const
 {
     if (gArgs.GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET)) {
         LogPrintf("Wallet disabled!\n");
         return;
     }
     gArgs.SoftSetArg("-wallet", "");
-    interfaces.chain_clients.emplace_back(interfaces::MakeWalletClient(*interfaces.chain, gArgs.GetArgs("-wallet")));
+    node.chain_clients.emplace_back(interfaces::MakeWalletClient(*node.chain, gArgs.GetArgs("-wallet")));
 }

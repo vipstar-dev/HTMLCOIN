@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -85,16 +85,19 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
 #ifdef Q_OS_MAC
     /* remove Window tab on Mac */
     ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWindow));
-#if  defined(MAC_OS_X_VERSION_MIN_REQUIRED) && MAC_OS_X_VERSION_MIN_REQUIRED > 101100
-    /* hide launch at startup option if compiled against macOS > 10.11 (removed API) */
+    /* hide launch at startup option on macOS */
     ui->bitcoinAtStartup->setVisible(false);
     ui->tabMain->layout()->removeWidget(ui->bitcoinAtStartup);
 #endif
-#endif
 
-    /* remove Wallet tab in case of -disablewallet */
+    /* remove Wallet tab and 3rd party-URL textbox in case of -disablewallet */
     if (!enableWallet) {
         ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabWallet));
+        ui->thirdPartyTxUrlsLabel->setVisible(false);
+        ui->thirdPartyTxUrls->setVisible(false);
+        ui->reserveBalanceLabel->setVisible(false);
+        ui->reserveBalance->setVisible(false);
+        ui->superStaking->setVisible(false);
     }
 
     /* Display elements init */
@@ -123,8 +126,6 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
             ui->lang->addItem(locale.nativeLanguageName() + QString(" (") + langStr + QString(")"), QVariant(langStr));
         }
     }
-    ui->thirdPartyTxUrls->setPlaceholderText("https://example.com/tx/%s");
-
     ui->unit->setModel(new BitcoinUnits(this));
 
     ui->theme->setToolTip(ui->theme->toolTip().arg(tr(PACKAGE_NAME)));
@@ -206,6 +207,7 @@ void OptionsDialog::setModel(OptionsModel *_model)
     connect(ui->pruneSize, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &OptionsDialog::showRestartWarning);
     connect(ui->databaseCache, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &OptionsDialog::showRestartWarning);
     connect(ui->logEvents, &QCheckBox::clicked, this, &OptionsDialog::showRestartWarning);
+    connect(ui->superStaking, &QCheckBox::clicked, this, &OptionsDialog::showRestartWarning);
     connect(ui->threadsScriptVerif, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &OptionsDialog::showRestartWarning);
     connect(ui->reserveBalance, SIGNAL(valueChanged()), this, SLOT(showRestartWarning()));
     /* Wallet */
@@ -240,6 +242,7 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->prune, OptionsModel::Prune);
     mapper->addMapping(ui->pruneSize, OptionsModel::PruneSize);
     mapper->addMapping(ui->logEvents, OptionsModel::LogEvents);
+    mapper->addMapping(ui->superStaking, OptionsModel::SuperStaking);
     mapper->addMapping(ui->reserveBalance, OptionsModel::ReserveBalance);
 
     /* Wallet */
@@ -430,7 +433,7 @@ QValidator::State ProxyAddressValidator::validate(QString &input, int &pos) cons
 {
     Q_UNUSED(pos);
     // Validate the proxy
-    CService serv(LookupNumeric(input.toStdString().c_str(), DEFAULT_GUI_PROXY_PORT));
+    CService serv(LookupNumeric(input.toStdString(), DEFAULT_GUI_PROXY_PORT));
     proxyType addrProxy = proxyType(serv, true);
     if (addrProxy.IsValid())
         return QValidator::Acceptable;

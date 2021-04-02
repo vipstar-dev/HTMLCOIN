@@ -15,8 +15,10 @@ from test_framework.util import (
     connect_nodes,
     wait_until,
 )
+from test_framework.wallet_util import test_address
 from test_framework.qtumconfig import *
-from test_framework.qtum import convert_btc_address_to_qtum
+from test_framework.qtum import convert_btc_address_to_qtum, generatesynchronized
+
 
 class WalletTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -25,6 +27,7 @@ class WalletTest(BitcoinTestFramework):
             "-acceptnonstdtxn=1",
         ]] * self.num_nodes
         self.setup_clean_chain = True
+        self.supports_cli = False
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -62,7 +65,7 @@ class WalletTest(BitcoinTestFramework):
         assert_equal(walletinfo['balance'], 0)
 
         self.sync_all(self.nodes[0:3])
-        self.nodes[1].generate(COINBASE_MATURITY+1)
+        generatesynchronized(self.nodes[1], COINBASE_MATURITY+1, None, self.nodes[0:3])
         self.sync_all(self.nodes[0:3])
 
         assert_equal(self.nodes[0].getbalance(), INITIAL_BLOCK_REWARD)
@@ -145,7 +148,7 @@ class WalletTest(BitcoinTestFramework):
         assert_equal(len(self.nodes[1].listlockunspent()), 0)
 
         # Have node1 generate 100 blocks (so node0 can recover the fee)
-        self.nodes[1].generate(COINBASE_MATURITY)
+        generatesynchronized(self.nodes[1], COINBASE_MATURITY, None, self.nodes[0:3])
         self.sync_all(self.nodes[0:3])
 
         # node0 should end up with 100 btc in block rewards plus fees, but
@@ -318,11 +321,11 @@ class WalletTest(BitcoinTestFramework):
         assert_raises_rpc_error(-5, "Invalid private key encoding", self.nodes[0].importprivkey, "invalid")
 
         # This will raise an exception for importing an address with the PS2H flag
-        temp_address = self.nodes[1].getnewaddress()
+        temp_address = self.nodes[1].getnewaddress("", "p2sh-segwit")
         assert_raises_rpc_error(-5, "Cannot use the p2sh flag with an address - use a script instead", self.nodes[0].importaddress, temp_address, "label", False, True)
 
         # This will raise an exception for attempting to dump the private key of an address you do not own
-        assert_raises_rpc_error(-4, "is not known", self.nodes[0].dumpprivkey, temp_address)
+        assert_raises_rpc_error(-3, "Address does not refer to a key", self.nodes[0].dumpprivkey, temp_address)
 
         # This will raise an exception for attempting to get the private key of an invalid Bitcoin address
         assert_raises_rpc_error(-5, "Invalid Qtum address", self.nodes[0].dumpprivkey, "invalid")
@@ -391,7 +394,7 @@ class WalletTest(BitcoinTestFramework):
             for label in [u'рыба', u'𝅘𝅥𝅯']:
                 addr = self.nodes[0].getnewaddress()
                 self.nodes[0].setlabel(addr, label)
-                assert_equal(self.nodes[0].getaddressinfo(addr)['label'], label)
+                test_address(self.nodes[0], addr, labels=[label])
                 assert label in self.nodes[0].listlabels()
         self.nodes[0].rpc.ensure_ascii = True  # restore to default
 

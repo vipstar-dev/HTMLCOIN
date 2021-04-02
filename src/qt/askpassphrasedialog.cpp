@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,6 +13,7 @@
 #include <qt/walletmodel.h>
 #include <qt/styleSheet.h>
 #include <wallet/wallet.h>
+#include <miner.h>
 
 #include <support/allocators/secure.h>
 
@@ -180,6 +181,12 @@ void AskPassphraseDialog::accept()
                                       tr("The passphrase entered for the wallet decryption was incorrect."));
             } else {
                 model->setWalletUnlockStakingOnly(ui->stakingCheckBox->isChecked());
+                if(UnlockStaking == mode)
+                {
+                    // Start the staking if enabled on the machine
+                    bool staking = gArgs.GetBoolArg("-staking", DEFAULT_STAKE);
+                    model->wallet().setEnabledStaking(staking);
+                }
                 QDialog::accept(); // Success
             }
         } catch (const std::runtime_error& e) {

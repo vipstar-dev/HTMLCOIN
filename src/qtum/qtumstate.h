@@ -1,5 +1,6 @@
 #pragma once
 
+#include <libdevcore/UndefMacros.h>
 #include <libethereum/State.h>
 #include <libevm/ExtVMFace.h>
 #include <crypto/sha256.h>
@@ -104,6 +105,8 @@ public:
 
         return dev::Address(hashTxIdAndVout);
     }
+
+    void deployDelegationsContract();
 
     virtual ~QtumState(){}
 

@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;நகல்</translation>
+        <translation>&amp;காபி</translation>
     </message>
     <message>
         <source>C&amp;lose</source>
@@ -35,7 +35,7 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>தற்போதைய தாவலில் தரவை ஒரு கோப்பிற்கு ஏற்றுமதி செய்க</translation>
+        <translation>தற்போதைய டாபில் உள்ள தகவலை ஒரு பைலிற்கு ஏக்ஸ்போர்ட் செய்க</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>நாணயங்களைப் பெற முகவரியைத் தேர்வுசெய்யவும்</translation>
+        <translation>பிட்காயின்களை பெற முகவரியைத் தேர்வுசெய்யவும்</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -66,8 +66,8 @@
         <translation>முகவரிகள் பெறப்படுகின்றன</translation>
     </message>
     <message>
-        <source>These are your HTML addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>இவை பணம் அனுப்புவதற்கு உங்கள் பிட்கின் முகவரிகள். நாணயங்களை அனுப்புவதற்கு முன் எப்பொழுதும் தொகையும் பெறுதலையும் சரிபார்க்கவும்.</translation>
+        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>இவை பணம் அனுப்புவதற்கு உங்களின் பிட்காயின் முகவரிகள். பிட்காயின்களை அனுப்புவதற்கு முன் எப்பொழுதும் தொகையும் பெறுதலையும் சரிபார்க்கவும்.</translation>
     </message>
     <message>
         <source>These are your HTML addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
@@ -75,19 +75,19 @@
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>&amp; நகல் முகவரி</translation>
+        <translation>&amp;காபி முகவரி</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
-        <translation>&amp; லேபிள் நகலெடு</translation>
+        <translation>காபி &amp;லேபிள்</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;தொகு</translation>
+        <translation>&amp;எடிட்</translation>
     </message>
     <message>
         <source>Export Address List</source>
-        <translation>முகவரி பட்டியல் ஏற்றுமதி</translation>
+        <translation>முகவரி பட்டியல் ஏக்ஸ்போர்ட் செய்க </translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
@@ -95,11 +95,11 @@
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>ஏற்றுமதி தோல்வியடைந்தது</translation>
+        <translation>ஏக்ஸ்போர்ட் தோல்வியடைந்தது</translation>
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>முகவரி பட்டியலை %1 க்கு சேமிக்க முயற்சிக்கும் ஒரு பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சி செய்க.</translation>
+        <translation>முகவரி பட்டியலை %1 க்கு சேமிக்க முயற்சிக்கும் ஒரு பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.</translation>
     </message>
 </context>
 <context>
@@ -141,7 +141,7 @@
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>குறியாக்க பணப்பையை</translation>
+        <translation>வாலட்டை குறியாக்கு</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
@@ -374,14 +374,6 @@
         <translation>பணப்பை குறியாக்கத்திற்காக பயன்படுத்தப்படும் கடவுச்சொற்றொடரை மாற்றவும்</translation>
     </message>
     <message>
-        <source>&amp;Debug window</source>
-        <translation>&amp; பிழைத்திருத்த சாளரம்</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>பிழைத்திருத்த மற்றும் கண்டறிதல் பணியகம் திறக்க</translation>
-    </message>
-    <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;செய்தியை சரிசெய்...</translation>
     </message>
@@ -442,12 +434,12 @@
         <translation>பயன்படுத்திய முகவரிகள் மற்றும் லேபிள்களின் பட்டியலைக் காட்டு</translation>
     </message>
     <message>
-        <source>Open a htmlcoin: URI or payment request</source>
-        <translation>ஒரு HTMLCOIN திறக்க: URI அல்லது பணம் கோரிக்கை</translation>
-    </message>
-    <message>
         <source>&amp;Command-line options</source>
         <translation>&amp; கட்டளை வரி விருப்பங்கள்</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Qtum network</source>
+        <translation><numerusform>பிட்காயின் வலையமைப்புடன் %n செயலில் உள்ள இணைப்புகள்</numerusform><numerusform>பிட்காயின் வலையமைப்புடன் %n செயலில் உள்ள இணைப்புகள்</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -920,10 +912,6 @@
         <translation>பதிப்பு</translation>
     </message>
     <message>
-        <source>(%1-bit)</source>
-        <translation>(%1-பிட்)</translation>
-    </message>
-    <message>
         <source>About %1</source>
         <translation>%1 பற்றி</translation>
     </message>
@@ -1002,6 +990,14 @@
         <source>Error</source>
         <translation>பிழை</translation>
     </message>
+    <message numerus="yes">
+        <source>%n GB of free space available</source>
+        <translation><numerusform>%n ஜிபி அளவு காலியாக உள்ளது</numerusform><numerusform>%n ஜிபி அளவு காலியாக உள்ளது</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation><numerusform>(%n ஜிபி தேவை)</numerusform><numerusform>(%n ஜிபி தேவை)</numerusform></translation>
+    </message>
     </context>
 <context>
     <name>ModalOverlay</name>
@@ -1057,24 +1053,8 @@
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open URI</source>
-        <translation>URI-ஐ திற</translation>
-    </message>
-    <message>
-        <source>Open payment request from URI or file</source>
-        <translation>URI அல்லது கோப்பிலிருந்து பணம் செலுத்துவதற்கான கோரிக்கையைத் திறக்கவும்</translation>
-    </message>
-    <message>
         <source>URI:</source>
         <translation>URI:</translation>
-    </message>
-    <message>
-        <source>Select payment request file</source>
-        <translation>பணம் கோரிக்கை கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
-    </message>
-    <message>
-        <source>Select payment request file to open</source>
-        <translation>திறக்க கட்டணம் கோரிக்கை கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
     </message>
 </context>
 <context>
@@ -1465,18 +1445,6 @@
         <translation>'htmlcoin: //' சரியான URI அல்ல. அதற்கு பதிலாக 'பிட்கின்:' பயன்படுத்தவும்.</translation>
     </message>
     <message>
-        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
-        <translation>நீங்கள் எதிர்காலத்தில் ஆதரிக்கப்படாத BIP70 URL ஐப் பயன்படுத்துகிறீர்கள்.</translation>
-    </message>
-    <message>
-        <source>Payment request fetch URL is invalid: %1</source>
-        <translation>பணம் செலுத்தும் கோரிக்கை URL ஐ பெறுகிறது: %1</translation>
-    </message>
-    <message>
-        <source>Cannot process payment request because BIP70 support was not compiled in.</source>
-        <translation>கட்டண கோரிக்கையை செயல்படுத்த முடியவில்லை, ஏனெனில் BIP70 ஆதரவு தொகுக்கப்படவில்லை.</translation>
-    </message>
-    <message>
         <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
         <translation>பிப்70 இல் உள்ள பரவலான பாதுகாப்பு குறைபாடுகள் காரணமாக, வாலட்டை மாற்றுவதற்கான எந்தவொரு வணிக அறிவுறுத்தல்களும் புறக்கணிக்கப்பட வேண்டும் என்று கடுமையாக பரிந்துரைக்கப்படுகிறது.</translation>
     </message>
@@ -1495,66 +1463,6 @@
     <message>
         <source>Payment request file handling</source>
         <translation>பணம் கோரிக்கை கோப்பு கையாளுதல்</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>கட்டண கோரிக்கை கோப்பு படிக்க முடியாது! இது தவறான கட்டண கோரிக்கை கோப்பால் ஏற்படலாம்.</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>கட்டணம் கோரிக்கை நிராகரிக்கப்பட்டது</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>வாடிக்கையாளர் நெட்வொர்க்குடன் கட்டண கோரிக்கை பிணையம் பொருந்தவில்லை.</translation>
-    </message>
-    <message>
-        <source>Payment request expired.</source>
-        <translation>கட்டணம் கோரிக்கை காலாவதியானது.</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>கட்டணம் கோரிக்கை ஆரம்பிக்கப்படவில்லை.</translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>தனிப்பயன் கட்டண ஸ்கிரிப்டுகளுக்கான சரிபார்க்கப்படாத கட்டண கோரிக்கைகள் ஆதரிக்கப்படவில்லை.</translation>
-    </message>
-    <message>
-        <source>Invalid payment request.</source>
-        <translation>தவறான கட்டண கோரிக்கை.</translation>
-    </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>%1 இன் கோரப்பட்ட கட்டணம் அளவு மிகவும் குறைவாக உள்ளது (தூசி கருதப்படுகிறது).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>%1 இலிருந்து திரும்பப்பெறவும்</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>கட்டணம் கோரிக்கை %1 மிக அதிகமாக உள்ளது (%2 பைட்டுகள், அனுமதிக்கப்பட்ட %3 பைட்டுகள்).</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>%1: %2 உடன் தொடர்புகொள்வதில் பிழை</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>கட்டண கோரிக்கையை பாகுபடுத்த முடியாது!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation>%1 சேவையகத்திலிருந்து தவறான பதில்</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>நெட்வொர்க் கோரிக்கை பிழை</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>கட்டணம் ஒப்புக் கொண்டது</translation>
     </message>
 </context>
 <context>
@@ -1707,10 +1615,6 @@
     <message>
         <source>&amp;Information</source>
         <translation>&amp;தகவல்</translation>
-    </message>
-    <message>
-        <source>Debug window</source>
-        <translation>பிழைத்திருத்த சாளரம்</translation>
     </message>
     <message>
         <source>General</source>
@@ -2253,10 +2157,6 @@
         <translation>எச்சரிக்கை: கட்டணம் மதிப்பீடு தற்போது சாத்தியமில்லை.</translation>
     </message>
     <message>
-        <source>collapse fee-settings</source>
-        <translation>கட்டண சரிவுகளை சரி செய்ய வேண்டும்</translation>
-    </message>
-    <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
 Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
@@ -2437,16 +2337,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>பரிவர்த்தனை உருவாக்கம் தோல்வியடைந்தது!</translation>
     </message>
     <message>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation>பரிவர்த்தனை பின்வரும் காரணத்தால் நிராகரிக்கப்பட்டது: %1</translation>
-    </message>
-    <message>
         <source>Payment request expired.</source>
         <translation>கட்டணம் கோரிக்கை காலாவதியானது.</translation>
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>%n பிளாக்குள் உறுதிப்படுத்தலைத் தொடங்க மதிப்பிடப்பட்டுள்ளது.</numerusform><numerusform>%n பிளாக்குள் உறுதிப்படுத்தலைத் தொடங்க மதிப்பிடப்பட்டுள்ளது.</numerusform></translation>
+        <translation><numerusform>%n பிளாக் உறுதிப்படுத்தலைத் தொடங்க மதிப்பிடப்பட்டுள்ளது.</numerusform><numerusform>%n பிளாக்குள் உறுதிப்படுத்தலைத் தொடங்க மதிப்பிடப்பட்டுள்ளது.</numerusform></translation>
     </message>
     <message>
         <source>Warning: Invalid HTML address</source>
@@ -2488,11 +2384,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>முன்பு பயன்படுத்திய முகவரியைத் தேர்வுசெய்</translation>
     </message>
     <message>
-        <source>This is a normal payment.</source>
-        <translation>இது சாதாரண கட்டணம்.</translation>
-    </message>
-    <message>
-        <source>The HTML address to send the payment to</source>
+        <source>The Qtum address to send the payment to</source>
         <translation>கட்டணத்தை அனுப்ப பிட்காயின் முகவரி</translation>
     </message>
     <message>
@@ -2512,7 +2404,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>இந்த உள்ளீட்டை அகற்று</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being HTMLCOINhe recipient will receive less HTMLCOIN than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less qtums than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>அனுப்பப்படும் தொகையிலிருந்து கட்டணம் கழிக்கப்படும். நீங்கள் உள்ளிடும் தொகையை விட பெறுநர் குறைவான பிட்காயின்களைப் பெறுவார். பல பெறுநர்கள் தேர்ந்தெடுக்கப்பட்டால், கட்டணம் சமமாக பிரிக்கப்படும்.</translation>
     </message>
     <message>
@@ -2551,17 +2443,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Memo:</source>
         <translation>குறிப்பாணை:</translation>
     </message>
-    <message>
-        <source>Enter a label for this address to add it to your address book</source>
-        <translation>இந்த முகவரியை உங்கள் முகவரி புத்தகத்தில் சேர்க்க ஒரு லேபிளை உள்ளிடவும்</translation>
-    </message>
-</context>
-<context>
-    <name>SendConfirmationDialog</name>
-    <message>
-        <source>Yes</source>
-        <translation>ஆம்</translation>
-    </message>
 </context>
 <context>
     <name>ShutdownWindow</name>
@@ -2585,7 +2466,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>&amp;செய்தியை கையொப்பமிடுங்கள்</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with yoHTMLCOINesses to prove you can receive HTMLCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive qtums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>மற்றவர்களுக்கு அனுப்பப்பட்ட பிட்காயின்களைப் நீங்கள் பெறலாம் என்பதை நிரூபிக்க உங்கள் முகவரிகளுடன் செய்திகள் / ஒப்பந்தங்களில் கையொப்பமிடலாம். தெளிவற்ற அல்லது சீரற்ற எதையும் கையொப்பமிடாமல் கவனமாக இருங்கள், ஏனெனில் ஃபிஷிங் தாக்குதல்கள் உங்கள் அடையாளத்தை அவர்களிடம் கையொப்பமிட்டு ஏமாற்ற முயற்சிக்கும். நீங்கள் ஒப்புக்கொள்ளும் முழுமையான மற்றும் விரிவான அறிக்கைகளில் மட்டுமே கையொப்பமிடுங்கள்.</translation>
     </message>
     <message>
@@ -2621,7 +2502,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>தற்போதைய கையொப்பத்தை கிளிப்போர்டுக்கு காபி செய்</translation>
     </message>
     <message>
-        <source>SHTMLCOIN message to prove you own this HTML address</source>
+        <source>Sign the message to prove you own this Qtum address</source>
         <translation>இந்த பிட்காயின் முகவரி உங்களுக்கு சொந்தமானது என்பதை நிரூபிக்க செய்தியை கையொப்பமிடுங்கள்</translation>
     </message>
     <message>
@@ -2645,7 +2526,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>செய்தி கையொப்பமிடப்பட்ட பிட்காயின் முகவரி</translation>
     </message>
     <message>
-        <source>Verify the message to enHTMLCOIN was signed with the specified HTML address</source>
+        <source>Verify the message to ensure it was signed with the specified Qtum address</source>
         <translation>குறிப்பிட்ட பிட்காயின் முகவரியுடன் கையொப்பமிடப்பட்டதா என்பதை உறுதிப்படுத்த இந்த செய்தியைச் சரிபார்க்கவும்</translation>
     </message>
     <message>
@@ -3155,9 +3036,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</source>
-        <translation>நீங்கள் வாலட்டை மூட விரும்புகிறீர்களா? &lt;i&gt;%1&lt;/i&gt;?</translation>
+        <translation>நீங்கள் வாலட்டை மூட விரும்புகிறீர்களா &lt;i&gt;%1&lt;/i&gt;?</translation>
     </message>
-    </context>
+    <message>
+        <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
+        <translation>வாலட்டை அதிக நேரம் மூடுவதாலும் ப்ரூனிங் இயக்கப்பட்டாலோ முழு செயினை ரீசிங்க் செய்வதற்கு இது வழிவகுக்கும்.</translation>
+    </message>
+</context>
 <context>
     <name>WalletFrame</name>
     <message>
@@ -3258,6 +3143,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>எம்ஐடி சாப்ட்வேர் விதிமுறைகளின் கீழ் பகிர்ந்தளிக்கப்படுகிறது, அதனுடன் கொடுக்கப்பட்டுள்ள %s அல்லது %s பைல் ஐ பார்க்கவும்</translation>
     </message>
     <message>
+        <source>Prune configured below the minimum of %d MiB.  Please use a higher number.</source>
+        <translation>ப்ரூனிங் குறைந்தபட்சம் %d MiB க்கு கீழே கட்டமைக்கப்பட்டுள்ளது. அதிக எண்ணிக்கையைப் பயன்படுத்தவும்.</translation>
+    </message>
+    <message>
+        <source>Prune: last wallet synchronisation goes beyond pruned data. You need to -reindex (download the whole blockchain again in case of pruned node)</source>
+        <translation>ப்ரூன்: கடைசி வாலட் ஒத்திசைவு ப்ரூன் தரவுக்கு அப்பாற்பட்டது. நீங்கள் -reindex செய்ய வேண்டும் (ப்ரூன் நோட் உபயோகித்தால் முழு பிளாக்செயினையும் மீண்டும் டவுன்லோட் செய்யவும்)</translation>
+    </message>
+    <message>
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
         <translation>பிழை: ஆபத்தான உள் பிழை ஏற்பட்டது, விவரங்களுக்கு debug.log ஐ பார்க்கவும்</translation>
     </message>
@@ -3274,8 +3167,56 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>%s டெவலப்பர்கள்</translation>
     </message>
     <message>
+        <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
+        <translation>மாற்று-முகவரி கீயை உருவாக்க முடியாது. கீ தகவல்தளத்தில் கீகள் இல்லை மற்றும் எந்த கீயையும் உருவாக்க முடியாது.</translation>
+    </message>
+    <message>
+        <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
+        <translation>தரவு கோப்பகத்தை %s லாக் செய்ய முடியாது. %s ஏற்கனவே இயங்குகிறது.</translation>
+    </message>
+    <message>
+        <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
+        <translation>குறிப்பிட்ட இணைப்புகளை வழங்க முடியாது மற்றும் வெளிச்செல்லும் இணைப்புகளை addrman வைத்து கண்டுபிடிக்க வேண்டும்.</translation>
+    </message>
+    <message>
+        <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+        <translation>%s படிப்பதில் பிழை! எல்லா விசைகளும் சரியாகப் படிக்கப்படுகின்றன, ஆனால் பரிவர்த்தனை டேட்டா அல்லது முகவரி புத்தக உள்ளீடுகள் காணவில்லை அல்லது தவறாக இருக்கலாம்.</translation>
+    </message>
+    <message>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <translation>உங்கள் கணினியின் தேதி மற்றும் நேரம் சரியாக உள்ளதா என்பதனை சரிபார்க்கவும்! உங்கள் கடிகாரம் தவறாக இருந்தால், %s சரியாக இயங்காது.</translation>
+    </message>
+    <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
         <translation>%s பயனுள்ளதாக இருந்தால் தயவுசெய்து பங்களியுங்கள். இந்த சாஃட்வேர் பற்றிய கூடுதல் தகவலுக்கு %s ஐப் பார்வையிடவும்.</translation>
+    </message>
+    <message>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <translation>பிளாக் டேட்டாபேசில் எதிர்காலத்தில் இருந்து தோன்றும் ஒரு பிளாக் உள்ளது. இது உங்கள் கணினியின் தேதி மற்றும் நேரம் தவறாக அமைக்கப்பட்டதன் காரணமாக இருக்கலாம். உங்கள் கணினியின் தேதி மற்றும் நேரம் சரியானதாக இருந்தால் மட்டுமே பிளாக் டேட்டாபேசை மீண்டும் உருவாக்கவும்</translation>
+    </message>
+    <message>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation>இது ஒரு வெளியீட்டுக்கு முந்தைய சோதனை கட்டமைப்பாகும் - உங்கள் சொந்த ஆபத்தில் பயன்படுத்தவும் - மைனிங் அல்லது வணிக பயன்பாடுகளுக்கு பயன்படுத்த வேண்டாம்</translation>
+    </message>
+    <message>
+        <source>This is the transaction fee you may discard if change is smaller than dust at this level</source>
+        <translation>இது பரிவர்த்தனைக் கட்டணம் ஆகும் அதன் வேறுபாடு தூசியை விட சிறியதாக இருந்தால் நீங்கள் அதை நிராகரிக்கலாம்.</translation>
+    </message>
+    <message>
+        <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
+        <translation>பிளாக்களை இயக்க முடியவில்லை. -reindex-chainstate ஐப் பயன்படுத்தி டேட்டாபேசை மீண்டும் உருவாக்க வேண்டும்.</translation>
+    </message>
+    <message>
+        <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
+        <translation>ப்ரீ-போர்க் நிலைக்கு டேட்டாபேசை ரீவைண்ட் செய்ய முடியவில்லை. நீங்கள் பிளாக்செயினை மீண்டும் டவுன்லோட் செய்ய வேண்டும்</translation>
+    </message>
+    <message>
+        <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
+        <translation>எச்சரிக்கை: பிட்காயின் நெட்ஒர்க் முழுமையாக ஒப்புக்கொள்ளவில்லை! சில மைனர்கள் சிக்கல்களை சந்திப்பதாகத் தெரிகிறது.</translation>
+    </message>
+    <message>
+        <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
+        <translation>எச்சரிக்கை: நாங்கள் எங்கள் பீர்களுடன் முழுமையாக உடன்படுவதாகத் தெரியவில்லை! நீங்கள் அப்க்ரேட் செய்ய வேண்டியிருக்கலாம், அல்லது மற்ற நோடுகள் அப்க்ரேட் செய்ய வேண்டியிருக்கலாம்.</translation>
     </message>
     <message>
         <source>%d of last 100 blocks have unexpected version</source>
@@ -3366,8 +3307,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>-discardfee கான தவறான தொகை=&lt;amount&gt;: '%s'</translation>
     </message>
     <message>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
+        <translation>தவறான தொகை -fallbackfee=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
+        <source>Specified blocks directory "%s" does not exist.</source>
+        <translation>குறிப்பிடப்பட்ட பிளாக் டைரக்டரி "%s" இல்லை.</translation>
+    </message>
+    <message>
         <source>Unknown address type '%s'</source>
         <translation>தெரியாத முகவரி வகை '%s'</translation>
+    </message>
+    <message>
+        <source>Unknown change type '%s'</source>
+        <translation>தெரியாத மாற்று வகை '%s'</translation>
+    </message>
+    <message>
+        <source>Upgrading txindex database</source>
+        <translation>txindex தகவல்தளத்தை மேம்படுத்துதல்</translation>
     </message>
     <message>
         <source>Loading P2P addresses...</source>
@@ -3375,7 +3332,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Error: Disk space is too low!</source>
-        <translation>பிழை: டிஸ்க் ஸ்பேஸ் மிகக் குறைவு!</translation>
+        <translation>பிழை: டிஸ்க் ஸ்பேஸ் மிகக் குறைவாக உள்ளது!</translation>
     </message>
     <message>
         <source>Loading banlist...</source>
@@ -3386,8 +3343,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>போதுமான ஃபைல் டிஸ்கிரிப்டார் கிடைக்கவில்லை.</translation>
     </message>
     <message>
+        <source>Prune cannot be configured with a negative value.</source>
+        <translation>ப்ரூனை எதிர்மறை மதிப்புகளுடன் கட்டமைக்க முடியாது.</translation>
+    </message>
+    <message>
+        <source>Prune mode is incompatible with -txindex.</source>
+        <translation>ப்ரூன் பயன்முறை -txindex உடன் பொருந்தாது.</translation>
+    </message>
+    <message>
         <source>Replaying blocks...</source>
         <translation>பிளாக்குகள் மீண்டும் இயக்குகிறது...</translation>
+    </message>
+    <message>
+        <source>Rewinding blocks...</source>
+        <translation>பிளாக்குகள் ரீவைன்ட் செய்யப்படுகிறது...</translation>
     </message>
     <message>
         <source>The source code is available from %s.</source>
@@ -3400,6 +3369,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Unable to generate keys</source>
         <translation>கீஸை உருவாக்க முடியவில்லை</translation>
+    </message>
+    <message>
+        <source>Upgrading UTXO database</source>
+        <translation>UTXO தகவல்தளம் மேம்படுத்தப்படுகிறது</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -3418,6 +3391,50 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>டேட்டாபேசிலிருந்து படிப்பதில் பிழை, ஷட் டவுன் செய்யப்படுகிறது.</translation>
     </message>
     <message>
+        <source>Error upgrading chainstate database</source>
+        <translation>செயின்ஸ்டேட் தகவல்தளத்தை மேம்படுத்துவதில் பிழை</translation>
+    </message>
+    <message>
+        <source>Error: Disk space is low for %s</source>
+        <translation>பிழை: டிஸ்க் ஸ்பேஸ் %s க்கு குறைவாக உள்ளது</translation>
+    </message>
+    <message>
+        <source>Invalid -onion address or hostname: '%s'</source>
+        <translation>தவறான -onion முகவரி அல்லது ஹோஸ்ட்நேம்: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid -proxy address or hostname: '%s'</source>
+        <translation>தவறான -proxy முகவரி அல்லது ஹோஸ்ட்நேம்: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
+        <translation>-paytxfee க்கான தவறான தொகை=&lt;amount&gt;: '%s' (குறைந்தது %s ஆக இருக்க வேண்டும்)</translation>
+    </message>
+    <message>
+        <source>Prune mode is incompatible with -blockfilterindex.</source>
+        <translation>ப்ரூன் பயன்முறை -blockfilterindex உடன் பொருந்தாது.</translation>
+    </message>
+    <message>
+        <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
+        <translation>கணினி வரம்புகள் காரணமாக -maxconnections %d இலிருந்து %d ஆகக் குறைக்கப்படுகிறது.</translation>
+    </message>
+    <message>
+        <source>Section [%s] is not recognized.</source>
+        <translation>பிரிவு [%s] கண்டறியப்படவில்லை.</translation>
+    </message>
+    <message>
+        <source>Signing transaction failed</source>
+        <translation>கையொப்பமிடும் பரிவர்த்தனை தோல்வியடைந்தது</translation>
+    </message>
+    <message>
+        <source>Specified -walletdir "%s" does not exist</source>
+        <translation>குறிப்பிடப்பட்ட -walletdir "%s" இல்லை</translation>
+    </message>
+    <message>
+        <source>Specified -walletdir "%s" is not a directory</source>
+        <translation>குறிப்பிடப்பட்ட -walletdir "%s" ஒரு டைரக்டரி அல்ல</translation>
+    </message>
+    <message>
         <source>The transaction amount is too small to pay the fee</source>
         <translation>கட்டணம் செலுத்த பரிவர்த்தனை தொகை  மிகவும் குறைவு</translation>
     </message>
@@ -3434,8 +3451,44 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>பரிவர்த்தனை மிகப் பெரிது</translation>
     </message>
     <message>
+        <source>Unable to create the PID file '%s': %s</source>
+        <translation>PID பைலை உருவாக்க முடியவில்லை '%s': %s</translation>
+    </message>
+    <message>
+        <source>Unable to generate initial keys</source>
+        <translation>ஆரம்ப கீகளை உருவாக்க முடியவில்லை</translation>
+    </message>
+    <message>
+        <source>Verifying wallet(s)...</source>
+        <translation>வாலட்(களை) சரிபார்க்கிறது...</translation>
+    </message>
+    <message>
+        <source>Warning: unknown new rules activated (versionbit %i)</source>
+        <translation>எச்சரிக்கை: அறியப்படாத புதிய விதிகள் செயல்படுத்தப்பட்டன (வெர்ஷன்பிட் %i)</translation>
+    </message>
+    <message>
+        <source>Zapping all transactions from wallet...</source>
+        <translation>வாலாட்டிலிருந்து அனைத்து பரிவர்த்தனைகளையும் அழிக்கிறது...</translation>
+    </message>
+    <message>
+        <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
+        <translation>-maxtxfee மிக அதிகமாக அமைக்கப்பட்டுள்ளது! இவ்வாறு அதிகமுள்ள கட்டணம் ஒரே பரிவர்த்தனையில் செலுத்தப்படலாம்.</translation>
+    </message>
+    <message>
+        <source>This is the transaction fee you may pay when fee estimates are not available.</source>
+        <translation>கட்டண மதிப்பீடுகள் இல்லாதபோது நீங்கள் செலுத்த வேண்டிய பரிவர்த்தனைக் கட்டணம் இதுவாகும்.</translation>
+    </message>
+    <message>
         <source>%s is set very high!</source>
         <translation>%s மிக அதிகமாக அமைக்கப்பட்டுள்ளது!</translation>
+    </message>
+    <message>
+        <source>Starting network threads...</source>
+        <translation>நெட்ஒர்க் த்ரெட் ஆரம்பமாகிறது...</translation>
+    </message>
+    <message>
+        <source>This is the minimum transaction fee you pay on every transaction.</source>
+        <translation>ஒவ்வொரு பரிவர்த்தனைக்கும் நீங்கள் செலுத்த வேண்டிய குறைந்தபட்ச பரிவர்த்தனைக் கட்டணம் இதுவாகும்.</translation>
     </message>
     <message>
         <source>This is the transaction fee you will pay if you send a transaction.</source>
@@ -3454,8 +3507,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>போதுமான பணம் இல்லை</translation>
     </message>
     <message>
+        <source>Loading block index...</source>
+        <translation>பிளாக் குறியீடு லோட் செய்யபடுகிறது...</translation>
+    </message>
+    <message>
         <source>Loading wallet...</source>
         <translation>வாலட் லோடிங் செய்யப்படுகிறது...</translation>
+    </message>
+    <message>
+        <source>Cannot downgrade wallet</source>
+        <translation>வாலட்டை தரமிறக்க முடியாது</translation>
+    </message>
+    <message>
+        <source>Rescanning...</source>
+        <translation>ரீஸ்கேன்னிங்...</translation>
     </message>
     <message>
         <source>Done loading</source>

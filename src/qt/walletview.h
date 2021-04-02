@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +9,6 @@
 
 #include <QStackedWidget>
 
-class BitcoinGUI;
 class ClientModel;
 class OverviewPage;
 class PlatformStyle;
@@ -24,6 +23,9 @@ class SendToContract;
 class CallContract;
 class QRCToken;
 class StakePage;
+class DelegationPage;
+class SuperStakerPage;
+class WalletFrame;
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -44,7 +46,6 @@ public:
     explicit WalletView(const PlatformStyle *platformStyle, QWidget *parent);
     ~WalletView();
 
-    void setBitcoinGUI(BitcoinGUI *gui);
     /** Set the client model.
         The client model represents the part of the core that communicates with the P2P network, and is wallet-agnostic.
     */
@@ -75,13 +76,14 @@ private:
     CallContract* callContractPage;
     QRCToken* QRCTokenPage;
     StakePage *stakePage;
+    DelegationPage* delegationPage;
+    SuperStakerPage* superStakerPage;
 
     TransactionView *transactionView;
 
-    QProgressDialog *progressDialog;
+    QProgressDialog* progressDialog{nullptr};
     const PlatformStyle *platformStyle;
-
-    BitcoinGUI *gui;
+    WalletFrame *walletFrame;
 
 public Q_SLOTS:
     /** Switch to overview (home) page */
@@ -102,6 +104,10 @@ public Q_SLOTS:
     void gotoTokenPage();
     /** Switch to stake page */
     void gotoStakePage();
+    /** Switch to delegation page */
+    void gotoDelegationPage();
+    /** Switch to super staker page */
+    void gotoSuperStakerPage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -148,8 +154,8 @@ public Q_SLOTS:
     void requestedSyncWarningInfo();
 
 Q_SIGNALS:
-    /** Signal that we want to show the main window */
-    void showNormalIfMinimized();
+    void transactionClicked();
+    void coinsSent();
     /**  Fired when a message should be reported to the user */
     void message(const QString &title, const QString &message, unsigned int style);
     /** Encryption status of wallet changed */
@@ -162,6 +168,9 @@ Q_SIGNALS:
     void incomingTokenTransaction(const QString& date, const QString& amount, const QString& type, const QString& address, const QString& label, const QString& walletName, const QString& title);
     /** Notify that the out of sync warning icon has been pressed */
     void outOfSyncWarningClicked();
+    void showMore();
+    void sendCoins(QString addr = "");
+    void receiveCoins();
 };
 
 #endif // BITCOIN_QT_WALLETVIEW_H

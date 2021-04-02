@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,7 +20,6 @@
 #include <functional>
 #include <unordered_map>
 
-#ifdef ENABLE_BITCORE_RPC
 ////////////////////////////////////////////////////////////////// // qtum
 struct CSpentIndexKey {
     uint256 txid;
@@ -95,7 +94,6 @@ struct CSpentIndexValue {
     }
 };
 //////////////////////////////////////////////////////////////////
-#endif
 
 /**
  * A UTXO entry.
@@ -144,7 +142,7 @@ public:
         assert(!IsSpent());
         uint32_t code = (nHeight << 2) + (fCoinBase ? 1 : 0) + (fCoinStake ? 2 : 0);
         ::Serialize(s, VARINT(code));
-        ::Serialize(s, CTxOutCompressor(REF(out)));
+        ::Serialize(s, Using<TxOutCompression>(out));
     }
 
     template<typename Stream>
@@ -154,7 +152,7 @@ public:
         nHeight = code >> 2;
         fCoinBase = code & 1;
         fCoinStake = (code >> 1) & 1;
-        ::Unserialize(s, CTxOutCompressor(out));
+        ::Unserialize(s, Using<TxOutCompression>(out));
     }
 
     bool IsSpent() const {
@@ -386,9 +384,7 @@ public:
     //! Check whether all prevouts of the transaction are present in the UTXO set represented by this view
     bool HaveInputs(const CTransaction& tx) const;
 
-#ifdef ENABLE_BITCORE_RPC
     const CTxOut &GetOutputFor(const CTxIn& input) const;
-#endif
 
 private:
     /**

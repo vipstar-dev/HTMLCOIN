@@ -49,16 +49,19 @@ from test_framework.util import assert_equal
 from test_framework.qtumconfig import COINBASE_MATURITY
 import inspect
 
+
 class BaseNode(P2PInterface):
     def send_header_for_blocks(self, new_blocks):
         headers_message = msg_headers()
         headers_message.headers = [CBlockHeader(b) for b in new_blocks]
         self.send_message(headers_message)
 
+
 class AssumeValidTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
+        self.rpc_timeout = 120
         self.extra_args = [['-headerspamfilter=0']]*3
 
     def setup_network(self):
@@ -162,8 +165,8 @@ class AssumeValidTest(BitcoinTestFramework):
         self.nodes[0].disconnect_p2ps()
 
         # Start node1 and node2 with assumevalid so they accept a block with a bad signature.
-        self.start_node(1, extra_args=["-assumevalid=" + hex(block102.sha256)])
-        self.start_node(2, extra_args=["-assumevalid=" + hex(block102.sha256)])
+        self.start_node(1, extra_args=["-assumevalid=" + hex(block102.sha256)[2:]])
+        self.start_node(2, extra_args=["-assumevalid=" + hex(block102.sha256)[2:]])
 
         p2p0 = self.nodes[0].add_p2p_connection(BaseNode())
         p2p1 = self.nodes[1].add_p2p_connection(BaseNode())

@@ -27,8 +27,8 @@ from test_framework.util import (
     bytes_to_hex_str,
     try_rpc,
 )
-from test_framework.qtumconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
-from test_framework.qtum import convert_btc_address_to_qtum 
+from test_framework.qtumconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD, ENABLE_REDUCED_BLOCK_TIME, MAX_BLOCK_BASE_SIZE, MAX_BLOCK_SIGOPS, FACTOR_REDUCED_BLOCK_TIME
+from test_framework.qtum import convert_btc_address_to_qtum, generatesynchronized
 
 NODE_0 = 0
 NODE_2 = 2
@@ -64,23 +64,24 @@ class SegWitTest(BitcoinTestFramework):
             [
                 "-acceptnonstdtxn=1",
                 "-rpcserialversion=0",
-                "-segwitheight=864",
+                "-segwitheight=2364" if ENABLE_REDUCED_BLOCK_TIME else "-segwitheight=864",
                 "-addresstype=legacy",
             ],
             [
                 "-acceptnonstdtxn=1",
                 "-blockversion=4",
                 "-rpcserialversion=1",
-                "-segwitheight=864",
+                "-segwitheight=2364" if ENABLE_REDUCED_BLOCK_TIME else "-segwitheight=864",
                 "-addresstype=legacy",
             ],
             [
                 "-acceptnonstdtxn=1",
                 "-blockversion=536870915",
-                "-segwitheight=864",
+                "-segwitheight=2364" if ENABLE_REDUCED_BLOCK_TIME else "-segwitheight=864",
                 "-addresstype=legacy",
             ],
         ]
+        self.rpc_timeout = 120
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -107,29 +108,24 @@ class SegWitTest(BitcoinTestFramework):
 
     def run_test(self):
         self.nodes[0].generate(161)  # block 161
-        for i in range(4*144 - 161):
+        for i in range((4*4*144 if ENABLE_REDUCED_BLOCK_TIME else 4*144) - 161):
             block = create_block(int(self.nodes[0].getbestblockhash(), 16), create_coinbase(self.nodes[0].getblockcount() + 1), int(time.time())+2+i)
             block.nVersion = 4
             block.hashMerkleRoot = block.calc_merkle_root()
             block.rehash()
             block.solve()
             self.nodes[0].submitblock(bytes_to_hex_str(block.serialize()))
-        self.nodes[0].generate(17)
+        generatesynchronized(self.nodes[0], 17, None, self.nodes)
 
         self.log.info("Verify sigops are counted in GBT with pre-BIP141 rules before the fork")
         txid = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), 1)
         tmpl = self.nodes[0].getblocktemplate({'rules': ['segwit']})
-        assert tmpl['sizelimit'] == 2000000
+        assert tmpl['sizelimit'] == MAX_BLOCK_BASE_SIZE
         assert 'weightlimit' not in tmpl
-        assert tmpl['sigoplimit'] == 20000
+        assert tmpl['sigoplimit'] == MAX_BLOCK_SIGOPS
         assert tmpl['transactions'][0]['hash'] == txid
         assert tmpl['transactions'][0]['sigops'] == 2
-        tmpl = self.nodes[0].getblocktemplate({'rules': ['segwit']})
-        assert tmpl['sizelimit'] == 2000000
-        assert 'weightlimit' not in tmpl
-        assert tmpl['sigoplimit'] == 20000
-        assert tmpl['transactions'][0]['hash'] == txid
-        assert tmpl['transactions'][0]['sigops'] == 2
+        assert '!segwit' not in tmpl['rules']
         self.nodes[0].generate(1)  # block 162
 
         balance_presetup = self.nodes[0].getbalance()
@@ -160,11 +156,11 @@ class SegWitTest(BitcoinTestFramework):
         self.sync_blocks()
 
         # Make sure all nodes recognize the transactions as theirs
-        assert_equal(self.nodes[0].getbalance(), balance_presetup - 60*INITIAL_BLOCK_REWARD + 20*(INITIAL_BLOCK_REWARD - Decimal("0.001")) + INITIAL_BLOCK_REWARD)
+        assert_equal(self.nodes[0].getbalance(), balance_presetup - 60*INITIAL_BLOCK_REWARD + 20*(INITIAL_BLOCK_REWARD - Decimal("0.001")) + (0 if ENABLE_REDUCED_BLOCK_TIME else INITIAL_BLOCK_REWARD))
         assert_equal(self.nodes[1].getbalance(), 20*(INITIAL_BLOCK_REWARD - Decimal("0.001")))
         assert_equal(self.nodes[2].getbalance(), 20*(INITIAL_BLOCK_REWARD - Decimal("0.001")))
 
-        self.nodes[0].generate(260)  # block 423
+        self.nodes[0].generate(32 if ENABLE_REDUCED_BLOCK_TIME else 260)  # block 423
         self.sync_blocks()
 
         self.log.info("Verify witness txs are skipped for mining before the fork")
@@ -176,8 +172,10 @@ class SegWitTest(BitcoinTestFramework):
         self.log.info("Verify unsigned p2sh witness txs without a redeem script are invalid")
         self.fail_accept(self.nodes[2], "mandatory-script-verify-flag", p2sh_ids[NODE_2][WIT_V0][1], False)
         self.fail_accept(self.nodes[2], "mandatory-script-verify-flag", p2sh_ids[NODE_2][WIT_V1][1], False)
+        self.sync_blocks()
 
         self.nodes[2].generate(4)  # blocks 428-431
+        self.sync_blocks()
 
         self.log.info("Verify previous witness txs skipped for mining can now be mined")
         assert_equal(len(self.nodes[2].getrawmempool()), 4)
@@ -210,10 +208,10 @@ class SegWitTest(BitcoinTestFramework):
             assert self.nodes[0].getrawtransaction(tx_id, False, blockhash) == tx.serialize_without_witness().hex()
 
         self.log.info("Verify witness txs without witness data are invalid after the fork")
-        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program hash mismatch) (code 64)', wit_ids[NODE_2][WIT_V0][2], sign=False)
-        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program was passed an empty witness) (code 64)', wit_ids[NODE_2][WIT_V1][2], sign=False)
-        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program hash mismatch) (code 64)', p2sh_ids[NODE_2][WIT_V0][2], sign=False, redeem_script=witness_script(False, self.pubkey[2]))
-        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program was passed an empty witness) (code 64)', p2sh_ids[NODE_2][WIT_V1][2], sign=False, redeem_script=witness_script(True, self.pubkey[2]))
+        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program hash mismatch)', wit_ids[NODE_2][WIT_V0][2], sign=False)
+        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program was passed an empty witness)', wit_ids[NODE_2][WIT_V1][2], sign=False)
+        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program hash mismatch)', p2sh_ids[NODE_2][WIT_V0][2], sign=False, redeem_script=witness_script(False, self.pubkey[2]))
+        self.fail_accept(self.nodes[2], 'non-mandatory-script-verify-flag (Witness program was passed an empty witness)', p2sh_ids[NODE_2][WIT_V1][2], sign=False, redeem_script=witness_script(True, self.pubkey[2]))
 
         self.log.info("Verify default node can now use witness txs")
         self.success_mine(self.nodes[0], wit_ids[NODE_0][WIT_V0][0], True)  # block 432
@@ -224,11 +222,12 @@ class SegWitTest(BitcoinTestFramework):
         self.log.info("Verify sigops are counted in GBT with BIP141 rules after the fork")
         txid = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), 1)
         tmpl = self.nodes[0].getblocktemplate({'rules': ['segwit']})
-        assert tmpl['sizelimit'] >= 7999577  # actual maximum size is lower due to minimum mandatory non-witness data
-        assert tmpl['weightlimit'] == 8000000
-        assert tmpl['sigoplimit'] == 80000
+        assert tmpl['sizelimit'] >= 7999577/FACTOR_REDUCED_BLOCK_TIME  # actual maximum size is lower due to minimum mandatory non-witness data
+        assert tmpl['weightlimit'] == 8000000//FACTOR_REDUCED_BLOCK_TIME
+        assert tmpl['sigoplimit'] == 80000//FACTOR_REDUCED_BLOCK_TIME
         assert tmpl['transactions'][0]['txid'] == txid
         assert tmpl['transactions'][0]['sigops'] == 8
+        assert '!segwit' in tmpl['rules']
 
         self.nodes[0].generate(1)  # Mine a block to clear the gbt cache
 

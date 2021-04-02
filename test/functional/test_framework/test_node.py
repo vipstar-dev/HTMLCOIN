@@ -30,8 +30,10 @@ from .util import (
     rpc_url,
     wait_until,
     p2p_port,
+    EncodeDecimal,
 )
 from .qtum import convert_btc_address_to_qtum
+from .qtumconfig import ENABLE_REDUCED_BLOCK_TIME
 
 BITCOIND_PROC_WAIT_TIMEOUT = 60
 
@@ -60,7 +62,7 @@ class TestNode():
     To make things easier for the test writer, any unrecognised messages will
     be dispatched to the RPC connection."""
 
-    def __init__(self, i, datadir, *, chain, rpchost, timewait, bitcoind, bitcoin_cli, coverage_dir, cwd, extra_conf=None, extra_args=None, use_cli=False, start_perf=False, enable_wallet=False):
+    def __init__(self, i, datadir, *, chain, rpchost, timewait, bitcoind, bitcoin_cli, coverage_dir, cwd, extra_conf=None, extra_args=None, use_cli=False, start_perf=False, use_valgrind=False, version=None, enable_wallet=False):
         """
         Kwargs:
             start_perf (bool): If True, begin profiling the node with `perf` as soon as
@@ -85,6 +87,7 @@ class TestNode():
         # For those callers that need more flexibility, they can just set the args property directly.
         # Note that common args are set in the config file (see initialize_datadir)
         self.extra_args = extra_args
+        self.version = version
         # Configuration for logging is set as command-line args rather than in the bitcoin.conf file.
         # This means that starting a bitcoind using the temp dir to debug a failed test won't
         # spam debug.log.
@@ -92,12 +95,23 @@ class TestNode():
             self.binary,
             "-datadir=" + self.datadir,
             "-logtimemicros",
-            "-logthreadnames",
             "-debug",
             "-debugexclude=libevent",
             "-debugexclude=leveldb",
             "-uacomment=testnode%d" % i,
         ]
+        if use_valgrind:
+            default_suppressions_file = os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "..", "..", "..", "contrib", "valgrind.supp")
+            suppressions_file = os.getenv("VALGRIND_SUPPRESSIONS_FILE",
+                                          default_suppressions_file)
+            self.args = ["valgrind", "--suppressions={}".format(suppressions_file),
+                         "--gen-suppressions=all", "--exit-on-first-error=yes",
+                         "--error-exitcode=1", "--quiet"] + self.args
+
+        if self.version is None or self.version >= 190000:
+            self.args.append("-logthreadnames")
 
         self.cli = TestNodeCLI(bitcoin_cli, self.datadir)
         self.use_cli = use_cli
@@ -136,25 +150,6 @@ class TestNode():
         """Return a deterministic priv key in base58, that only depends on the node's index"""
         assert len(self.PRIV_KEYS) == MAX_NODES
         return self.PRIV_KEYS[self.index]
-
-    def get_mem_rss_kilobytes(self):
-        """Get the memory usage (RSS) per `ps`.
-
-        Returns None if `ps` is unavailable.
-        """
-        assert self.running
-
-        try:
-            return int(subprocess.check_output(
-                ["ps", "h", "-o", "rss", "{}".format(self.process.pid)],
-                stderr=subprocess.DEVNULL).split()[-1])
-
-        # Avoid failing on platforms where ps isn't installed.
-        #
-        # We could later use something like `psutils` to work across platforms.
-        except (FileNotFoundError, subprocess.SubprocessError):
-            self.log.exception("Unable to get memory usage")
-            return None
 
     def _node_msg(self, msg: str) -> str:
         """Return a modified msg that identifies this node by its index as a debugging aid."""
@@ -209,6 +204,12 @@ class TestNode():
         if self.enable_wallet and not any(arg.startswith('-staking=') for arg in extra_args):
             extra_args.append('-staking=0')
 
+        if not ENABLE_REDUCED_BLOCK_TIME and not any(arg.startswith('-reduceblocktimeheight=') for arg in extra_args):
+            extra_args.append('-reduceblocktimeheight=10000000')
+
+        if self.enable_wallet and not any(arg.startswith('-offlinestakingheight=') for arg in extra_args):
+            extra_args.append('-offlinestakingheight=1')
+
         # Disable the spam filter as it may interfere with come tests sending lots and lots of blocks
         if not any(arg.startswith('-headerspamfilter') for arg in extra_args):
             extra_args.append('-headerspamfilter=0')
@@ -223,32 +224,14 @@ class TestNode():
 
     def wait_for_rpc_connection(self):
         """Sets up an RPC connection to the bitcoind process. Returns False if unable to connect."""
-        # Wait until the debug log prints that the init process is done and a cookie auth file exists 
-        # OR that the process has stopped before proceeding to prevent race conditions
-        # Times out after 10 seconds.
-        cookiefile = os.path.join(self.datadir, self.chain, ".cookie")
-        debuglog_init_done_msg = "init message: Done loading"
-
-        for i in range(1000):
-            try:
-                with open(os.path.join(self.datadir, self.chain, "debug.log"), 'r') as f:
-                    last_init_section = f.read().split('\n\n\n\n')[-1]
-                    if os.path.exists(cookiefile) and debuglog_init_done_msg in last_init_section or self.process.poll() is not None:
-                        break
-            except Exception as e:
-                pass
-            time.sleep(0.01)
-
-
-
         # Poll at a rate of four times per second
         poll_per_s = 4
         for _ in range(poll_per_s * self.rpc_timeout):
             if self.process.poll() is not None:
                 raise FailedToStartError(self._node_msg(
                     'bitcoind exited with status {} during initialization'.format(self.process.returncode)))
-            rpc = get_rpc_proxy(rpc_url(self.datadir, self.index, self.chain, self.rpchost), self.index, timeout=self.rpc_timeout, coveragedir=self.coverage_dir)
             try:
+                rpc = get_rpc_proxy(rpc_url(self.datadir, self.index, self.chain, self.rpchost), self.index, timeout=self.rpc_timeout, coveragedir=self.coverage_dir)
                 rpc.getblockcount()
                 # If the call to getblockcount() succeeds then the RPC connection is up
                 self.log.debug("RPC successfully started")
@@ -266,6 +249,10 @@ class TestNode():
                 # -342 Service unavailable, RPC server started but is shutting down due to error
                 if e.error['code'] != -28 and e.error['code'] != -342:
                     raise  # unknown JSON RPC exception
+            except ConnectionResetError:
+                # This might happen when the RPC server is in warmup, but shut down before the call to getblockcount
+                # succeeds. Try again to properly raise the FailedToStartError
+                pass
             except ValueError as e:  # cookie file not found and no rpcuser or rpcassword. bitcoind still starting
                 if "No RPC credentials" not in str(e):
                     raise
@@ -290,7 +277,11 @@ class TestNode():
             return
         self.log.debug("Stopping node")
         try:
-            self.stop(wait=wait)
+            # Do not use wait argument when testing older nodes, e.g. in feature_backwards_compatibility.py
+            if self.version is None or self.version >= 180000:
+                self.stop(wait=wait)
+            else:
+                self.stop()
         except http.client.CannotSendRequest:
             self.log.exception("Unable to stop node.")
 
@@ -334,7 +325,9 @@ class TestNode():
         wait_until(self.is_node_stopped, timeout=timeout)
 
     @contextlib.contextmanager
-    def assert_debug_log(self, expected_msgs, timeout=2):
+    def assert_debug_log(self, expected_msgs, unexpected_msgs=None, timeout=2):
+        if unexpected_msgs is None:
+            unexpected_msgs = []
         time_end = time.time() + timeout
         debug_log = os.path.join(self.datadir, self.chain, 'debug.log')
         with open(debug_log, encoding='utf-8') as dl:
@@ -349,6 +342,9 @@ class TestNode():
                 dl.seek(prev_size)
                 log = dl.read()
             print_log = " - " + "\n - ".join(log.splitlines())
+            for unexpected_msg in unexpected_msgs:
+                if re.search(re.escape(unexpected_msg), log, flags=re.MULTILINE):
+                    self._raise_assertion_error('Unexpected message "{}" partially matches log:\n\n{}\n\n'.format(unexpected_msg, print_log))
             for expected_msg in expected_msgs:
                 if re.search(re.escape(expected_msg), log, flags=re.MULTILINE) is None:
                     found = False
@@ -358,33 +354,6 @@ class TestNode():
                 break
             time.sleep(0.05)
         self._raise_assertion_error('Expected messages "{}" does not partially match log:\n\n{}\n\n'.format(str(expected_msgs), print_log))
-
-    @contextlib.contextmanager
-    def assert_memory_usage_stable(self, *, increase_allowed=0.03):
-        """Context manager that allows the user to assert that a node's memory usage (RSS)
-        hasn't increased beyond some threshold percentage.
-
-        Args:
-            increase_allowed (float): the fractional increase in memory allowed until failure;
-                e.g. `0.12` for up to 12% increase allowed.
-        """
-        before_memory_usage = self.get_mem_rss_kilobytes()
-
-        yield
-
-        after_memory_usage = self.get_mem_rss_kilobytes()
-
-        if not (before_memory_usage and after_memory_usage):
-            self.log.warning("Unable to detect memory usage (RSS) - skipping memory check.")
-            return
-
-        perc_increase_memory_usage = (after_memory_usage / before_memory_usage) - 1
-
-        if perc_increase_memory_usage > increase_allowed:
-            self._raise_assertion_error(
-                "Memory usage increased over threshold of {:.3f}% from {} to {} ({:.3f}%)".format(
-                    increase_allowed * 100, before_memory_usage, after_memory_usage,
-                    perc_increase_memory_usage * 100))
 
     @contextlib.contextmanager
     def profile_with_perf(self, profile_name):
@@ -519,7 +488,19 @@ class TestNode():
         p2p_conn.peer_connect(**kwargs, net=self.chain)()
         self.p2ps.append(p2p_conn)
         if wait_for_verack:
+            # Wait for the node to send us the version and verack
             p2p_conn.wait_for_verack()
+            # At this point we have sent our version message and received the version and verack, however the full node
+            # has not yet received the verack from us (in reply to their version). So, the connection is not yet fully
+            # established (fSuccessfullyConnected).
+            #
+            # This shouldn't lead to any issues when sending messages, since the verack will be in-flight before the
+            # message we send. However, it might lead to races where we are expecting to receive a message. E.g. a
+            # transaction that will be added to the mempool as soon as we return here.
+            #
+            # So syncing here is redundant when we only want to send a message, but the cost is low (a few milliseconds)
+            # in comparision to the upside of making tests less fragile and unexpected intermittent errors less likely.
+            p2p_conn.sync_with_ping()
 
         return p2p_conn
 
@@ -538,6 +519,7 @@ class TestNode():
             p.peer_disconnect()
         del self.p2ps[:]
 
+
 class TestNodeCLIAttr:
     def __init__(self, cli, command):
         self.cli = cli
@@ -549,13 +531,15 @@ class TestNodeCLIAttr:
     def get_request(self, *args, **kwargs):
         return lambda: self(*args, **kwargs)
 
+
 def arg_to_cli(arg):
     if isinstance(arg, bool):
         return str(arg).lower()
     elif isinstance(arg, dict) or isinstance(arg, list):
-        return json.dumps(arg)
+        return json.dumps(arg, default=EncodeDecimal)
     else:
         return str(arg)
+
 
 class TestNodeCLI():
     """Interface to bitcoin-cli for an individual node"""

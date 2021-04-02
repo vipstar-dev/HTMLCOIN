@@ -5437,9 +5437,9 @@ bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, BlockValidationS
         {
             int nHeight = pindexPrev->nHeight + 1;
 
-            // Reject proof of stake before height COINBASE_MATURITY
-            if (nHeight < COINBASE_MATURITY)
-                return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, false, REJECT_INVALID, "reject-pos", strprintf("reject proof-of-stake at height %d", nHeight));
+            // Reject proof of stake before height
+            if (nHeight < Params().GetConsensus().CoinbaseMaturity(nHeight))
+                return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "reject-pos", strprintf("reject proof-of-stake at height %d", nHeight));
 
             // Check coin stake timestamp
             if(!CheckCoinStakeTimestamp(block.nTime, nHeight, chainparams.GetConsensus()))

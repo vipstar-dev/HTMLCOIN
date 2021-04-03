@@ -66,12 +66,12 @@
         <translation>Prijímajúce adresy</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto sú Vaše Qtum adresy pre posielanie platieb. Vždy skontrolujte sumu a prijímaciu adresu pred poslaním mincí.</translation>
+        <source>These are your HTML addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto sú Vaše HTMLCOIN adresy pre posielanie platieb. Vždy skontrolujte sumu a prijímaciu adresu pred poslaním mincí.</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Toto sú vaše Qtum adresy pre prijímanie platieb. Pre vytvorenie nových adries použite tlačidlo 'Vytvoriť novú prijímajúcu adresu' na karte Prijať.</translation>
+        <source>These are your HTML addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Toto sú vaše HTMLCOIN adresy pre prijímanie platieb. Pre vytvorenie nových adries použite tlačidlo 'Vytvoriť novú prijímajúcu adresu' na karte Prijať.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -188,8 +188,8 @@
         <translation>Zadajte starú a novú frázu pre túto peňaženku.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
-        <translation>Pamätajte, že zašifrovanie peňaženky neochráni úplne vaše qtumy pred ukradnutím škodlivými programami vo vašom počítači.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your HTML from being stolen by malware infecting your computer.</source>
+        <translation>Pamätajte, že zašifrovanie peňaženky neochráni úplne vaše HTMLCOINy pred ukradnutím škodlivými programami vo vašom počítači.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -252,7 +252,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Podpísať &amp;správu...</translation>
@@ -362,8 +362,8 @@
         <translation>Proxy je &lt;b&gt;zapnuté&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
-        <translation>Poslať qtums na adresu</translation>
+        <source>Send coins to a HTML address</source>
+        <translation>Poslať HTMLCOIN na adresu</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -398,12 +398,12 @@
         <translation>Zašifruj súkromné kľúče ktoré patria do vašej peňaženky</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
-        <translation>Podpísať správu s vašou adresou Qtum aby ste preukázali že ju vlastníte</translation>
+        <source>Sign messages with your HTML addresses to prove you own them</source>
+        <translation>Podpísať správu s vašou adresou HTMLCOIN aby ste preukázali že ju vlastníte</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
-        <translation>Overiť či správa bola podpísaná uvedenou Qtum adresou</translation>
+        <source>Verify messages to ensure they were signed with specified HTML addresses</source>
+        <translation>Overiť či správa bola podpísaná uvedenou HTMLCOIN adresou</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -422,8 +422,8 @@
         <translation>Lišta záložiek</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Vyžiadať platby (vygeneruje QR kódy a qtum: URI)</translation>
+        <source>Request payments (generates QR codes and htmlcoin: URIs)</source>
+        <translation>Vyžiadať platby (vygeneruje QR kódy a htmlcoin: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -438,8 +438,8 @@
         <translation>&amp;Možnosti príkazového riadku</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
-        <translation><numerusform>%n aktívne pripojenie do siete Qtum</numerusform><numerusform>%n aktívne pripojenia do siete Qtum</numerusform><numerusform>%n aktívnych pripojení do siete Qtum</numerusform><numerusform>%n aktívnych pripojení do siete Qtum</numerusform></translation>
+        <source>%n active connection(s) to HTMLCOIN network</source>
+        <translation><numerusform>%n aktívne pripojenie do siete HTMLCOIN</numerusform><numerusform>%n aktívne pripojenia do siete HTMLCOIN</numerusform><numerusform>%n aktívnych pripojení do siete HTMLCOIN</numerusform><numerusform>%n aktívnych pripojení do siete HTMLCOIN</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -518,8 +518,8 @@
         <translation>Zatvoriť peňaženku</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
-        <translation>Ukáž %1 zoznam možných nastavení Qtumu pomocou príkazového riadku</translation>
+        <source>Show the %1 help message to get a list with possible HTMLCOIN command-line options</source>
+        <translation>Ukáž %1 zoznam možných nastavení HTMLCOINu pomocou príkazového riadku</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -630,8 +630,8 @@
         <translation>Peňaženka je &lt;b&gt;zašifrovaná&lt;/b&gt; a momentálne &lt;b&gt;zamknutá&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
-        <translation>Vyskytla sa kritická chyba. Qtum nemôže ďalej bezpečne pokračovať a ukončí sa.</translation>
+        <source>A fatal error occurred. HTMLCOIN can no longer continue safely and will quit.</source>
+        <translation>Vyskytla sa kritická chyba. HTMLCOIN nemôže ďalej bezpečne pokračovať a ukončí sa.</translation>
     </message>
 </context>
 <context>
@@ -874,8 +874,8 @@
         <translation>Upraviť odosielaciu adresu</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Qtum address.</source>
-        <translation>Vložená adresa "%1" nieje platnou adresou Qtum.</translation>
+        <source>The entered address "%1" is not a valid HTML address.</source>
+        <translation>Vložená adresa "%1" nieje platnou adresou HTMLCOIN.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -971,8 +971,8 @@
         <translation>Použiť vlastný dátový adresár:</translation>
     </message>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>HTMLCOIN</source>
+        <translation>HTMLCOIN</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -987,7 +987,7 @@
         <translation>Približne %1 GB dát bude uložených v tejto zložke.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Qtum block chain.</source>
+        <source>%1 will download and store a copy of the HTMLCOIN block chain.</source>
         <translation>%1 bude sťahovať kopiu reťazca blokov.</translation>
     </message>
     <message>
@@ -1022,12 +1022,12 @@
         <translation>Formulár</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the qtum network, as detailed below.</source>
-        <translation>Nedávne transakcie nemusia byť ešte viditeľné preto môže byť zostatok vo vašej peňaženke nesprávny. Táto informácia bude správna keď sa dokončí synchronizovanie peňaženky so sieťou qtum, ako je rozpísané nižšie.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HTMLCOIN network, as detailed below.</source>
+        <translation>Nedávne transakcie nemusia byť ešte viditeľné preto môže byť zostatok vo vašej peňaženke nesprávny. Táto informácia bude správna keď sa dokončí synchronizovanie peňaženky so sieťou HTMLCOIN, ako je rozpísané nižšie.</translation>
     </message>
     <message>
-        <source>Attempting to spend qtums that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Pokus o minutie qtumov, ktoré sú ovplyvnené ešte nezobrazenými transakciami, nebude sieťou akceptovaný.</translation>
+        <source>Attempting to spend HTMLCOIN that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Pokus o minutie HTMLCOINov, ktoré sú ovplyvnené ešte nezobrazenými transakciami, nebude sieťou akceptovaný.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1223,8 +1223,8 @@
         <translation>&amp;Minúť nepotvrdený výdavok</translation>
     </message>
     <message>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automaticky otvorit port pre Qtum na routeri. Toto funguje len ak router podporuje UPnP a je táto podpora aktivovaná.</translation>
+        <source>Automatically open the HTMLCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automaticky otvorit port pre HTMLCOIN na routeri. Toto funguje len ak router podporuje UPnP a je táto podpora aktivovaná.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1239,8 +1239,8 @@
         <translation>Povoliť prichá&amp;dzajúce spojenia</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
-        <translation>Pripojiť do siete Qtum cez proxy server SOCKS5.</translation>
+        <source>Connect to the HTMLCOIN network through a SOCKS5 proxy.</source>
+        <translation>Pripojiť do siete HTMLCOIN cez proxy server SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1275,8 +1275,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Pripojiť k Qtumovej sieti cez separované SOCKS5 proxy pre skrytú službu Tor.</translation>
+        <source>Connect to the HTMLCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Pripojiť k HTMLCOINovej sieti cez separované SOCKS5 proxy pre skrytú službu Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1312,7 +1312,7 @@
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Zvoľte ako deliť qtum pri zobrazovaní pri platbách a užívateľskom rozhraní.</translation>
+        <translation>Zvoľte ako deliť HTMLCOIN pri zobrazovaní pri platbách a užívateľskom rozhraní.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1386,8 +1386,8 @@
         <translation>Formulár</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
-        <translation>Zobrazené informácie môžu byť neaktuálne. Vaša peňaženka sa automaticky synchronizuje so sieťou Qtum po nadviazaní spojenia, ale tento proces ešte nie je ukončený.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>Zobrazené informácie môžu byť neaktuálne. Vaša peňaženka sa automaticky synchronizuje so sieťou HTMLCOIN po nadviazaní spojenia, ale tento proces ešte nie je ukončený.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1461,16 +1461,16 @@
         <translation>Chyba pri vyžiadaní platby</translation>
     </message>
     <message>
-        <source>Cannot start qtum: click-to-pay handler</source>
-        <translation>Nemôžeme spustiť Qtum: obsluha click-to-pay</translation>
+        <source>Cannot start htmlcoin: click-to-pay handler</source>
+        <translation>Nemôžeme spustiť htmlcoin: obsluha click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>URI manipulácia</translation>
     </message>
     <message>
-        <source>'qtum://' is not a valid URI. Use 'qtum:' instead.</source>
-        <translation>'qtum://' je neplatná URI. Použite 'qtum:'</translation>
+        <source>'htmlcoin://' is not a valid URI. Use 'htmlcoin:' instead.</source>
+        <translation>'htmlcoin://' je neplatná URI. Použite 'htmlcoin:'</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.</source>
@@ -1489,8 +1489,8 @@
         <translation>Neplatná adresa platby %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
-        <translation>URI sa nedá analyzovať! To môže byť spôsobené neplatnou Qtum adresou alebo zle nastavenými vlastnosťami URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid HTML address or malformed URI parameters.</source>
+        <translation>URI sa nedá analyzovať! To môže byť spôsobené neplatnou HTMLCOIN adresou alebo zle nastavenými vlastnosťami URI.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1531,8 +1531,8 @@
         <translation>Suma</translation>
     </message>
     <message>
-        <source>Enter a Qtum address (e.g. %1)</source>
-        <translation>Zadajte qtum adresu (napr. %1)</translation>
+        <source>Enter a HTML address (e.g. %1)</source>
+        <translation>Zadajte HTMLCOIN adresu (napr. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2001,8 +2001,8 @@
         <translation>&amp;Správa:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
-        <translation>Pridať voliteľnú správu k výzve na zaplatenie, ktorá sa zobrazí keď bude výzva otvorená. Poznámka: Správa nebude poslaná s platbou cez sieť Qtum.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the HTMLCOIN network.</source>
+        <translation>Pridať voliteľnú správu k výzve na zaplatenie, ktorá sa zobrazí keď bude výzva otvorená. Poznámka: Správa nebude poslaná s platbou cez sieť HTMLCOIN.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2042,7 +2042,7 @@
     </message>
     <message>
         <source>Generate native segwit (Bech32) address</source>
-        <translation>Generovať natívnu segwit adresu (Bech32)</translation>
+        <translation>Generovať natívnu segwit adresu (Bech32)</translation>
     </message>
     <message>
         <source>Requested payments history</source>
@@ -2167,7 +2167,7 @@
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Poslať Qtums</translation>
+        <translation>Poslať HTMLCOIN</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2466,8 +2466,8 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok o hodnote "100 sato
         <translation><numerusform>Odhadovaný začiatok potvrdzovania po %n bloku.</numerusform><numerusform>Odhadovaný začiatok potvrdzovania po %n blokoch.</numerusform><numerusform>Odhadovaný začiatok potvrdzovania po %n blokoch.</numerusform><numerusform>Odhadovaný začiatok potvrdzovania po %n blokoch.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Qtum address</source>
-        <translation>Varovanie: Neplatná Qtum adresa</translation>
+        <source>Warning: Invalid HTML address</source>
+        <translation>Varovanie: Neplatná HTMLCOIN adresa</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2557,8 +2557,8 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok o hodnote "100 sato
         <translation>Vložte popis pre túto adresu aby sa uložila do zoznamu použitých adries</translation>
     </message>
     <message>
-        <source>A message that was attached to the qtum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
-        <translation>Správa ktorá bola pripojená k qtum: URI a ktorá bude uložená s transakcou pre Vaše potreby. Poznámka: Táto správa nebude poslaná cez sieť Qtum.</translation>
+        <source>A message that was attached to the htmlcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HTMLCOIN network.</source>
+        <translation>Správa ktorá bola pripojená k htmlcoin: URI a ktorá bude uložená s transakcou pre Vaše potreby. Poznámka: Táto správa nebude poslaná cez sieť HTMLCOIN.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2591,12 +2591,12 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok o hodnote "100 sato
         <translation>&amp;Podpísať Správu</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive qtums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive HTMLCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Môžete podpísať správy svojou adresou a dokázať, že viete prijímať mince zaslané na túto adresu. Buďte však opatrní a podpíšte len podrobné prehlásenia, s ktorými plne súhlasíte, nakoľko útoky typu "phishing" Vás môžu lákať k podpísaniu nejasných alebo príliš všeobecných tvrdení čím prevezmú vašu identitu.</translation>
     </message>
     <message>
-        <source>The Qtum address to sign the message with</source>
-        <translation>Qtum adresa pre podpísanie správy s</translation>
+        <source>The HTML address to sign the message with</source>
+        <translation>HTMLCOIN adresa pre podpísanie správy s</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2627,7 +2627,7 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok o hodnote "100 sato
         <translation>Kopírovať tento podpis do systémovej schránky</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Qtum address</source>
+        <source>Sign the message to prove you own this HTML address</source>
         <translation>Podpíšte správu aby ste dokázali že vlastníte túto adresu</translation>
     </message>
     <message>
@@ -2651,8 +2651,8 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok o hodnote "100 sato
         <translation>Vložte adresu príjemcu, správu (uistite sa, že presne kopírujete ukončenia riadkov, medzery, odrážky, atď.) a podpis pre potvrdenie správy. Buďte opatrní a nedomýšľajte si viac než je uvedené v samotnej podpísanej správe a môžete sa tak vyhnúť podvodu MITM útokom. Toto len potvrdzuje, že podpisujúca strana môže prijímať na tejto adrese, nepotvrdzuje to vlastníctvo žiadnej transakcie!</translation>
     </message>
     <message>
-        <source>The Qtum address the message was signed with</source>
-        <translation>Adresa Qtum, ktorou bola podpísaná správa</translation>
+        <source>The HTML address the message was signed with</source>
+        <translation>Adresa HTMLCOIN, ktorou bola podpísaná správa</translation>
     </message>
     <message>
         <source>The signed message to verify</source>

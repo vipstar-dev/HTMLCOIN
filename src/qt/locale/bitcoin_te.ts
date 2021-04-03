@@ -66,7 +66,7 @@
         <translation>అందుకునే చిరునామాలు</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your HTML addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>ఇవి మీరు పంపే చెల్లింపుల బిట్‌కాయిన్ చిరునామాలు. నాణేలు పంపే ముందు ప్రతిసారి అందుకునే చిరునామా మరియు చెల్లింపు మొత్తం సరిచూసుకోండి.</translation>
     </message>
     <message>
@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>మీరు ఖచ్చితంగా మీ జోలెని సంకేతపరచాలని కోరుకుంటున్నారా?</translation>
+        <translation>మీరు ఖచ్చితంగా మీ జోలెని సంకేతపరచాలని కోరుకుంటున్నారా?</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -168,7 +168,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>E&amp;xit</source>
         <translation>నిష్క్రమించు</translation>
@@ -235,7 +235,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Qtum</source>
+        <source>HTMLCOIN</source>
         <translation>బిట్కోయిన్</translation>
     </message>
     <message>

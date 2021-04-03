@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.qtum.Qtum-Qt";
+        return @"jp.vipstarcoin.VIPSTARCOIN-Qt";
     } else {
         return [self __bundleIdentifier];
     }

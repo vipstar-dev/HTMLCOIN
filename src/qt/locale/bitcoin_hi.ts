@@ -252,7 +252,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>हस्ताक्षर और संदेश ...</translation>
@@ -436,7 +436,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Qtum</source>
+        <source>HTMLCOIN</source>
         <translation>बीटकोइन</translation>
     </message>
     <message>

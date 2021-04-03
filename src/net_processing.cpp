@@ -9,6 +9,7 @@
 #include <banman.h>
 #include <blockencodings.h>
 #include <chainparams.h>
+#include <checkpointsync.h>
 #include <consensus/validation.h>
 #include <hash.h>
 #include <validation.h>
@@ -35,7 +36,7 @@
 #include <typeinfo>
 
 #if defined(NDEBUG)
-# error "Qtum cannot be compiled without assertions."
+# error "HTMLCOIN cannot be compiled without assertions."
 #endif
 
 /** Expiration time for orphan transactions in seconds */
@@ -2257,6 +2258,17 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
             connman->MarkAddressGood(pfrom->addr);
         }
 
+        if((nServices & NODE_ACP)) {
+            pfrom->supportACPMessages = true;
+
+            // Relay sync-checkpoint
+            {
+                LOCK(cs_hashSyncCheckpoint);
+                if (!checkpointMessage.IsNull())
+                    checkpointMessage.RelayTo(pfrom);
+            }
+        }
+
         std::string remoteAddr;
         if (fLogIPs)
             remoteAddr = ", peeraddr=" + pfrom->addr.ToString();
@@ -3341,6 +3353,22 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
         }
         if (bPingFinished) {
             pfrom->nPingNonceSent = 0;
+        }
+        return true;
+    }
+
+    else if (msg_type == NetMsgType::CHECKPOINT) // Synchronized checkpoint
+    {
+        CSyncCheckpoint checkpoint;
+        vRecv >> checkpoint;
+
+        if (checkpoint.ProcessSyncCheckpoint())
+        {
+            // Relay checkpoint
+            pfrom->hashCheckpointKnown = checkpoint.hashCheckpoint;
+            connman->ForEachNode([checkpoint](CNode* pnode) {
+                checkpoint.RelayTo(pnode);
+            });
         }
         return true;
     }
@@ -4459,7 +4487,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         }
     }
 
-    if(!ProcessNewBlock(chainparams, pblock, fForceProcessing, fNewBlock))
+    if(!ProcessNewBlock(chainparams, pblock, fForceProcessing, fNewBlock, &connman))
         return error("%s: ProcessNewBlock FAILED", __func__);
 
     std::vector<uint256> vWorkQueue;
@@ -4480,7 +4508,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
 
             bool fNewBlockOrphan = false;
             std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(block);
-            if (ProcessNewBlock(chainparams, shared_pblock, fForceProcessing, &fNewBlockOrphan))
+            if (ProcessNewBlock(chainparams, shared_pblock, fForceProcessing, &fNewBlockOrphan, &connman))
                 vWorkQueue.push_back(mi->second->hashBlock);
 
             LOCK(cs_main);

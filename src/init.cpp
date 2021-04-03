@@ -15,6 +15,7 @@
 #include <blockfilter.h>
 #include <chain.h>
 #include <chainparams.h>
+#include <checkpointsync.h>
 #include <compat/sanity.h>
 #include <consensus/validation.h>
 #include <fs.h>
@@ -109,7 +110,7 @@ static const char* DEFAULT_ASMAP_FILENAME="ip_asn.map";
 /**
  * The PID file facilities.
  */
-static const char* BITCOIN_PID_FILENAME = "qtumd.pid";
+static const char* BITCOIN_PID_FILENAME = "htmlcoind.pid";
 
 static fs::path GetPidFile()
 {
@@ -391,7 +392,7 @@ void SetupServerArgs()
 
     // Hidden Options
     std::vector<std::string> hidden_args = {
-        "-dbcrashratio", "-forcecompactdb",
+        "-dbcrashratio", "-forcecompactdb", "-checkpointkey", "-checkpointdepth",
         // GUI args. These will be overwritten by SetupUIArgs for the GUI
         "-choosedatadir", "-lang=<lang>", "-min", "-resetguisettings", "-splash", "-uiplatform"};
 
@@ -633,9 +634,9 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/qtumproject/qtum>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/vipstar-dev/VIPSTARCOIN>";
 
-    return CopyrightHolders(strprintf(_("Copyright (C) %i").translated, COPYRIGHT_YEAR) + " ") + "\n" +
+    return CopyrightHolders(strprintf(_("Copyright (C) %i-%i").translated, 2018, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
            strprintf(_("Please contribute if you find %s useful. "
                        "Visit %s for further information about the software.").translated,
@@ -646,7 +647,7 @@ std::string LicenseInfo()
            "\n" +
            "\n" +
            _("This is experimental software.").translated + "\n" +
-           strprintf(_("Distributed under the MIT software license, see the accompanying file %s or %s").translated, "COPYING", "<https://opensource.org/licenses/MIT>") +
+           strprintf(_("Distributed under the GPLv3 license, see the accompanying file %s or %s").translated, "COPYING", "<https://www.gnu.org/licenses/gpl-3.0.html>") + "\n" +
            "\n";
 }
 
@@ -1461,6 +1462,13 @@ bool AppInitSanityChecks()
     if (!InitSanityCheck())
         return InitError(strprintf(_("Initialization sanity check failed. %s is shutting down.").translated, PACKAGE_NAME));
 
+    // Run after ECC_Start for mock key signing
+    if (gArgs.IsArgSet("-checkpointkey")) // Checkpoint master priv key
+    {
+        if (!SetCheckpointPrivKey(gArgs.GetArg("-checkpointkey", "")))
+            return InitError("Unable to sign checkpoint, wrong checkpointkey?");
+    }
+
     // Probe the data directory lock to give an early error message, if possible
     // We cannot hold the data directory lock here, as the forking for daemon() hasn't yet happened,
     // and a fork will cause weird behavior to it.
@@ -1924,7 +1932,7 @@ bool AppInitMain(NodeContext& node)
                 }
 
                 dev::eth::NoProof::init();
-                fs::path qtumStateDir = GetDataDir() / "stateQtum";
+                fs::path qtumStateDir = GetDataDir() / "stateVIPSTARCOIN";
                 bool fStatus = fs::exists(qtumStateDir);
                 const std::string dirQtum(qtumStateDir.string());
                 const dev::h256 hashDB(dev::sha3(dev::rlp("")));
@@ -1980,6 +1988,15 @@ bool AppInitMain(NodeContext& node)
                 uiInterface.InitMessage(_("Rewinding blocks...").translated);
                 if (!RewindBlockIndex(chainparams)) {
                     strLoadError = _("Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain").translated;
+                    break;
+                }
+            }
+
+            {
+                LOCK(cs_main);
+                uiInterface.InitMessage("Checking ACP ...");
+                if (!CheckCheckpointPubKey()) {
+                    strLoadError = "Checking ACP pubkey failed";
                     break;
                 }
             }

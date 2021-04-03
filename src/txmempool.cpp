@@ -6,6 +6,7 @@
 #include <txmempool.h>
 
 #include <algorithm>
+#include <chainparams.h>
 #include <consensus/consensus.h>
 #include <consensus/tx_verify.h>
 #include <consensus/validation.h>
@@ -611,6 +612,13 @@ static void CheckInputsAndUpdateCoins(const CTransaction& tx, CCoinsViewCache& m
     TxValidationState dummy_state; // Not used. CheckTxInputs() should always pass
     CAmount txfee = 0;
     bool fCheckResult = tx.IsCoinBase() || Consensus::CheckTxInputs(tx, dummy_state, mempoolDuplicate, spendheight, txfee);
+
+    int nHeight;
+    {
+        LOCK(cs_main);
+        nHeight = ::ChainActive().Tip()->nHeight;
+    }
+
     assert(fCheckResult);
     UpdateCoins(tx, mempoolDuplicate, std::numeric_limits<int>::max());
 }

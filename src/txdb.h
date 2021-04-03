@@ -192,6 +192,10 @@ public:
     bool UpdateSpentIndex(const std::vector<std::pair<CSpentIndexKey, CSpentIndexValue> >&vect);
     bool blockOnchainActive(const uint256 &hash);
 
+    bool ReadSyncCheckpoint(uint256& hashCheckpoint);
+    bool WriteSyncCheckpoint(uint256 hashCheckpoint);
+    bool ReadCheckpointPubKey(std::string& strPubKey);
+    bool WriteCheckpointPubKey(const std::string& strPubKey);
     //////////////////////////////////////////////////////////////////////////////
 };
 

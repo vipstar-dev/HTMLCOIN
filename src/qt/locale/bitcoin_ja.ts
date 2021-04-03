@@ -70,8 +70,8 @@
         <translation>これらは、あなたが知っている送信先の Qtum アドレスです。コインを送る前に必ず、金額と受取用アドレスを確認してください。</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>これらは支払いを受け取るための、あなたの Qtum アドレスです。新しいアドレスを作成するには受取タブ内の「新しい受取用アドレスを作成」ボタンを使用します。</translation>
+        <source>These are your HTML addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>これらは支払いを受け取るための、あなたの HTMLCOIN アドレスです。新しいアドレスを作成するには受取タブ内の「新しい受取用アドレスを作成」ボタンを使用します。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -189,8 +189,8 @@
         <translation>ウォレット用の旧パスフレーズと新パスフレーズを入力してください。</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
-        <translation>ウォレットを暗号化しても、コンピュータに感染したマルウェアなどによる Qtum の盗難を完全に防ぐことはできないことにご注意ください。</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your HTML from being stolen by malware infecting your computer.</source>
+        <translation>ウォレットを暗号化しても、コンピュータに感染したマルウェアなどによる HTMLCOIN の盗難を完全に防ぐことはできないことにご注意ください。</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -253,7 +253,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>メッセージの署名...(&amp;m)</translation>
@@ -363,8 +363,8 @@
         <translation>プロキシは&lt;b&gt;有効&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
-        <translation>Qtum アドレスにコインを送る</translation>
+        <source>Send coins to a HTML address</source>
+        <translation>HTMLCOIN アドレスにコインを送る</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -403,8 +403,8 @@
         <translation>Qtum アドレスでメッセージに署名することで、そのアドレスの所有権を証明する</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
-        <translation>メッセージを検証して、指定された Qtum アドレスで署名されたことを確認する</translation>
+        <source>Verify messages to ensure they were signed with specified HTML addresses</source>
+        <translation>メッセージを検証して、指定された HTMLCOIN アドレスで署名されたことを確認する</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -439,8 +439,8 @@
         <translation>コマンドラインオプション(&amp;C)</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
-        <translation><numerusform>Qtum ネットワークへのアクティブな接続は %n 個</numerusform></translation>
+        <source>%n active connection(s) to HTMLCOIN network</source>
+        <translation><numerusform>HTMLCOIN ネットワークへのアクティブな接続は %n 個</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -631,8 +631,8 @@
         <translation>ウォレットは&lt;b&gt;暗号化済み&lt;/b&gt;・&lt;b&gt;ロック状態&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
-        <translation>致命的なエラーが発生しました。Qtum を安全に動作し続けることができないため終了します。</translation>
+        <source>A fatal error occurred. HTMLCOIN can no longer continue safely and will quit.</source>
+        <translation>致命的なエラーが発生しました。HTMLCOIN を安全に動作し続けることができないため終了します。</translation>
     </message>
 </context>
 <context>
@@ -875,8 +875,8 @@
         <translation>送金先アドレスを編集</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Qtum address.</source>
-        <translation>入力されたアドレス "%1" は無効な Qtum アドレスです。</translation>
+        <source>The entered address "%1" is not a valid HTML address.</source>
+        <translation>入力されたアドレス "%1" は無効な HTMLCOIN アドレスです。</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -972,8 +972,8 @@
         <translation>カスタムデータディレクトリを使用:</translation>
     </message>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>HTMLCOIN</source>
+        <translation>HTMLCOIN</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -988,8 +988,8 @@
         <translation>約%1 GBのデータがこのディレクトリに保存されます。</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Qtum block chain.</source>
-        <translation>%1 は Qtum ブロックチェーンのコピーをダウンロードし保存します。</translation>
+        <source>%1 will download and store a copy of the HTMLCOIN block chain.</source>
+        <translation>%1 は HTMLCOIN ブロックチェーンのコピーをダウンロードし保存します。</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1023,8 +1023,8 @@
         <translation>フォーム</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the qtum network, as detailed below.</source>
-        <translation>最近の取引がまだ表示されていない可能性があります。そのため、ウォレットの残高が正しく表示されていないかもしれません。この情報は、ウォレットが Qtum ネットワークへの同期が完了すると正確なものとなります。詳細は下記を参照してください。</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HTMLCOIN network, as detailed below.</source>
+        <translation>最近の取引がまだ表示されていない可能性があります。そのため、ウォレットの残高が正しく表示されていないかもしれません。この情報は、ウォレットが HTMLCOIN ネットワークへの同期が完了すると正確なものとなります。詳細は下記を参照してください。</translation>
     </message>
     <message>
         <source>Attempting to spend qtums that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
@@ -1224,8 +1224,8 @@
         <translation>未承認のお釣りを使用する(&amp;S)</translation>
     </message>
     <message>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自動的にルーター上の Qtum クライアントのポートを開放します。あなたのルーターが UPnP に対応していて、それが有効になっている場合のみ動作します。</translation>
+        <source>Automatically open the HTMLCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自動的にルーター上の HTMLCOIN クライアントのポートを開放します。あなたのルーターが UPnP に対応していて、それが有効になっている場合のみ動作します。</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1240,8 +1240,8 @@
         <translation>外部からの接続を許可する(&amp;G)</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
-        <translation>SOCKS5 プロキシ経由で Qtum ネットワークに接続する。</translation>
+        <source>Connect to the HTMLCOIN network through a SOCKS5 proxy.</source>
+        <translation>SOCKS5 プロキシ経由で HTMLCOIN ネットワークに接続する。</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1276,8 +1276,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Tor秘匿サービスを利用するため、専用の SOCKS5 プロキシ経由で Qtum ネットワークに接続する。</translation>
+        <source>Connect to the HTMLCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Tor秘匿サービスを利用するため、専用の SOCKS5 プロキシ経由で HTMLCOIN ネットワークに接続する。</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1387,8 +1387,8 @@
         <translation>フォーム</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
-        <translation>表示されている情報は古い可能性があります。ウォレットは接続確立後に Qtum ネットワークと自動的に同期しますが、同期処理はまだ完了していません。</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>表示されている情報は古い可能性があります。ウォレットは接続確立後に HTMLCOIN ネットワークと自動的に同期しますが、同期処理はまだ完了していません。</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1462,16 +1462,16 @@
         <translation>支払いリクエスト エラー</translation>
     </message>
     <message>
-        <source>Cannot start qtum: click-to-pay handler</source>
-        <translation>Qtum を起動できません: click-to-pay handler</translation>
+        <source>Cannot start htmlcoin: click-to-pay handler</source>
+        <translation>HTMLCOIN を起動できません: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>URIの処理</translation>
     </message>
     <message>
-        <source>'qtum://' is not a valid URI. Use 'qtum:' instead.</source>
-        <translation>'qtum://' は正しいURIではありません｡ 'qtum:'を使用してください｡</translation>
+        <source>'htmlcoin://' is not a valid URI. Use 'htmlcoin:' instead.</source>
+        <translation>'htmlcoin://' は正しいURIではありません｡ 'htmlcoin:'を使用してください｡</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.</source>
@@ -1490,8 +1490,8 @@
         <translation>支払い先アドレス「 %1 」は無効です</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
-        <translation>URIを解析できませんでした！ Qtum アドレスが無効であるか、URIパラメーターが不正な形式である可能性があります。</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid HTML address or malformed URI parameters.</source>
+        <translation>URIを解析できませんでした！ HTMLCOIN アドレスが無効であるか、URIパラメーターが不正な形式である可能性があります。</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1532,8 +1532,8 @@
         <translation>金額</translation>
     </message>
     <message>
-        <source>Enter a Qtum address (e.g. %1)</source>
-        <translation>Qtum アドレスを入力してください (例: %1)</translation>
+        <source>Enter a HTML address (e.g. %1)</source>
+        <translation>HTMLCOIN アドレスを入力してください (例: %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2001,8 +2001,8 @@
         <translation>メッセージ (&amp;M):</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
-        <translation>支払いリクエストに添付するメッセージ（任意）。支払リクエスト開始時に表示されます。注意: メッセージは Qtum ネットワーク上へ送信されません。</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the HTMLCOIN network.</source>
+        <translation>支払いリクエストに添付するメッセージ（任意）。支払リクエスト開始時に表示されます。注意: メッセージは HTMLCOIN ネットワーク上へ送信されません。</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2470,8 +2470,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation><numerusform>予想される承認開始ブロック: %n ブロック以内</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Qtum address</source>
-        <translation>警告: 無効な Qtum アドレス</translation>
+        <source>Warning: Invalid HTML address</source>
+        <translation>警告: 無効な HTMLCOIN アドレス</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2561,8 +2561,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>このアドレスに対するラベルを入力することで、送金したことがあるアドレスの一覧に追加することができます</translation>
     </message>
     <message>
-        <source>A message that was attached to the qtum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
-        <translation>qtum: URIに添付されていたメッセージです。これは参照用として取引とともに保存されます。注意: メッセージは Qtum ネットワーク上へ送信されません。</translation>
+        <source>A message that was attached to the htmlcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HTMLCOIN network.</source>
+        <translation>htmlcoin: URIに添付されていたメッセージです。これは参照用として取引とともに保存されます。注意: メッセージは HTMLCOIN ネットワーク上へ送信されません。</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2595,12 +2595,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>メッセージの署名(&amp;S)</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive qtums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>あなたが所有しているアドレスでメッセージや契約書に署名をすることで、それらのアドレスへ送られた Qtum を受け取ることができることを証明できます。フィッシング攻撃者があなたを騙して、あなたの身分情報に署名させようとしている可能性があるため、よくわからないものやランダムな文字列に対して署名しないでください。あなたが同意した、よく詳細の記された文言にのみ署名するようにしてください。</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive HTMLCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>あなたが所有しているアドレスでメッセージや契約書に署名をすることで、それらのアドレスへ送られた HTMLCOIN を受け取ることができることを証明できます。フィッシング攻撃者があなたを騙して、あなたの身分情報に署名させようとしている可能性があるため、よくわからないものやランダムな文字列に対して署名しないでください。あなたが同意した、よく詳細の記された文言にのみ署名するようにしてください。</translation>
     </message>
     <message>
-        <source>The Qtum address to sign the message with</source>
-        <translation>メッセージの署名に使用する Qtum アドレス</translation>
+        <source>The HTML address to sign the message with</source>
+        <translation>メッセージの署名に使用する HTMLCOIN アドレス</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2631,8 +2631,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>この署名をシステムのクリップボードにコピー</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Qtum address</source>
-        <translation>メッセージに署名してこの Qtum アドレスを所有していることを証明</translation>
+        <source>Sign the message to prove you own this HTML address</source>
+        <translation>メッセージに署名してこの HTMLCOIN アドレスを所有していることを証明</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2655,8 +2655,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>送金先のアドレスと、メッセージ（改行やスペース、タブなども完全に一致させること）および署名を以下に入力し、メッセージを検証します。中間者攻撃により騙されるのを防ぐため、署名対象のメッセージから書かれていること以上の意味を読み取ろうとしないでください。また、これは署名作成者がこのアドレスで受け取れることを証明するだけであり、取引の送信権限を証明するものではありません！</translation>
     </message>
     <message>
-        <source>The Qtum address the message was signed with</source>
-        <translation>メッセージの署名に使われた Qtum アドレス</translation>
+        <source>The HTML address the message was signed with</source>
+        <translation>メッセージの署名に使われた HTMLCOIN アドレス</translation>
     </message>
     <message>
         <source>The signed message to verify</source>

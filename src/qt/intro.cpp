@@ -133,8 +133,8 @@ Intro::Intro(QWidget *parent, int64_t blockchain_size_gb, int64_t chain_state_si
     ui->lblExplanation1->setText(ui->lblExplanation1->text()
         .arg(PACKAGE_NAME)
         .arg(m_blockchain_size_gb)
-        .arg(2017)
-        .arg(tr("Qtum"))
+        .arg(2018)
+        .arg(tr("VIPSTARCOIN"))
     );
     ui->lblExplanation2->setText(ui->lblExplanation2->text().arg(PACKAGE_NAME));
 
@@ -142,6 +142,7 @@ Intro::Intro(QWidget *parent, int64_t blockchain_size_gb, int64_t chain_state_si
         ui->prune->setChecked(true);
         ui->prune->setEnabled(false);
     }
+
     ui->prune->setText(tr("Discard blocks after verification, except most recent %1 GB (prune)").arg(m_prune_target_gb));
     UpdatePruneLabels(ui->prune->isChecked());
 

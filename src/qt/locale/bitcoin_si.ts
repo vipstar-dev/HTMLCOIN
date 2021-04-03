@@ -212,7 +212,7 @@
     </message>
     </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Browse transaction history</source>
         <translation>ගනුදෙනු ඉතිහාසය පිරික්සන්න</translation>

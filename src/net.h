@@ -799,6 +799,8 @@ public:
     bool fGetAddr{false};
     std::chrono::microseconds m_next_addr_send GUARDED_BY(cs_sendProcessing){0};
     std::chrono::microseconds m_next_local_addr_send GUARDED_BY(cs_sendProcessing){0};
+    uint256 hashCheckpointKnown;
+    bool supportACPMessages{false};
 
     bool IsAddrRelayPeer() const { return m_addr_known != nullptr; }
 

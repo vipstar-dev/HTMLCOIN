@@ -9,6 +9,7 @@
 #include <blockfilter.h>
 #include <chain.h>
 #include <chainparams.h>
+#include <checkpointsync.h>
 #include <coins.h>
 #include <consensus/validation.h>
 #include <core_io.h>
@@ -85,9 +86,6 @@ double GetDifficulty(const CBlockIndex* blockindex)
 
 double GetPoWMHashPS()
 {
-    if (pindexBestHeader->nHeight >= Params().GetConsensus().nLastPOWBlock)
-        return 0;
-
     int nPoWInterval = 72;
     int64_t nTargetSpacingWorkMin = 30, nTargetSpacingWork = 30;
 
@@ -581,7 +579,7 @@ static UniValue getdifficulty(const JSONRPCRequest& request)
 
 static std::vector<RPCResult> MempoolEntryDescription() { return {
     RPCResult{RPCResult::Type::NUM, "vsize", "virtual transaction size as defined in BIP 141. This is different from actual serialized size for witness transactions as witness data is discounted."},
-    RPCResult{RPCResult::Type::NUM, "size", "(DEPRECATED) same as vsize. Only returned if qtumd is started with -deprecatedrpc=size\n"
+    RPCResult{RPCResult::Type::NUM, "size", "(DEPRECATED) same as vsize. Only returned if vipstarcoind is started with -deprecatedrpc=size\n"
                                             "size will be completely removed in v0.20."},
     RPCResult{RPCResult::Type::NUM, "weight", "transaction weight as defined in BIP 141."},
     RPCResult{RPCResult::Type::STR_AMOUNT, "fee", "transaction fee in " + CURRENCY_UNIT + " (DEPRECATED)"},
@@ -2004,7 +2002,7 @@ UniValue getdelegationinfoforaddress(const JSONRPCRequest& request)
         "getdelegationinfoforaddress",
         "\nGet delegation information for an address.\n",
         {
-            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The qtum address string"},
+            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The VIPSTARCOIN address string"},
         },
         RPCResult{
             RPCResult::Type::OBJ, "", "",
@@ -2097,7 +2095,7 @@ UniValue getdelegationsforstaker(const JSONRPCRequest& request)
         "requires -logevents to be enabled\n"
         "\nGet the current list of delegates for a super staker.\n",
         {
-            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The qtum address string for staker"},
+            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The VIPSTARCOIN address string for staker"},
         },
         RPCResult{
             RPCResult::Type::ARR, "", "",
@@ -2286,6 +2284,62 @@ UniValue getblocktransactionreceipts(const JSONRPCRequest& request)
             }
         }
     }
+    return result;
+}
+
+// RPC commands related to sync checkpoints
+// get information of sync-checkpoint (first introduced in ppcoin)
+static UniValue getcheckpoint(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 0)
+        throw std::runtime_error(
+            "getcheckpoint\n"
+            "Show info of synchronized checkpoint.\n");
+
+    UniValue result(UniValue::VOBJ);
+    CBlockIndex* pindexCheckpoint;
+
+    result.pushKV("synccheckpoint", hashSyncCheckpoint.ToString());
+    if (::BlockIndex().count(hashSyncCheckpoint))
+    {
+        pindexCheckpoint = ::BlockIndex()[hashSyncCheckpoint];
+        result.pushKV("height", pindexCheckpoint->nHeight);
+        result.pushKV("timestamp", (boost::int64_t) pindexCheckpoint->GetBlockTime());
+    }
+    if (gArgs.IsArgSet("-checkpointkey"))
+        result.pushKV("checkpointmaster", true);
+
+    return result;
+}
+
+static UniValue sendcheckpoint(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw std::runtime_error(
+            "sendcheckpoint <blockhash>\n"
+            "Send a synchronized checkpoint.\n");
+
+    if (!gArgs.IsArgSet("-checkpointkey") || CSyncCheckpoint::strMasterPrivKey.empty())
+        throw std::runtime_error("Not a checkpointmaster node, first set checkpointkey in configuration and restart client. ");
+
+    std::string strHash = request.params[0].get_str();
+    uint256 hash = uint256S(strHash);
+
+    if (!SendSyncCheckpoint(hash))
+        throw std::runtime_error("Failed to send checkpoint, check log. ");
+
+    UniValue result(UniValue::VOBJ);
+    CBlockIndex* pindexCheckpoint;
+
+    result.pushKV("synccheckpoint", hashSyncCheckpoint.ToString());
+    if (::BlockIndex().count(hashSyncCheckpoint))
+    {
+        pindexCheckpoint = ::BlockIndex()[hashSyncCheckpoint];
+        result.pushKV("height", pindexCheckpoint->nHeight);
+        result.pushKV("timestamp", (boost::int64_t) pindexCheckpoint->GetBlockTime());
+    }
+    if (gArgs.IsArgSet("-checkpointkey"))
+        result.pushKV("checkpointmaster", true);
 
     return result;
 }
@@ -2411,8 +2465,8 @@ UniValue gettxout(const JSONRPCRequest& request)
                                 {RPCResult::Type::STR_HEX, "hex", ""},
                                 {RPCResult::Type::NUM, "reqSigs", "Number of required signatures"},
                                 {RPCResult::Type::STR_HEX, "type", "The type, eg pubkeyhash"},
-                                {RPCResult::Type::ARR, "addresses", "array of qtum addresses",
-                                    {{RPCResult::Type::STR, "address", "qtum address"}}},
+                                {RPCResult::Type::ARR, "addresses", "array of VIPSTARCOIN addresses",
+                                    {{RPCResult::Type::STR, "address", "VIPSTARCOIN address"}}},
                             }},
                         {RPCResult::Type::BOOL, "coinbase", "Coinbase or not"},
                     }},
@@ -3750,6 +3804,8 @@ static const CRPCCommand commands[] =
     { "blockchain",         "getblock",               &getblock,               {"blockhash","verbosity|verbose"} },
     { "blockchain",         "getblockhash",           &getblockhash,           {"height"} },
     { "blockchain",         "getblockheader",         &getblockheader,         {"blockhash","verbose"} },
+    { "blockchain",         "getcheckpoint",          &getcheckpoint,          {} },
+    { "blockchain",         "sendcheckpoint",         &sendcheckpoint,         {"blockhash"} },
     { "blockchain",         "getchaintips",           &getchaintips,           {} },
     { "blockchain",         "getdifficulty",          &getdifficulty,          {} },
     { "blockchain",         "getmempoolancestors",    &getmempoolancestors,    {"txid","verbose"} },
@@ -3763,7 +3819,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "savemempool",            &savemempool,            {} },
     { "blockchain",         "verifychain",            &verifychain,            {"checklevel","nblocks"} },
     { "blockchain",         "getaccountinfo",         &getaccountinfo,         {"contract_address"} },
-    { "blockchain",         "getcontractcode",        &getcontractcode,        {"address", "blockNum"} },
+    { "blockchain",         "getcontractcode",        &getcontractcode,        {"contract_address", "blockNum"} },
     { "blockchain",         "getstorage",             &getstorage,             {"address, index, blockNum"} },
 
     { "blockchain",         "preciousblock",          &preciousblock,          {"blockhash"} },

@@ -188,8 +188,8 @@
         <translation>Vnesite staro geslo in novo geslo za denarnico.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
-        <translation>Pomnite, da šifriranje denarnice ne more preprečiti kraje qtumov preko morebitnih virusov na vašem računalniku.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your HTML from being stolen by malware infecting your computer.</source>
+        <translation>Pomnite, da šifriranje denarnice ne more preprečiti kraje HTMLCOINov preko morebitnih virusov na vašem računalniku.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -252,7 +252,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Podpiši &amp;sporočilo ...</translation>
@@ -422,8 +422,8 @@
         <translation>Orodna vrstica zavihkov</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Zahtevajte plačilo (ustvarite zahtevek s kodo QR in URI tipa qtum)</translation>
+        <source>Request payments (generates QR codes and htmlcoin: URIs)</source>
+        <translation>Zahtevajte plačilo (ustvarite zahtevek s kodo QR in URI tipa HTMLCOIN)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -438,8 +438,8 @@
         <translation>Možnosti &amp;ukazne vrstice</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
-        <translation><numerusform>%n aktivna povezava v omrežje Qtum</numerusform><numerusform>%n aktivni povezavi v omrežje Qtum</numerusform><numerusform>%n aktivne povezave v omrežje Qtum</numerusform><numerusform>%n aktivnih povezav v omrežje Qtum</numerusform></translation>
+        <source>%n active connection(s) to HTMLCOIN network</source>
+        <translation><numerusform>%n aktivna povezava v omrežje HTMLCOIN</numerusform><numerusform>%n aktivni povezavi v omrežje HTMLCOIN</numerusform><numerusform>%n aktivne povezave v omrežje HTMLCOIN</numerusform><numerusform>%n aktivnih povezav v omrežje HTMLCOIN</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -518,7 +518,7 @@
         <translation>Zapri denarnico</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
+        <source>Show the %1 help message to get a list with possible HTMLCOIN command-line options</source>
         <translation>Pokaži %1 sporočilo za pomoč s seznamom vseh možnosti v ukazni vrstici</translation>
     </message>
     <message>
@@ -971,8 +971,8 @@
         <translation>Uporabi to podatkovno mapo:</translation>
     </message>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>HTMLCOIN</source>
+        <translation>HTMLCOIN</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -1223,7 +1223,7 @@
         <translation>Omogoči &amp;trošenje vračila iz še nepotrjenih plačil</translation>
     </message>
     <message>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the HTMLCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>Program samodejno odpre ustrezna vrata na usmerjevalniku. To deluje samo, če vaš usmerjevalnik podpira in ima omogočen UPnP.</translation>
     </message>
     <message>
@@ -1239,8 +1239,8 @@
         <translation>Dovoli &amp;dohodne povezave</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
-        <translation>Poveži se v omrežje Qtum preko posredniškega strežnika SOCKS5.</translation>
+        <source>Connect to the HTMLCOIN network through a SOCKS5 proxy.</source>
+        <translation>Poveži se v omrežje HTMLCOIN preko posredniškega strežnika SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1275,8 +1275,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Poveži se v omrežje Qtum preko posredniškega strežnika SOCKS5 za skrite storitve Tor.</translation>
+        <source>Connect to the HTMLCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Poveži se v omrežje HTMLCOIN preko posredniškega strežnika SOCKS5 za skrite storitve Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1386,8 +1386,8 @@
         <translation>Oblika</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
-        <translation>Prikazani podatki so morda zastareli. Program ob vzpostavitvi povezave samodejno sinhronizira denarnico z omrežjem Qtum, a trenutno ta proces še ni zaključen.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>Prikazani podatki so morda zastareli. Program ob vzpostavitvi povezave samodejno sinhronizira denarnico z omrežjem HTMLCOIN, a trenutno ta proces še ni zaključen.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1461,16 +1461,16 @@
         <translation>Napaka pri zahtevi plačila</translation>
     </message>
     <message>
-        <source>Cannot start qtum: click-to-pay handler</source>
-        <translation>Ni mogoče zagnati rokovalca plačilnih povezav tipa qtum:.</translation>
+        <source>Cannot start htmlcoin: click-to-pay handler</source>
+        <translation>Ni mogoče zagnati rokovalca plačilnih povezav tipa htmlcoin:.</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>Rokovanje z URI</translation>
     </message>
     <message>
-        <source>'qtum://' is not a valid URI. Use 'qtum:' instead.</source>
-        <translation>'qtum://' ni veljaven URI. Uporabite raje 'qtum:' .</translation>
+        <source>'htmlcoin://' is not a valid URI. Use 'htmlcoin:' instead.</source>
+        <translation>'htmlcoin://' ni veljaven URI. Uporabite raje 'htmlcoin:' .</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.</source>
@@ -1992,8 +1992,8 @@
         <translation>&amp;Sporočilo:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
-        <translation>Neobvezno sporočilo kot priponka zahtevku za plačilo, ki bo prikazano, ko bo zahtevek odprt. Opomba: Opravljeno plačilo.prek omrežja Qtum tega sporočila ne bo vsebovalo.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the HTMLCOIN network.</source>
+        <translation>Neobvezno sporočilo kot priponka zahtevku za plačilo, ki bo prikazano, ko bo zahtevek odprt. Opomba: Opravljeno plačilo.prek omrežja HTMLCOIN tega sporočila ne bo vsebovalo.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>

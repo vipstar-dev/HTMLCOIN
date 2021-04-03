@@ -66,12 +66,12 @@
         <translation>Direcciones de recepción</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas son sus direcciones Qtum para enviar pagos. Compruebe siempre la cantidad y la dirección de recibo antes de transferir monedas.</translation>
+        <source>These are your HTML addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Estas son sus direcciones HTMLCOIN para enviar pagos. Compruebe siempre la cantidad y la dirección de recibo antes de transferir monedas.</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Estas son sus direcciones Qtum para la recepción de pagos. Use el botón 'Crear una nueva dirección para recepción' en la pestaña Recibir para crear nuevas direcciones</translation>
+        <source>These are your HTML addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Estas son sus direcciones HTMLCOIN para la recepción de pagos. Use el botón 'Crear una nueva dirección para recepción' en la pestaña Recibir para crear nuevas direcciones</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -188,8 +188,8 @@
         <translation>Introduzca la contraseña antigua y la nueva para el monedero.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
-        <translation>Recuerde que cifrar su monedero no garantiza mantener a salvo sus qtums en caso de tener virus en el computador.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your HTML from being stolen by malware infecting your computer.</source>
+        <translation>Recuerde que cifrar su monedero no garantiza mantener a salvo sus HTMLCOIN en caso de tener virus en el computador.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -252,7 +252,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Firmar &amp;mensaje...</translation>
@@ -362,8 +362,8 @@
         <translation>El proxy está &lt;b&gt;habilitado&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
-        <translation>Enviar monedas a una dirección Qtum</translation>
+        <source>Send coins to a HTML address</source>
+        <translation>Enviar monedas a una dirección HTMLCOIN</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -398,12 +398,12 @@
         <translation>Encriptar las claves privadas que pertenecen a su billetera</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
-        <translation>Firmar mensajes con sus direcciones Qtum para demostrar la propiedad</translation>
+        <source>Sign messages with your HTML addresses to prove you own them</source>
+        <translation>Firmar mensajes con sus direcciones HTMLCOIN para demostrar la propiedad</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
-        <translation>Verificar mensajes comprobando que están firmados con direcciones Qtum concretas</translation>
+        <source>Verify messages to ensure they were signed with specified HTML addresses</source>
+        <translation>Verificar mensajes comprobando que están firmados con direcciones HTMLCOIN concretas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -422,8 +422,8 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Solicitar pagos (genera código QR y URL's de Qtum)</translation>
+        <source>Request payments (generates QR codes and htmlcoin: URIs)</source>
+        <translation>Solicitar pagos (genera código QR y URL's de HTMLCOIN)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -438,8 +438,8 @@
         <translation>&amp;Opciones de línea de comandos</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
-        <translation><numerusform>%n conexión activa hacia la red Qtum</numerusform><numerusform>%n conexiones activas hacia la red Qtum</numerusform></translation>
+        <source>%n active connection(s) to HTMLCOIN network</source>
+        <translation><numerusform>%n conexión activa hacia la red HTMLCOIN</numerusform><numerusform>%n conexiones activas hacia la red HTMLCOIN</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -630,8 +630,8 @@
         <translation>El monedero está &lt;b&gt;cifrado&lt;/b&gt; y actualmente &lt;b&gt;bloqueado&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
-        <translation>Se produjo un error fatal. Qtum ya no puede continuar de manera segura y se cerrará</translation>
+        <source>A fatal error occurred. HTMLCOIN can no longer continue safely and will quit.</source>
+        <translation>Se produjo un error fatal. HTMLCOIN ya no puede continuar de manera segura y se cerrará</translation>
     </message>
 </context>
 <context>
@@ -874,8 +874,8 @@
         <translation>Editar dirección de envío</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Qtum address.</source>
-        <translation>La dirección ingresada "%1" no es una dirección válida de Qtum.</translation>
+        <source>The entered address "%1" is not a valid HTML address.</source>
+        <translation>La dirección ingresada "%1" no es una dirección válida de HTMLCOIN.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -971,8 +971,8 @@
         <translation>Utilice un directorio de datos personalizado:</translation>
     </message>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>HTMLCOIN</source>
+        <translation>HTMLCOIN</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -987,8 +987,8 @@
         <translation>Aproximadamente %1 GB de datos se almacenarán en este directorio.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Qtum block chain.</source>
-        <translation>%1 descargará y almacenará una copia de la cadena de bloques de Qtum.</translation>
+        <source>%1 will download and store a copy of the HTMLCOIN block chain.</source>
+        <translation>%1 descargará y almacenará una copia de la cadena de bloques de HTMLCOIN.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1022,12 +1022,12 @@
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the qtum network, as detailed below.</source>
-        <translation>Es posible que las transacciones recientes aún no estén visibles y, por lo tanto, el saldo de su monedero podría ser incorrecto. Esta información será correcta una vez que su monedero haya terminado de sincronizarse con la red qtum, como se detalla a continuación.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HTMLCOIN network, as detailed below.</source>
+        <translation>Es posible que las transacciones recientes aún no estén visibles y, por lo tanto, el saldo de su monedero podría ser incorrecto. Esta información será correcta una vez que su monedero haya terminado de sincronizarse con la red HTMLCOIN, como se detalla a continuación.</translation>
     </message>
     <message>
-        <source>Attempting to spend qtums that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>La red no aceptará intentar gastar qtums que se vean afectados por transacciones aún no mostradas.</translation>
+        <source>Attempting to spend HTMLCOIN that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>La red no aceptará intentar gastar HTMLCOIN que se vean afectados por transacciones aún no mostradas.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1275,8 +1275,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Conéctese a la red de Qtum a través de un proxy SOCKS5 separado para los servicios Tor ocultos.</translation>
+        <source>Connect to the HTMLCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Conéctese a la red de HTMLCOIN a través de un proxy SOCKS5 separado para los servicios Tor ocultos.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1386,8 +1386,8 @@
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red Qtum después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información mostrada puede estar desactualizada. Su monedero se sincroniza automáticamente con la red HTMLCOIN después de que se haya establecido una conexión, pero este proceso aún no se ha completado.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1461,16 +1461,16 @@
         <translation>Error de solicitud de pago</translation>
     </message>
     <message>
-        <source>Cannot start qtum: click-to-pay handler</source>
-        <translation>No se puede iniciar Qtum: controlador de clic para pagar</translation>
+        <source>Cannot start htmlcoin: click-to-pay handler</source>
+        <translation>No se puede iniciar htmlcoin: controlador de clic para pagar</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>Manejo de URI</translation>
     </message>
     <message>
-        <source>'qtum://' is not a valid URI. Use 'qtum:' instead.</source>
-        <translation>'qtum: //' no es un URI válido. Use 'qtum:' en su lugar.</translation>
+        <source>'htmlcoin://' is not a valid URI. Use 'htmlcoin:' instead.</source>
+        <translation>'htmlcoin: //' no es un URI válido. Use 'htmlcoin:' en su lugar.</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.</source>
@@ -1489,8 +1489,8 @@
         <translation>Dirección de pago inválida %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
-        <translation>¡No se puede interpretar la URI! Esto puede deberse a una dirección Qtum inválida o a parámetros de URI mal formados.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid HTML address or malformed URI parameters.</source>
+        <translation>¡No se puede interpretar la URI! Esto puede deberse a una dirección HTMLCOIN inválida o a parámetros de URI mal formados.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1531,8 +1531,8 @@
         <translation>Cantidad</translation>
     </message>
     <message>
-        <source>Enter a Qtum address (e.g. %1)</source>
-        <translation>Ingrese una dirección de Qtum (por ejemplo, %1)</translation>
+        <source>Enter a HTML address (e.g. %1)</source>
+        <translation>Ingrese una dirección de HTMLCOIN (por ejemplo, %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2000,8 +2000,8 @@
         <translation>Mensaje:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
-        <translation>Mensaje opcional para agregar a la solicitud de pago, el cual será mostrado cuando la solicitud esté abierta. Nota: El mensaje no se enviará con el pago a través de la red de Qtum.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the HTMLCOIN network.</source>
+        <translation>Mensaje opcional para agregar a la solicitud de pago, el cual será mostrado cuando la solicitud esté abierta. Nota: El mensaje no se enviará con el pago a través de la red de HTMLCOIN.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2552,8 +2552,8 @@ Nota: Dado que la comisión se calcula por byte, una comisión de "100 satoshis 
         <translation>Introduzca una etiqueta para esta dirección para añadirla a la lista de direcciones utilizadas</translation>
     </message>
     <message>
-        <source>A message that was attached to the qtum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
-        <translation>Un mensaje que se adjuntó a la qtum: URL que será almacenada con la transacción para su referencia. Nota: Este mensaje no se envía a través de la red Qtum.</translation>
+        <source>A message that was attached to the htmlcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the HTMLCOIN network.</source>
+        <translation>Un mensaje que se adjuntó a la htmlcoin: URL que será almacenada con la transacción para su referencia. Nota: Este mensaje no se envía a través de la red HTMLCOIN.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2586,12 +2586,12 @@ Nota: Dado que la comisión se calcula por byte, una comisión de "100 satoshis 
         <translation>&amp;Firmar mensaje</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive qtums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive HTMLCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Puede firmar los mensajes con sus direcciones para demostrar que las posee. Tenga cuidado de no firmar cualquier cosa de manera vaga o aleatoria, pues los ataques de phishing pueden tratar de engañarle firmando su identidad a través de ellos. Sólo firme declaraciones totalmente detalladas con las que usted esté de acuerdo.</translation>
     </message>
     <message>
-        <source>The Qtum address to sign the message with</source>
-        <translation>Dirección Qtum con la que firmar el mensaje</translation>
+        <source>The HTML address to sign the message with</source>
+        <translation>Dirección HTMLCOIN con la que firmar el mensaje</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2622,8 +2622,8 @@ Nota: Dado que la comisión se calcula por byte, una comisión de "100 satoshis 
         <translation>Copiar la firma actual al portapapeles del sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Qtum address</source>
-        <translation>Firmar el mensaje para demostrar que se posee esta dirección Qtum</translation>
+        <source>Sign the message to prove you own this HTML address</source>
+        <translation>Firmar el mensaje para demostrar que se posee esta dirección HTMLCOIN</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2646,8 +2646,8 @@ Nota: Dado que la comisión se calcula por byte, una comisión de "100 satoshis 
         <translation>Introduzca la dirección para la firma, el mensaje (asegurándose de copiar tal cual los saltos de línea, espacios, tabulaciones, etc.) y la firma a continuación para verificar el mensaje. Tenga cuidado de no asumir más información de lo que dice el propio mensaje firmado para evitar fraudes basados en ataques de tipo man-in-the-middle.</translation>
     </message>
     <message>
-        <source>The Qtum address the message was signed with</source>
-        <translation>La dirección Qtum con la que se firmó el mensaje</translation>
+        <source>The HTML address the message was signed with</source>
+        <translation>La dirección HTMLCOIN con la que se firmó el mensaje</translation>
     </message>
     <message>
         <source>The signed message to verify</source>

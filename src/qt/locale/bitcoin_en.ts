@@ -85,12 +85,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your HTML addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+5"/>
-        <source>These are your Qtum addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
+        <source>These are your HTML addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -237,7 +237,7 @@
     </message>
     <message>
         <location line="+53"/>
-        <source>Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect your HTML from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -323,9 +323,9 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
-        <location filename="../qtumgui.cpp" line="+316"/>
+        <location filename="../HTMLCOINgui.cpp" line="+316"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
@@ -506,13 +506,13 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
-        <translation>Sign messages with your Qtum addresses to prove you own them</translation>
+        <source>Sign messages with your HTML addresses to prove you own them</source>
+        <translation>Sign messages with your HTML addresses to prove you own them</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
-        <translation>Verify messages to ensure they were signed with specified Qtum addresses</translation>
+        <source>Verify messages to ensure they were signed with specified HTML addresses</source>
+        <translation>Verify messages to ensure they were signed with specified HTML addresses</translation>
     </message>
     <message>
         <location line="+111"/>
@@ -558,8 +558,8 @@
         <location line="+528"/>
         <source>%n active connection(s) to Qtum network</source>
         <translation>
-            <numerusform>%n active connection to Qtum network</numerusform>
-            <numerusform>%n active connections to Qtum network</numerusform>
+            <numerusform>%n active connection to HTMLCOIN network</numerusform>
+            <numerusform>%n active connections to HTMLCOIN network</numerusform>
         </translation>
     </message>
     <message>
@@ -1097,7 +1097,7 @@
     </message>
     <message>
         <location line="+75"/>
-        <source>The entered address &quot;%1&quot; is not a valid Qtum address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid HTML address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1288,12 +1288,12 @@
     </message>
     <message>
         <location line="+119"/>
-        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the qtum network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the HTMLCOIN network, as detailed below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+19"/>
-        <source>Attempting to spend qtums that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend HTMLCOIN that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1544,8 +1544,8 @@
     </message>
     <message>
         <location line="+30"/>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the HTMLCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the HTMLCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1564,7 +1564,7 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
+        <source>Connect to the HTMLCOIN network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1612,7 +1612,7 @@
     </message>
     <message>
         <location line="+25"/>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the HTMLCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1752,8 +1752,8 @@
     <message>
         <location line="+62"/>
         <location line="+386"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the HTMLCOIN network after a connection is established, but this process has not completed yet.</translation>
     </message>
     <message>
         <location line="-139"/>
@@ -1886,7 +1886,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid HTML address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1931,7 +1931,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../qtumunits.cpp" line="+195"/>
+        <location filename="../HTMLCOINunits.cpp" line="+195"/>
         <source>Amount</source>
         <translation type="unfinished">Amount</translation>
     </message>
@@ -3329,12 +3329,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+6"/>
-        <source>You can sign messages/agreements with your addresses to prove you can receive qtums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive HTMLCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The Qtum address to sign the message with</source>
+        <source>The HTML address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3377,8 +3377,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Qtum address</source>
-        <translation>Sign the message to prove you own this Qtum address</translation>
+        <source>Sign the message to prove you own this HTML address</source>
+        <translation>Sign the message to prove you own this HTML address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3408,7 +3408,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+21"/>
-        <source>The Qtum address the message was signed with</source>
+        <source>The HTML address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4107,7 +4107,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
-        <location filename="../qtumgui.cpp" line="+156"/>
+        <location filename="../HTMLCOINgui.cpp" line="+156"/>
         <source>Unit to show amounts in. Click to select another unit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4265,7 +4265,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>qtum-core</name>
     <message>
-        <location filename="../qtumstrings.cpp" line="+28"/>
+        <location filename="../HTMLCOINtrings.cpp" line="+28"/>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
         <translation type="unfinished"></translation>
     </message>

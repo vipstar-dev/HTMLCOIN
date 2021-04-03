@@ -6,6 +6,7 @@
 #include <miner.h>
 
 #include <amount.h>
+#include <base58.h>
 #include <chain.h>
 #include <chainparams.h>
 #include <coins.h>
@@ -28,8 +29,15 @@
 #include <wallet/wallet.h>
 #endif
 
+#include <openssl/sha.h>
 #include <algorithm>
 #include <utility>
+
+uint32_t ByteReverse(uint32_t value)
+{
+    value = ((value & 0xFF00FF00) >> 8) | ((value & 0x00FF00FF) << 8);
+    return (value<<16) | (value>>16);
+}
 
 unsigned int nMaxStakeLookahead = MAX_STAKE_LOOKAHEAD;
 unsigned int nBytecodeTimeBuffer = BYTECODE_TIME_BUFFER;
@@ -60,6 +68,72 @@ void updateMinerParams(int nHeight, const Consensus::Params& consensusParams, bo
     {
         nMinerSleep = STAKER_POLLING_PERIOD_MIN_DIFFICULTY;
     }
+}
+
+void FormatHashBuffers(CBlock* pblock, char* pdata)
+{
+    unsigned char workpadding[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                   0xff, 0xff, 0xff, 0xff, 0x00};
+    struct
+    {
+        struct unnamed2
+        {
+            int nVersion;
+            uint256 hashPrevBlock;
+            uint256 hashMerkleRoot;
+            unsigned int nTime;
+            unsigned int nBits;
+            unsigned int nNonce;
+            uint256 hashStateRoot; // qtum
+            uint256 hashUTXORoot; // qtum
+            unsigned char workpadding[48];//37
+        }
+        block;
+        unsigned char pchPadding0[64];
+    }
+    tmp;
+    memset(&tmp, 0, sizeof(tmp));
+
+    tmp.block.nVersion       = pblock->nVersion;
+    tmp.block.hashPrevBlock  = pblock->hashPrevBlock;
+    tmp.block.hashMerkleRoot = pblock->hashMerkleRoot;
+    tmp.block.nTime          = pblock->nTime;
+    tmp.block.nBits          = pblock->nBits;
+    tmp.block.nNonce         = pblock->nNonce;
+    tmp.block.hashStateRoot  = pblock->hashStateRoot; // qtum
+    tmp.block.hashUTXORoot   = pblock->hashUTXORoot; // qtum
+    memcpy((unsigned char *)(tmp.block.workpadding), workpadding, sizeof(workpadding));
+    // Byte swap all the input buffer
+    for (unsigned int i = 0; i < 180/4; i++) // sizeof(tmp)/4
+        ((unsigned int*)&tmp.block)[i] = ByteReverse(((unsigned int*)&tmp.block)[i]);
+    memcpy(pdata, &tmp.block, 192); // 192 // 128
+}
+
+bool CheckWork(const CChainParams& chainparams, CBlock* pblock)
+{
+    uint256 hash = pblock->GetHash();
+    arith_uint256 hashTarget = arith_uint256().SetCompact(pblock->nBits);
+
+    if (UintToArith256(hash) > hashTarget)
+        return false;
+
+    // Found a solution
+    {
+        LOCK(cs_main);
+        if (pblock->hashPrevBlock != ::ChainActive().Tip()->GetBlockHash())
+            return error("Generated block is stale!");
+
+        // Process this block the same as if we had received it from another node
+        std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
+        bool fNewBlock = false;
+        if (!ProcessNewBlock(chainparams, shared_pblock, true, &fNewBlock))
+            return error("CheckWork: block not accepted");
+    }
+
+    return true;
 }
 
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
@@ -137,7 +211,11 @@ void BlockAssembler::RebuildRefundTransaction(){
         refundtx=1; //1 for coinstake in PoS
     }
     CMutableTransaction contrTx(originalRewardTx);
-    contrTx.vout[refundtx].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    if(pblock->IsProofOfStake()) {
+        contrTx.vout[refundtx].nValue = nFees + GetProofOfStakeReward(nHeight, chainparams.GetConsensus());
+    } else {
+        contrTx.vout[refundtx].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    }
     contrTx.vout[refundtx].nValue -= bceResult.refundSender;
     //note, this will need changed for MPoS
     int i=contrTx.vout.size();
@@ -152,7 +230,7 @@ void BlockAssembler::RebuildRefundTransaction(){
 Optional<int64_t> BlockAssembler::m_last_block_num_txs{nullopt};
 Optional<int64_t> BlockAssembler::m_last_block_weight{nullopt};
 
-std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx, bool fProofOfStake, int64_t* pTotalFees, int32_t txProofTime, int32_t nTimeLimit)
+std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx, bool fProofOfStake, int64_t* pTotalFees, int32_t txProofTime, int32_t nTimeLimit, bool externalGBT)
 {
     int64_t nTimeStart = GetTimeMicros();
 
@@ -213,7 +291,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     // not activated.
     // TODO: replace this with a call to main to assess validity of a mempool
     // transaction (which in most cases can be a no-op).
-    fIncludeWitness = IsWitnessEnabled(pindexPrev, chainparams.GetConsensus());
+    fIncludeWitness = IsWitnessEnabled(pindexPrev, chainparams.GetConsensus()) && fMineWitnessTx;
 
 
     int64_t nTime1 = GetTimeMicros();
@@ -247,6 +325,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         coinstakeTx.vout.resize(2);
         coinstakeTx.vout[0].SetEmpty();
         coinstakeTx.vout[1].scriptPubKey = scriptPubKeyIn;
+        coinstakeTx.vout[1].nValue = nFees + GetProofOfStakeReward(nHeight, chainparams.GetConsensus());
         originalRewardTx = coinstakeTx;
         pblock->vtx[1] = MakeTransactionRef(std::move(coinstakeTx));
 
@@ -283,7 +362,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     /////////////////////////////////////////////////
     int nPackagesSelected = 0;
     int nDescendantsUpdated = 0;
-    addPackageTxs(nPackagesSelected, nDescendantsUpdated, minGasPrice);
+    addPackageTxs(nPackagesSelected, nDescendantsUpdated, minGasPrice, externalGBT);
     pblock->hashStateRoot = uint256(h256Touint(dev::h256(globalState->rootHash())));
     pblock->hashUTXORoot = uint256(h256Touint(dev::h256(globalState->rootHashUTXO())));
     globalState->setRoot(oldHashStateRoot);
@@ -476,11 +555,11 @@ bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& packa
     return true;
 }
 
-bool BlockAssembler::AttemptToAddContractToBlock(CTxMemPool::txiter iter, uint64_t minGasPrice) {
-    if (nTimeLimit != 0 && GetAdjustedTime() >= nTimeLimit - nBytecodeTimeBuffer) {
+bool BlockAssembler::AttemptToAddContractToBlock(CTxMemPool::txiter iter, uint64_t minGasPrice, bool externalGBT) {
+    if (nTimeLimit != 0 && GetAdjustedTime() >= nTimeLimit - BYTECODE_TIME_BUFFER) {
         return false;
     }
-    if (gArgs.GetBoolArg("-disablecontractstaking", false))
+    if (gArgs.GetBoolArg("-disablecontractstaking", false) || externalGBT)
     {
         // Contract staking is disabled for the staker
         return false;
@@ -705,7 +784,7 @@ void BlockAssembler::SortForBlock(const CTxMemPool::setEntries& package, std::ve
 // Each time through the loop, we compare the best transaction in
 // mapModifiedTxs with the next transaction in the mempool to decide what
 // transaction package to work on next.
-void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpdated, uint64_t minGasPrice)
+void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpdated, uint64_t minGasPrice, bool externalGBT)
 {
     // mapModifiedTx will store sorted packages after they are modified
     // because some of their txs are already in the block
@@ -837,7 +916,7 @@ void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpda
             const CTransaction& tx = sortedEntries[i]->GetTx();
             if(wasAdded) {
                 if (tx.HasCreateOrCall()) {
-                    wasAdded = AttemptToAddContractToBlock(sortedEntries[i], minGasPrice);
+                    wasAdded = AttemptToAddContractToBlock(sortedEntries[i], minGasPrice, externalGBT);
                     if(!wasAdded){
                         if(fUsingModified) {
                             //this only needs to be done once to mark the whole package (everything in sortedEntries) as failed

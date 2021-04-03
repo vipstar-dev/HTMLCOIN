@@ -91,6 +91,10 @@ struct Params {
     uint256 posLimit;
     uint256 QIP9PosLimit;
     uint256 RBTPosLimit;
+    int nDiffAdjustChange;
+    int nDiffDamping;
+    unsigned int nDiffChange;
+    std::string checkpointPubKey;
     bool fPowAllowMinDifficultyBlocks;
     bool fPowNoRetargeting;
     bool fPoSNoRetargeting;
@@ -99,12 +103,12 @@ struct Params {
     int64_t nPowTargetTimespan;
     int64_t nPowTargetTimespanV2;
     int64_t nRBTPowTargetTimespan;
+    int64_t nPosTargetTimespan;
+    int64_t nPosTargetTimespanV2;
+
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
-    int nLastPOWBlock;
-    int nFirstMPoSBlock;
-    int nMPoSRewardRecipients;
-    int nFixUTXOCacheHFHeight;
+    // int nFixUTXOCacheHFHeight;
     int nEnableHeaderSignatureHeight;
     /** Block sync-checkpoint span*/
     int nCheckpointSpan;

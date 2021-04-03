@@ -66,8 +66,8 @@
         <translation>Adresa na koju se prima</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ovo su Vaše Qtum adrese na koju se vrše uplate. Uvek proverite iznos i prijemnu adresu pre slanja novčića.</translation>
+        <source>These are your HTML addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ovo su Vaše HTMLCOIN adrese na koju se vrše uplate. Uvek proverite iznos i prijemnu adresu pre slanja novčića.</translation>
     </message>
     <message>
         <source>These are your Qtum addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
@@ -244,7 +244,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Potpišite &amp;poruka...</translation>
@@ -342,8 +342,8 @@
         <translation>Ponovo obeležavam blokove na disku...</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
-        <translation>Pošalji novčiće na Qtum adresu</translation>
+        <source>Send coins to a HTML address</source>
+        <translation>Pošalji novčiće na HTMLCOIN adresu</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -378,12 +378,12 @@
         <translation>Enkriptuj privatne ključeve novčanika</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
-        <translation>Potpišite poruke sa svojim Qtum adresama da biste dokazali njihovo vlasništvo</translation>
+        <source>Sign messages with your HTML addresses to prove you own them</source>
+        <translation>Potpišite poruke sa svojim HTMLCOIN adresama da biste dokazali njihovo vlasništvo</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
-        <translation>Proverite poruke da biste utvrdili sa kojim Qtum adresama su potpisane</translation>
+        <source>Verify messages to ensure they were signed with specified HTML addresses</source>
+        <translation>Proverite poruke da biste utvrdili sa kojim HTMLCOIN adresama su potpisane</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -402,8 +402,8 @@
         <translation>Alatke za tabove</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Zatražite plaćanje (generiše QR kodove i qtum: URI-e)</translation>
+        <source>Request payments (generates QR codes and htmlcoin: URIs)</source>
+        <translation>Zatražite plaćanje (generiše QR kodove i htmlcoin: URI-e)</translation>
     </message>
     <message>
         <source>Error</source>
@@ -521,8 +521,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>HTMLCOIN</source>
+        <translation>HTMLCOIN</translation>
     </message>
     <message>
         <source>Error</source>

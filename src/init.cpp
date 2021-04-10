@@ -742,7 +742,7 @@ void DeleteBlockChainData()
     // Delete block chain data paths
     fs::remove_all(GetDataDir() / "chainstate");
     fs::remove_all(GetBlocksDir());
-    fs::remove_all(GetDataDir() / "stateQtum");
+    fs::remove_all(GetDataDir() / "stateVIPSTARCOIN");
     fs::remove(GetDataDir() / "banlist.dat");
     fs::remove(GetDataDir() / FEE_ESTIMATES_FILENAME);
     fs::remove(GetDataDir() / "mempool.dat");

@@ -4372,7 +4372,6 @@ The delegation for the address will be added in the wallet list.</source>
         <translation>手数料</translation>
     </message>
 </context>
-</context>
 <context>
     <name>EditContractInfoDialog</name>
     <message>

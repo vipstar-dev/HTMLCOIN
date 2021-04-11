@@ -634,6 +634,114 @@
         <source>A fatal error occurred. VIPSTARCOIN can no longer continue safely and will quit.</source>
         <translation>致命的なエラーが発生しました。VIPSTARCOIN を安全に動作し続けることができないため終了します。</translation>
     </message>
+    <message>
+        <source>My &amp;wallet</source>
+        <translation>マイウォレット(&amp;W)</translation>
+    </message>
+    <message>
+        <source>Smart &amp;Contracts</source>
+        <translation>スマートコントラクト(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Smart contracts</source>
+        <translation>スマートコントラクト</translation>
+    </message>
+    <message>
+        <source>Send To</source>
+        <translation>送信</translation>
+    </message>
+    <message>
+        <source>Call</source>
+        <translation>呼出</translation>
+    </message>
+    <message>
+        <source>&amp;Stake</source>
+        <translation>ステーク(&amp;S)</translation>
+    </message>
+    <message>
+        <source>Show stake of wallet</source>
+        <translation>ウォレットのステーク状況を表示する</translation>
+    </message>
+    <message>
+        <source>Staking</source>
+        <translation>ステーキング</translation>
+    </message>
+    <message>
+        <source>Delegations</source>
+        <translation>ステーク委託</translation>
+    </message>
+    <message>
+        <source>Super Staking</source>
+        <translation>スーパーステーキング</translation>
+    </message>
+    <message>
+        <source>&amp;VRC Tokens</source>
+        <translation>VRCトークン(&amp;V)</translation>
+    </message>
+    <message>
+        <source>VRC Tokens (send, receive or add Tokens in list)</source>
+        <translation>VRCトークンの送信や受信、トークンの追加をする</translation>
+    </message>
+    <message>
+        <source>&amp;Restore Wallet...</source>
+        <translation>ウォレットの復元...(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Restore wallet from another location</source>
+        <translation>別の場所からウォレットを復元する</translation>
+    </message>
+    <message>
+        <source>&amp;Unlock Wallet...</source>
+        <translation>ウォレットをアンロック(&amp;U)</translation>
+    </message>
+    <message>
+        <source>&amp;Lock Wallet</source>
+        <translation>ウォレットをロック(&amp;L)</translation>
+    </message>
+    <message>
+        <source>Lock wallet</source>
+        <translation>ウォレットをロック</translation>
+    </message>
+    <message>
+        <source>New version of VIPSTARCOIN wallet is available on the VIPSTARCOIN source code repository: &lt;br /&gt; %1 &lt;br /&gt;It is recommended to download it and update this application</source>
+        <translation>VIPSTARCOINウォレットの新バージョンは、VIPSTARCOINのソースコードリポジトリで公開されています: &lt;br /&gt; %1 &lt;br /&gt;ダウンロードして本アプリケーションをアップデートすることをお勧めします</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>アップデートをチェックする</translation>
+    </message>
+    <message>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked for staking only&lt;/b&gt;</source>
+        <translation>ウォレットは&lt;b&gt;暗号化&lt;/b&gt;されており、現在は&lt;b&gt;ステーキングのみアンロックされています&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Not staking</source>
+        <translation>ステーキングしていません</translation>
+    </message>
+    <message>
+        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation>ステーキング中。&lt;br&gt;あなたのウェイトは %1 です&lt;br&gt;ネットワークウェイトは %2 です&lt;br&gt;報酬獲得までの予想時間は %3 です</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is offline</source>
+        <translation>ウォレットがオフラインになっているため、ステーキングできません</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is syncing</source>
+        <translation>ウォレットが同期しているため、ステーキングできません</translation>
+    </message>
+    <message>
+        <source>Not staking because you don't have mature coins</source>
+        <translation>検証済みのコインを持っていないためステーキングできません。</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is locked</source>
+        <translation>ウォレットがロックされているため、ステーキングできません</translation>
+    </message>
+    <message>
+        <source>Not staking</source>
+        <translation>ステーキングしていません</translation>
+    </message>
 </context>
 <context>
     <name>CoinControlDialog</name>
@@ -1074,6 +1182,10 @@
         <source>Unknown. Syncing Headers (%1, %2%)...</source>
         <translation>不明。ヘッダ (%1, %2%) の同期中...</translation>
     </message>
+	<message>
+        <source>Maybe later</source>
+        <translation>あとで</translation>
+    </message>
 </context>
 <context>
     <name>OpenURIDialog</name>
@@ -1379,6 +1491,14 @@
         <source>The supplied proxy address is invalid.</source>
         <translation>プロキシアドレスが無効です。</translation>
     </message>
+	<message>
+        <source>Confirm wallet restart</source>
+        <translation>ウォレット再起動の確認</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to restart your wallet?</source>
+        <translation>ウォレットを再起動します。よろしいですか？</translation>
+    </message>
 </context>
 <context>
     <name>OverviewPage</name>
@@ -1453,6 +1573,15 @@
     <message>
         <source>Current total balance in watch-only addresses</source>
         <translation>ウォッチ限定アドレスの現在の残高の総計</translation>
+    </message>
+	<message>
+        <source>The %1 address "%2" is not yours, please change it to new one.
+</source>
+        <translation>この %1 アドレス "%2" はあなたのものではありません、新しいアドレスに変更してください。</translation>
+    </message>
+    <message>
+        <source>Invalid token address</source>
+        <translation>無効なトークンアドレス</translation>
     </message>
 </context>
 <context>
@@ -3816,6 +3945,1033 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Done loading</source>
         <translation>読み込み完了</translation>
+    </message>
+</context>
+<context>
+    <name>ABIFunctionField</name>
+    <message>
+        <source>Function</source>
+        <translation>機能</translation>
+    </message>
+</context>
+<context>
+    <name>ABIParam</name>
+    <message>
+        <source>%1 %2</source>
+        <translation>%1 %2</translation>
+    </message>
+	    <message>
+        <source>%2 %1</source>
+        <translation>%2 %1</translation>
+    </message>
+</context>
+<context>
+    <name>AddDelegationPage</name>
+    <message>
+        <source>Add delegation</source>
+        <translation>ステーク委託を追加</translation>
+    </message>
+    <message>
+        <source>Super staker name.</source>
+        <translation>スーパーステーカー名。</translation>
+    </message>
+    <message>
+        <source>Super staker address.</source>
+        <translation>スーパーステーカーアドレス。</translation>
+    </message>
+    <message>
+        <source>Super staker fee in percentage.</source>
+        <translation>スーパーステーカー手数料は％で表示されます。</translation>
+    </message>
+    <message>
+        <source>Delegate address to the staker.</source>
+        <translation>ステーカーにアドレスを委託する。</translation>
+    </message>
+    <message>
+        <source>Gas limit. Default = %1, Min = %2, Max = %3</source>
+        <translation>ガスリミット。既定値 = %1、最小値 = %2、最大値 = %3</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2</source>
+        <translation>ガス価格: ガス単位あたりのVIPS価格。既定値 = %1、最小値 = %2</translation>
+    </message>
+    <message>
+        <source>Set delegation for address</source>
+        <translation>アドレスの委託設定</translation>
+    </message>
+    <message>
+        <source>This address is already delegated.</source>
+        <translation>このアドレスは既に委託済みです。</translation>
+    </message>
+    <message>
+        <source>Set delegation for address</source>
+        <translation>アドレスの委託設定</translation>
+    </message>
+    <message>
+        <source>The address is delegated to the staker:
+</source>
+        <translation>このアドレスはステーカーに委託済みです:
+</translation>
+    </message>
+    <message>
+        <source>Set delegation for address</source>
+        <translation>アドレスの委託設定</translation>
+    </message>
+    <message>
+        <source>Delegation already present.
+The delegation for the address will be added in the wallet list.</source>
+        <translation>ステーク委託は既に存在します。
+アドレスの委託はもう少しでウォレットリストに追加されます。</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delegate the address to the staker&lt;br /&gt;&lt;br /&gt;</source>
+        <translation>本当にアドレスをステーカーに委託しますか？&lt;br /&gt;&lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+        <source>Confirm address delegation to staker.</source>
+        <translation>ステーカーへのアドレス委託の確認</translation>
+    </message>
+    <message>
+        <source>Set delegation for address</source>
+        <translation>アドレスの委託設定</translation>
+    </message>
+</context>
+<context>
+    <name>AddSuperStakerPage</name>
+    <message>
+        <source>Add super staker</source>
+        <translation>スーパーステーカーを追加</translation>
+    </message>
+    <message>
+        <source>Super staking</source>
+        <translation>スーパーステーキング</translation>
+    </message>
+    <message>
+        <source>Enable super staking from the option menu in order to start the super staker.</source>
+        <translation>スーパーステーカーを開始するには、オプションメニューからスーパーステーカーを有効にします。</translation>
+    </message>
+    <message>
+        <source>Super staking</source>
+        <translation>スーパーステーキング</translation>
+    </message>
+    <message>
+        <source>The super staker address exist in the wallet list.</source>
+        <translation>スーパーステーカーのアドレスはウォレットリストに存在します。</translation>
+    </message>
+</context>
+<context>
+    <name>AddTokenPage</name>
+    <message>
+        <source>(This is your wallet address which will be tied to the token for send/receive operations)</source>
+        <translation>(このアドレスは、トークンの送受信に使用される、あなたのウォレットアドレスです)</translation>
+    </message>
+    <message>
+        <source>The %1 address "%2" is not yours, please change it to new one.
+</source>
+        <translation>この %1 アドレス "%2" はあなたのものではありません、新しいアドレスに変更してください。</translation>
+    </message>
+    <message>
+        <source>Invalid token address</source>
+        <translation>無効なトークンアドレス</translation>
+    </message>
+    <message>
+        <source>Token exist</source>
+        <translation>存在するトークン</translation>
+    </message>
+    <message>
+        <source>The token already exist with the specified contract and sender addresses.</source>
+        <translation>指定されたコントラクトと送信者のアドレスを持つトークンが既に存在しています。</translation>
+    </message>
+    <message>
+        <source>Log events</source>
+        <translation>ログイベント</translation>
+    </message>
+    <message>
+        <source>Enable log events from the option menu in order to receive token transactions.</source>
+        <translation>トークンのトランザクションを受信するには、オプションメニューからログイベントを有効にしてください。</translation>
+    </message>
+</context>
+<context>
+    <name>CallContract</name>
+    <message>
+        <source>The account address.</source>
+        <translation>アカウントのアドレス。</translation>
+    </message>
+    <message>
+        <source>The sender address hex string.</source>
+        <translation>送信者アドレスの16進数文字列</translation>
+    </message>
+    <message>
+        <source>Call Contract</source>
+        <translation>コントラクトの呼出</translation>
+    </message>
+    <message>
+        <source>Result %1</source>
+        <translation>結果 %1</translation>
+    </message>
+    <message>
+        <source>Call contract</source>
+        <translation>コントラクトの呼出</translation>
+    </message>
+</context>
+<context>
+    <name>ContractBookPage</name>
+    <message>
+        <source>Choose the contract for send/call</source>
+        <translation>コントラクトの送信/呼出を選択</translation>
+    </message>
+    <message>
+        <source>These are your saved contracts. Always check the contract address and the ABI before sending/calling.</source>
+        <translation>これらはあなたの保存されたコントラクトです。送信/呼び出し前には必ずコントラクトのアドレスとABIを確認してください。</translation>
+    </message>
+    <message>
+        <source>Copy &amp;Name</source>
+        <translation>名前をコピー(&amp;N)</translation>
+    </message>
+    <message>
+        <source>Copy &amp;Interface</source>
+        <translation>インターフェイスをコピー(&amp;I)</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the address "%1" from your contract address list?</source>
+        <translation>このアドレス "%1" をコントラクトアドレスリストから削除してよろしいですか？</translation>
+    </message>
+    <message>
+        <source>Delete contact address</source>
+        <translation>コントラクトアドレスを削除</translation>
+    </message>
+    <message>
+        <source>Export Contract List</source>
+        <translation>コントラクトリストを出力</translation>
+    </message>
+</context>
+<context>
+    <name>ContractResult</name>
+    <message>
+        <source>Create contract</source>
+        <translation>コントラクトの作成</translation>
+    </message>
+</context>
+<context>
+    <name>ContractTableModel</name>
+    <message>
+        <source>Contract Address</source>
+        <translation>コントラクトアドレス</translation>
+    </message>
+    <message>
+        <source>Interface (ABI)</source>
+        <translation>インターフェイス(ABI)</translation>
+    </message>
+</context>
+<context>
+    <name>ContractUtil</name>
+    <message>
+        <source>ABI parsing error:</source>
+        <translation>ABIの解析エラー:</translation>
+    </message>
+    <message>
+        <source>Unsupported type %1 %2.</source>
+        <translation>サポートされていないタイプ %1 %2。</translation>
+    </message>
+    <message>
+        <source>Error encoding parameter %1 %2.</source>
+        <translation>パラメータ %1 %2 のエンコードでエラーが発生しました。</translation>
+    </message>
+    <message>
+        <source>Error decoding parameter %1 %2.</source>
+        <translation>パラメータ %1 %2 のデコードでエラーが発生しました。</translation>
+    </message>
+</context>
+<context>
+    <name>CreateContract</name>
+    <message>
+        <source>The bytecode of the contract</source>
+        <translation>コントラクトのバイトコード</translation>
+    </message>
+    <message>
+        <source>The VIPSTARCOIN address that will be used to create the contract.</source>
+        <translation>コントラクトの作成に使用されるVIPSTARCOINアドレス。</translation>
+    </message>
+    <message>
+        <source>Create Contract</source>
+        <translation>コントラクトの作成</translation>
+    </message>
+    <message>
+        <source>The Gas Price is too high, are you sure you want to possibly spend a max of %1 for this transaction?</source>
+        <translation>ガス価格が高すぎます、本当にこの取引に最大で %1 を費やしてもよろしいですか？</translation>
+    </message>
+    <message>
+        <source>High Gas price</source>
+        <translation>ガス価格が高すぎます</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to create contract? &lt;br /&gt;</source>
+        <translation>本当にコントラクトを作成しますか？&lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>Confirm contract creation.</source>
+        <translation>コントラクトの作成の確認</translation>
+    </message>
+    <message>
+        <source>Result %1</source>
+        <translation>結果 %1</translation>
+    </message>
+    <message>
+        <source>Create contract</source>
+        <translation>コントラクトの作成</translation>
+    </message>
+    <message>
+        <source>Gas limit. Default = %1, Max = %2</source>
+        <translation>ガスリミット。既定値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2</source>
+        <translation>ガス価格: ガス単位あたりのVIPS価格。既定値 = %1、最小値 = %2</translation>
+    </message>
+</context>
+<context>
+    <name>DelegationItemModel</name>
+    <message>
+        <source>Delegate</source>
+        <translation>ステーク委託</translation>
+    </message>
+    <message>
+        <source>Staker Name</source>
+        <translation>ステーカーの名前</translation>
+    </message>
+    <message>
+        <source>Staker Address</source>
+        <translation>ステーカーのアドレス</translation>
+    </message>
+    <message>
+        <source>Fee</source>
+        <translation>手数料</translation>
+    </message>
+    <message>
+        <source>Height</source>
+        <translation>高さ</translation>
+    </message>
+    <message>
+        <source>Time</source>
+        <translation>時間</translation>
+    </message>
+</context>
+<context>
+    <name>DelegationItemWidget</name>
+    <message>
+        <source>Split coins for offline staking</source>
+        <translation>コインを分割してオフラインステーキングする</translation>
+    </message>
+    <message>
+        <source>Remove delegation</source>
+        <translation>ステーク委託を解除する</translation>
+    </message>
+    <message>
+        <source>Add delegation</source>
+        <translation>ステーク委託を追加</translation>
+    </message>
+    <message>
+        <source>Restore delegations</source>
+        <translation>ステーク委託を復元する</translation>
+    </message>
+    <message>
+        <source>Not staking because the delegation is not confirmed</source>
+        <translation>ステーク委託が未確認のため、ステーキングできません。</translation>
+    </message>
+    <message>
+        <source>Not staking because you don't have mature coins</source>
+        <translation>検証済みのコインを持っていないためステーキングできません。</translation>
+    </message>
+    <message>
+        <source>Not staking</source>
+        <translation>ステーキングしていません</translation>
+    </message>
+    <message>
+        <source>Create transaction confirmed</source>
+        <translation>作成されたトランザクションは確認済みです</translation>
+    </message>
+    <message>
+        <source>Create transaction not confirmed</source>
+        <translation>作成されたトランザクションは未確認です</translation>
+    </message>
+    <message>
+        <source>Create transaction error</source>
+        <translation>作成されたトランザクションはエラーしました</translation>
+    </message>
+    <message>
+        <source>Remove transaction not confirmed</source>
+        <translation>トランザクションの削除は未確認です</translation>
+    </message>
+    <message>
+        <source>Remove transaction error</source>
+        <translation>トランザクションの削除はエラーしました</translation>
+    </message>
+</context>
+<context>
+    <name>DelegationPage</name>
+    <message>
+        <source>Copy staker name</source>
+        <translation>ステーカー名をコピー</translation>
+    </message>
+    <message>
+        <source>Copy staker address</source>
+        <translation>ステーカーアドレスをコピー</translation>
+    </message>
+    <message>
+        <source>Copy staker fee</source>
+        <translation>ステーカーの手数料をコピー</translation>
+    </message>
+    <message>
+        <source>Copy delegate address</source>
+        <translation>委託アドレスをコピー</translation>
+    </message>
+    <message>
+        <source>Copy delegate weight</source>
+        <translation>委託量をコピー</translation>
+    </message>
+    <message>
+        <source>Edit staker name</source>
+        <translation>ステイカー名を編集</translation>
+    </message>
+    <message>
+        <source>Remove delegation</source>
+        <translation>ステーク委託を解除する</translation>
+    </message>
+    <message>
+        <source>Confirm delegations restoration</source>
+        <translation>ステーク委託復元の確認</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to restore your delegations?</source>
+        <translation>本当にステーク委託を復元しますか？</translation>
+    </message>
+    <message>
+        <source>Delegations not found</source>
+        <translation>ステーク委託が存在しません</translation>
+    </message>
+    <message>
+        <source>No delegations found to restore.</source>
+        <translation>復元するステーク委託が見つかりませんでした。</translation>
+    </message>
+</context>
+<context>
+    <name>DelegationsStakerDialog</name>
+    <message>
+        <source>Delegations for super staker</source>
+        <translation>スーパーステーカーへの委託</translation>
+    </message>
+</context>
+<context>
+    <name>DelegationStakerItemModel</name>
+    <message>
+        <source>Fee</source>
+        <translation>手数料</translation>
+    </message>
+</context>
+</context>
+<context>
+    <name>EditContractInfoDialog</name>
+    <message>
+        <source>New contract info</source>
+        <translation>新しいコントラクト情報</translation>
+    </message>
+    <message>
+        <source>Edit contract info</source>
+        <translation>コントラクト情報を編集</translation>
+    </message>
+    <message>
+        <source>The entered address "%1" is already in the contract book.</source>
+        <translation>入力されたアドレス "%1" は、既にコントラクトに記載されています。</translation>
+    </message>
+</context>
+<context>
+    <name>EditSuperStakerDialog</name>
+    <message>
+        <source>Edit super staker</source>
+        <translation>スーパーステーカーを編集</translation>
+    </message>
+</context>
+<context>
+    <name>ExecRPCCommand</name>
+    <message>
+        <source>Mandatory fields are not present:
+%1</source>
+        <translation>必須項目がありません:
+%1</translation>
+    </message>
+    <message>
+        <source>Optional fields are not present:
+%1</source>
+        <translation>オプション項目が存在しません:
+%1</translation>
+    </message>
+    <message>
+        <source>Parse error: unbalanced ' or "</source>
+        <translation>パースエラー: ' か " の数が足りません</translation>
+    </message>
+</context>
+<context>
+    <name>QRCToken</name>
+    <message>
+        <source>Copy receive address</source>
+        <translation>受信アドレスをコピー</translation>
+    </message>
+    <message>
+        <source>Copy token balance</source>
+        <translation>トークン残高をコピー</translation>
+    </message>
+    <message>
+        <source>Copy token name</source>
+        <translation>トークン名をコピー</translation>
+    </message>
+    <message>
+        <source>Copy contract address</source>
+        <translation>コントラクトアドレスをコピー</translation>
+    </message>
+    <message>
+        <source>Remove token</source>
+        <translation>トークンを削除</translation>
+    </message>
+    <message>
+        <source>Confirm token remove</source>
+        <translation>トークンの削除の確認</translation>
+    </message>
+    <message>
+        <source>The selected token will be removed from the list. Are you sure?</source>
+        <translation>選択されたトークンはリストから削除されます。よろしいですか？</translation>
+    </message>
+</context>
+<context>
+    <name>ReceiveTokenPage</name>
+    <message>
+        <source>Receive</source>
+        <translation>受信</translation>
+    </message>
+</context>
+<context>
+    <name>RemoveDelegationPage</name>
+    <message>
+        <source>Remove delegation</source>
+        <translation>ステーク委託を解除する</translation>
+    </message>
+    <message>
+        <source>Remove delegation for address.</source>
+        <translation>アドレスの委託を解除する。</translation>
+    </message>
+    <message>
+        <source>Gas limit. Default = %1, Max = %2</source>
+        <translation>ガスリミット。既定値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2</source>
+        <translation>ガス価格: ガス単位あたりのVIPS価格。既定値 = %1、最小値 = %2</translation>
+    </message>
+    <message>
+        <source>Remove delegation for address</source>
+        <translation>アドレスの委託を解除する。</translation>
+    </message>
+    <message>
+        <source>Fail to get delegation details for the address.</source>
+        <translation>委託アドレスの詳細の取得に失敗しました。</translation>
+    </message>
+    <message>
+        <source>Remove delegation for address</source>
+        <translation>アドレスの委託を解除する。</translation>
+    </message>
+    <message>
+        <source>Please wait for the create contract delegation transaction be confirmed or abandon the transaction.
+
+Transaction ID: %1</source>
+        <translation>作成した委託コントラクトのトランザクションの確認を待つか、トランザクションを放棄してください。
+
+トランザクションID: %1</translation>
+    </message>
+    <message>
+        <source>Remove delegation for address</source>
+        <translation>アドレスの委託を解除する。</translation>
+    </message>
+    <message>
+        <source>Please wait for the remove contract delegation transaction be confirmed or abandon the transaction.
+
+Transaction ID: %1</source>
+        <translation>削除した委託コントラクトのトランザクションの確認を待つか、トランザクションを放棄してください。
+
+トランザクションID: %1</translation>
+    </message>
+    <message>
+        <source>Remove delegation for address</source>
+        <translation>アドレスの委託を解除する。</translation>
+    </message>
+    <message>
+        <source>Delegation already removed.
+The delegation for the address will be removed from the wallet list.</source>
+        <translation>ステーク委託は既に削除されています。
+アドレスの委託はもう少しでウォレットリストから削除されます。</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the delegation for the address: &lt;br /&gt;&lt;br /&gt;</source>
+        <translation>アドレスの委託を解除してよろしいですか？： &lt;br /&gt;&lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+        <source>Confirm remove delegation.</source>
+        <translation>ステーク委託の削除の確認</translation>
+    </message>
+    <message>
+        <source>Remove delegation for address</source>
+        <translation>アドレスの委託を解除する。</translation>
+    </message>
+</context>
+<context>
+    <name>RestoreDialog</name>
+    <message>
+        <source>File not selected</source>
+        <translation>ファイルが選択されていません</translation>
+    </message>
+    <message>
+        <source>Please select a file to restore your wallet.</source>
+        <translation>復元するウォレットファイルを選択してください。</translation>
+    </message>
+    <message>
+        <source>Confirm wallet restoration</source>
+        <translation>ウォレットの復元の確認</translation>
+    </message>
+    <message>
+        <source>Warning: The wallet will be restored from location &lt;b&gt;%1&lt;/b&gt; and restarted with parameter &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation>警告：ウォレットは、ロケーション &lt;b&gt;%1&lt;/b&gt;からリストアされ、パラメータ &lt;b&gt;%2&lt;/b&gt;で再起動されます。</translation>
+    </message>
+    <message>
+        <source>&lt;br&gt;&lt;br&gt;Are you sure you wish to restore your wallet?</source>
+        <translation>&lt;br&gt;&lt;br&gt;ウォレットを復元します。よろしいですか？</translation>
+    </message>
+    <message>
+        <source>Restore Wallet</source>
+        <translation>ウォレットの復元</translation>
+    </message>
+</context>
+<context>
+    <name>SendToContract</name>
+    <message>
+        <source>The contract address that will receive the funds and data.</source>
+        <translation>資金やデータを受け取るコントラクトアドレスです。</translation>
+    </message>
+    <message>
+        <source>The amount in VIPSTARCOIN to send. Default = 0.</source>
+        <translation>送信するVIPSTARCOINの金額です。デフォルトは0です。</translation>
+    </message>
+    <message>
+        <source>The VIPSTARCOIN address that will be used as sender.</source>
+        <translation>送信者として使用されるVIPSTARCOINアドレス。</translation>
+    </message>
+    <message>
+        <source>Send To Contract</source>
+        <translation>コントラクトの送信</translation>
+    </message>
+    <message>
+        <source>The Gas Price is too high, are you sure you want to possibly spend a max of %1 for this transaction?</source>
+        <translation>ガス価格が高すぎます、本当にこの取引に最大で %1 を費やしてもよろしいですか？</translation>
+    </message>
+    <message>
+        <source>High Gas price</source>
+        <translation>ガス価格が高すぎます</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to send to the contract: &lt;br /&gt;&lt;br /&gt;</source>
+        <translation>コントラクトを送信します。よろしいですか？&lt;br /&gt;&lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+        <source>Confirm sending to contract.</source>
+        <translation>コントラクトの送信の確認</translation>
+    </message>
+    <message>
+        <source>Result %1</source>
+        <translation>結果 %1</translation>
+    </message>
+    <message>
+        <source>Send to contract</source>
+        <translation>コントラクトの送信</translation>
+    </message>
+    <message>
+        <source>Gas limit. Default = %1, Max = %2</source>
+        <translation>ガスリミット。既定値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2</source>
+        <translation>ガス価格: ガス単位あたりのVIPS価格。既定値 = %1、最小値 = %2</translation>
+    </message>
+</context>
+<context>
+    <name>SendTokenPage</name>
+    <message>
+        <source>The address that will receive the tokens.</source>
+        <translation>トークンを受け取るアドレス</translation>
+    </message>
+    <message>
+        <source>The amount in Token to send.</source>
+        <translation>送信するトークンの量</translation>
+    </message>
+    <message>
+        <source>Optional description for transaction.</source>
+        <translation>トランザクションのオプションの説明</translation>
+    </message>
+    <message>
+        <source>Gas limit. Default = %1, Max = %2</source>
+        <translation>ガスリミット。既定値 = %1、最大値 = %2</translation>
+    </message>
+    <message>
+        <source>Gas price: VIPS price per gas unit. Default = %1, Min = %2</source>
+        <translation>ガス価格: ガス単位あたりのVIPS価格。既定値 = %1、最小値 = %2</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to send? &lt;br /&gt;&lt;br /&gt;</source>
+        <translation>送信します。よろしいですか？ &lt;br /&gt;&lt;br /&gt</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1 %2 &lt;/b&gt; to </source>
+        <translation>&lt;b&gt;%1 %2 &lt;/b&gt; を</translation>
+    </message>
+    <message>
+        <source>&lt;br /&gt;%3 &lt;br /&gt;</source>
+        <translation>&lt;br /&gt;%3 &lt;br /&gt; に送金</translation>
+    </message>
+    <message>
+        <source>Confirm send token.</source>
+        <translation>トークンの送信を確認</translation>
+    </message>
+    <message>
+        <source>Send token</source>
+        <translation>トークンの送信</translation>
+    </message>
+</context>
+<context>
+    <name>SplitUTXOPage</name>
+    <message>
+        <source>Split coins for address</source>
+        <translation>アドレス用コインの分割</translation>
+    </message>
+    <message>
+        <source>Split coins for offline staking</source>
+        <translation>コインを分割してオフラインステーキングする</translation>
+    </message>
+    <message>
+        <source>Delegate address</source>
+        <translation>委託アドレス</translation>
+    </message>
+    <message>
+        <source>Split coins for offline staking.</source>
+        <translation>コインを分割してオフラインでのステーキングが可能。</translation>
+    </message>
+    <message>
+        <source>Split coins for super staker</source>
+        <translation>スーパーステーカーのコイン分割</translation>
+    </message>
+    <message>
+        <source>Staker address</source>
+        <translation>ステーカーアドレス</translation>
+    </message>
+    <message>
+        <source>Split coins for super staker. The UTXO value need to be minimum &lt;b&gt; %1 &lt;/b&gt;.</source>
+        <translation>スーパーステーカーのコインを分割します。UTXOの値は最低でも %1 &lt;/b&gt;である必要があります。</translation>
+    </message>
+    <message>
+        <source>The VIPSTARCOIN address to split utxos.</source>
+        <translation>UTXOを分割するためのVIPSTARCOINアドレス</translation>
+    </message>
+    <message>
+        <source>Select utxo which value is smaller than value (minimum 0.1 COIN).</source>
+        <translation>値が　0.1 VIPSよりも小さいUTXOを選択してください。</translation>
+    </message>
+    <message>
+        <source>Select utxo which value is greater than value (minimum 0.1 COIN).</source>
+        <translation>値が　0.1　VIPS よりも大きいUTXOを選択してください。</translation>
+    </message>
+    <message>
+        <source>Maximum outputs to create</source>
+        <translation>最大出力の作成</translation>
+    </message>
+    <message>
+        <source>Split coins for address %1</source>
+        <translation>アドレス %1 に対してコインを分割する</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to split coins for address</source>
+        <translation>アドレス用にコインを分割します。よろしいですか？</translation>
+    </message>
+    <message>
+        <source>Confirm splitting coins for address.</source>
+        <translation>アドレス用コインの分割の確認</translation>
+    </message>
+    <message>
+        <source>Split coins for address</source>
+        <translation>アドレス用コインの分割</translation>
+    </message>
+    <message>
+        <source>Selected: %1 less than %2 and above of %3.</source>
+        <translation>選択された%1 は %2 より小さく、%3 より大きいです。</translation>
+    </message>
+    <message>
+        <source>Splitted: %1.</source>
+        <translation>%1 は分割されました。</translation>
+    </message>
+    <message>
+        <source>Split coins for address</source>
+        <translation>アドレス用コインの分割</translation>
+    </message>
+</context>
+<context>
+    <name>StakerDelegationView</name>
+    <message>
+        <source>Enter address to search</source>
+        <translation>アドレスを入力して検索</translation>
+    </message>
+</context>
+<context>
+    <name>SuperStakerConfigDialog</name>
+    <message>
+        <source>Accept all</source>
+        <translation>すべてを受け入れる</translation>
+    </message>
+    <message>
+        <source>Allow list</source>
+        <translation>許可リスト</translation>
+    </message>
+    <message>
+        <source>Exclude list</source>
+        <translation>除外リスト</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to update configuration for staker&lt;br /&gt;&lt;br /&gt;</source>
+        <translation>ステーカーの設定を更新します。よろしいですか？&lt;br /&gt;&lt;br /&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+        <source>Confirm configuration change.</source>
+        <translation>設定の変更の確認</translation>
+    </message>
+</context>
+<context>
+    <name>SuperStakerItemModel</name>
+    <message>
+        <source>Staker Name</source>
+        <translation>ステーカーの名前</translation>
+    </message>
+    <message>
+        <source>Staker Address</source>
+        <translation>ステーカーのアドレス</translation>
+    </message>
+    <message>
+        <source>Minimum Fee</source>
+        <translation>最小手数料</translation>
+    </message>
+    <message>
+        <source>Staking</source>
+        <translation>ステーキング</translation>
+    </message>
+</context>
+<context>
+    <name>SuperStakerItemWidget</name>
+    <message>
+        <source>Delegations for super staker</source>
+        <translation>スーパーステーカーへの委託</translation>
+    </message>
+    <message>
+        <source>Split coins for super staker</source>
+        <translation>スーパーステーカーのコイン分割</translation>
+    </message>
+    <message>
+        <source>Configure super staker</source>
+        <translation>スーパーステーカーの設定</translation>
+    </message>
+    <message>
+        <source>Remove super staker</source>
+        <translation>スーパーステーカーの削除</translation>
+    </message>
+    <message>
+        <source>Add super staker</source>
+        <translation>スーパーステーカーを追加</translation>
+    </message>
+    <message>
+        <source>Restore super stakers</source>
+        <translation>スーパーステーカーの復元</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is offline</source>
+        <translation>ウォレットがオフラインになっているため、ステーキングできません</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is syncing</source>
+        <translation>ウォレットが同期しているため、ステーキングできません</translation>
+    </message>
+    <message>
+        <source>Not staking because super staking is not enabled</source>
+        <translation>スーパーステーキングが有効になっていないため、ステーキングできません。</translation>
+    </message>
+    <message>
+        <source>Not staking because you don't have mature coins</source>
+        <translation>検証済みのコインを持っていないためステーキングできません。</translation>
+    </message>
+    <message>
+        <source>Not staking because you don't have mature delegated coins</source>
+        <translation>検証済みのコインを所持していないためステーキングできません。</translation>
+    </message>
+    <message>
+        <source>Not staking because wallet is locked</source>
+        <translation>ウォレットがロックされているため、ステーキングできません</translation>
+    </message>
+    <message>
+        <source>Not staking</source>
+        <translation>ステーキングしていません</translation>
+    </message>
+</context>
+<context>
+    <name>SuperStakerPage</name>
+    <message>
+        <source>Copy staker name</source>
+        <translation>ステーカー名をコピー</translation>
+    </message>
+    <message>
+        <source>Copy staker address</source>
+        <translation>ステーカーアドレスをコピー</translation>
+    </message>
+    <message>
+        <source>Copy staker minimum fee</source>
+        <translation>ステーカーの最低手数料をコピー</translation>
+    </message>
+    <message>
+        <source>Copy staker weight</source>
+        <translation>ステーカー量をコピー</translation>
+    </message>
+    <message>
+        <source>Copy delegations weight</source>
+        <translation>委託量をコピー</translation>
+    </message>
+    <message>
+        <source>Configure super staker</source>
+        <translation>スーパーステーカーの設定</translation>
+    </message>
+    <message>
+        <source>Edit staker name</source>
+        <translation>ステーカー名を編集</translation>
+    </message>
+    <message>
+        <source>Remove super staker</source>
+        <translation>スーパーステーカーの削除</translation>
+    </message>
+    <message>
+        <source>Confirm super staker removal</source>
+        <translation>スーパーステーカーの削除の確認</translation>
+    </message>
+    <message>
+        <source>The selected super staker will be removed from the list. Are you sure?</source>
+        <translation>スーパーステーカーを削除します。よろしいですか？</translation>
+    </message>
+    <message>
+        <source>Super staking</source>
+        <translation>スーパーステーキング</translation>
+    </message>
+    <message>
+        <source>Enable super staking from the option menu in order to start the restoration.</source>
+        <translation>復元を開始するには、オプションメニューからスーパーステーキングを有効にします。</translation>
+    </message>
+    <message>
+        <source>Confirm super stakers restoration</source>
+        <translation>スーパーステーカーの復元の確認</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to restore your super stakers?</source>
+        <translation>スーパーステーカーを復元します。よろしいですか？</translation>
+    </message>
+    <message>
+        <source>Super stakers not found</source>
+        <translation>スーパーステーカーが存在しません。</translation>
+    </message>
+    <message>
+        <source>No super stakers found to restore.</source>
+        <translation>復元するスーパーステーカーが見つかりませんでした。</translation>
+    </message>
+</context>
+<context>
+    <name>TokenItemModel</name>
+    <message>
+        <source>Token Name</source>
+        <translation>トークン名</translation>
+    </message>
+    <message>
+        <source>Token Symbol</source>
+        <translation>トークンシンボル</translation>
+    </message>
+    <message>
+        <source>Balance</source>
+        <translation>残高</translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionDesc</name>
+    <message>
+        <source>0/unconfirmed, in memory pool</source>
+        <translation>0/未確認、メモリプール内</translation>
+    </message>
+    <message>
+        <source>0/unconfirmed, not in memory pool</source>
+        <translation>0/未確認、メモリプール外</translation>
+    </message>
+    <message>
+        <source>Token Address</source>
+        <translation>トークンアドレス</translation>
+    </message>
+    <message>
+        <source>Net Amount</source>
+        <translation>正味金額</translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionTableModel</name>
+    <message>
+        <source>Token name.</source>
+        <translation>トークン名</translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionView</name>
+    <message>
+        <source>Enter address to search</source>
+        <translation>アドレスを入力して検索</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionTableModel</name>
+    <message>
+        <source>Contract receive</source>
+        <translation>コントラクトの受信</translation>
+    </message>
+    <message>
+        <source>Contract send</source>
+        <translation>コントラクトの送信</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <source>Contract Receive</source>
+        <translation>コントラクトの受信</translation>
+    </message>
+    <message>
+        <source>Contract Send</source>
+        <translation>コントラクトの送信</translation>
     </message>
 </context>
 </TS>

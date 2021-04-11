@@ -644,7 +644,7 @@ void BitcoinGUI::createTitleBars()
         connect(m_wallet_selector, SIGNAL(currentIndexChanged(int)), this, SLOT(setCurrentWalletBySelectorIndex(int)));
 
         m_wallet_selector_label = new QLabel();
-        m_wallet_selector_label->setText(tr("WALLET") + " ");
+        m_wallet_selector_label->setText(tr("Wallet:") + " ");
         m_wallet_selector_label->setBuddy(m_wallet_selector);
 
         m_wallet_selector_label->setVisible(false);

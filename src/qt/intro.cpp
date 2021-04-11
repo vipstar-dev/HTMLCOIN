@@ -315,7 +315,7 @@ void Intro::on_dataDirCustom_clicked()
     ui->dataDirectory->setEnabled(true);
     ui->ellipsisButton->setEnabled(true);
     #ifdef MAC_OSX
-    setDataDirectory(QDir::homePath()+"/Qtum");
+    setDataDirectory(QDir::homePath()+"/VIPSTARCOIN");
     #endif
 }
 
@@ -365,7 +365,7 @@ void Intro::UpdatePruneLabels(bool prune_checked)
     }
     ui->lblExplanation3->setVisible(prune_checked);
     ui->sizeWarningLabel->setText(
-        tr("%1 will download and store a copy of the Qtum block chain.").arg(PACKAGE_NAME) + " " +
+        tr("%1 will download and store a copy of the VIPSTARCOIN block chain.").arg(PACKAGE_NAME) + " " +
         storageRequiresMsg.arg(m_required_space_gb) + " " +
         tr("The wallet will also be stored in this directory.")
     );

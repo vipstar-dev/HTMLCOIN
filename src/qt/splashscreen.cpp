@@ -32,19 +32,18 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
     QWidget(nullptr, f), curAlignment(0), m_node(node)
 {
     // set sizes
-    int logoSize                = 50;
-    int packageTextHeight       = 30;
-    int versionTextHeight       = 20;
-    int statusHeight            = 30;
-    int titleAddTextHeight      = 12;
-    int welcomeTextHeight       = 35;
+    int paddingRight            = 50;
+    int paddingTop              = 50;
+    int titleVersionVSpace      = 17;
+    int titleCopyrightVSpace    = 40;
+
     float fontFactor            = 1.0;
     float devicePixelRatio      = 1.0;
     devicePixelRatio = static_cast<QGuiApplication*>(QCoreApplication::instance())->devicePixelRatio();
 
     // define text to place
     QString titleText       = tr(PACKAGE_NAME);
-    QString versionText     = QString("%1").arg(QString::fromStdString(FormatFullVersion()));
+    QString versionText     = QString("Version %1").arg(QString::fromStdString(FormatFullVersion()));
     QString copyrightText   = QString::fromUtf8(CopyrightHolders(strprintf("\xc2\xA9 %u-%u ", 2018, COPYRIGHT_YEAR)).c_str());
     QString titleAddText    = networkStyle->getTitleAddText();
 
@@ -67,47 +66,55 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
     QColor background_color     = GetStringStyleValue("splashscreen/background-color", "#030509");
     pixPaint.fillRect(mainRect, background_color);
 
+    pixPaint.setPen(foreground_color);
+
     // draw background
     QRect rectBg(QPoint(-50, -50), QSize(splashSize.width() + 50, splashSize.height() + 50));
     QPixmap bg(GetStringStyleValue("splashscreen/background-image", ":/styles/theme1/app-icons/splash_bg"));
     pixPaint.drawPixmap(rectBg, bg);
 
-    QRect logoRect(splashSize.width() - logoSize - 20, 20, logoSize, logoSize);
-    pixPaint.setPen(foreground_color);
-
-    pixPaint.setFont(QFont(font, 22 * fontFactor, QFont::Bold));
-    QRect rectTitle(QPoint(0, logoRect.bottom() + 10), QSize(splashSize.width() - 20, packageTextHeight));
-    pixPaint.drawText(rectTitle, Qt::AlignRight | Qt::AlignBottom, titleText);
-
-    QPoint versionPoint(rectTitle.bottomLeft());
-
-    // draw additional text if special network
-    if(!titleAddText.isEmpty())
-    {
-        QRect titleAddRect(rectTitle.bottomLeft(), QSize(rectTitle.width(), titleAddTextHeight));
-        versionPoint = titleAddRect.bottomLeft();
-        pixPaint.setFont(QFont("HiraginoSansGB", 8 * fontFactor, QFont::Bold));
-        pixPaint.drawText(titleAddRect, Qt::AlignRight | Qt::AlignBottom, titleAddText);
+    // check font size and drawing with
+    pixPaint.setFont(QFont(font, 33*fontFactor));
+    QFontMetrics fm = pixPaint.fontMetrics();
+    int titleTextWidth = fm.width(titleText);
+    if (titleTextWidth > 200) {
+        fontFactor = fontFactor * 200 / titleTextWidth;
     }
 
-    pixPaint.setFont(QFont("HiraginoSansGB", 8 * fontFactor));
-    QRect versionRect(versionPoint, QSize(rectTitle.width(), versionTextHeight));
-    pixPaint.drawText(versionRect, Qt::AlignRight | Qt::AlignVCenter, versionText);
+    pixPaint.setFont(QFont(font, 40*fontFactor));
+    fm = pixPaint.fontMetrics();
+    titleTextWidth  = fm.width(titleText);
+    pixPaint.drawText(pixmap.width()/devicePixelRatio-titleTextWidth-paddingRight,paddingTop,titleText);
 
-    QRect welcomeRect(0, splashSize.height() - statusHeight - welcomeTextHeight - 40, splashSize.width() -20, welcomeTextHeight);
-    pixPaint.setFont(QFont(font, 10 * fontFactor, QFont::Bold));
-    pixPaint.drawText(welcomeRect, Qt::AlignRight | Qt::AlignTop, "VIPSTARCOIN-Qt Wallet");
+    pixPaint.setFont(QFont(font, 20*fontFactor));
+
+    // if the version string is too long, reduce size
+    fm = pixPaint.fontMetrics();
+    int versionTextWidth  = fm.width(versionText);
+    if(versionTextWidth > titleTextWidth+paddingRight-10) {
+        pixPaint.setFont(QFont(font, 10*fontFactor));
+        titleVersionVSpace -= 5;
+    }
+    pixPaint.drawText(pixmap.width()/devicePixelRatio-titleTextWidth-paddingRight+2,paddingTop+titleVersionVSpace,versionText);
 
     // draw copyright stuff
-    QFont statusFont = QApplication::font();
-    statusFont.setPointSizeF(statusFont.pointSizeF() * 0.9);
-    pixPaint.setFont(statusFont);
-    pixPaint.setPen(foreground_color_statusbar);
-    QRect statusRect(mainRect.left(), mainRect.height() - statusHeight, mainRect.width(), statusHeight);
-    QColor statusColor(255, 255, 255);
-    statusColor.setAlphaF(0.1);
-    pixPaint.fillRect(statusRect, statusColor);
-    pixPaint.drawText(statusRect.adjusted(10, 0, -10, 0), Qt::AlignRight | Qt::AlignVCenter, copyrightText);
+    {
+        pixPaint.setFont(QFont(font, 14*fontFactor));
+        const int x = pixmap.width()/devicePixelRatio-titleTextWidth-paddingRight;
+        const int y = paddingTop+titleCopyrightVSpace;
+        QRect copyrightRect(x, y, pixmap.width() - x - paddingRight, pixmap.height() - y);
+        pixPaint.drawText(copyrightRect, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap, copyrightText);
+    }
+
+    // draw additional text if special network
+    if(!titleAddText.isEmpty()) {
+        QFont boldFont = QFont(font, 10*fontFactor);
+        boldFont.setWeight(QFont::Bold);
+        pixPaint.setFont(boldFont);
+        fm = pixPaint.fontMetrics();
+        int titleAddTextWidth  = fm.width(titleAddText);
+        pixPaint.drawText(pixmap.width()/devicePixelRatio-titleAddTextWidth-10,15,titleAddText);
+    }
 
     pixPaint.end();
 

@@ -4634,7 +4634,7 @@ The delegation for the address will be removed from the wallet list.</source>
     </message>
     <message>
         <source>Are you sure you want to send? &lt;br /&gt;&lt;br /&gt;</source>
-        <translation>送信します。よろしいですか？ &lt;br /&gt;&lt;br /&gt</translation>
+        <translation>送信します。よろしいですか？ &lt;br /&gt;&lt;br /&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1 %2 &lt;/b&gt; to </source>

@@ -8,7 +8,7 @@
 #include <cstdint>
 
 /* Milliseconds between model updates */
-static const int MODEL_UPDATE_DELAY = 2000;
+static const int MODEL_UPDATE_DELAY = 250;
 
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;

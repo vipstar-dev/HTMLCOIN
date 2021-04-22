@@ -1,4 +1,4 @@
-VIPSTARCOIN Core v1.2.2 (Unofficial)
+VIPSTARCOIN Core v1.2.3 (Unofficial)
 =========
 
 (Official Website) https://www.vipstarcoin.jp/

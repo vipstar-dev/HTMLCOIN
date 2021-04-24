@@ -10,7 +10,7 @@ import sys
 
 def setup():
     global args, workdir
-    programs = ['ruby', 'git', 'make', 'wget', 'curl', 'libarchive-tools']
+    programs = ['ruby', 'git', 'make', 'wget', 'curl', 'zip', 'libarchive-tools']
     if args.kvm:
         programs += ['apt-cacher-ng', 'python-vm-builder', 'qemu-kvm', 'qemu-utils']
     elif args.docker and not os.path.isfile('/lib/systemd/system/docker.service'):

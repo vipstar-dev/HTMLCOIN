@@ -37,6 +37,8 @@ packages:
 - "libgmp-dev"
 - "libmicrohttpd-dev"
 - "libminiupnpc-dev"
+- "zip"
+- "libarchive-tools"
 remotes:
 - "url": "https://github.com/vipstar-dev/VIPSTARCOIN.git"
   "dir": "VIPSTARCOIN"

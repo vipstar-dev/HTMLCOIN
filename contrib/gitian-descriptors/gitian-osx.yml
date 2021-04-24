@@ -110,27 +110,28 @@ script: |
   create_per-host_faketime_wrappers "${REFERENCE_DATETIME}"
   export PATH=${WRAP_DIR}:${PATH}
 
-  # Create the release tarball using (arbitrarily) the first host
+  # Create the zip using (arbitrarily) the first host
   ./autogen.sh
   CONFIG_SITE=${BASEPREFIX}/$(echo "${HOSTS}" | awk '{print $1;}')/share/config.site ./configure --prefix=/
-  make dist
-  SOURCEDIST=$(echo VIPSTARCOIN-*.tar.gz)
-  DISTNAME=${SOURCEDIST/%.tar.gz}
+  # Bitcoin, Qtum and others use "make dist" command. But if use that in VIPSTARCOIN, errored gzip.
+  make dist-zip
+  SOURCEDIST=$(echo VIPSTARCOIN-*.zip)
+  DISTNAME=${SOURCEDIST/%.zip}
 
-  # Workaround for tarball not building with the bare tag version (prep)
+  # Workaround for zip not building with the bare tag version (prep)
   make -C src obj/build.h
 
   ORIGPATH="$PATH"
-  # Extract the release tarball into a dir for each host and build
+  # Extract the zip into a dir for each host and build
   for i in ${HOSTS}; do
     export PATH=${BASEPREFIX}/${i}/native/bin:${ORIGPATH}
     mkdir -p distsrc-${i}
     cd distsrc-${i}
     INSTALLPATH="${PWD}/installed/${DISTNAME}"
     mkdir -p ${INSTALLPATH}
-    tar --strip-components=1 -xf ../$SOURCEDIST
+    bsdtar --strip-components=1 -xf ../$SOURCEDIST
 
-    # Workaround for tarball not building with the bare tag version
+    # Workaround for zip not building with the bare tag version
     echo '#!/bin/true' >share/genbuild.sh
     mkdir src/obj
     cp ../src/obj/build.h src/obj/

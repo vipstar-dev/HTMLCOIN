@@ -646,6 +646,10 @@
         <source>Smart contracts</source>
         <translation>スマートコントラクト</translation>
     </message>
+	<message>
+        <source>Create</source>
+        <translation>作成</translation>
+    </message>
     <message>
         <source>Send To</source>
         <translation>送信</translation>

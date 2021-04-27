@@ -157,8 +157,8 @@ script: |
   # Create the zip using (arbitrarily) the first host
   ./autogen.sh
   CONFIG_SITE=${BASEPREFIX}/$(echo "${HOSTS}" | awk '{print $1;}')/share/config.site ./configure --prefix=/
-  # Bitcoin, Qtum and others use "make V=1 dist" command. But if use that in VIPSTARCOIN, errored gzip.
-  make V=1 dist-zip
+  # Bitcoin, Qtum and others use "make dist" command. But if use that in VIPSTARCOIN, errored gzip.
+  make dist-zip
   SOURCEDIST=$(echo VIPSTARCOIN-*.zip)
   DISTNAME=${SOURCEDIST/%.zip}
 
@@ -188,9 +188,9 @@ script: |
     cp ../src/obj/build.h src/obj/
 
     CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS} CFLAGS="${HOST_CFLAGS}" CXXFLAGS="${HOST_CXXFLAGS}" LDFLAGS="${HOST_LDFLAGS}"
-    make V=1 ${MAKEOPTS}
-    make V=1 ${MAKEOPTS} -C src check-security
-    make V=1 ${MAKEOPTS} -C src check-symbols
+    make ${MAKEOPTS}
+    make ${MAKEOPTS} -C src check-security
+    make ${MAKEOPTS} -C src check-symbols
     make install DESTDIR=${INSTALLPATH}
     cd installed
     find . -name "lib*.la" -delete

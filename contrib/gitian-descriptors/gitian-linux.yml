@@ -42,16 +42,9 @@ packages:
 remotes:
 - "url": "https://github.com/vipstar-dev/VIPSTARCOIN.git"
   "dir": "VIPSTARCOIN"
-- "url": "https://github.com/qtumproject/cpp-eth-qtum.git"
-  "dir": "cpp-eth-qtum"
 files: []
 script: |
   set -e -o pipefail
-
-  #this is a hack since gitian has no natural support for submodules
-  #make sure this file exists... 
-  cp -r cpp-eth-qtum/* VIPSTARCOIN/src/cpp-ethereum
-  cat VIPSTARCOIN/src/cpp-ethereum/utils/libscrypt/b64.c
 
   WRAP_DIR=$HOME/wrapped
   HOSTS="x86_64-linux-gnu arm-linux-gnueabihf aarch64-linux-gnu riscv64-linux-gnu"
